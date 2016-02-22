@@ -1,0 +1,5 @@
+http://stackoverflow.com/questions/26102889/how-do-i-make-named-arguments-in-elisp
+
+
+http://steve-yegge.blogspot.com/2008/01/emergency-elisp.html
+

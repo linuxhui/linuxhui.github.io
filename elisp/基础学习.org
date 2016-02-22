@@ -1,0 +1,778 @@
+* 介绍
+** nil and t
+在emacs中， nil 符号有三种不同意义：
+ + 它是一个名字为‘nil'的符号
+ + 它是逻辑事实为 false
+ + 它是一个空list--这个list有零个元素。
+当nil被作为一个变量的时候， nil的value 为nil。
+
+就Lisp读者关心的那样，‘()'和 ’nil'是完全相同的。它们代表相同的object，即符号 nil。它们只是方便
+人类阅读而采用的不通书写形式而已。对程序来说两者并无区别。
+
+在这个手册中，我们书写()  是因为我们想强调它是一个空list。 我们书写 nil 是因为我们想强调它的属性
+是 false。在Lisp编程中，这也是非常好的一种表现形式。
+
+(cons 'foo ())    ; 强调是一个空的list
+(setq foo-flag nil) ; 强调真实属性是false
+
+在程序中，希望得到真实属性。 任何非 nil的属性被认为是 True。但是 默认选择t作为真实属性 True的表现形式。
+如果你选择一个为true的属性，那么使用t。 符号 t 总是有属性 t。
+
+在Emacs Lisp中，nil 和 t 是可以给自己赋值的特殊symbol。 这也是你为什么当你在程序中使用它们作为常量而不用引用它们。
+当改变它们的时候会产生一个 setting-constant 错误。
+
+|f|boolenp| object| 
+
+
+
+* Lisp 数据类型
+Lisp对象是被Lisp程序处理和使用的一块数据.因此,数据类型就是其中的一些对象的集合.
+
+每一种对象至少属于一种类型.相同类型的对象有相似的数据结构,可以在相同的环境中使用.类型间可以部分相同,同时对象可以属于两个或者多个类型.因此我们说一个对象是否属于一个类型的一部分,而不是说这个这个对象的类型.
+
+一部分的对象类型内置入emacs中. 其他类型依赖的这个类型称之为基础类型.每一个object属于一种,且只能属于一种基础类型.这些基础类型包括 integer,float, cons, symbol, string, vector,hash-table.subr. 和 byte-code 函数.
+
+每一个基础type都有一个lisp 函数用来检测这个object是否是这个type的一员.
+
+** Printed Representation and Read Syntax
+
+** 注释
+注释是一段仅仅为了人类更号理解程序的文字， 对于程序来说没有一点意义。在lisp中， 注释以逗号(semicolon，";"）
+开头， 在行尾部结束。Lisp不会读取这些注释，它们也不会程序程序运行的一部分。
+
+The ‘#@count’ construct, which skips the next count characters, is useful for program-
+generated comments containing binary data. The Emacs Lisp byte compiler uses this in its
+output files (see Chapter 16 [Byte Compilation], page 239). It isn’t meant for source files,
+however.
+
+** 程序设计类型 
+在EMACS LISP 中，有两种常规的分类： 一种是必须在LISP编程中存在的，另外一种为了编辑而必须存在的。前者在Lisp程序大量存在，后者只存在与Emacs Lisp中.
+
+***  整数类型
+在emacs中一个整数类型的范围依赖于设备。最小的范围是 −536,870,912 到 536,870,911 (30 bits; i.e., −2^29 to 2^29 − 1).然而很多服务器提供更大的范围。
+记住，Emacs Lisp并不会检查整数泄露。
+
+整数的read syntax 是一系列基于10的数字，前后都可以选择一些标志。比如 在前面增加'+',或者后面增加 '.'.
+
+#+BEGIN_EXAMPLE
+      -1    ;整数 -1
+      1     ;整数 1
+      1.    ;整数1
+      +1    ;整数1
+#+END_EXAMPLE
+
+特殊情况，如果一个整数太大或者太小，LISP 读取的时候将视它为一个浮点数。例如 ,如果 Emacs 整数是30个字节， 536870912 将被视为浮点数 536870912.0
+
+*** 浮点类型
+浮点数采用科学表示法，所以你可以认为一个基于10进制的浮点数。在 Emacs中使用C语言的 *double* 数据类型进行存储数据，在计算机内部使用2进制进行存储。
+
+浮点数采用任意一种10进制的表现形式，比如， '1500.0'， '+15e2', '15.0e+2', '+1500000e-3'，和 ‘。15e4‘ 是5中写浮点数1500的几种方式，它们完全相同。
+
+*** 字符类型
+在Emacs lisp中，字符和整数并没有什么区别.换句话说，字符是用他的字符码表示。例如： 字符A 用整数65表示。
+
+字符在程序中不怎么单独使用，一般情况下更多的是在程序中使用多个字符组成的序列：字符串。
+
+在buffers和strings中的字符通常限制在0到4194303(22个字符). 其中 0- 127 是ASCII码，剩下的是 non-ASCII码， 键盘可以利用 编码修饰键输入更大范围的字符，
+例如： Control， Meta 和 Shift。
+
+**** 字符的基本格式
+字符的表达采用十进制数字，虽然这是一种易读的格式，但是这种方式写入程序并不明智。你应该采用Emacs指定的语法，进行书写，语法以 ？(question) 标记.
+
+字母字符的常规读法是采用问号后面跟这个字符。 '?A' 是字符A，'?a'是字符 a
+
+例如：
+    ？Q ==> 81   ?q ==> 113
+
+对于标点字符，你也可以采用这种方式进行表示， 最好是采用增加 '\'作为转移符来防止Emacs编辑程序困惑。当然了 如果字符是 '\'，你应该是用 两个
+'\'来引用它； '?\\'.
+
+你可以表示字符： control-g ， 回车，tab， 换行，垂直tab，formfeed, 空格, 回车，删除，和 escape 使用 '?\a',‘?\b’, 
+‘?\t’, ‘?\n’, ‘?\v’, ‘?\f’, ‘?\s’, ‘?\r’, ‘?\d’, 和‘?\e’, ‘?\s’ followed by a dash has a different meaning—it applies the
+“super” modifier to the following character.
+
+在不是特殊的字符前面使用 backslash是被允许，无害的。因此 '？\+' 和 '?+'是等价的。但是在大部分字符前面增加一个 backslash是无意义的。
+但是你应该在在下面这些字符前面增加 backslash 来避免 Lisp程序在解析它们的时候感到困惑： '()\|;''".,'。 另外在空白区域(space, tab, 
+newline 和 formfeed)前面增加 backslash 也是有用的，但是不如使用 '\t','\s' 易用和分辨。
+
+**** 常规的变形语法
+
+**** 控制字符语法
+
+**** Meta-Character Syntax
+
+*** Other Character Modifier Bits
+
+
+*** Symbol 类型
+在GNU Emacs Lisp中 一个 symbol是一个有名字的对象。symbol 名字作为对象的打印值。In ordinary Lisp use, with one single obarray，
+一个 symbol的名字是唯一的， 不可能有两个symbols有相同的名字。
+
+一个symbol可以是一个变量，或者函数名字，或者包含一个 property list。Or it may serve only to be distinct
+ from all other Lisp objects, so that its presence in a data
+structure may be recognized reliably. In a given context, usually only one of these uses is
+intended. But you can use one symbol in all of these ways, independently.
+
+
+一个 名字以 colon(:)开头的 symbol 被成为 关键字 symbol。 这些关键字会自动变为常量，通常用来采用 一定的具体方案 比较一个未知的 symbol。
+
+symbol的名字可以是任何字符，大部分的名字使用 字母，数字和 “-+=*/”等标点符号。
+
+*** 序列类型
+序列是一种Lisp对象，它表示元素的有序集合. 在Emacs Lisp中有两种序列： Lists 和 Arrays。
+
+列表可以保存任何类型的元素，它的长度可以通过添加或删除元素很容易地改变。
+
+Arrays 是固定长度的序列。它们被进一步细分为 strings, vectors,  char_tables 和 bool-vectors（只能为t 或者 nil). Char-tables 和 vectors 大体相同，区别之处
+在于 char-tables以字符编码为索引。在字符串中的字符可以和在 buffer 中的字符一样有 text属性。但是 vector 不支持 text属性，即使他的元素是字符。
+
+Lists， strings 和其他的 array 类型都很相似,都拥有 序列 的特性和函数。比如，长度最少为1， 内部元素的起始索引从 0 开始， 
+
+序列改变之后，就不可能在读取原来的序列， 如果你重新读取的就是一个新的序列。 当然 list ()除外。
+
+*** Cons Cell 和 List Types
+
+cons cell 是一个 对象，由两个 slots(有人翻译成 槽） 组成， 称为为 CAR 和 CDR 槽。slot 可以保存任何的 Lisp 对象。我们说 “ 这个 cons cell 的 CAR 是” 意味着这个
+对象，它的 CAR slot 当前保存的值。 同理 CDR 也是这样。
+
+List 是一系列 cons cell组成，每一个 cons cell的 CDR 保存下个 cons cell 或者nil。Because most cons cells are used as part of lists, we
+refer to any structure made out of cons cells as a list structure.
+
+因为 cons cells 在Lisp中如此重要，我们有一个词 atoms ： 不是 cons cell的 object。
+
+list的读语法 和 打印表示都是相同的，有 一个左括号，任意个数的元素， 一个右括号组成。例如：
+
+**** List 的箱图画法
+
+**** Dotted Pair 标记
+
+**** 关联表
+关联表是一个特殊的list， 它的每个元素都是cons cell。 但是每个元素的CAR 是一个key， CDR是一个关联的value。关联表经常用在栈中，因为增加和删除list前面的元素非常的简单。
+在未来的章节中会介绍 hash tables ，这是另外一种查询表，在查询大量的数据是更快。
+
+*** Array type 
+Array有任意数量的 slots 组成， slots存放其他的 Lisp 对象， 分配在连续的内存中。访问每个元素的时间相同。作为对比，list的每个元素的访问时间和这个元素在list中的位置有关
+越靠后的元素的访问时间越长）。
+
+arrays 有四种类型：string，vectors，char-tables 和 bool-vectors
+
+string 是由字符组成的 array， vector 是由任意对象组成的 Array， bool-vector只能表示 t或者 nil。These kinds of array may have any length up to the largest
+integer. Char-tables are sparse arrays indexed by any valid character code; they can hold arbitrary objects.
+
+Array的第一个元素的索引为0。 需要注意，一旦 array被创建 ，长度就固定了。
+
+*** String 类型
+
+**** String的格式
+
+**** 在String种的非ASCII
+
+**** 在Strings中不打印的字符
+
+**** String的text属性
+
+*** Vector 属性
+vector是一个任意类型元素的一维 Array 。每一个元素的访问时间是固定的。
+
+Vector的打印表示采用中括号。这也是 读格式。和数字，字符一样， vector支持常量运算。
+
+*** Char-Table 类型
+char-table是一个任意类型元素的一维 Array，采用字符码作为索引。Char-tables have certain extra features to make them more useful for many jobs that involve
+assigning information to character codes—for example, a char-table can have a parent to
+inherit from, a default value, and a small number of extra slots to use for special purposes.
+A char-table can also specify a single value for a whole character set.
+
+一个char-table的打印表示和vector相似，它的开头采用 ’#^‘
+
+*** Bool-Vector 类型
+   bool-vector 是一个元素只能是 t 或者 nil 的一维 Array. 他的打印表达和 String类似,区别在于它以 '$&'开头后跟长度.
+
+
+   如果长度不足8,那么打印表达式将会显示扩展部分,但是这些扩展没有一点区别. 如下例: 这两个 bool-vector 是相同的,因为他们只进行 3 个bits的比较:
+   #+BEGIN_EXAMPLE
+        (equal  #&3"\377" #&"\007")
+   #+END_EXAMPLE
+
+*** Hash Table Type
+   Hash  table 是一种非常快的查询表,很通过key关联value的 alist 很像,但是 hash table 更快. hash table的打印表达式展示他的属性和内容.例如:
+
+  #+BEGIN_EXAMPLE
+      (make-hash-table)
+      #s(hash-table size 65 test eql rehash-size 1.5
+                        rehash-threshold 0.8 data ())
+  #+END_EXAMPLE
+
+*** 函数类型
+   Lisp 函数和其他的语言一样,是可执行的代码. 和其他语言不一样的是,函数也是Lisp 对象. Lisp的没有no-compiled函数是一个lamdba 表达式: 一个
+   lambda symbol为第一个元素的list.
+   在大多数的计算机语言中,函数没有名字是不可能的. 但是在Lisp中,一个函数可以没有确切的名字. 一个lambda 表达式也被称为一个函数,即使它没有名字.
+   为了强调它, 我们称它为匿名函数. 在Lisp中有名字的函数仅仅是一个 symbol, 它的function cell是实际函数.
+
+   在Lisp 程序中,大多数情况下,当函数名称在Lisp表达式中被书写的时候,函数被调用.但是你也可以构建和获取一个函数对象, 并通过内置的函数 funcall 和 apply进行应用.
+
+*** Macro(宏) Type
+   Lisp macro 是一个用户自定义的结构,用来扩展Lisp 语言. 和函数类似,它作为一个object,但是却有着不同的参数传递语义.Lisp macro 是如下的list的格式: 第一个元素是 macro ,CDR 是Lisp函数对象(也是lambdasymbol)
+
+   Lisp macro通常使用内置的defmacro 函数进行定义.但是在Emacs中以 macro 开头的lisp也被认为是macro.
+
+   Warning: Lisp macros 和 键位 macros 是完全不同的东西. 如果没有特别指名,我们使用的"macro"是一个Lisp macro,不是一个键位 macro.
+
+*** 原始函数类型
+原始函数用c语言进行编写，可以被 Lisp 所调用。原始函数也被称为子函数或者内置函数。大多数的函数在调用的时候执行他们的参数，但是在被当作一个特殊的表单进行调用的时候不会执行所有的参数。
+
+对于调用者来说不需要关心这个函数是否是原始函数。但是如果你想在lisp中重新定义这个函数，你就需要注意了，因为原始函数也是是直接从c 代码中被调用的。在Lisp中调用重定义的函数将会使用新的定义，但是c语言依然会使用
+内置的定义。 因此，我们不推荐重新定义内置的函数。
+
+内置函数没有打印表达式，会直接打印它的子函数的名字。
+
+
+*** Byte-code 函数类型
+Byte-code 函数对象是 byte-compling Lisp 代码产生的。byte-code function object 和 vector 很想。但是编译器只有它出现在函数调用的时候，才会处理它的数据类型。
+
+byte-code 函数对象的打印表达式和读格式 和vector 很想，在操作符号"[" 前面增加 '#'
+
+*** Autoload 类型
+Autoload 对象是一个列表，他的第一个元素是 autoload symbol。它被存储作为symbol的函数定义，定义处函数的真实定义。 autoload 对象声明在Lisp代码中需要被加载的真实的函数定义。
+它包含文件的名字,和真实定义的其他信息。
+
+After the file has been loaded, the symbol should have a new function definition that is
+not an autoload object. The new definition is then called as if it had been there to begin
+with. From the user’s point of view, the function call works as expected, using the function
+definition in the loaded file.
+
+autoload对象通常使用autoload函数进行创建，用来存储symbol的函数 
+
+** Editing Types
+上个章节的类型被用来作为常规的编程使用，在lisp的方言中它们也很常见。Emacs Lisp 提供了一些额外增加的数据类型用来编辑。
+
+*** buffer Type
+buffer是一个对象，包含被编辑的文本。大多数的buffer装载磁盘文件的内容用来编辑，但是一些buffer用做其他的目的。大部分的buffer是在windows中用来给用户查看。
+
+但是一个buffer并不需要窗口。每个buffer都有一个指定的位置成为point。大部分的编辑命令都在当前buffer的point附近作用命令。 在任何时候，只有一个buffer是current buffer。
+
+buffer的内容和在string 很像，但是 在Emacs lisp中 bufferstring的使用方式不一样，主要的操作也是不同的。例如,你可以在已经存在的buffer中插入text，修改它的内容。但是插入string需要关联子字符串。
+结果是一个新的 string对象。
+
+很多的emacs 标准函数用来在当前的buffer中 操纵或者测试 字符。后面会有一个章节专门介绍这个。
+
+有一些其他的数据类型和buffer相关联：
+  + 一个 局部语法表
+  + 一个 局部键位
+  + 一个 局部buffer变量绑定
+  + overlays
+  + 在buffer中的text的 text属性
+
+局部键位和变量 list 在入口的地方覆盖全局绑定和values。 这样就可以在不通的buffer上进行不通的定制，而不用更改程序。
+
+buffer可以是次要的，意味着它共享自己的 text给其他的buffer，但是呈现方式不一样。
+
+buffer没有读语法，它们打印hash 标志，展现buffer 名字作为对象的打印值
+#+BEGIN_EXAMPLE
+    (current-buffer)
+       ==> #<buffer obeject.texi>
+#+END_EXAMPLE
+
+*** Marker 类型
+Marker 表明的是在 特定buffer的一个位置。Markers 因此有两个部件：一个是buffer， 另外一个是位置。 更改了buffer的text将会自动更改 位置value来确保指向buffer中相同的字符。
+
+Marker没有读语法，用hash标记进行打印，给除当前的字符位置和buffer名字。
+
+#+BEGIN_EXAMPLE
+   (point-marker)
+      ⇒ #<marker at 10779 in objects.texi>
+#+END_EXAMPLE
+
+
+*** Window 类型
+window 刻画了 终端屏幕的一部分，用来让 Emacs 显示以一个buffer。一个窗口关联一个buffer， buffer将内容展现在窗口中。作为对比，一个给定的buffer
+也许出现在一个 window， no window， 或者几个 windows 中。
+
+多个windows可以同时存在，但是在任何时刻，只有一个窗口是被选择的窗口。光标存在的窗口就是Emacs等待命令的窗口。被选择的窗口一般显示当前的buffer，但是也不是总是这个。
+
+在屏幕上的windows 以团存在于frames中。每个window 属于一个且只属于一个 frame。
+
+
+windows 没有读语法， 用hash标记进行打印，给出 window 号和显示的buffer名字。window 号是唯一的，但是windows 显示的buffer是可以改变的。
+#+BEGIN_EXAMPLE
+  (selected-window)
+      ⇒ #<window 1 on objects.texi>
+#+END_EXAMPLE
+
+*** Frame 类型
+    Frame是一个显示区域,包含一个或者多个Emacs windows.我们是用术语 "frame"指的是对象,而Emacs指的是显示区域.
+    
+    Frame没有读语法, 用hash标记进行打印, 给出这个frame的标题,外加在内核中的地址(在确定唯一性时非常有用).
+
+    #+BEGIN_EXAMPLE
+          (selected-frame)
+              ⇒ #<frame emacs@psilocin.gnu.org 0xdac80>
+    #+END_EXAMPLE
+
+*** Terminal Type
+    Terminal是一个用来显示一个或者多个Emacs Frames的设备.
+   
+    Terminals 没有读语法,用hash标记进行打印,给出这个terminal的序号,以及它的 TTY设备文件名(linux 万物皆对象)
+
+    #+BEGIN_EXAMPLE
+          (get-device-terminal nil)
+              ⇒ #<terminal 1 on /dev/tty>
+    #+END_EXAMPLE
+
+*** Window Configuration 类型
+    Window configure存储在frame中windows的位置,大小,和内容等信息. 所以你也以后改变窗口的布局.
+    
+    Terminals 没有读语法,他们的打印表达式类似"#<window-configuration>’".
+
+*** Frame Configuration 类型
+    Frame configuration 存储所有frames的windows的位置,大小,和内容等信息. 它不是一个原始的类型,而是一个CAR是frame-configuration , CDR是一个list的 list.
+
+    每一个元素描述作为该元素的CAR的Frame.
+
+*** Process 类型
+    process通常意味着一个运行的程序. Emacs自身也是一个程序.但是 在Emacs中,  process 是一个Lisp对象, 一个被Emacs创建的字程序.
+    程序 可以是在Emacs子程序中 shells, GDB, ftp,和 compilers, 用来扩展emacs的性能.Emacs子程序从Emacs中获取 文本化的输入,处理之后返回给Emacs. 
+
+    emacs也可以给子程序发送信号量.
+
+    Process对象没有读格式, 打印hash标识,通过给出这个 process的名字.
+    #+BEGIN_EXAMPLE
+          (process-list)
+               ⇒ (#<process shell>)
+    #+END_EXAMPLE
+
+*** Stream Type
+
+*** Keymap Type
+    keymap 指定了输入的用户命令的键位。这个映射控制用户的命令输入如何执行。keymap通常是一个list,它的CAR是 keymap symbol.
+
+*** Overlay 类型
+    overlay
+
+*** 字体类型
+    字体是指怎样在图形终端显示文本.实际分为三种字体类型: 字体对象,字体specs, 字体entities,它们相互都有不同的属性.
+    它们都没有读语法,他们的打印语法看起来像:‘#<font-object>’, ‘#<font-spec>’, and ‘#<font-entity>’
+
+
+
+
+    
+
+
+
+
+
+
+* 函数列表
++ 测试函数 
+  (sequencep OBJECT)
+  (arrayp OBJECT)
+  (vectorp OBJECT)
+  (char-table-p OBJECT)
+  (bool-vector-p OBJECT)
++ 序列函数
+  (length SEQUENCE)
+  (safe-length LIST)
+  (elt SEQUENCE N)
+  (copy-sequence ARG)
+  (copy-tree TREE &optional VECP)
++ 数组函数
+  (vector &rest OBJECTS)
+  (make-vector LENGTH INIT)
+  (aref ARRAY IDX)
+  (aset ARRAY IDX NEWELT)
+  (vconcat &rest SEQUENCES)
+  (append &rest SEQUENCES)
+* Symbols
+Symbols 是具有唯一名字的对象。它可以作为函数，可以作为变量。
+
+你可以判断一个lisp 对象是否是一个 Symbols，通过函数 symbolp：
+|f | symbolp | object | 如果对象是一个Symbol 返回 t， 否则返回 nil |
+
+**  Symbol 组件
+symbol 由四个组件组成，每一个组件都是由其他对象组成：
+ + Print name
+   Symbol 的名字
+ + Value
+   Symbol当前的值作为变量
+ + Function
+   Symbol的函数定义，它可以是一个symbol，一个keymap，或者 一个 键盘宏
+ + Property list (属性列表)
+   Symbol的属性列表
+
+Print name 是一个字符串，并且不能被改变。 其他的组件可以被设置为任何的Lisp 对象。
+
+symbol 用print name作为它们的名字，所以说没有两个 symbol拥有相同的名字。为了得到
+一个 symbol的名字 可以使用 函数 symbol-name。
+
+the value 组件使用 a symbol的value作为一个 变量。 大多数的symbols用 lisp对象作为一个value，但是专门确定的的symbols的value是不变的；它们包括 nil 和 t
+以及以“：”开头的symbols(也被成为关键字）。
+
+function cell是一个symnol的函数定义。我们说的 函数 foo y以为着 函数储存在 foo的 function cell中。我们可以通过 symbol-function来查看它。
+
+property list 是一个有序格式化的属性列表。 为了得到这个symbol的属性列表，可以使用函数 symbol-plist
+
+函数组件或者value组件可以是 void，这意味者这个组件不指向任何对象。
+
+因为symbol有不同的value 和 function组件，所以variable 名字和 函数名是不冲突的。比如：
+Symbol buffer-file-name 有一个被当前buffer 访问的文件名字作为 value， 也有函数定义表示一个返回文件名的内置函数
+
+#+BEGIN_EXAMPLE
+  buffer-file-name
+  ⇒ "/gnu/elisp/symbols.texi"
+  (symbol-function ’buffer-file-name)
+  ⇒ #<subr buffer-file-name>
+#+END_EXAMPLE
+
+** 定义 Symbols
+
+defvar 和 defconst是定义 symbol作为全局变量的特定函数。定义一个自定义的变量，使用 defcustom 宏，它调用defvar作为子进程， 
+
+在原则上你可以使用 setq 分配一个变量 value 任何一个 symbol 。
+
+defun 定义 一个 symbol 作为一个函数，创建一个 lambda 表达式 并且储存它到这个symbol的fuction cell中。 这个lambda就编程了这个symbol的函数定义。
+defsubst 和 defalias 是另外两种定义函数的方式。
+
+defmacro 定义了 symbol作为一个 macro。 它创建了一个 macro对象， 并且储存它到了这个symbol的 function cell中。也就是说一个给定的symbol 可以是 一个macro或者一个函数，
+但是两者不可以同时存在，因为它们的函数定义都存在于 function 组件中。
+
+根据上面所述， Emacs lisp 允许一个 symbol 被定义个一个变量(defvar) 和 一个函数/宏(defun).这些定义并不冲突。
+    
+** 创建和 预存Symbols
+常用的函数有：
+| f | symbol-name | symbol                 | 返回一个symbol的名字                 |
+| f | make-symbol | name                   | 返回一个新创建，没有进行预存的symbol |
+| f | intern      | name &optional abarray | 返回名字为name的预存对象             |
+| f | intern-soft | name &optional abarray | 返回在obarray中的名字为name的 symbol |
+|   |             |                        |                                      |
+
+* 给一个变量赋值
+** set/setq
+人们总是将set 函数的第一个参数用单引号标出，set函数和其第一个带引号的参量的组合总是如此常用，以至于它有了一个自己的名字：setq特殊表函数
+#+BEGIN_SRC elisp
+  (set flowers '(1 2 3))
+  (set 'flowers '(1 2 3))
+#+END_SRC
+
+另外setq支持如何格式
+#+BEGIN_SRC elisp
+  (setq tree "pine" flowers "12")
+#+END_SRC
+
+
+** let
+
+
+** buffer-name 和 buffer-file-list
+这两个函数显示文件和缓冲区之间的区别。当对表达式(buffer-name)求值时，缓冲区的名称将在回显中出现
+
+* sequence, Arrays,  and Vectors
+sequence 类型 是 其他两种 Lisp 类型的集合： lists 和 arrays。
+
+An array 是一个固定长度的对象 with  a sot for each of its elements。 arrays 有四种类型：string，vectors，char-tables 和 bool-vectors
+
+** Sequences
+| f | sequencep    | obeject        | 判断一个object是否是一个sequence                 |
+| f | length       | sequence       | 返回sequence中的元素， raise wrong-type-argument |
+| f | elt          | sequence index | 返回在sequence中元素的为值，从0开始              |
+| f | copy-squence | sequence       |  返回一个sequence的copy                               |
+
+** Arrays
+Arrays有四种类型：string， vertors， char-tables, bool-vertors。
+
+它们有以下几个特点：
++ Array的第一个元素的索引为0
++ Array的长度固定，一旦你创建了这个Array，长度就固定了，你就不能改变其长度
++ For purposes of evaluation, the array is a constant—i.e., it evaluates to itself.
++ The elements of an array may be referenced or changed with the functions aref and aset, respectively。
+
+
+** Functions that Operate on Arrays
+| f | arrayp    | object             | 判断object是否为一个 arrayp类型                                  |
+| f | aref      | array index        | 返回 the array的第几个元素，从0开始                              |
+| f | aset      | array index object | 设置 the array的第几个元素为 object，返回这个object              |
+| f | fillarray | array object       | 用 object 填充 the array ,每一个element都是这个object，返回array |
+
+** Vectors
+A vectors 是一个内部元素可以是任意Lisp object的Array 。（作为对比，A string的元素只能是字符串）。在emacs中 Vectors
+有很多用途： 作为key sequences， symbol-lookup 表，as part of the representation of a byte-compiled function。
+
+Vectors print使用中括号包裹元素。所以你可以是中括号进行元素书写。
+
+** Functions for Vectors
+| f | vectorp     | object          | 判断object是否是一个vector                                 |
+| f | vector      | &rest  object   | 创建和返回一个包含参数和object的 vector                    |
+| f | make-vector | length object   | 创建一个包含length个元素的vector，每个元素的初始值是object |
+| f | vconcat     | &rest sequences | 创建一个 vector 包含所有的seqences和rest的所有元素         |
+
+** Char-Tables
+
+** Managing a Fixed-Size Ring of Objects
+
+* Hash Tables
+
+** Creating Hash Tables
+| f | make-hash-table | &rest keyword-args |   |
+| f | makehash        |  &optional test                  |函数已经废弃 |
+
+** Hash Table Access
+| f | gethash | key table &optional default | 返回一个key在table中关联的value，默认返回default      |
+| f | puthash | key value table             | 在表中，插入一个 key，value，如果存在，则替换         |
+| f | remhash | key table                   | 删除key的     association                             |
+| f | clrhash | table                       | 删除表中的所有关系，table变为一个空表，也就是清空表的 |
+| f | maphash | function table              | 对每一个表中的 association执行一个function                                  |
+
+** Defining Hash Comparisons
+
+** Other Hash Table Functions
+| f | hash-table-p                | table |   |
+| f | copy-hash-table             | table |   |
+| f | hash-table-count            | table |   |
+| f | hash-table-test             | table |   |
+| f | hash-table-weakness         | table |   |
+| f | hash-table-weakness         | table |   |
+| f | hash-table-rehash-threshold | table |   |
+| f | hash-table-size             | table |   |
+
+
+
+* Symbols
+A symbol 是唯一名字的object。你可以测试一个lisp object是否为symbolp:
+| f | symbolp | object |   |
+
+** Symbol Components
+麻痹，hold在这里真难翻译
+Each symbol 有四个components(或者 “cells”）：
++ Print name
+  The symbol 的名字
++ Value
+  The symbol 当前的名字作为一个变量
++ Function 
+  The symbol的函数定义， 它可以是 a symbol, a keymap, or keyboard macro
++ Property list
+  The symbol 的  property list
+
+The print name  cell 一般是 一个string, 不能改变。其他的三个cells可以被设置为任何的Lisp object 。
+The print name是唯一的， 也就是没有两个 symbols可以拥有相同的名字。The Lisp reader ensures this: 
+every time it reads a symbol, it looks for an existing
+symbol with the specified name before it creates a new one.
+
+
+** Defining Symbols
+defvar and defconst are special forms that define a symbol as a global variable.you can assign a variable value to any symbol with setq
+
+defun defines a symbol as a function
+defmacro defines a symbol as a macro.
+
+** Creating and Interning Symbols
+| f | symbol-name | symbol                     |   |
+| f | make-symbol | name                       |   |
+| f | intern      | name &optional obarray     |   |
+| f | intern-soft | name &optional obarray     |   |
+| V | obarray     |                            |   |
+| f | mapatoms    | function &optional obarray |   |
+| f | unintern    | symbol obarray             |   |
+
+
+
+
+** Symbol Properties
+
+*** Accessing Symbol Properties
+| f | get          | symbol property       |   |
+| f | put          | symbol property value |   |
+| f | symbol-plist | symbol                |   |
+| f | setplist     | symbol plist          |   |
+| f | function-get | ymbol property                      |   |
+
+*** Standard Symbol Properties
+| :advertised-binding    |   |
+| char-table-extra-slots |   |
+|                        |   |
+
+* Evalution
+
+* Variables
+
+** Scoping Rules for Variable Bindings
+
+* Byte Compilation
+
+** Performance of Byte-Compiled Code
+
+** Byte-Compilation Functions
+编译函数选择
+ 1. byte-compile 一个函数或者 macro definition 使用  *byte-compile*  函数。 
+ 2. compile 一个文件使用 *byte-compile-file* 。
+ 3. 多文件使用 *byte-recompile-directory* 和 *batch-byte-compile*
+
+
+** Documentation Strings and Compilation
+Emacs从一个 bytes-compiled 文件中 加载函数和变量. 它通常不会将这些对象的文档加载进内存,而是在使用的时候采用动态的方式进行加载.这样可以节约内存,同时加快启动速度.
+
+这样有个缺点,如果你删除,移动,或者改变这个编译文件.emacs将不在能访问这些文档字符.这个通常发生在你改变或编译了emacs的源文件.因此你需要重下加载它们。
+
+** Dynamic Loading of Individual Functions
+
+** Evaluation During Compilation
+These features permit you to write code to be evaluated during compilation of a program.
+| f | eval-and-compile  | body |   |
+| f | eval-when-compile | body |   |
+
+** Compiler Errors
+
+** Byte-Code Function Objects
+
+Byte-compiled functions have a special data type: they are byte-code function objects.
+  
+* Reading and Printing Lisp Objects
+
+Printing 和 reading 是转换Lisp对象为文本Form和相反的操作。
+
+** Introduction to Reading and Printing
+
+Reading和Printing并不能完全的相互转换。这里有三个不同的地方：
+ + Printing 会产生不可读的text。例如： buffers，窗口，frames，子程序和以 “#” 开头的makers(标记）。如果你试图读取，将会产生一个错误。
+ + 一个对象有多种文本表现形式，例如 ‘01’ 和‘1’ 表示相同的数字。 '(a b)' 和 ‘(a . (b))'代表相同的list。Reading可以有多种形式，但是printing只能选择固定的一种书写的方式。
+ + 注释在对象中并不会影响对象的读取。
+ 
+
+** Input Streams
+大多数的 Lisp 程序为了读取 text 将一个输入流作为一个参数。这个输入流指定从那里读取 text。下面列出了可能的输入流：
+
+ + buffer
+   The input characters are read from buffer, starting with the character directly after point. Point advances as characters are read.
+ + marker
+   The input characters are read from the buffer that marker is in, starting with the character directly after the marker. The marker position advances as characters are read. The value of point in the buffer has no effect when the stream is a marker.
+ + string
+   The input characters are taken from string, starting at the first character in the string and using as many characters as required.
+ + functions
+   The input characters are generated by function, which must support two kinds of calls:
+   - When it is called with no arguments, it should return the next character.
+   - When it is called with one argument (always a character), function should save the argument and arrange to return it on the next call. This is called unreading the character; it happens when the Lisp reader reads one character too many and wants to “put it back where it came from”. In this case, it makes no difference what value function returns.
+   - When it is called with one argument (always a character), function should save the argument and arrange to return it on the next call. This is called unreading the character; it happens when the Lisp reader reads one character too many and wants to “put it back where it came from”. In this case, it makes no difference what value function returns.
+ + nil
+   nil supplied as an input stream means to use the value of standard-input instead; that value is the default input stream, and must be a non-nil input stream.
+ + symbol
+   A symbol as input stream is equivalent to the symbol’s function definition (if any).
+
+
+** Input Functions
+| f | read             | &optional stream           |   |
+| f | read-from-string | string &optional start end |   |
+| V | standard-input   |                            |   |
+| V | read-circle      |                            |   |
+ 
+
+** Output Streams
+Here are the possible types of output stream:
+ + buffer
+   The output characters are inserted into buffer at point. Point advances as characters are inserted.
+ + marker 
+   The output characters are inserted into the buffer that marker points into, at the marker position. The marker position advances as characters are inserted. The value of point in the buffer has no effect on printing when the stream is a marker, and this kind of printing does not move point (except that if the marker points at or before the position of point, point advances with the surrounding text, as usual).
+ + function
+ + t
+   The output characters are displayed in the echo area.
+ + nil
+   nil specified as an output stream means to use the value of standard-output instead; that value is the default output stream, and must not be nil.
+ + symbol
+   A symbol as output stream is equivalent to the symbol’s function definition (if any).
+
+** Output Functions
+| f | print                 | object &optional stream    |   |
+| f | print1                | object &optional stream    |   |
+| f | princ                 | object &optional stream    |   |
+| f | terpri                | &optional stream           |   |
+| f | write-char            | character &optional stream |   |
+| f | prin1-to-string       | object &optional noescape  |   |
+| f | with-output-to-string | body...                    |   |
+| f | pp                    | object &optional stream    |   |
+
+** Variable Affecting Output
+| v | standard-output              |   |
+| v | print-quoted                 |   |
+| v | print-escape-newlines        |   |
+| v | print-escape-nonascii        |   |
+| v | print-escape-multibyte       |   |
+| v | print-length                 |   |
+| v | print-level                  |   |
+| v | eval-expression-print-length |   |
+| v | eval-expression-print-level  |   |
+| v | print-circle                 |   |
+| v | print-gensym                 |   |
+| v | print-continuous-numbering   |   |
+| v | print-number-table           |   |
+| v | float-out-format             |   |
+
+** Minibuffers
+
+*** Introduction to Minibuffers
+
+
+*** Reading Text Strings with the Minibuffer
+| f | read-from-minibuffer             | prompt &optional initial keymap read history DEFAULT-VALUE INHERIT-INPUT-METHOD |   |
+| f | read-string                      | prompt  &optional initial history default  inherit-input-method                 |   |
+| f | read-regrexp                     | prompt &optional defaults history                                               |   |
+| v | read-regrexp-defaults-function   |                                                                                 |   |
+| v | minibuffer-allow-text-properties |                                                                                 |   |
+| v | minibuffer-local-map             |                                                                                 |   |
+| f | read-no-blanks-input             | prompt &optional initial inherit-input-method                                   |   |
+| v | minibuffer-local-ns-map          |                                                                                 |   |
+
+
+
+
+* Keymaps
+
+** Key Sequences
+| f | kbd | keyseq-text |   |
+
+** Keymap Basics
+
+** Format of Keymaps
+Several kinds of elements may appear in a keymap, after the symbol keymap that begins
+it:
+(type . binding)
+(type item-name . binding)
+(type item-name help-string . binding)
+(type menu-item . details)
+(t . binding)
+char-table
+string
+(keymap ...)
+
+** Active Keymaps
+一般来说，活跃的 keymaps 有:
+1. the keymap specified by the keymap property,
+2. the keymaps of enabled minor modes,
+3. the current buffer’s local keymap,
+4. the global keymap, in that order.
+5
+
+** Controlling the Active Keymaps
+| v | global-map              |        |
+| f | current-global-map      |        |
+| f | current-local-map       |        |
+| f | current-minor-mode-maps |        |
+| f | use-global-map          | keymap |
+| v | minor-mode-map-alist    |        |
+
+* Major and Minor Modes
+ Hook 是一个变量， where you can store a function or functions to be called on a particular occasion by an existing program。
+
+ 在emacs中的大多数的钩子是 常规的钩子，这些变量包含一系列不附带参数就可以被调用的函数。通俗规定, 以‘-hook’结尾的hook为常规hook。所以我们尽可能的让
+ 所有的hooks 长规化，以至于你可以用一个统一的方式进行调用。
+
+ Major mode 命令支持运行一个 常规的钩子，用来调用模块hook 作为下一步的初始化。
+
+增加 hook 函数到 hook 的一个推荐方式是调用 *add-hook*。Hook 函数可以是任何函数只要 funcall接受。大多数的常规的hook变量是void类型。add-hook知道怎么处理它们。
+你可以用 add-hook 增加hooks到全局或者buffer-local。
+
+如果hook 变量的名字不是以 ‘-hook’ 结尾，那么意味着，它可能不是一个常规的hook。这个hook 函数调用需要参数，或者它们返回的值有其他用途。The hook’s documentation says how the functions are called.
+你可以使用 *add-hook* 来增加一个不是常规的hook， 但是你必须写遵循协议的调用函数。根据协议，非常规的 hook 名字以 ‘-functions'结束。
+
+如果一个变量的名字以 ‘-function’结束。同时它的value是一个函数，不是一个函数列表。 add-hook不能被用来更改这样的一个单独的函数hook，你可以使用add-function代替。
+
+
+** Running Hooks
+在这个章节，我们介绍以下 run-hooks函数，它被用来运行一个常规hook。后面我们也介绍以下运行不同类型的非常规hooks的函数。
+|

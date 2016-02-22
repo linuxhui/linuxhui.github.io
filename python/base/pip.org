@@ -1,0 +1,25 @@
+* pip 
+** 安装
+ 需要先安装setuptools
+** 配置 
+** 依赖包
+ + 生成依赖包
+    #+BEGIN_EXAMPLE
+      pip freeze >requirements.txt
+    #+END_EXAMPLE
+ + 应用依赖包
+   #+BEGIN_EXAMPLE
+     pip install -r requirements.txt
+   #+END_EXAMPLE
+
+            auth     required       pam_securetty.so
+           auth     required       pam_tally2.so deny=4 even_deny_root unlock_time=1200
+           auth     required       pam_env.so
+           auth     required       pam_unix.so
+           auth     required       pam_nologin.so
+           account  required       pam_unix.so
+           password required       pam_unix.so
+           session  required       pam_limits.so
+           session  required       pam_unix.so
+           session  required       pam_lastlog.so nowtmp
+           session  optional       pam_mail.so standard

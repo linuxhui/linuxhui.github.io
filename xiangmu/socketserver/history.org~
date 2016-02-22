@@ -1,0 +1,6 @@
+#+TITLE： 修复的bug信息，以及功能添加
+
+* 更改历史
+ + 2015-08-31
+   + bug： 修复了server启动后，第二天脚本中getclientconfig 模块链接CSserver出现密码为昨天密码的情况。
+    原因： 将获取password的函数，写道了func 外部，这样密码就是一个静态的值，不能动态生成了。

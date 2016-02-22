@@ -1,0 +1,26 @@
+* mysql新增用户
+  通过两种方式： 
+  1. grant 
+  grant all priviliges on *.* to ‘wsh’@‘localhost' identified by 'some_pass' with RRANT OPTION;
+  2. 通过表
+  insert into user values('localhost','wsh', PASSWORD('some_pass'),Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');
+* 设置mysql用户密码
+ 1. shell
+ > mysqladmin -u wsh -h host_name password 'newpwd'
+ 2. SET PASSWORD
+ > SET PASSWORD for 'wsh'@'%' = PASSWORD('newpwd')
+ 省略 for 是为自己设置密码
+ set PASSWORD = PASSWORD('newpwd')
+* mysql 备份与恢复
+** 
+1. 完全备份数据库：
+shell > mysqldump --tab=/path/to/some/dir --opt db_name
+或者
+shell > mysqlhotcopy db_name /path/to/some/dir（只适用 MyISAM表）
+
+**  恢复
+shell> mysql < backup.sql
+
+
+
+

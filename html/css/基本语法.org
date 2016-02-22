@@ -1,0 +1,140 @@
+
+
+* 简介
+一个CSS包含多个可以被浏览器解析和应用到DOM元素的style规则，。每个规则有三个部分组成：
+ + Selector：
+   selector是一个应用style的HTML tag。它可以是任何tag像：<h1> 或者 <table> etc
+
+ + Property:
+   一个property是HTML的一个type 描述，简单讲,所有的HTML 描述都可以转化为css property。例如： color，border，etc。
+
+ + Value
+   可以赋值给property,例如： color property 可以有value ： red或者 #F1F1F1 etc。
+
+* 格式：
+
+** the Type Selectors
+#+BEGIN_EXAMPLE
+  h1 {
+     color: #36CFFF;
+     }
+#+END_EXAMPLE
+** The Universal Selectors
+#+BEGIN_EXAMPLE
+  * {
+  color: #000000;
+    }
+#+END_EXAMPLE
+** The Descendant Selectors
+当你想应用一个style规则给一个在其他元素之后的元素。像下面的例子，这个style规则将会应用给在 <ul> 之后的<em> 元素。
+
+#+BEGIN_EXAMPLE
+  ul em {
+  color: #000000;
+  }
+#+END_EXAMPLE
+** The Class Selectors
+你可以定义 style rules元素的class元素。所有有这个class的元素将会应用定义的rules。
+#+BEGIN_EXAMPLE
+  .black {
+  color: #000000;
+  }
+#+END_EXAMPLE
+
+上面将会设置“黑色”给在DOM中用了这个class属性的元素。你也可以设置的特殊一些，例如：
+#+BEGIN_EXAMPLE
+  h1.black {
+  color: #000000;
+  }
+#+END_EXAMPLE
+
+这个rule只会应用给带有class为black属性的h1 元素为“黑色”。
+
+当然了你也可以在元素中应用多个class selector。 例如:
+#+BEGIN_EXAMPLE
+  <p class="center bold">
+  This para will be styled by the classes center and bold.
+  </p>
+#+END_EXAMPLE
+** The ID Selectors
+你可以定义style规则基于元素的id属性。所有有这个id属性的元素将会被赋于这个默认的rule。
+#+BEGIN_EXAMPLE
+  #black {
+  color: #000000;
+  }
+#+END_EXAMPLE
+上面的这个规则将会赋予每个含有这个id属性的元素。你也可以设置的特别一点。例如：
+#+BEGIN_EXAMPLE
+  h1#black {
+  color: #000000;
+  }
+
+#+END_EXAMPLE
+这个规则将会应用给所有h1 且id属性为black为“黑色”
+
+idselector真正的用处在于用来作为操作后面元素的基准。例如：
+#+BEGIN_EXAMPLE
+  #black h2 {
+  color: #000000;
+  }
+#+END_EXAMPLE
+在这个例子中，在id为black之后的所有h2设置为black。
+** The Child Selectors
+在上面 我们已经见过来继承下载的selectors。但是这个和那个有很大的区别，类似的关系如：祖先和父子的关系。
+#+BEGIN_EXAMPLE
+  body > p {
+  color: #000000;
+  }
+#+END_EXAMPLE
+这个rule将会应用在body元素之后有直接联系的 p元素设置为“黑色” ，但是在body中的其他元素之后的例如<div>或者<td> etc的<p>元素将不会受到影响。
+** The Attribute Selectors
+你可以设置style给特别属性的 HTML 元素， 这个style规则将会匹配给带有text属性的input元素。
+#+BEGIN_EXAMPLE
+  input[type="text"]{
+  color: #000000;
+  }
+#+END_EXAMPLE
+这种方式的优势是向 <input type="submit" />这种元素就不受影响。
+
+下面是一些应用到属性selector的规则：
+  + p[lang]
+    选择所有有lang属性的 段落(p)元素
+  + p[lang="fr"]
+    选择所有带有属性为lang，并且值为 “fr“的 段落(p)元素
+  + p[lang ~= "fr"]
+    选择所有含有lang元素，且值包含 "fr" 的段落(p)元素
+  + p[lang |= "en" ]
+    选择所有含有lang，且值刚好是“en”或者“en”开头的元素
+** Multiple Style Rules
+你可以定义多个Style在一个元素中。你可以定义多个不同的properties和value。如下：
+#+BEGIN_EXAMPLE
+  h1 {
+  color: #36C;
+  font-weight: normal;
+  letter-spacing: .4em;
+  margin-bottom: 1em;
+  text-transform: lowercase;
+  }
+#+END_EXAMPLE
+
+所有的 property和value对 用semicolon(;)进行分割。你可以将它们写入一行或者多行，但是为了可读性，建议写到多行。
+
+** Grouping Selectors
+你可以应用一个style给多个元素，只要用comma(逗号)进行分开就好了：
+#+BEGIN_EXAMPLE
+  h1, h2, h3 {
+  color: #36C;
+  font-weight: normal;
+  letter-spacing: .4em;
+  margin-bottom: 1em;
+  text-transform: lowercase;
+  }
+#+END_EXAMPLE
+上面的定义将会应用给h1,h2,h3元素。selector list的顺序是无关的。list的所有selector将会赋予相同的定义。
+
+你也可以合并不同的class selector。例如：
+#content, #footer, #supplement {
+position: absolute;
+left: 510px;
+width: 200px;
+}   

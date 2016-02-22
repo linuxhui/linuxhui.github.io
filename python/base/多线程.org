@@ -1,0 +1,10 @@
+* linux的多线程与同步。
+
+http://www.cnblogs.com/vamei/archive/2012/10/12/2721484.html
+
+http://stackoverflow.com/questions/8463008/python-multiprocessing-pipe-vs-queue
+
+http://blog.csdn.net/hguisu/article/details/7420161
+
+
+http://www.zlovezl.cn/articles/charming-python-start-from-flask-request/

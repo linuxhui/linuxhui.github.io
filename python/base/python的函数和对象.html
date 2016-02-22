@@ -1,0 +1,2131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2015-11-22 日 17:36 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline8">1. 简单了解函数</a>
+<ul>
+<li><a href="#orgheadline1">1.1. 函数是什么</a></li>
+<li><a href="#orgheadline2">1.2. 函数的好处</a></li>
+<li><a href="#orgheadline5">1.3. 函数和过程的区别</a>
+<ul>
+<li><a href="#orgheadline3">1.3.1. python的函数和过程</a></li>
+<li><a href="#orgheadline4">1.3.2. common lisp中的函数(简述)</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline6">1.4. 函数定义</a></li>
+<li><a href="#orgheadline7">1.5. function的赋值和执行</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline13">2. function 和 object</a>
+<ul>
+<li><a href="#orgheadline9">2.1. function是一个object</a></li>
+<li><a href="#orgheadline10">2.2. 函数可以被定义到一个函数里</a></li>
+<li><a href="#orgheadline11">2.3. 函数可以返回一个函数</a></li>
+<li><a href="#orgheadline12">2.4. 函数作为一个参数</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline14">3. function 和 method</a></li>
+<li><a href="#orgheadline17">4. function 和 decorator</a>
+<ul>
+<li><a href="#orgheadline15">4.1. 自制一个装饰器</a></li>
+<li><a href="#orgheadline16">4.2. 解开Decorators的神秘面纱</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline23">5. 装饰器进阶</a>
+<ul>
+<li><a href="#orgheadline18">5.1. 装饰方法</a></li>
+<li><a href="#orgheadline19">5.2. 传递参数到decorator</a></li>
+<li><a href="#orgheadline20">5.3. 练习: 装饰一个装饰器</a></li>
+<li><a href="#orgheadline21">5.4. 最好的实践: 装饰器</a></li>
+<li><a href="#orgheadline22">5.5. 如何理解装饰器的执行步骤.</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline30">6. 装饰器的用处</a>
+<ul>
+<li><a href="#orgheadline24">6.1. 装饰器有什么用</a></li>
+<li><a href="#orgheadline28">6.2. python的内置装饰器</a>
+<ul>
+<li><a href="#orgheadline25">6.2.1. staticmethod</a></li>
+<li><a href="#orgheadline26">6.2.2. classmethod</a></li>
+<li><a href="#orgheadline27">6.2.3. property</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline29">6.3. 这不是魔法系列(主要是flask的url解析)</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline37">7. 这不是魔法</a>
+<ul>
+<li><a href="#orgheadline31">7.1. 前言</a></li>
+<li><a href="#orgheadline32">7.2. 装饰器</a></li>
+<li><a href="#orgheadline33">7.3. 将 app 放进app.route</a></li>
+<li><a href="#orgheadline34">7.4. 以正则的形式表达我们的路径</a></li>
+<li><a href="#orgheadline35">7.5. 命名捕获组</a></li>
+<li><a href="#orgheadline36">7.6. 推陈出新</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline38">8. 建议阅读:</a></li>
+<li><a href="#orgheadline39">9. 引用文件</a></li>
+</ul>
+</div>
+</div>
+
+
+
+
+
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8"><span class="section-number-2">1</span> 简单了解函数</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> 函数是什么</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+A function is a piece of code in a program. The function performs a specific task.
+</p>
+
+<p>
+在Python中，函数是第一等公民。这意味着函数和Python的其他object一样拥有状态。可以被赋值给变量，储存在Collections或者当作参数进行传送，这给语言带来了很大的灵活性。
+</p>
+
+<p>
+在python中有两种函数。内置函数和自定义函数。内置函数是python的一部分。自定义函数需要使用关键字"def"进行创建。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> 函数的好处</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Reducing duplication of code</li>
+<li>Decomposing complex problems into simpler pieces</li>
+<li>Improving clarity of the code</li>
+<li>Reuse of code</li>
+<li>Information hiding</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">1.3</span> 函数和过程的区别</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+函数和过程都是可以被调用的实体。但是函数和过程最大的区别在于函数有返回值，而过程没有返回值。
+</p>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">1.3.1</span> python的函数和过程</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+在python中，过程其实就是函数，解释器会隐形的返回一个默认值None。另外的一个意思就是函数一般情况下使用return进行状态的返回。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-4">
+<h4 id="orgheadline4"><span class="section-number-4">1.3.2</span> common lisp中的函数(简述)</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+在cl中函数的定义：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-elisp"><span style="color: #2aa1ae; background-color: #292e34;">; </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#20010;&#23450;&#20041;&#24341;&#29992;&#30340;&#26159;&#20912;&#27827;&#20254;&#21733;&#30340;&#23450;&#20041;</span>
+<span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">defun</span> <span style="color: #bc6ec5; font-weight: bold;">funname</span> <span style="color: #bc6ec5;">(</span>parameter*<span style="color: #bc6ec5;">)</span>
+  <span style="color: #2aa1ae;">"doc"</span>
+  body-form*<span style="color: #2f96dc;">)</span>
+</pre>
+</div>
+
+
+<p>
+在cl中，如果没有加入返回语句，body-form*的最后一个语句将被作为函数的返回值给调用者。这也是和很多计算机语言不同的地方。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">1.4</span> 函数定义</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+函数使用关键字"def"进行定义，声明部分必须使用缩进。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">pass</span>
+</pre>
+</div>
+
+<p>
+<b>Note:</b> 
+</p>
+<ul class="org-ul">
+<li>定义部分默认大家都会，这里不讨论参数,以及函数的引用等内容.</li>
+<li>def在函数定义中不是必须的，比如lambda表达式。在另外一片文章迭代器中会详细讲述lambda。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">1.5</span> function的赋值和执行</h3>
+<div class="outline-text-3" id="text-1-5">
+<pre class="example">
+def x():
+    pass
+
+# p 为x()函数执行的值
+p = x()
+# 将函数x赋值给p
+p = x
+# 执行函数x()
+p()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">2</span> function 和 object</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">2.1</span> function是一个object</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+在python中万物皆对象，function也不例外，一定要记住这句话。 因此函数可以像其他的object一样被使用，再次声明一下，function在python中是一等公民。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">shout</span><span style="color: #2f96dc;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">return</span> word.capitalize<span style="color: #2f96dc;">()</span>+<span style="color: #2d9574;">"!"</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> shout<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">outputs : 'Yes!'</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20316;&#20026;&#19968;&#20010;object&#65292;&#20320;&#21487;&#20197;&#23558;&#20989;&#25968;&#24819;&#20854;&#20182;object&#19968;&#26679;&#36171;&#20540;&#32473;&#19968;&#20010;&#21464;&#37327;</span>
+<span style="color: #7590db;">scream</span> = shout
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27880;&#24847;&#65306; &#25105;&#20204;&#19981;&#20351;&#29992;&#32487;&#25215;(parentheses,&#25105;&#20204;&#19981;&#25191;&#34892;&#36825;&#20010;&#20989;&#25968;&#65292;&#20165;&#20165;&#26159;&#23558;&#20989;&#25968;"shot"&#36171;&#20540;&#32473;&#21464;&#37327;&#8221;scream&#8220;&#12290;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20063;&#23601;&#26159;&#35828;&#20320;&#21487;&#20197;&#20174;scream&#25191;&#34892;shout()</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> scream<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">outputs : 'Yes!'</span>
+
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19981;&#27490;&#22914;&#27492;&#65292;&#34429;&#28982;&#21024;&#38500;&#32769;&#30340;&#21517;&#31216;shout&#65292;&#20294;&#26159;&#36890;&#36807;&#21464;&#37327;scream&#20381;&#28982;&#21487;&#20197;&#35843;&#29992;shout&#12290;&#36825;&#26159;&#22240;&#20026;&#20989;&#25968;shout&#30340;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24341;&#29992;&#35745;&#25968;&#19981;&#20026;0&#65292;&#25152;&#20197;&#20381;&#28982;&#27809;&#26377;&#22312;&#35299;&#37322;&#22120;&#20013;&#21024;&#38500;&#12290;</span>
+
+
+<span style="color: #237fbf; font-weight: bold;">del</span> shout
+<span style="color: #237fbf; font-weight: bold;">try</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> shout<span style="color: #2f96dc;">()</span>
+<span style="color: #237fbf; font-weight: bold;">except</span> <span style="color: #ce537a; font-weight: bold;">NameError</span>, e:
+    <span style="color: #237fbf; font-weight: bold;">print</span> e
+    <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: "name 'shout' is not defined"</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> scream<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">outputs: 'Yes!'</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">2.2</span> 函数可以被定义到一个函数里</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">talk</span><span style="color: #2f96dc;">()</span>:
+
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23450;&#20041;&#20989;&#25968;whisper</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">whisper</span><span style="color: #2f96dc;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">return</span> word.lower<span style="color: #2f96dc;">()</span>+<span style="color: #2d9574;">"..."</span>
+
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35843;&#29992;whisper&#20989;&#25968;</span>
+
+    <span style="color: #237fbf; font-weight: bold;">print</span> whisper<span style="color: #2f96dc;">()</span>
+
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27599;&#27425;&#20320;&#25191;&#34892; "talk"&#30340;&#26102;&#20505;, "whisper"&#27599;&#27425;&#37117;&#20250;&#34987;&#23450;&#20041;.&#28982;&#21518;&#34987;talk&#25191;&#34892;.</span>
+talk<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">outputs: </span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">"yes..."</span>
+
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20294;&#26159; "whisper" &#22312;"talk"&#20043;&#22806;&#19981;&#23384;&#22312;</span>
+<span style="color: #237fbf; font-weight: bold;">try</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> whisper<span style="color: #2f96dc;">()</span>
+<span style="color: #237fbf; font-weight: bold;">except</span> <span style="color: #ce537a; font-weight: bold;">NameError</span>, e:
+    <span style="color: #237fbf; font-weight: bold;">print</span> e
+    <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs : "name 'whisper' is not defined"*</span>
+    Python<span style="color: #2d9574;">'s functions are objects</span>
+</pre>
+</div>
+
+<p>
+从上面的两个例子可以知道,functions 是objects 因为函数：
+</p>
+<ul class="org-ul">
+<li>能赋值给一个变量</li>
+<li>能定义在其他的函数中间。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">2.3</span> 函数可以返回一个函数</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">getTalk</span><span style="color: #2f96dc;">(</span>kind=<span style="color: #2d9574;">"shout"</span><span style="color: #2f96dc;">)</span>:
+
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">shout</span><span style="color: #2f96dc;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">return</span> word.capitalize<span style="color: #2f96dc;">()</span>+<span style="color: #2d9574;">"!"</span>
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">whisper</span><span style="color: #2f96dc;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #2f96dc;">)</span> :
+        <span style="color: #237fbf; font-weight: bold;">return</span> word.lower<span style="color: #2f96dc;">()</span>+<span style="color: #2d9574;">"..."</span>;
+
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36820;&#22238;&#20854;&#20013;&#20219;&#24847;&#19968;&#20010;</span>
+    <span style="color: #237fbf; font-weight: bold;">if</span> kind == <span style="color: #2d9574;">"shout"</span>:
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25105;&#20204;&#19981;&#20351;&#29992;"()",&#25152;&#20197;&#19981;&#25191;&#34892;&#20989;&#25968;.&#20165;&#20165;&#36820;&#22238; &#20989;&#25968;&#23545;&#35937;</span>
+        <span style="color: #237fbf; font-weight: bold;">return</span> shout  
+    <span style="color: #237fbf; font-weight: bold;">else</span>:
+        <span style="color: #237fbf; font-weight: bold;">return</span> whisper
+
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24471;&#21040;&#36825;&#20010;&#20989;&#25968;,&#36171;&#20540;&#32473;&#19968;&#20010;&#21464;&#37327;</span>
+<span style="color: #7590db;">talk</span> = getTalk<span style="color: #2f96dc;">()</span>      
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25171;&#21360;&#30340;&#35805; &#20320;&#20250;&#21457;&#29616;&#36820;&#22238;&#30340;&#26159;&#19968;&#20010;fuction object </span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> talk
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs : &lt;function shout at 0xb7ea817c&gt;</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">The object is the one returned by the function:</span>
+<span style="color: #237fbf; font-weight: bold;">print</span> talk<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs : Yes!</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">And you can even use it directly if you feel wild:</span>
+<span style="color: #237fbf; font-weight: bold;">print</span> getTalk<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"whisper"</span><span style="color: #2f96dc;">)()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs : yes...</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">2.4</span> 函数作为一个参数</h3>
+<div class="outline-text-3" id="text-2-4">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">doSomethingBefore</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>: 
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I do something before then I call the function you gave me"</span>
+    <span style="color: #237fbf; font-weight: bold;">print</span> func<span style="color: #2f96dc;">()</span>
+
+doSomethingBefore<span style="color: #2f96dc;">(</span>scream<span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I do something before then I call the function you gave me</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Yes!</span>
+</pre>
+</div>
+
+
+<p>
+到这里,函数的内容基本上就讲完了,下面我要开始装饰器了,做好准备了没.
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">3</span> function 和 method</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+以后再说
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17"><span class="section-number-2">4</span> function 和 decorator</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+上面的部分 &lt;function 和 object&gt; ,是装饰器的基础.当然默认你已经可以理解闭包,作用域等,不懂其实下面的代码也能看懂.那么我们就开始下面的内容了.
+</p>
+
+
+<p>
+你应该知道，装饰器就是一个“wrappers“，意味着它可以在function前后进行执行而不用改变函数。
+</p>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">4.1</span> 自制一个装饰器</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35013;&#39280;&#22120;&#26159;&#19968;&#20010;&#29992;&#20854;&#20182;&#20989;&#25968;&#20316;&#20026;&#21442;&#25968;&#30340;&#20989;&#25968;</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_shiny_new_decorator</span><span style="color: #2f96dc;">(</span>a_function_to_decorate<span style="color: #2f96dc;">)</span>:
+
+
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#20989;&#25968;&#20869;&#37096;&#23450;&#20041;&#19968;&#20010;wrapper,&#29992;&#26469;&#21253;&#35065;&#34987;&#35013;&#39280;&#30340;&#20989;&#25968;.&#22240;&#20026;&#23427;&#21487;&#20197;&#22312;&#34987;&#35013;&#39280;&#20989;&#25968;&#30340;&#21069;&#21518;&#25191;&#34892;</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">the_wrapper_around_the_original_function</span><span style="color: #2f96dc;">()</span>:
+
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#36825;&#37324;&#25918;&#19978;&#34987;&#35013;&#39280;&#20989;&#25968;&#35843;&#29992;&#21069;&#30340;&#20195;&#30721;</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Before the function runs"</span>
+
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35843;&#29992;&#34987;&#35013;&#39280;&#20989;&#25968;</span>
+        a_function_to_decorate<span style="color: #2f96dc;">()</span>
+
+
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#34987;&#35013;&#39280;&#20989;&#25968;&#25191;&#34892;&#20043;&#21518;&#25191;&#34892;</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"After the function runs"</span>
+
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21069;&#38754;&#30340;&#20195;&#30721;,&#26681;&#26412;&#27809;&#26377;&#25191;&#34892;&#34987;&#35013;&#39280;&#30340;&#20989;&#25968;,&#22240;&#20026;&#21069;&#38754;&#20165;&#20165;&#26159;&#23545;&#20110;"wrapper"&#36827;&#34892;&#20102;&#23450;&#20041;</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> the_wrapper_around_the_original_function
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23450;&#20041;&#19968;&#20010;&#20320;&#20197;&#21518;&#19981;&#20250;&#26356;&#25913;&#30340;&#20989;&#25968;</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_stand_alone_function</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am a stand alone function, don't you dare modify me"</span>
+
+a_stand_alone_function<span style="color: #2f96dc;">()</span> 
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: I am a stand alone function, don't you dare modify me</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Well, &#20320;&#21487;&#20197;&#35013;&#39280;&#36825;&#20010;&#20989;&#25968;&#26469;&#25193;&#23637;&#23427;&#30340;&#20316;&#29992;. &#36890;&#36807;&#20256;&#36882;&#23427;&#32473;&#35013;&#39280;&#22120;, &#35013;&#39280;&#22120;&#23558;&#20250;&#21160;&#24577;&#30340;&#28155;&#21152;&#20195;&#30721;&#24182;&#19988;&#36820;&#22238;&#19968;&#20010;&#20320;&#24819;&#20351;&#29992;&#30340;&#20989;&#25968;.</span>
+
+<span style="color: #7590db;">a_stand_alone_function_decorated</span> = my_shiny_new_decorator<span style="color: #2f96dc;">(</span>a_stand_alone_function<span style="color: #2f96dc;">)</span>
+a_stand_alone_function_decorated<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Before the function runs</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am a stand alone function, don't you dare modify me</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">After the function runs</span>
+</pre>
+</div>
+
+
+<p>
+如果你想每一次你调用  a_stand_alone_function, a_stand_alone_function_decorated 也被调用. 这也非常简单,只要将 a_stand_alone_function 用
+my_shiny_new_decorator 进行重写就可以了
+</p>
+
+
+<pre class="example">
+a_stand_alone_function = my_shiny_new_decorator(a_stand_alone_function)
+a_stand_alone_function()
+#outputs:
+#Before the function runs
+#I am a stand alone function, don't you dare modify me
+#After the function runs
+
+# And guess what? That’s EXACTLY what decorators do!
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">4.2</span> 解开Decorators的神秘面纱</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+紧接上面的例子,我们可以使用更加简介的decorator格式 :
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@my_shiny_new_decorator</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">another_stand_alone_function</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Leave me alone"</span>
+
+another_stand_alone_function<span style="color: #2f96dc;">()</span>  
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:  </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Before the function runs</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Leave me alone</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">After the function runs</span>
+</pre>
+</div>
+
+<p>
+是不是很简单,@decorator 是其实就是下面的简写:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #7590db;">another_stand_alone_function</span> = my_shiny_new_decorator<span style="color: #2f96dc;">(</span>another_stand_alone_function<span style="color: #2f96dc;">)</span>
+</pre>
+</div>
+
+<p>
+Decorators 是 <a href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator design pattern</a> 的一种很 pyhonic的写法.在python中有很多经典的设计来简化程序开发(例如:迭代器)
+</p>
+
+<p>
+当然了你可以累计使用多个迭代器
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">bread</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"&lt;/''''''\&gt;"</span>
+        func<span style="color: #2f96dc;">()</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"&lt;\______/&gt;"</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">ingredients</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"#tomatoes#"</span>
+        func<span style="color: #2f96dc;">()</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"~salad~"</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sandwich</span><span style="color: #2f96dc;">(</span>food=<span style="color: #2d9574;">"--ham--"</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> food
+
+sandwich<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: --ham--</span>
+<span style="color: #7590db;">sandwich</span> = bread<span style="color: #2f96dc;">(</span>ingredients<span style="color: #bc6ec5;">(</span>sandwich<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+sandwich<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;/''''''\&gt;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">#tomatoes#</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">--ham--</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">~salad~</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;\______/&gt;</span>
+</pre>
+</div>
+
+<p>
+换做使用python的decorator 语法
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@bread</span>
+<span style="color: #ce537a; font-weight: bold;">@ingredients</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sandwich</span><span style="color: #2f96dc;">(</span>food=<span style="color: #2d9574;">"--ham--"</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> food
+
+sandwich<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;/''''''\&gt;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">#tomatoes#</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">--ham--</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">~salad~</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;\______/&gt;</span>
+</pre>
+</div>
+
+<p>
+在使用迭代器的时候,你设置的装饰器的顺序也是非常的 <b>重要</b>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@ingredients</span>
+<span style="color: #ce537a; font-weight: bold;">@bread</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">strange_sandwich</span><span style="color: #2f96dc;">(</span>food=<span style="color: #2d9574;">"--ham--"</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> food
+
+strange_sandwich<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">##</span><span style="color: #2aa1ae; background-color: #292e34;">tomatoes#</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;/''''''\&gt;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">--ham--</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;\______/&gt;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">~salad~</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline23" class="outline-2">
+<h2 id="orgheadline23"><span class="section-number-2">5</span> 装饰器进阶</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+传递参数到被装饰的函数(decorated function)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#38754;&#30340;&#36825;&#20010;&#21487;&#19981;&#26159;&#40657;&#31185;&#25216;,&lt;surface book&#25165;&#26159;&gt; ,&#23427;&#21482;&#26159;&#35753; wrapper &#20256;&#36882;&#20102;&#20989;&#25968;&#30340;&#21442;&#25968;</span>
+
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_decorator_passing_arguments</span><span style="color: #2f96dc;">(</span>function_to_decorate<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_wrapper_accepting_arguments</span><span style="color: #2f96dc;">(</span>arg1, arg2<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I got args! Look:"</span>, arg1, arg2
+        function_to_decorate<span style="color: #2f96dc;">(</span>arg1, arg2<span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> a_wrapper_accepting_arguments
+
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24403;&#20320;&#35843;&#29992;&#34987;&#35013;&#39280;&#30340;&#20989;&#25968;,&#23454;&#36136;&#26159;&#20320;&#24403;&#20320;&#35843;&#29992;wrapper&#26102;,wrapper&#21487;&#20197;&#20256;&#36882;&#23427;&#30340;&#21442;&#25968;&#32473;&#34987;&#35843;&#29992;&#30340;&#20989;&#25968;.</span>
+<span style="color: #ce537a; font-weight: bold;">@a_decorator_passing_arguments</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">print_full_name</span><span style="color: #2f96dc;">(</span>first_name, last_name<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"My name is"</span>, first_name, last_name
+
+print_full_name<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Peter"</span>, <span style="color: #2d9574;">"Venkman"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I got args! Look: Peter Venkman</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">My name is Peter Venkman</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">5.1</span> 装饰方法</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+python中一个很有趣的是事情:方法(methods) 和 function 是相同的. 唯一不同的是方法(methods)期望他们的第一个参数是当前对象自身(self)
+</p>
+
+<p>
+这意味着你可以使用相同的方法为一个方法(methods)建立一个装饰器.记得将self写入条件(consideration)中
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">method_friendly_decorator</span><span style="color: #2f96dc;">(</span>method_to_decorate<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, lie<span style="color: #2f96dc;">)</span>:
+        <span style="color: #7590db;">lie</span> = lie - <span style="color: #a45bad;">3</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">very friendly, decrease age even more :-)</span>
+        <span style="color: #237fbf; font-weight: bold;">return</span> method_to_decorate<span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, lie<span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+
+<span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Lucy</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.age = <span style="color: #a45bad;">32</span>
+
+    <span style="color: #ce537a; font-weight: bold;">@method_friendly_decorator</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sayYourAge</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, lie<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am %s, what did you think?"</span> % <span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>.age + lie<span style="color: #2f96dc;">)</span>
+
+<span style="color: #7590db;">l</span> = Lucy<span style="color: #2f96dc;">()</span>
+l.sayYourAge<span style="color: #2f96dc;">(</span>-<span style="color: #a45bad;">3</span><span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: I am 26, what did you think?</span>
+</pre>
+</div>
+
+<p>
+如果你想制作一个常规目的的decorator,一个你想应用到任意的function或者方法(methods),不用关心参数. 那么使用 *args, **kwargs:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_decorator_passing_arbitrary_arguments</span><span style="color: #2f96dc;">(</span>function_to_decorate<span style="color: #2f96dc;">)</span>:
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">The wrapper accepts any arguments</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_wrapper_accepting_arbitrary_arguments</span><span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Do I have args?:"</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> args
+        <span style="color: #237fbf; font-weight: bold;">print</span> kwargs
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Then you unpack the arguments, here *args, **kwargs</span>
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">If you are not familiar with unpacking, check:</span>
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/</span>
+        function_to_decorate<span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> a_wrapper_accepting_arbitrary_arguments
+
+<span style="color: #ce537a; font-weight: bold;">@a_decorator_passing_arbitrary_arguments</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function_with_no_argument</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Python is cool, no argument here."</span>
+
+function_with_no_argument<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Do I have args?:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">{}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Python is cool, no argument here.</span>
+
+<span style="color: #ce537a; font-weight: bold;">@a_decorator_passing_arbitrary_arguments</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function_with_arguments</span><span style="color: #2f96dc;">(</span>a, b, c<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> a, b, c
+
+function_with_arguments<span style="color: #2f96dc;">(</span><span style="color: #a45bad;">1</span>,<span style="color: #a45bad;">2</span>,<span style="color: #a45bad;">3</span><span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Do I have args?:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">(1, 2, 3)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">{}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">1 2 3 </span>
+
+<span style="color: #ce537a; font-weight: bold;">@a_decorator_passing_arbitrary_arguments</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function_with_named_arguments</span><span style="color: #2f96dc;">(</span>a, b, c, platypus=<span style="color: #2d9574;">"Why not ?"</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Do %s, %s and %s like platypus? %s"</span> %\
+    <span style="color: #2f96dc;">(</span>a, b, c, platypus<span style="color: #2f96dc;">)</span>
+
+function_with_named_arguments<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Bill"</span>, <span style="color: #2d9574;">"Linus"</span>, <span style="color: #2d9574;">"Steve"</span>, platypus=<span style="color: #2d9574;">"Indeed!"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Do I have args ? :</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">('Bill', 'Linus', 'Steve')</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">{'platypus': 'Indeed!'}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Do Bill, Linus and Steve like platypus? Indeed!</span>
+
+<span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Mary</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.age = <span style="color: #a45bad;">31</span>
+
+    <span style="color: #ce537a; font-weight: bold;">@a_decorator_passing_arbitrary_arguments</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sayYourAge</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, lie=-<span style="color: #a45bad;">3</span><span style="color: #2f96dc;">)</span>: <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">You can now add a default value</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am %s, what did you think ?"</span> % <span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>.age + lie<span style="color: #2f96dc;">)</span>
+
+<span style="color: #7590db;">m</span> = Mary<span style="color: #2f96dc;">()</span>
+m.sayYourAge<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Do I have args?:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">(&lt;__main__.Mary object at 0xb7d303ac&gt;,)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">{}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am 28, what did you think?</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-3">
+<h3 id="orgheadline19"><span class="section-number-3">5.2</span> 传递参数到decorator</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+现在你也许会问怎么传递参数给装饰器自身?
+</p>
+
+<p>
+这也许有点饶.自从一个装饰器必须接受一个函数作为一个参数.因此,你 <b>不能</b> 直接传递 被装饰函数  的参数给 decorator
+</p>
+
+<p>
+在解决问题之前,请看以下的提示:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35013;&#39280;&#22120;&#26159;&#19968;&#20010;&#26222;&#36890;&#20989;&#25968;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#38754;&#20889;&#30340;&#36825;&#20010;&#26159;&#36820;&#22238;&#30340;"wrapper" &#36825;&#20010;function object, &#39578;&#24180;&#30475;&#28165;&#26970;,&#30475;&#28165;&#26970;,&#30475;&#28165;&#26970;....</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_decorator</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am an ordinary function"</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am function returned by the decorator"</span>
+        func<span style="color: #2f96dc;">()</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Therefore, you can call it without any "@"</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22240;&#27492;,&#19981;&#20351;&#29992;@ &#20320;&#21487;&#20197;&#35843;&#29992;&#23427;</span>
+
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">lazy_function</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"zzzzzzzz"</span>
+
+<span style="color: #7590db;">decorated_function</span> = my_decorator<span style="color: #2f96dc;">(</span>lazy_function<span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: I am an ordinary function</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> decorated_funtion
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:&lt;function wrapper at 0x7f75097b9758&gt;</span>
+
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23427;&#25171;&#21360; "I am an ordinary function", </span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#34429;&#28982;&#35843;&#29992;&#20102;my_decorator() ,&#20294;&#26159;&#36820;&#22238;&#30340;&#26159; fucntion object"wrapper"</span>
+
+<span style="color: #ce537a; font-weight: bold;">@my_decorator</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">lazy_function</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"zzzzzzzz"</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: I am an ordinary function</span>
+</pre>
+</div>
+
+
+
+<p>
+上面的例子就好像 "my_decorator" 被调用了,所以当你使用 @my_decorator 这个装饰器.
+你是告诉python调用带有@my_decorator标志的函数.
+This is important! The label you give can point directly to the decorator—or not.
+这是非常重要的. 你给的这个标志是直接指向这个 decorator 或者没有.(翻译的真烂,自己看上面的英文吧)
+</p>
+
+<p>
+Let’s get evil. (吾心本恶&#x2026;.)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_maker</span><span style="color: #2f96dc;">()</span>:
+
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I make decorators! I am executed only once: "</span>+\
+          <span style="color: #2d9574;">"when you make me create a decorator."</span>
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_decorator</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am a decorator! I am executed only when you decorate a function."</span>
+
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapped</span><span style="color: #2f96dc;">()</span>:
+            <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"I am the wrapper around the decorated function. "</span>
+                  <span style="color: #2d9574;">"I am called when you call the decorated function. "</span>
+                  <span style="color: #2d9574;">"As the wrapper, I return the RESULT of the decorated function."</span><span style="color: #2f96dc;">)</span>
+            <span style="color: #237fbf; font-weight: bold;">return</span> func<span style="color: #2f96dc;">()</span>
+
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"As the decorator, I return the wrapped function."</span>
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> wrapped
+
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"As a decorator maker, I return a decorator"</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> my_decorator
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Let&#8217;s create a decorator. It&#8217;s just a new function after all.</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25105;&#20204;&#21019;&#24314;&#20102;&#19968;&#20010; decorator , &#23427;&#21482;&#26159;&#26032;&#30340;&#20989;&#25968;</span>
+<span style="color: #7590db;">new_decorator</span> = decorator_maker<span style="color: #2f96dc;">()</span>       
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I make decorators! I am executed only once: when you make me create a decorator.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As a decorator maker, I return a decorator</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Then we decorate the function</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25105;&#20204;&#32487;&#32493;&#21019;&#24314;&#19968;&#20010;&#36845;&#20195;&#30340;&#20989;&#25968;</span>
+
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorated function."</span>
+
+<span style="color: #7590db;">decorated_function</span> = new_decorator<span style="color: #2f96dc;">(</span>decorated_function<span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am a decorator! I am executed only when you decorate a function.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the decorator, I return the wrapped function</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#20010;&#20989;&#25968;&#26159; &#35843;&#29992;wrapped()&#30340;&#32467;&#26524;.&#20063;&#23601;&#26159;&#19978;&#23618;my_decorator&#21442;&#25968;&#20013;&#30340;func,&#23454;&#20363;&#20013;&#26159; decorated_function()</span>
+decorated_function<span style="color: #2f96dc;">()</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the wrapper around the decorated function. I am called when you call the decorated function.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the wrapper, I return the RESULT of the decorated function.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the decorated function.</span>
+</pre>
+</div>
+
+<p>
+不要觉得惊讶.让我们继续.
+</p>
+
+<p>
+让我们先忽略中间中间的变量(这里指的上面例子那些讨厌的变量复制)来实现相同的事情.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorated function."</span>
+
+
+<span style="color: #7590db;">decorated_function</span> = decorator_maker<span style="color: #2f96dc;">()(</span>decorated_function<span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I make decorators! I am executed only once: when you make me create a decorator.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As a decorator maker, I return a decorator</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am a decorator! I am executed only when you decorate a function.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the decorator, I return the wrapped function.</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Finally:</span>
+decorated_function<span style="color: #2f96dc;">()</span>    
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the wrapper around the decorated function. I am called when you call the decorated function.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the wrapper, I return the RESULT of the decorated function.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the decorated function.</span>
+</pre>
+</div>
+
+<p>
+我们继续精简:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@decorator_maker</span><span style="color: #2f96dc;">()</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorated function."</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I make decorators! I am executed only once: when you make me create a decorator.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As a decorator maker, I return a decorator</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am a decorator! I am executed only when you decorate a function.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the decorator, I return the wrapped function.</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Eventually: </span>
+decorated_function<span style="color: #2f96dc;">()</span>    
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the wrapper around the decorated function. I am called when you call the decorated function.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the wrapper, I return the RESULT of the decorated function.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the decorated function.</span>
+</pre>
+</div>
+
+<p>
+看到上面例子中的"@"了么? 我们使用"@"这个函数调用语法
+</p>
+
+<p>
+回到如何使用带参数的装饰器.如果我们能够动态的使用函数作为装饰器,那么我们就能传递参数到装饰器中.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_maker_with_arguments</span><span style="color: #2f96dc;">(</span>decorator_arg1, decorator_arg2<span style="color: #2f96dc;">)</span>:
+
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I make decorators! And I accept arguments:"</span>, decorator_arg1, decorator_arg2
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_decorator</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">The ability to pass arguments here is a gift from closures.</span>
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">If you are not comfortable with closures, you can assume it&#8217;s ok,</span>
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">or read: http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorator. Somehow you passed me arguments:"</span>, decorator_arg1, decorator_arg2
+
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Don't confuse decorator arguments and function arguments!</span>
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapped</span><span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span> :
+            <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"I am the wrapper around the decorated function.\n"</span>
+                  <span style="color: #2d9574;">"I can access all the variables\n"</span>
+                  <span style="color: #2d9574;">"\t- from the decorator: {0} {1}\n"</span>
+                  <span style="color: #2d9574;">"\t- from the function call: {2} {3}\n"</span>
+                  <span style="color: #2d9574;">"Then I can pass them to the decorated function"</span>
+                  .<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>decorator_arg1, decorator_arg2,
+                          function_arg1, function_arg2<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+            <span style="color: #237fbf; font-weight: bold;">return</span> func<span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> wrapped
+
+    <span style="color: #237fbf; font-weight: bold;">return</span> my_decorator
+
+<span style="color: #ce537a; font-weight: bold;">@decorator_maker_with_arguments</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Leonard"</span>, <span style="color: #2d9574;">"Sheldon"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function_with_arguments</span><span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"I am the decorated function and only knows about my arguments: {0}"</span>
+           <span style="color: #2d9574;">" {1}"</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>function_arg1, function_arg2<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+
+decorated_function_with_arguments<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Rajesh"</span>, <span style="color: #2d9574;">"Howard"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I make decorators! And I accept arguments: Leonard Sheldon</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the decorator. Somehow you passed me arguments: Leonard Sheldon</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the wrapper around the decorated function.</span>
+</pre>
+</div>
+
+<p>
+上面实现了带参数的装饰器,另外: 参数也也可以是一个变量
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #7590db;">c1</span> = <span style="color: #2d9574;">"Penny"</span>
+<span style="color: #7590db;">c2</span> = <span style="color: #2d9574;">"Leslie"</span>
+
+<span style="color: #ce537a; font-weight: bold;">@decorator_maker_with_arguments</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Leonard"</span>, c1<span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function_with_arguments</span><span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"I am the decorated function and only knows about my arguments:"</span>
+           <span style="color: #2d9574;">" {0} {1}"</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>function_arg1, function_arg2<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+
+decorated_function_with_arguments<span style="color: #2f96dc;">(</span>c2, <span style="color: #2d9574;">"Howard"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I make decorators! And I accept arguments: Leonard Penny</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the decorator. Somehow you passed me arguments: Leonard Penny</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the wrapper around the decorated function. </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I can access all the variables </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#   </span><span style="color: #2aa1ae; background-color: #292e34;">- from the decorator: Leonard Penny </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#   </span><span style="color: #2aa1ae; background-color: #292e34;">- from the function call: Leslie Howard </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Then I can pass them to the decorated function</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the decorated function and only knows about my arguments: Leslie Howard</span>
+</pre>
+</div>
+
+<p>
+看了上面什么感觉, 你能够传递传递参数给装饰器就像使用了魔法的函数一样(magic function).如果你原因, 你可以使用*args, **kwargs作为参数.
+但是你要记住装饰器只能被调用一次.在python 引入(import)这个脚本文件之后,你就不能动态的设置参数了.当你执行"import x"的时候,函数已经被装饰了.你就不能修改任何事情了
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">5.3</span> 练习: 装饰一个装饰器</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+作为练习.我们要写一个能让任何装饰器接收任何参数的代码.为了接受参数,我们另外创建一个函数作为装饰器来实现这段代码.
+</p>
+
+<p>
+好好想想,其实并不是很难.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_with_args</span><span style="color: #2f96dc;">(</span>decorator_to_enhance<span style="color: #2f96dc;">)</span>:
+    <span style="color: #2d9574;">""" </span>
+<span style="color: #2d9574;">    This function is supposed to be used as a decorator.</span>
+<span style="color: #2d9574;">    It must decorate an other function, that is intended to be used as a decorator.</span>
+<span style="color: #2d9574;">    Take a cup of coffee.</span>
+<span style="color: #2d9574;">    It will allow any decorator to accept an arbitrary number of arguments,</span>
+<span style="color: #2d9574;">    saving you the headache to remember how to do that every time.</span>
+<span style="color: #2d9574;">    """</span>
+
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We use the same trick we did to pass arguments</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_maker</span><span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>:
+
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We create on the fly a decorator that accepts only a function</span>
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">but keeps the passed arguments from the maker.</span>
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_wrapper</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+
+            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We return the result of the original decorator, which, after all, </span>
+            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">IS JUST AN ORDINARY FUNCTION (which returns a function).</span>
+            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Only pitfall: the decorator must have this specific signature or it won't work:</span>
+            <span style="color: #237fbf; font-weight: bold;">return</span> decorator_to_enhance<span style="color: #2f96dc;">(</span>func, *args, **kwargs<span style="color: #2f96dc;">)</span>
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> decorator_wrapper
+
+    <span style="color: #237fbf; font-weight: bold;">return</span> decorator_maker
+</pre>
+</div>
+
+<p>
+接下来
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">You create the function you will use as a decorator. And stick a decorator on it :-)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Don't forget, the signature is "decorator(func, *args, **kwargs)"</span>
+<span style="color: #ce537a; font-weight: bold;">@decorator_with_args</span> 
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_decorator</span><span style="color: #2f96dc;">(</span>func, *args, **kwargs<span style="color: #2f96dc;">)</span>: 
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Decorated with"</span>, args, kwargs
+        <span style="color: #237fbf; font-weight: bold;">return</span> func<span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Then you decorate the functions you wish with your brand new decorated decorator.</span>
+
+<span style="color: #ce537a; font-weight: bold;">@decorated_decorator</span><span style="color: #2f96dc;">(</span><span style="color: #a45bad;">42</span>, <span style="color: #a45bad;">404</span>, <span style="color: #a45bad;">1024</span><span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Hello"</span>, function_arg1, function_arg2
+
+decorated_function<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Universe and"</span>, <span style="color: #2d9574;">"everything"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Decorated with (42, 404, 1024) {}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Hello Universe and everything</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Whoooot!</span>
+</pre>
+</div>
+
+<p>
+I know, the last time you had this feeling, it was after listening a guy saying: "before understanding recursion, you must first understand recursion". But now, don't you feel good about mastering this?
+不知道上面那段话怎么翻译.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline21" class="outline-3">
+<h3 id="orgheadline21"><span class="section-number-3">5.4</span> 最好的实践: 装饰器</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+请锦记下面几点:
+</p>
+<ul class="org-ul">
+<li>迭代器在 Python 2.4 之后被引入,因为你的python环境必须在python2.4之上.</li>
+<li>装饰器会降低函数调用,记在心里</li>
+<li>函数(这个指的是被装饰的函数)不能单独运行.如果这个函数被装饰了,所有的代码就被装饰了.你不能之运行这个函数而不运行装饰器.</li>
+<li><p>
+装饰器包裹了函数,使得函数的debug比较困难.(在python2.5之后好了很多,下面的functools.wraps()解决了这点)
+</p>
+
+<p>
+<b>functools</b> module 在python2.5中被引入,它内置的 "functools.wraps()"可以复制被装饰函数的name, module, and docstring 到 wrapper中.
+</p></li>
+</ul>
+
+<p>
+(号外: *functools.wraps()也是一个装饰器)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">For debugging, the stacktrace prints you the function __name__</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"foo"</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> foo.<span style="color: #1f71ab;">__name__</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: foo</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">With a decorator, it gets messy    </span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">bar</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"bar"</span>
+        <span style="color: #237fbf; font-weight: bold;">return</span> func<span style="color: #2f96dc;">()</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+<span style="color: #ce537a; font-weight: bold;">@bar</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"foo"</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> foo.<span style="color: #1f71ab;">__name__</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: wrapper</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">"functools" can help for that</span>
+
+<span style="color: #237fbf; font-weight: bold;">import</span> functools
+
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">bar</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We say that "wrapper", is wrapping "func"</span>
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">and the magic begins</span>
+    <span style="color: #ce537a; font-weight: bold;">@functools.wraps</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"bar"</span>
+        <span style="color: #237fbf; font-weight: bold;">return</span> func<span style="color: #2f96dc;">()</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+<span style="color: #ce537a; font-weight: bold;">@bar</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"foo"</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> foo.<span style="color: #1f71ab;">__name__</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: foo</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline22" class="outline-3">
+<h3 id="orgheadline22"><span class="section-number-3">5.5</span> 如何理解装饰器的执行步骤.</h3>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline30" class="outline-2">
+<h2 id="orgheadline30"><span class="section-number-2">6</span> 装饰器的用处</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgheadline24" class="outline-3">
+<h3 id="orgheadline24"><span class="section-number-3">6.1</span> 装饰器有什么用</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+这的确是一个好问题: 我用装饰器做什么?
+</p>
+
+<p>
+虽然装饰器看起来很magic,但是有一个例子就会更加的明了,记住:装饰器可以让你的函数有无限的变化.
+通过写一个用户类来 扩展一个外部lib或者debugging方式(也许你不想临时的修改)来扩展一个函数行为.
+</p>
+
+<p>
+你也可以通过一种更DRY的方式来扩展函数.例如:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">benchmark</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+    <span style="color: #2d9574;">"""</span>
+<span style="color: #2d9574;">    A decorator that prints the time a function takes</span>
+<span style="color: #2d9574;">    to execute.</span>
+<span style="color: #2d9574;">    """</span>
+    <span style="color: #237fbf; font-weight: bold;">import</span> time
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>:
+        <span style="color: #7590db;">t</span> = time.clock<span style="color: #2f96dc;">()</span>
+        <span style="color: #7590db;">res</span> = func<span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> func.<span style="color: #1f71ab;">__name__</span>, time.clock<span style="color: #2f96dc;">()</span>-t
+        <span style="color: #237fbf; font-weight: bold;">return</span> res
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">logging</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+    <span style="color: #2d9574;">"""</span>
+<span style="color: #2d9574;">    A decorator that logs the activity of the script.</span>
+<span style="color: #2d9574;">    (it actually just prints it, but it could be logging!)</span>
+<span style="color: #2d9574;">    """</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>:
+        <span style="color: #7590db;">res</span> = func<span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> func.<span style="color: #1f71ab;">__name__</span>, args, kwargs
+        <span style="color: #237fbf; font-weight: bold;">return</span> res
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">counter</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+    <span style="color: #2d9574;">"""</span>
+<span style="color: #2d9574;">    A decorator that counts and prints the number of times a function has been executed</span>
+<span style="color: #2d9574;">    """</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>:
+        <span style="color: #7590db;">wrapper.count</span> = wrapper.count + <span style="color: #a45bad;">1</span>
+        <span style="color: #7590db;">res</span> = func<span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"{0} has been used: {1}x"</span>.<span style="color: #1f71ab;">format</span><span style="color: #2f96dc;">(</span>func.<span style="color: #1f71ab;">__name__</span>, wrapper.count<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">return</span> res
+    <span style="color: #7590db;">wrapper.count</span> = <span style="color: #a45bad;">0</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+<span style="color: #ce537a; font-weight: bold;">@counter</span>
+<span style="color: #ce537a; font-weight: bold;">@benchmark</span>
+<span style="color: #ce537a; font-weight: bold;">@logging</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">reverse_string</span><span style="color: #2f96dc;">(</span>string<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #1f71ab;">str</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">reversed</span><span style="color: #bc6ec5;">(</span>string<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> reverse_string<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Able was I ere I saw Elba"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">print</span> reverse_string<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"A man, a plan, a canoe, pasta, heros, rajahs, a coloratura, maps, snipe, percale, macaroni, a gag, a banana bag, a tan, a tag, a banana bag again (or a camel), a crepe, pins, Spam, a rut, a Rolo, cash, a jar, sore hats, a peon, a canal: Panama!"</span><span style="color: #2f96dc;">)</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">reverse_string ('Able was I ere I saw Elba',) {}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">wrapper 0.0</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">wrapper has been used: 1x </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">ablE was I ere I saw elbA</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">reverse_string ('A man, a plan, a canoe, pasta, heros, rajahs, a coloratura, maps, snipe, percale, macaroni, a gag, a banana bag, a tan, a tag, a banana bag again (or a camel), a crepe, pins, Spam, a rut, a Rolo, cash, a jar, sore hats, a peon, a canal: Panama!',) {}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">wrapper 0.0</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">wrapper has been used: 2x</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">!amanaP :lanac a ,noep a ,stah eros ,raj a ,hsac ,oloR a ,tur a ,mapS ,snip ,eperc a ,)lemac a ro( niaga gab ananab a ,gat a ,nat a ,gab ananab a ,gag a ,inoracam ,elacrep ,epins ,spam ,arutaroloc a ,shajar ,soreh ,atsap ,eonac a ,nalp a ,nam A</span>
+</pre>
+</div>
+
+<p>
+最大的好处应该你不用重写就可以使用他们到其他的函数.DRY&#x2026;&#x2026;&#x2026;
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@counter</span>
+<span style="color: #ce537a; font-weight: bold;">@benchmark</span>
+<span style="color: #ce537a; font-weight: bold;">@logging</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">get_random_futurama_quote</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">from</span> urllib <span style="color: #237fbf; font-weight: bold;">import</span> urlopen
+    <span style="color: #7590db;">result</span> = urlopen<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"http://subfusion.net/cgi-bin/quote.pl?quote=futurama"</span><span style="color: #2f96dc;">)</span>.read<span style="color: #2f96dc;">()</span>
+    <span style="color: #237fbf; font-weight: bold;">try</span>:
+        <span style="color: #7590db;">value</span> = result.split<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"&lt;br&gt;&lt;b&gt;&lt;hr&gt;&lt;br&gt;"</span><span style="color: #2f96dc;">)[</span><span style="color: #a45bad;">1</span><span style="color: #2f96dc;">]</span>.split<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"&lt;br&gt;&lt;br&gt;&lt;hr&gt;"</span><span style="color: #2f96dc;">)[</span><span style="color: #a45bad;">0</span><span style="color: #2f96dc;">]</span>
+        <span style="color: #237fbf; font-weight: bold;">return</span> value.strip<span style="color: #2f96dc;">()</span>
+    <span style="color: #237fbf; font-weight: bold;">except</span>:
+        <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"No, I'm ... doesn't!"</span>
+
+
+<span style="color: #237fbf; font-weight: bold;">print</span> get_random_futurama_quote<span style="color: #2f96dc;">()</span>
+<span style="color: #237fbf; font-weight: bold;">print</span> get_random_futurama_quote<span style="color: #2f96dc;">()</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">get_random_futurama_quote () {}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">wrapper 0.02</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">wrapper has been used: 1x</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">The laws of science be a harsh mistress.</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">get_random_futurama_quote () {}</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">wrapper 0.01</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">wrapper has been used: 2x</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Curse you, merciful Poseidon!</span>
+</pre>
+</div>
+
+<p>
+一些用处:
+</p>
+<ul class="org-ul">
+<li>在python 内部提供了几个装饰器: @property,staticmethod,</li>
+<li>Django 使用装饰器管理views权限</li>
+<li>Twisted 用来实现内部的异步函数调用</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28"><span class="section-number-3">6.2</span> python的内置装饰器</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+内置的装饰器有三个:staticmethod,classmethod,property
+</p>
+</div>
+
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25"><span class="section-number-4">6.2.1</span> staticmethod</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+staticmethod 是类静态方法，其跟成员方法的区别是没有 self 指针，并且可以在类不进行实例化的情况下调用，下面是一个实例，对比静态方法和成员方法
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Foo</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:  
+
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27809;&#26377;&#20889;self&#25351;&#38024;</span>
+    <span style="color: #ce537a; font-weight: bold;">@staticmethod</span>  
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">statc_method</span><span style="color: #2f96dc;">(</span>msg<span style="color: #2f96dc;">)</span>:  
+        <span style="color: #237fbf; font-weight: bold;">print</span> msg  
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">member_method</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, msg<span style="color: #2f96dc;">)</span>:  
+        <span style="color: #237fbf; font-weight: bold;">print</span> msg  
+
+<span style="color: #7590db;">foo</span> = Foo<span style="color: #2f96dc;">()</span>  
+foo.member_method<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'some msg'</span><span style="color: #2f96dc;">)</span>  
+foo.statc_method<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'some msg'</span><span style="color: #2f96dc;">)</span>  
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#20010;Foo&#26159;&#20026;&#23454;&#20363;&#21270;&#30340;class</span>
+Foo.statc_method<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'some msg'</span><span style="color: #2f96dc;">)</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">output:    </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#    </span><span style="color: #2aa1ae; background-color: #292e34;">some msg  </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#    </span><span style="color: #2aa1ae; background-color: #292e34;">some msg  </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#    </span><span style="color: #2aa1ae; background-color: #292e34;">some msg</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline26" class="outline-4">
+<h4 id="orgheadline26"><span class="section-number-4">6.2.2</span> classmethod</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<p>
+classmethod 与成员方法的区别在于所接收的第一个参数不是 self 类实例的指针，而是当前类的具体类型，下面是一个实例:
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Foo</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:  
+    <span style="color: #ce537a; font-weight: bold;">@classmethod</span>  
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">class_method</span><span style="color: #2f96dc;">(</span>cls<span style="color: #2f96dc;">)</span>:  
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #1f71ab;">repr</span><span style="color: #2f96dc;">(</span>cls<span style="color: #2f96dc;">)</span>  
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">member_method</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:  
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #1f71ab;">repr</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>  
+
+<span style="color: #7590db;">foo</span> = Foo<span style="color: #2f96dc;">()</span>  
+foo.class_method<span style="color: #2f96dc;">()</span>  
+foo.member_method<span style="color: #2f96dc;">()</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">output:</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">&lt;class '__main__.Foo'&gt;  </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">&lt;__main__.Foo object at 0x10a611c50&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline27" class="outline-4">
+<h4 id="orgheadline27"><span class="section-number-4">6.2.3</span> property</h4>
+<div class="outline-text-4" id="text-6-2-3">
+<p>
+property 是属性的意思，即可以通过通过类实例直接访问的信息，下面是具体的例子:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Foo</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:  
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, var<span style="color: #2f96dc;">)</span>:  
+        <span style="color: #1f71ab;">super</span><span style="color: #2f96dc;">(</span>Foo, <span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>.__init__<span style="color: #2f96dc;">()</span>  
+        <span style="color: #237fbf; font-weight: bold;">self</span>._var = var  
+
+    <span style="color: #ce537a; font-weight: bold;">@property</span>  
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">var</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:  
+        <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #237fbf; font-weight: bold;">self</span>._var  
+
+    <span style="color: #ce537a; font-weight: bold;">@var.setter</span>  
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">var</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, var<span style="color: #2f96dc;">)</span>:  
+        <span style="color: #237fbf; font-weight: bold;">self</span>._var = var  
+
+<span style="color: #7590db;">foo</span> = Foo<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'var 1'</span><span style="color: #2f96dc;">)</span>  
+<span style="color: #237fbf; font-weight: bold;">print</span> foo.var  
+<span style="color: #7590db;">foo.var</span> = <span style="color: #2d9574;">'var 2'</span>  
+<span style="color: #237fbf; font-weight: bold;">print</span> foo.var  
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">output</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">var 1  </span>
+<span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">var 2</span>
+</pre>
+</div>
+<p>
+p
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29"><span class="section-number-3">6.3</span> 这不是魔法系列(主要是flask的url解析)</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+这个有点长,在下个章节一个标题写这个
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline37" class="outline-2">
+<h2 id="orgheadline37"><span class="section-number-2">7</span> 这不是魔法</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-orgheadline31" class="outline-3">
+<h3 id="orgheadline31"><span class="section-number-3">7.1</span> 前言</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+在Flask主页中，第一个例子就是利用了app.route()这个装饰器
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #7590db;">app</span> = Flask<span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">__name__</span><span style="color: #2f96dc;">)</span>
+
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline32" class="outline-3">
+<h3 id="orgheadline32"><span class="section-number-3">7.2</span> 装饰器</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+装饰器是一种接受函数，并返回一个新的函数。
+</p>
+
+<p>
+当你装饰一个函数的时候，意味着你告诉Python调用的是那个由你的装饰器返回的新函数，而不仅仅是直接返回原函数的执行结果。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">This is our decorator</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">simple_decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">This is the new function we're going to return</span>
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">This function will be used in place of our original definition</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Entering Function"</span>
+        f<span style="color: #2f96dc;">()</span>
+        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Exited Function"</span>
+
+    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+<span style="color: #ce537a; font-weight: bold;">@simple_decorator</span> 
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Hello World"</span>
+
+hello<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+
+<p>
+执行结果：
+</p>
+<pre class="example">
+Entering Function
+Hello World
+Exited Function
+</pre>
+
+<p>
+但是这个装饰器和"app.route()"不同的一点就是这个装饰器不能接受参数，但是"app.route()"却可以。
+</p>
+
+
+<p>
+那么我们怎样才能给我们的装饰器传参数？要实现这个我们只需创建一个“decorator_factory”函数，我们调用这个函数，返回适用于我们函数的装饰器。现在看看如果实现它。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_factory</span><span style="color: #2f96dc;">(</span>enter_message, exit_message<span style="color: #2f96dc;">)</span>:
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We're going to return this decorator</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">simple_decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
+            <span style="color: #237fbf; font-weight: bold;">print</span> enter_message
+            f<span style="color: #2f96dc;">()</span>
+            <span style="color: #237fbf; font-weight: bold;">print</span> exit_message
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+
+    <span style="color: #237fbf; font-weight: bold;">return</span> simple_decorator
+
+<span style="color: #ce537a; font-weight: bold;">@decorator_factory</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Start"</span>, <span style="color: #2d9574;">"End"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Hello World"</span>
+
+hello<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+
+<p>
+输出结果：
+</p>
+<pre class="example">
+Start
+Hello World
+End
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33"><span class="section-number-3">7.3</span> 将 app 放进app.route</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+现在我们掌握了装饰器怎样工作的全部前置知识 ，可以重新实现Flask API的这个部分了，那么把我们的目光转移到“app”在我们Flask应用中的重要地位上面来。
+</p>
+
+
+<p>
+在开始解释Flask对象里面发生了什么之前，我们先创建我们自己的Python类NotFlask。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">pass</span>
+
+<span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+
+<p>
+这不是个很有趣的类，不过有一样值得注意，就是这个类的方法也可以被用作装饰器，所以让我们把这个类写得更有趣一点，加一个称作 route的方法，它是一个简单的装饰器工厂。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
+            <span style="color: #237fbf; font-weight: bold;">return</span> f
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+
+<span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
+</pre>
+</div>
+
+<p>
+这个装饰器和我们之前创建的那些最大的不同，在于我们不想修改被我们装饰的函数的行为，我们只是想获得它的引用。
+</p>
+
+<p>
+所以，最后一步是我们打算去利用一个特性，就是用装饰器函数的副产品去保存一个提供给我们的路径之间的链接，装饰器函数应该与它关联起来。
+</p>
+
+<p>
+为了实现这个，我们给我们的NotFlask对象加一个“routes”字典，当我们的“decorator”函数被调用，路径将被插入新字典中函数对应的位置。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.routes = <span style="color: #2f96dc;">{}</span>
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
+            <span style="color: #237fbf; font-weight: bold;">self</span>.routes<span style="color: #2f96dc;">[</span>route_str<span style="color: #2f96dc;">]</span> = f
+            <span style="color: #237fbf; font-weight: bold;">return</span> f
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+
+<span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
+</pre>
+</div>
+
+
+<p>
+现在我们就要完成了！可如果没法访问内部的视图函数，保存路径的字典又有什么用？让我们加入一个方法serve(path)，当给定的路径存在时运行一个函数并给们我结果，当路径尚未注册时则抛出一个异常。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.routes = <span style="color: #2f96dc;">{}</span>
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
+            <span style="color: #237fbf; font-weight: bold;">self</span>.routes<span style="color: #2f96dc;">[</span>route_str<span style="color: #2f96dc;">]</span> = f
+            <span style="color: #237fbf; font-weight: bold;">return</span> f
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">serve</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, path<span style="color: #2f96dc;">)</span>:
+        <span style="color: #7590db;">view_function</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.routes.get<span style="color: #2f96dc;">(</span>path<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">if</span> view_function:
+            <span style="color: #237fbf; font-weight: bold;">return</span> view_function<span style="color: #2f96dc;">()</span>
+        <span style="color: #237fbf; font-weight: bold;">else</span>:
+            <span style="color: #237fbf; font-weight: bold;">raise</span> <span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'Route "{}"" has not been registered'</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>path<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+
+<span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
+</pre>
+</div>
+
+<p>
+在这个系列我们只关注重现那些热门库提供的友好API，所以钩挂“serve”方法实现一个HTTP服务器其实有一点超出本文的范围，当然结果是确定的，运行下述片段：
+</p>
+
+<pre class="example">
+app = NotFlask()
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+print app.serve("/")
+</pre>
+
+<p>
+我们会看到：
+</p>
+<pre class="example">
+Hello World!
+</pre>
+
+
+<p>
+我们已经完成了一个的Flask网页上第一个例子的非常简单的重现，让我们写一些快速测试检测我们简单重现的Flask的“@app.route()”是否正确。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">TestNotFlask</span><span style="color: #2f96dc;">(</span>unittest.TestCase<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">setUp</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.app = NotFlask<span style="color: #2f96dc;">()</span>
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">test_valid_route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        @<span style="color: #237fbf; font-weight: bold;">self</span>.app.route<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'/'</span><span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">index</span><span style="color: #2f96dc;">()</span>:
+            <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">'Hello World'</span>
+
+        <span style="color: #237fbf; font-weight: bold;">self</span>.assertEqual<span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>.app.serve<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'/'</span><span style="color: #bc6ec5;">)</span>, <span style="color: #2d9574;">'Hello World'</span><span style="color: #2f96dc;">)</span>
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">test_invalid_route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">with</span> <span style="color: #237fbf; font-weight: bold;">self</span>.assertRaises<span style="color: #2f96dc;">(</span><span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #2f96dc;">)</span>:
+            <span style="color: #237fbf; font-weight: bold;">self</span>.app.serve<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'/invalid'</span><span style="color: #2f96dc;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34"><span class="section-number-3">7.4</span> 以正则的形式表达我们的路径</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+现在我们将允许我们的URL动态变化，我们不再能够将用先前使用“@app.route()”注册的路径直接与路径实例比较。
+</p>
+
+<p>
+我们将用什么替代？我们需要用上正则表达式，这样我们就可以将路径作为一种模式进行匹配，而不和一条固定的字符串比较了。
+</p>
+
+<p>
+那么，我们的第一步是将我们的路径转化成正则表达式模式，这样我们就能在输入路径实例时进行匹配。我们也将使用这个正则表达式提取我们感兴趣的变量。
+</p>
+
+<p>
+那么，匹配路径”/hello/”的正则表达式该长啥样呢？
+</p>
+
+<p>
+嗯一个简单的正则表达式譬如“^/hello/(.+)$”将是个好的开始，让我们一起看看它和代码是怎么一起工作的：
+</p>
+
+<pre class="example">
+import re
+
+route_regex = re.compile(r"^/hello/(.+)$")
+match = route_regex.match("/hello/ains")
+
+print match.groups()
+</pre>
+
+<p>
+将会输出：
+</p>
+<pre class="example">
+('ains',)
+</pre>
+
+<p>
+不错，不过，理想情况是我们想要维护我们已经匹配上的第一组链接，并且从路径“/hello/”识别出“username”。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline35" class="outline-3">
+<h3 id="orgheadline35"><span class="section-number-3">7.5</span> 命名捕获组</h3>
+<div class="outline-text-3" id="text-7-5">
+<p>
+幸运的是，正则表达式也支持命名捕获组，允许我们给匹配组分配一个名字，我们能在读取我们的匹配之后找回它。
+</p>
+
+<p>
+我们可以使用下述符号，给出第一个例子识别“username”的捕获组。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">/hello/<span style="color: #2f96dc;">(</span>&lt;?P&lt;username&gt;.+<span style="color: #2f96dc;">)</span><span style="color: #2d9574;">"</span>
+</pre>
+</div>
+
+<p>
+然后我们可以对我们的正则表达式使用groupdict()方法，将所有捕获组当作一个字典，组的名字对应匹配上的值。
+</p>
+
+<p>
+那么我们给出下述代码：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #7590db;">route_regex</span> = re.<span style="color: #1f71ab;">compile</span><span style="color: #2f96dc;">(</span>r<span style="color: #2d9574;">'^/hello/(?P&lt;username&gt;.+)$'</span><span style="color: #2f96dc;">)</span>
+<span style="color: #7590db;">match</span> = route_regex.match<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/hello/ains"</span><span style="color: #2f96dc;">)</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> match.groupdict<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+
+<p>
+将为我们输出一下字典：
+</p>
+<pre class="example">
+{'username': 'ains'}
+</pre>
+
+<p>
+现在，有了我们所需要的正则表达式的格式，以及如何使用它们去匹配输入的URLs的知识，最后剩下的是写一个方法，将我们声明的路径转换成它们等价的正则表达式模式。
+</p>
+
+<p>
+要做这个我们将使用另一个正则表达式（接下来将全是正则表达式），为了让我们路径中的变量转换成正则表示式模式，那这里作为示范我们将将“”转换成“(?P.+)”。
+</p>
+
+<p>
+听起来太简单了！我们将可以只用一行新代码实现它。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">build_route_pattern</span><span style="color: #2f96dc;">(</span>route<span style="color: #2f96dc;">)</span>:
+    <span style="color: #7590db;">route_regex</span> = re.sub<span style="color: #2f96dc;">(</span>r<span style="color: #2d9574;">'(&lt;\w+&gt;)'</span>, r<span style="color: #2d9574;">'(?P\1.+)'</span>, route<span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">return</span> re.<span style="color: #1f71ab;">compile</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"^{}$"</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>route_regex<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> build_route_pattern<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'/hello/&lt;username&gt;'</span><span style="color: #2f96dc;">)</span>
+</pre>
+</div>
+
+<p>
+这里我们用一个正则表达式代表所有出现的模式（一个包含在尖括号中的字符串），与它的正则表达式命名组等价。
+</p>
+
+<p>
+re.sub的第一个参数 我们将我们的模式放进括号，目的是把它分配到第一个匹配组。在我们的第二个参数，我们可以使用第一匹配组的内容，方法是写1（2将是第二匹配组的内容，以此类推…….）
+</p>
+
+<p>
+那么最后，输入模式
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">/hello/&lt;username&gt;
+</pre>
+</div>
+
+<p>
+将给我们正则表达式：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">^/hello/<span style="color: #2f96dc;">(</span>?P&lt;username&gt;.+<span style="color: #2f96dc;">)</span>$
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36"><span class="section-number-3">7.6</span> 推陈出新</h3>
+<div class="outline-text-3" id="text-7-6">
+<p>
+让我们扫一眼上次我们写的简单NotFlask类。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.routes = <span style="color: #2f96dc;">{}</span>
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
+            <span style="color: #237fbf; font-weight: bold;">self</span>.routes<span style="color: #2f96dc;">[</span>route_str<span style="color: #2f96dc;">]</span> = f
+            <span style="color: #237fbf; font-weight: bold;">return</span> f
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">serve</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, path<span style="color: #2f96dc;">)</span>:
+        <span style="color: #7590db;">view_function</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.routes.get<span style="color: #2f96dc;">(</span>path<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">if</span> view_function:
+            <span style="color: #237fbf; font-weight: bold;">return</span> view_function<span style="color: #2f96dc;">()</span>
+        <span style="color: #237fbf; font-weight: bold;">else</span>:
+            <span style="color: #237fbf; font-weight: bold;">raise</span> <span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'Route "{}"" has not been registered'</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>path<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+
+<span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
+</pre>
+</div>
+
+<p>
+现在我们有一个新的改进方法用来匹配输入的路径，我们打算移除我们上一个版本实现时用到的原生字典。
+</p>
+
+<p>
+让我们从改造我们的函数着手，以便于添加路径，这样我们就可以用(pattern, view_function)对列表代替字典保存我们的路径。
+</p>
+
+<p>
+这意味着当一个程序员使用@app.route()装饰一个函数，我们将要尝试将他们的路径编译变成一个正则表达式，然后存储它，属于一个在我们新的路径列表里的装饰函数。
+</p>
+
+<p>
+让我们看看实现代码：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.routes = <span style="color: #2f96dc;">[]</span>
+
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Here's our build_route_pattern we made earlier</span>
+    <span style="color: #ce537a; font-weight: bold;">@staticmethod</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">build_route_pattern</span><span style="color: #2f96dc;">(</span>route<span style="color: #2f96dc;">)</span>:
+        <span style="color: #7590db;">route_regex</span> = re.sub<span style="color: #2f96dc;">(</span>r<span style="color: #2d9574;">'(&lt;\w+&gt;)'</span>, r<span style="color: #2d9574;">'(?P\1.+)'</span>, route<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">return</span> re.<span style="color: #1f71ab;">compile</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"^{}$"</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>route_regex<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
+            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Instead of inserting into a dictionary,</span>
+            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We'll append the tuple to our route list</span>
+            <span style="color: #7590db;">route_pattern</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.build_route_pattern<span style="color: #2f96dc;">(</span>route_str<span style="color: #2f96dc;">)</span>
+            <span style="color: #237fbf; font-weight: bold;">self</span>.routes.append<span style="color: #2f96dc;">(</span><span style="color: #bc6ec5;">(</span>route_pattern, f<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+
+            <span style="color: #237fbf; font-weight: bold;">return</span> f
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+</pre>
+</div>
+
+<p>
+我们也打算需要一个get_route_match方法，给它一个路径实例，将会尝试并找到一个匹配的view_function，或者返回None如果一个也找不到的话。
+</p>
+
+<p>
+然而，如果找了到匹配的话，除了view_function之外，我们还需要返回一个东西，那就是我们包含之前捕获匹配组的字典，我们需要它来为视图函数传递正确的参数。
+</p>
+
+<p>
+好了我们的get_route_match大概就长这样：
+</p>
+
+<pre class="example">
+def get_route_match(path):
+    for route_pattern, view_function in self.routes:
+        m = route_pattern.match(path)
+        if m:
+           return m.groupdict(), view_function
+
+    return None
+</pre>
+
+<p>
+现在我们快要完成了，最后一步将是找出调用view_function的方法，使用来自正则表达式匹配组字典的正确参数。
+</p>
+
+<p>
+调用一个函数的若干种方法
+</p>
+
+<p>
+让我们回顾一下不同的方法调用一个python的函数。
+</p>
+
+<p>
+比如像这样：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello_user</span><span style="color: #2f96dc;">(</span>username<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello {}!"</span>.<span style="color: #1f71ab;">format</span><span style="color: #2f96dc;">(</span>username<span style="color: #2f96dc;">)</span>
+</pre>
+</div>
+
+<p>
+最简单的（也许正是你所熟知的）办法是使用正则参数，在这里参数的顺序匹配我们定义的那些函数的顺序。
+</p>
+
+<pre class="example">
+&gt;&gt;&gt; hello_user("ains")
+Hello ains!
+</pre>
+
+<p>
+另一种方法调用一个函数是使用关键词参数。关键词参数可以通过任何顺序指定，适合有许多可选参数的函数。
+</p>
+<pre class="example">
+&gt;&gt;&gt; hello_user(username="ains")
+Hello ains!
+</pre>
+
+
+<p>
+在Python中最后一种调用一个函数的方法是使用关键词参数字典，字典中的关键词对应参数名称。我们告诉Python解包一个字典，并通过使用两个星号“**”来把它当作函数的关键词参数。 下面的代码段与上面的代码段完全一样，现在我们使用字典参数，我们可以在运行时动态创建它。
+</p>
+
+<pre class="example">
+&gt;&gt;&gt; kwargs = {"username": "ains"}
+&gt;&gt;&gt; hello_user(**kwargs)
+Hello ains!
+</pre>
+
+<p>
+好了，还记得上面的groupdict()方法？就是那个同样的在正则表达式完成匹配后返回{“username”: “ains”}的家伙？那么现在我们了解了kwargs，我们能很容易向我们的view_function传递字典匹配，完成NotFlask!
+</p>
+
+<p>
+那么让我们把这些都塞进我们最终的类中。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.routes = <span style="color: #2f96dc;">[]</span>
+
+    <span style="color: #ce537a; font-weight: bold;">@staticmethod</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">build_route_pattern</span><span style="color: #2f96dc;">(</span>route<span style="color: #2f96dc;">)</span>:
+        <span style="color: #7590db;">route_regex</span> = re.sub<span style="color: #2f96dc;">(</span>r<span style="color: #2d9574;">'(&lt;\w+&gt;)'</span>, r<span style="color: #2d9574;">'(?P\1.+)'</span>, route<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">return</span> re.<span style="color: #1f71ab;">compile</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"^{}$"</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>route_regex<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
+            <span style="color: #7590db;">route_pattern</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.build_route_pattern<span style="color: #2f96dc;">(</span>route_str<span style="color: #2f96dc;">)</span>
+            <span style="color: #237fbf; font-weight: bold;">self</span>.routes.append<span style="color: #2f96dc;">(</span><span style="color: #bc6ec5;">(</span>route_pattern, f<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+
+            <span style="color: #237fbf; font-weight: bold;">return</span> f
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">get_route_match</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, path<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">for</span> route_pattern, view_function <span style="color: #237fbf; font-weight: bold;">in</span> <span style="color: #237fbf; font-weight: bold;">self</span>.routes:
+            <span style="color: #7590db;">m</span> = route_pattern.match<span style="color: #2f96dc;">(</span>path<span style="color: #2f96dc;">)</span>
+            <span style="color: #237fbf; font-weight: bold;">if</span> m:
+                <span style="color: #237fbf; font-weight: bold;">return</span> m.groupdict<span style="color: #2f96dc;">()</span>, view_function
+
+        <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #a45bad;">None</span>
+
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">serve</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, path<span style="color: #2f96dc;">)</span>:
+        <span style="color: #7590db;">route_match</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.get_route_match<span style="color: #2f96dc;">(</span>path<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">if</span> route_match:
+            <span style="color: #7590db;">kwargs</span>, <span style="color: #7590db;">view_function</span> = route_match
+            <span style="color: #237fbf; font-weight: bold;">return</span> view_function<span style="color: #2f96dc;">(</span>**kwargs<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">else</span>:
+            <span style="color: #237fbf; font-weight: bold;">raise</span> <span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'Route "{}"" has not been registered'</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>path<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+</pre>
+</div>
+
+<p>
+接下来,就是见证奇迹的时刻，请看下面代码段:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/hello/&lt;username&gt;"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello_user</span><span style="color: #2f96dc;">(</span>username<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello {}!"</span>.<span style="color: #1f71ab;">format</span><span style="color: #2f96dc;">(</span>username<span style="color: #2f96dc;">)</span>
+
+<span style="color: #237fbf; font-weight: bold;">print</span> app.serve<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/hello/ains"</span><span style="color: #2f96dc;">)</span>
+</pre>
+</div>
+
+<p>
+我们将得到输出：
+</p>
+<pre class="example">
+Hello ains!
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline38" class="outline-2">
+<h2 id="orgheadline38"><span class="section-number-2">8</span> 建议阅读:</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+pep318 关于迭代器的为什么使用@
+</p>
+</div>
+</div>
+
+
+
+
+
+
+<div id="outline-container-orgheadline39" class="outline-2">
+<h2 id="orgheadline39"><span class="section-number-2">9</span> 引用文件</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+目前没有完全使用, 喜欢可以看看
+</p>
+
+<p>
+<a href="http://zetcode.com/lang/python/functions/">http://zetcode.com/lang/python/functions/</a>
+</p>
+
+<p>
+<a href="http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484">http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484</a>
+</p>
+
+
+<p>
+<a href="http://www.ibm.com/developerworks/linux/library/l-cpdecor/index.html">http://www.ibm.com/developerworks/linux/library/l-cpdecor/index.html</a>
+</p>
+
+
+<p>
+<a href="http://www.cafepy.com/article/python_types_and_objects/">http://www.cafepy.com/article/python_types_and_objects/</a>
+</p>
+
+<p>
+<a href="http://blog.csdn.net/mdl13412/article/details/22608283">http://blog.csdn.net/mdl13412/article/details/22608283</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2015-11-22 日 17:36</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+* el-get 安装
+#+BEGIN_EXAMPLE
+  (url-retrieve
+   "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el"
+   (lambda (s)
+     (goto-char (point-max))
+     (eval-print-last-sexp)))
+#+END_EXAMPLE
+*NOTE*: 安装在~/.emacs.d/el-get目录下。同时需要目录为空
+* jedi 安装
+#+BEGIN_EXAMPLE
+  1.  M-x el-get-install RETURN jedi
+  2.  M-x jedi:install-server RETRURN
+#+END_EXAMPLE
+*配置*
+#+BEGIN_EXAMPLE
+  (autoload 'jedi:setup "jedi" nil t)
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (setq jedi:setup-keys t)                      ; optional
+  (setq jedi:complete-on-dot t)                 ; optional
+#+END_EXAMPLE
+
+* YASnippet
+*配置*
+#+BEGIN_EXAMPLE
+  ;;;;;;;;;;;;;yasnippet;;;;;;;;;;;;;;;;;;;;;
+
+  (add-to-list 'load-path
+                "/home/huihui/.emacs.d/plugins/yasnippet")
+  (require 'yasnippet)
+  (yas-global-mode 1)
+#+END_EXAMPLE 

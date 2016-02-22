@@ -1,0 +1,10 @@
+* Hash Table
+emacs 有两种类型的key/value对的list:
+ + Association List(aka alist), *(info "(elisp) Association")
+ + hash Table
+
+Alist和 Hash Table的不同之处：
+#+BEGIN_EXAMPLE
+  1. Alist的子项是有序的，可以重复
+  2. Hash Table的入口是唯一的，Hash Table是无序的。当有大量的数据是，随即访问是非常快的。
+#+END_EXAMPLE

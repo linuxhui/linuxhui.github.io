@@ -1,0 +1,63 @@
+* 使用
+** 在GITHUB 上增加 SSH key
+详细见写得一篇关于ssh的文章。
+#+BEGIN_SRC shell
+  > ssh-keyten -c "872807604@qq.com"
+#+END_SRC
+** 测试SSH key 
+#+BEGIN_SRC shell
+  $ ssh -T git@github.com
+#+END_SRC
+** 创建仓库
+*** 创建一个新仓库
+#+BEGIN_SRC shell 
+  $ touch README.md
+  $ git init
+  $ git add README.md
+  $ git commit -m "first commit"
+  $ git remote add origin https://github.com/linuxhui/net-tool.git
+  $ git remote add origin git@github.com:linuxhui/net-tool.git
+  $ git push -u origin master
+#+END_SRC
+
+*** 已经存在的仓库 
+#+BEGIN_SRC shell
+  $ git remote add origin https://github.com/lltppong-it/TeewWater.git
+  $ git push -u origin master
+#+END_SRC
+
+** 删除仓库
+#+BEGIN_EXAMPLE
+   Account Settings -->  Repositories -->  左边的 Settings —> 最下面 有一个 Delete this Repositories
+#+END_EXAMPLE
+
+** 默认编辑器
+#+BEGIN_SRC shell
+  git config --global core.editor vim
+  global修改的是~/.gitconfig，将默认编辑器改为Vim， 且只对当前用户有效
+#+END_SRC
+
+** 提交代码
+#+BEGIN_SRC shell
+  1. 将项目所有文件添加到仓库
+  git add .
+
+  2. 将add的文件commit到仓库
+
+  git commit -m "注释语句"
+
+
+  3. pull 一下
+  git pull origin master
+
+  4. push
+  git push  -u orign master
+#+END_SRC
+* 一些问题
+** SSH 和 HTTPS 方式的区别
++  https方式 可以随意的克隆 github 的项目，不管是谁的。但是后者 你必须是管理员或者拥有者，而且需要先
+添加 SSH key，否则无法克隆。
++  https url 在 push的时候需要验证用户名和密码， 而 SSH 在push的时候，是不需要输入用户名的，是不需
+要输入用户名的，如果配置SSH key的时候设置了密码，则需要输入密码的，否则直接是不需要输入密码的。
+
+

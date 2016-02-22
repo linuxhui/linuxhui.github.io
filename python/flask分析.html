@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>flask分析</title>
+<!-- 2015-11-30 一 10:08 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="huihui" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">flask分析</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. app.route</a>
+<ul>
+<li><a href="#sec-1-1">1.1. app.route()函数</a></li>
+<li><a href="#sec-1-2">1.2. app.add_url_rule()函数</a></li>
+<li><a href="#sec-1-3">1.3. run_simple(hostname, port, application, use_reloader=False,</a></li>
+<li><a href="#sec-1-4">1.4. 调用的是make_server(host, port, app=None, threaded=False, processes=1,</a></li>
+<li><a href="#sec-1-5">1.5. BaseWSGIServer(HTTPServer, object):</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. WSGI</a></li>
+<li><a href="#sec-3">3. 服务的启动过程分析</a>
+<ul>
+<li><a href="#sec-3-1">3.1. socketserver源码分析</a></li>
+<li><a href="#sec-3-2">3.2. 一个完整的启动过程分析</a></li>
+<li><a href="#sec-3-3">3.3. 在werkzeug中 socketserver</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. python的socketserver编程</a>
+<ul>
+<li><a href="#sec-4-1">4.1. python的socket简单了解</a>
+<ul>
+<li><a href="#sec-4-1-1">4.1.1. socket 类型</a></li>
+<li><a href="#sec-4-1-2">4.1.2. Socket函数</a></li>
+<li><a href="#sec-4-1-3">4.1.3. socket 编程思路</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-2">4.2. python的socketserver学习</a>
+<ul>
+<li><a href="#sec-4-2-1">4.2.1. server 创建指导</a></li>
+<li><a href="#sec-4-2-2">4.2.2. server 对象</a></li>
+<li><a href="#sec-4-2-3">4.2.3. 请求处理对象</a></li>
+<li><a href="#sec-4-2-4">4.2.4. socketserver实现:</a></li>
+<li><a href="#sec-4-2-5">4.2.5. 代码解析</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> app.route</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> app.route()函数</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+app.route时一个迭代器。
+参数有两个: rule, **options
+</p>
+<ul class="org-ul">
+<li>rule: 
+</li>
+<li>options:参数
+</li>
+</ul>
+
+<p>
+它指向了add_url_rule函数
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> app.add_url_rule()函数</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+它外部有一个装饰器setupmethod
+add_url_rule(self, rule, endpoint=None, view_func=None, **options):
+view_func 就是我们定义的函数
+</p>
+
+<p>
+到这里 我们就简单了解 endpoint 如果endpoint参数存在，那么endpoint为参数值，否则endpoint就是自己定义的函数的名字。
+</p>
+
+<p>
+突然意识到：
+@app.route('/', methods=['GET']）
+def user():
+    pass
+和
+@app.route('/'):
+def user(methods=['GET']):
+    pass
+基本上是一样的
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> run_simple(hostname, port, application, use_reloader=False,</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+use_debugger=False, use_evalex=True,
+extra_files=None, reloader_interval=1,
+reloader_type='auto', threaded=False, processes=1,
+request_handler=None, static_files=None,
+passthrough_errors=False, ssl_context=None):
+</p>
+
+<p>
+第三位是flask的app， 我们应该找出它什么时候被调用了。才能找出__call__被调用的时候。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> 调用的是make_server(host, port, app=None, threaded=False, processes=1,</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+request_handler=None, passthrough_errors=False,
+ssl_context=None)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> BaseWSGIServer(HTTPServer, object):</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+x
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> WSGI</h2>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 服务的启动过程分析</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> socketserver源码分析</h3>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 一个完整的启动过程分析</h3>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 在werkzeug中 socketserver</h3>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> python的socketserver编程</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> python的socket简单了解</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+这个部分参考: <a href="http://blog.csdn.net/rebelqsp/article/details/">http://blog.csdn.net/rebelqsp/article/details/</a>
+</p>
+</div>
+
+<div id="outline-container-sec-4-1-1" class="outline-4">
+<h4 id="sec-4-1-1"><span class="section-number-4">4.1.1</span> socket 类型</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+套结字格式:
+<b>socket(family,type[,protocal])</b>  使用给定的地址族、套接字类型、协议编号（默认为0）来创建套接字。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">socket类型</th>
+<th scope="col" class="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">socket.AF_UNIX</td>
+<td class="left">只能用于单一的unix系统进程剑通信</td>
+</tr>
+
+<tr>
+<td class="left">socket.AF_INET</td>
+<td class="left">服务器之间的网络通信</td>
+</tr>
+
+<tr>
+<td class="left">socket.AF_INET6</td>
+<td class="left">IPV6</td>
+</tr>
+
+<tr>
+<td class="left">socket.SOCK_STREAM</td>
+<td class="left">流式socket,for tcp</td>
+</tr>
+
+<tr>
+<td class="left">socket.SOCK_DGRAM</td>
+<td class="left">数据报式, for UDP</td>
+</tr>
+
+<tr>
+<td class="left">socket.SOCK_RAW</td>
+<td class="left">原始套接字，普通的套接字无法处理ICMP、IGMP等网络报文，而SOCK_RAW可以；其次，SOCK_RAW也可以处理特殊的IPv4报文；此外，利用原始套接字，可以通过IP_HDRINCL套接字选项由用户构造IP头。</td>
+</tr>
+
+<tr>
+<td class="left">socket.SOCK_SEQPACKET</td>
+<td class="left">可靠的连续数据包服务</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+创建socket的一般形式:
+</p>
+<ul class="org-ul">
+<li>创建TCP Socket:
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+</li>
+<li>创建UDP Socket：
+s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-2" class="outline-4">
+<h4 id="sec-4-1-2"><span class="section-number-4">4.1.2</span> Socket函数</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<ul class="org-ul">
+<li>服务端函数
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">函数</th>
+<th scope="col" class="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">s.bind(address)</td>
+<td class="left">将套结字绑定到地址,在AF_INET,以元素(host,port)的形式表示地址</td>
+</tr>
+
+<tr>
+<td class="left">s.listen(backlog)</td>
+<td class="left">开始监听TCP传入连接。backlog指定在拒绝连接之前，操作系统可以挂起的最大连接数量。该值至少为1，大部分应用程序设为5就可以了。</td>
+</tr>
+
+<tr>
+<td class="left">s.accept()</td>
+<td class="left">接受TCP连接并返回（conn,address）,其中conn是新的套接字对象，可以用来接收和发送数据。address是连接客户端的地址。</td>
+</tr>
+</tbody>
+</table>
+</li>
+
+<li>客户端函数
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">函数</th>
+<th scope="col" class="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">s.connect(address)</td>
+<td class="left">连接到address的套接字,一般address的格式为元组(hostname,port),如果链接出错,返回socket.error错误</td>
+</tr>
+
+<tr>
+<td class="left">s.connect_ex(address)</td>
+<td class="left">功能与connect(address)相同,但是成功返回0.失败返回error的值</td>
+</tr>
+</tbody>
+</table>
+</li>
+
+<li>公共socket函数
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">函数</th>
+<th scope="col" class="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">s.recv(bufsize[,flag])</td>
+<td class="left">接受TCP套接字的数据。数据以字符串形式返回，bufsize指定要接收的最大数据量。flag提供有关消息的其他信息，通常可以忽略。</td>
+</tr>
+
+<tr>
+<td class="left">s.send(string[,flag])</td>
+<td class="left">发送TCP数据。将string中的数据发送到连接的套接字。返回值是要发送的字节数量，该数量可能小于string的字节大小。</td>
+</tr>
+
+<tr>
+<td class="left">s.sendall(string[,flag])</td>
+<td class="left">完整发送TCP数据。将string中的数据发送到连接的套接字，但在返回之前会尝试发送所有数据。成功返回None，失败则抛出异常。</td>
+</tr>
+
+<tr>
+<td class="left">s.recvfrom(bufsize[.flag])</td>
+<td class="left">接受UDP套接字的数据。与recv()类似，但返回值是（data,address）。其中data是包含接收数据的字符串，address是发送数据的套接字地址。</td>
+</tr>
+
+<tr>
+<td class="left">s.sendto(string[,flag],address)</td>
+<td class="left">发送UDP数据。将数据发送到套接字，address是形式为（ipaddr，port）的元组，指定远程地址。返回值是发送的字节数。</td>
+</tr>
+
+<tr>
+<td class="left">s.close()</td>
+<td class="left">关闭套接字。</td>
+</tr>
+
+<tr>
+<td class="left">s.getpeername()</td>
+<td class="left">返回连接套接字的远程地址。返回值通常是元组（ipaddr,port）。</td>
+</tr>
+
+<tr>
+<td class="left">s.getsockname()</td>
+<td class="left">返回套接字自己的地址。通常是一个元组(ipaddr,port)</td>
+</tr>
+
+<tr>
+<td class="left">s.setsockopt(level,optname,value)</td>
+<td class="left">设置给定套接字选项的值。</td>
+</tr>
+
+<tr>
+<td class="left">s.getsockopt(level,optname[.buflen])</td>
+<td class="left">返回套接字选项的值。</td>
+</tr>
+
+<tr>
+<td class="left">s.settimeout(timeout)</td>
+<td class="left">设置套接字操作的超时期，timeout是一个浮点数，单位是秒。值为None表示没有超时期。一般，超时期应该在刚创建套接字时设置，因为它们可能用于连接的操作（如connect()）</td>
+</tr>
+
+<tr>
+<td class="left">s.gettimeout()</td>
+<td class="left">返回当前超时期的值，单位是秒，如果没有设置超时期，则返回None。</td>
+</tr>
+
+<tr>
+<td class="left">s.fileno()</td>
+<td class="left">返回套接字的文件描述符。</td>
+</tr>
+
+<tr>
+<td class="left">s.setblocking(flag)</td>
+<td class="left">如果flag为0，则将套接字设为非阻塞模式，否则将套接字设为阻塞模式（默认值）。非阻塞模式下，如果调用recv()没有发现任何数据，或send()调用无法立即发送数据，那么将引起socket.error异常。</td>
+</tr>
+
+<tr>
+<td class="left">s.makefile()</td>
+<td class="left">创建一个与该套接字相关连的文件</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-3" class="outline-4">
+<h4 id="sec-4-1-3"><span class="section-number-4">4.1.3</span> socket 编程思路</h4>
+<div class="outline-text-4" id="text-4-1-3">
+</div><ol class="org-ol"><li><a id="sec-4-1-3-1" name="sec-4-1-3-1"></a>tcp服务器端<br  /><div class="outline-text-5" id="text-4-1-3-1">
+<ol class="org-ol">
+<li>创建套接字,绑定套接字到本地IP与端口
+<div class="org-src-container">
+
+<pre class="src src-python">socket.socket<span style="color: #2f96dc;">(</span>socket.AF_INET,socket.SOCK_STREAM<span style="color: #2f96dc;">)</span> , s.bind<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</li>
+<li>开始监听链接
+<div class="org-src-container">
+
+<pre class="src src-python">s.listen<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</li>
+<li>进入循环,不断接受客户端的连接请求
+<div class="org-src-container">
+
+<pre class="src src-python">s.accept<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</li>
+<li>然后接收传来的数据,并发送给对方数据
+<div class="org-src-container">
+
+<pre class="src src-python">s.recv<span style="color: #2f96dc;">()</span> , s.sendall<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</li>
+<li>传输完毕后,关闭套接字
+<div class="org-src-container">
+
+<pre class="src src-python">s.close<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li><a id="sec-4-1-3-2" name="sec-4-1-3-2"></a>TCP 客户端<br  /><div class="outline-text-5" id="text-4-1-3-2">
+<ol class="org-ol">
+<li>创建套接字，连接远端地址
+<div class="org-src-container">
+
+<pre class="src src-python">socket.socket<span style="color: #2f96dc;">(</span>socket.AF_INET,socket.SOCK_STREAM<span style="color: #2f96dc;">)</span> , s.connect<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</li>
+
+<li>连接后发送数据和接收数据
+<div class="org-src-container">
+
+<pre class="src src-python">s.sendall<span style="color: #2f96dc;">()</span>, s.recv<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</li>
+
+<li>传输完毕后，关闭套接字
+<div class="org-src-container">
+
+<pre class="src src-python">s.close<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> python的socketserver学习</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<b>SocketServer</b> 模块简化了网络server的书写. <b>tcpserver</b> 使用tcp协议,UDPserver使用udp协议.他们和其余的两个unixStreamServer和UnixDatagramServerclass是相似的.不过后者是在类unix系统下使用.
+</p>
+
+<p>
+这四个类是利用同步方式进行请求处理的.也就是说每一个请求处理完成之后,下一个请求才会被处理.所以对于一个长时间的请求环境是非常不合适的. <b>ForkingMixIn</b> 和 <b>ThreadingMixIn</b> 可以被用来支持异步请求.
+</p>
+
+<p>
+创建服务器的步骤。首先，你必须创建一个请求处理类，它是BaseRequestHandler的子类并重载其handle()方法,这个方法涌来处理进入的请求。其次，你必须实例化一个服务器类，传入服务器的地址和请求处理程序类。最后，调用handle_request()(一般是调用其他事件循环或者使用select())或serve_forever()来处理一个或者多个请求。最后调用server_close()来关闭这个socket.
+</p>
+
+<p>
+继承 <b>ThreadingMixIn</b> 来处理线程请求.你应该进行线程异常中断的处理.threadingmixin类定义一个属性daemon_threads,用来处理是否等待线程中断.
+</p>
+
+
+<p>
+无论用什么网络协议，服务器类有相同的外部方法和属性。
+</p>
+
+<p>
+该模块在python3中已经更名为socketserver。
+</p>
+</div>
+
+<div id="outline-container-sec-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> server 创建指导</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+在socketserver中有5个server类,其中只有四个子类对外提供服务.BaseServer定义了server所需的基本函数.
+</p>
+
+<pre class="example">
++------------+
+| BaseServer |
++------------+
+      |
+      v
++-----------+        +------------------+
+| TCPServer |-------&gt;| UnixStreamServer |
++-----------+        +------------------+
+      |
+      v
++-----------+        +--------------------+
+| UDPServer |-------&gt;| UnixDatagramServer |
++-----------+        +--------------------+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2"><span class="section-number-4">4.2.2</span> server 对象</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<ul class="org-ul">
+<li>class SocketServer.BaseServer
+这是模块中的所有服务器对象的超类。它定义了接口，如下所述，但是大多数的方法不实现，在子类中进行细化。
+</li>
+
+<li>BaseServer.fileno()
+返回服务器监听套接字的整数文件描述符。通常用来传递给select.select(), 以允许一个进程监视多个服务器。
+</li>
+
+<li>BaseServer.handle_request()
+处理单个请求。处理顺序：get_request(), verify_request(), process_request()。如果用户提供handle()方法抛出异常，将调用服务器的handle_error()方法。如果self.timeout内没有请求收到， 将调用handle_timeout()并返回handle_request()。
+</li>
+
+<li>BaseServer.serve_forever(poll_interval=0.5)
+处理请求，直到一个明确的shutdown()请求。每poll_interval秒轮询一次shutdown。忽略self.timeout。如果你需要做周期性的任务，建议放置在其他线程。
+</li>
+
+<li>BaseServer.shutdown()
+告诉serve_forever()循环停止并等待其停止。python2.6版本。
+</li>
+
+<li>BaseServer.address_family
+  地址家族，比如socket.AF_INET和socket.AF_UNIX。
+</li>
+
+<li>BaseServer.RequestHandlerClass
+用户提供的请求处理类，这个类为每个请求创建实例。
+</li>
+
+<li>BaseServer.server_address
+  服务器侦听的地址。格式根据协议家族地址的各不相同，请参阅socket模块的文档。
+</li>
+
+<li>BaseServer.socketSocket
+服务器上侦听传入的请求socket对象的服务器。
+</li>
+</ul>
+
+<p>
+服务器类支持下面的类变量：
+</p>
+
+<ul class="org-ul">
+<li>BaseServer.allow_reuse_address
+  服务器是否允许地址的重用。默认为false ，并且可在子类中更改。
+</li>
+
+<li>BaseServer.request_queue_size
+  请求队列的大小。如果单个请求需要很长的时间来处理，服务器忙时请求被放置到队列中，最多可以放request_queue_size个。一旦队列已满，来自客户端的请求将得到 “Connection denied”错误。默认值通常为5 ，但可以被子类覆盖。
+</li>
+
+<li>BaseServer.socket_type
+  服务器使用的套接字类型; socket.SOCK_STREAM和socket.SOCK_DGRAM等。
+</li>
+
+<li>BaseServer.timeout
+超时时间，以秒为单位，或 None表示没有超时。如果handle_request()在timeout内没有收到请求，将调用handle_timeout()。
+</li>
+</ul>
+
+<p>
+下面方法可以被子类重载，它们对服务器对象的外部用户没有影响。
+</p>
+
+<ul class="org-ul">
+<li>BaseServer.finish_request()
+实际处理RequestHandlerClass发起的请求并调用其handle()方法。 常用。
+</li>
+
+<li>BaseServer.get_request()
+接受socket请求，并返回二元组包含要用于与客户端通信的新socket对象，以及客户端的地址。
+</li>
+
+<li>BaseServer.handle_error(request, client_address)
+如果RequestHandlerClass的handle()方法抛出异常时调用。默认操作是打印traceback到标准输出，并继续处理其他请求。
+</li>
+
+<li>BaseServer.handle_timeout()
+超时处理。默认对于forking服务器是收集退出的子进程状态，threading服务器则什么都不做。
+</li>
+
+<li>BaseServer.process_request(request, client_address) 
+调用finish_request()创建RequestHandlerClass的实例。如果需要，此功能可以创建新的进程或线程来处理请求,ForkingMixIn和ThreadingMixIn类做到这点。常用。
+</li>
+
+<li>BaseServer.server_activate()
+通过服务器的构造函数来激活服务器。默认的行为只是监听服务器套接字。可重载。
+</li>
+
+<li>BaseServer.server_bind()
+通过服务器的构造函数中调用绑定socket到所需的地址。可重载。
+</li>
+
+<li>BaseServer.verify_request(request, client_address)
+返回一个布尔值，如果该值为True ，则该请求将被处理，反之请求将被拒绝。此功能可以重写来实现对服务器的访问控制。默认的实现始终返回True。client_address可以限定客户端，比如只处理指定ip区间的请求。 常用。
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-3" class="outline-4">
+<h4 id="sec-4-2-3"><span class="section-number-4">4.2.3</span> 请求处理对象</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<p>
+处理器接收数据并决定如何操作。它负责在socket层之上实现协议（i.e., HTTP, XML-RPC, or AMQP)，读取数据，处理并写反应。可以重载的方法如下：
+</p>
+
+<ul class="org-ul">
+<li>setup()
+准备请求处理. 默认什么都不做，StreamRequestHandler中会创建文件类似的对象以读写socket.
+</li>
+<li>handle()
+处理请求。解析传入的请求，处理数据，并发送响应。默认什么都不做。常用变量：self.request，self.client_address，self.server。
+</li>
+<li>finish()
+环境清理。默认什么都不做，如果setup产生异常，不会执行finish。
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-4" class="outline-4">
+<h4 id="sec-4-2-4"><span class="section-number-4">4.2.4</span> socketserver实现:</h4>
+<div class="outline-text-4" id="text-4-2-4">
+<ol class="org-ol">
+<li>利用socketserver实现请求的接收.
+然后进行请求的处理,
+</li>
+<li>利用RequestHandlerClass进行请求的处理
+实现请求的处理
+</li>
+</ol>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-4-2-5" class="outline-4">
+<h4 id="sec-4-2-5"><span class="section-number-4">4.2.5</span> 代码解析</h4>
+<div class="outline-text-4" id="text-4-2-5">
+</div><ol class="org-ol"><li><a id="sec-4-2-5-1" name="sec-4-2-5-1"></a>forve_forver()<br  /><div class="outline-text-5" id="text-4-2-5-1">
+<ol class="org-ol">
+<li>源码:
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">serve_forever</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, poll_interval=<span style="color: #a45bad;">0</span>.<span style="color: #a45bad;">5</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #2aa198;">"""Handle one request at a time until shutdown.</span>
+
+<span style="color: #2aa198;">    Polls for shutdown every poll_interval seconds. Ignores</span>
+<span style="color: #2aa198;">    self.timeout. If you need to do periodic tasks, do them in</span>
+<span style="color: #2aa198;">    another thread.</span>
+<span style="color: #2aa198;">    """</span>
+    <span style="color: #237fbf; font-weight: bold;">self</span>.__is_shut_down.clear<span style="color: #2f96dc;">()</span>
+    <span style="color: #237fbf; font-weight: bold;">try</span>:
+        <span style="color: #237fbf; font-weight: bold;">while</span> <span style="color: #237fbf; font-weight: bold;">not</span> <span style="color: #237fbf; font-weight: bold;">self</span>.__shutdown_request:
+            <span style="color: #2aa198;"># </span><span style="color: #2aa198;">XXX: Consider using another file descriptor or</span>
+            <span style="color: #2aa198;"># </span><span style="color: #2aa198;">connecting to the socket to wake this up instead of</span>
+            <span style="color: #2aa198;"># </span><span style="color: #2aa198;">polling. Polling reduces our responsiveness to a</span>
+            <span style="color: #2aa198;"># </span><span style="color: #2aa198;">shutdown request and wastes cpu at all other times.</span>
+            <span style="color: #adaab3;">r</span>, <span style="color: #adaab3;">w</span>, <span style="color: #adaab3;">e</span> = _eintr_retry<span style="color: #2f96dc;">(</span>select.select, <span style="color: #bc6ec5;">[</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #bc6ec5;">]</span>, <span style="color: #bc6ec5;">[]</span>, <span style="color: #bc6ec5;">[]</span>,
+                                   poll_interval<span style="color: #2f96dc;">)</span>
+            <span style="color: #237fbf; font-weight: bold;">if</span> <span style="color: #237fbf; font-weight: bold;">self</span> <span style="color: #237fbf; font-weight: bold;">in</span> r:
+                <span style="color: #237fbf; font-weight: bold;">self</span>._handle_request_noblock<span style="color: #2f96dc;">()</span>
+    <span style="color: #237fbf; font-weight: bold;">finally</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.__shutdown_request = <span style="color: #a45bad;">False</span>
+        <span style="color: #237fbf; font-weight: bold;">self</span>.__is_shut_down.<span style="color: #1f71ab;">set</span><span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</li>
+
+<li>解析:
+阻塞式的请求.
+通过不断调用select函数，看看自己是否处于可写状态，如果是就调用_handle_request_noblock()，
+这里有一个问题select函数操作集合的时候有个要求，要么集合本身是描述符，要么他提供一个fileno()接口，
+返回一个描述符，查找TCPServer的成员函数确实存在这样一个函数，它返回socket的描述符.
+</li>
+</ol>
+</div>
+</li>
+
+<li><a id="sec-4-2-5-2" name="sec-4-2-5-2"></a>handle_request()<br  /><div class="outline-text-5" id="text-4-2-5-2">
+<ol class="org-ol">
+<li>源码
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">handle_request</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #2aa198;">"""Handle one request, possibly blocking.</span>
+
+<span style="color: #2aa198;">    Respects self.timeout.</span>
+<span style="color: #2aa198;">    """</span>
+    <span style="color: #2aa198;"># </span><span style="color: #2aa198;">Support people who used socket.settimeout() to escape</span>
+    <span style="color: #2aa198;"># </span><span style="color: #2aa198;">handle_request before self.timeout was available.</span>
+    <span style="color: #adaab3;">timeout</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.socket.gettimeout<span style="color: #2f96dc;">()</span>
+    <span style="color: #237fbf; font-weight: bold;">if</span> timeout <span style="color: #237fbf; font-weight: bold;">is</span> <span style="color: #a45bad;">None</span>:
+        <span style="color: #adaab3;">timeout</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.timeout
+    <span style="color: #237fbf; font-weight: bold;">elif</span> <span style="color: #237fbf; font-weight: bold;">self</span>.timeout <span style="color: #237fbf; font-weight: bold;">is</span> <span style="color: #237fbf; font-weight: bold;">not</span> <span style="color: #a45bad;">None</span>:
+        <span style="color: #adaab3;">timeout</span> = <span style="color: #1f71ab;">min</span><span style="color: #2f96dc;">(</span>timeout, <span style="color: #237fbf; font-weight: bold;">self</span>.timeout<span style="color: #2f96dc;">)</span>
+    <span style="color: #adaab3;">fd_sets</span> = _eintr_retry<span style="color: #2f96dc;">(</span>select.select, <span style="color: #bc6ec5;">[</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #bc6ec5;">]</span>, <span style="color: #bc6ec5;">[]</span>, <span style="color: #bc6ec5;">[]</span>, timeout<span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">if</span> <span style="color: #237fbf; font-weight: bold;">not</span> fd_sets<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">0</span><span style="color: #2f96dc;">]</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.handle_timeout<span style="color: #2f96dc;">()</span>
+        <span style="color: #237fbf; font-weight: bold;">return</span>
+    <span style="color: #237fbf; font-weight: bold;">self</span>._handle_request_noblock<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</li>
+
+<li>解析
+仅仅处理一个请求,通过select.select实现在 self.timeout时间内的监听.但是仅仅处理 <b>一个</b> 请求.是serve_forever()的简化版.
+</li>
+</ol>
+</div>
+</li>
+<li><a id="sec-4-2-5-3" name="sec-4-2-5-3"></a>_handle_request_noblock()<br  /><div class="outline-text-5" id="text-4-2-5-3">
+<ul class="org-ul">
+<li>源码:
+<div class="org-src-container">
+
+<pre class="src src-python">  <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">_handle_request_noblock</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+<span style="color: #2aa198;">"""Handle one request, without blocking.</span>
+
+<span style="color: #2aa198;">I assume that select.select has returned that the socket is</span>
+<span style="color: #2aa198;">readable before this function was called, so there should be</span>
+<span style="color: #2aa198;">no risk of blocking in get_request().</span>
+<span style="color: #2aa198;">"""</span>
+<span style="color: #237fbf; font-weight: bold;">try</span>:
+    <span style="color: #adaab3;">request</span>, <span style="color: #adaab3;">client_address</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.get_request<span style="color: #2f96dc;">()</span>
+<span style="color: #237fbf; font-weight: bold;">except</span> socket.error:
+    <span style="color: #237fbf; font-weight: bold;">return</span>
+<span style="color: #237fbf; font-weight: bold;">if</span> <span style="color: #237fbf; font-weight: bold;">self</span>.verify_request<span style="color: #2f96dc;">(</span>request, client_address<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">try</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.process_request<span style="color: #2f96dc;">(</span>request, client_address<span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">except</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.handle_error<span style="color: #2f96dc;">(</span>request, client_address<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">self</span>.shutdown_request<span style="color: #2f96dc;">(</span>request<span style="color: #2f96dc;">)</span>
+</pre>
+</div>
+</li>
+
+<li>解析
+在这个函数重要是进行了三个函数的判断:
+<ol class="org-ol">
+<li>self.get_request()
+</li>
+
+<li>self.verify_request(request, client_address)
+</li>
+
+<li>self.process_request(request, client_address)
+调用self.finish_request(request, client_address),从而实现对于RequestHandlerClass的调用,实现请求的处理.
+</li>
+</ol>
+<p>
+这个函数是所有函数处理的中心,但是要明白这个函数时阻塞式的.
+</p>
+
+<p>
+在BaseSocketserver中,有两个函数调用了它,一个是 serve_forever,另外一个是handle_request,这两个函数也是处理请求所以必须的函数.
+</p>
+</li>
+</ul>
+</div>
+</li>
+<li><a id="sec-4-2-5-4" name="sec-4-2-5-4"></a>ForkingMixIn<br  /><div class="outline-text-5" id="text-4-2-5-4">
+<ol class="org-ol">
+<li>重写了 BaseServer的函数handle_timeout(self) 和函数process_request(self, request, client_address).
+</li>
+</ol>
+</div>
+</li></ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: huihui</p>
+<p class="date">Created: 2015-11-30 一 10:08</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

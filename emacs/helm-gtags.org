@@ -1,0 +1,149 @@
+#+TITLE： helm-gtags
+
+* introduction
+helm-gtags是GNU GLOBAL helm的接口
+
+helm-gtags.el和anything-gtags.el是不兼容的，但是helm-gtags.el拥有比anthing-gtags.el更快的搜索功能。
+
+helm-gtags在处理的时候是基于自己的，所以处理上更快一些。anthing-gtags是基于gtags.el所以在处理大型的源文件的时候，速度有点慢。
+
+* 屏幕截图
+
+* 环境依赖
++ Emacs 24 或者更高
++ helm 1.5.6 或者更高
++ GNU Global 6.2.3或者更高
+
+* 安装 
+helm-gtags 在 MELPA 和 MELPA stable 中都存在。
+
+你可以通过一下命令来安装 helm-gtags
+
+#+BEGIN_EXAMPLE
+  M-x package-install [RET] helm-gtags [RET]
+#+END_EXAMPLE
+
+* 在 Ctags中使用 helm-gtags
+
+* 基本使用
+
+** helm-gtags-mode
+Enable helm-gtags-mode
+
+** helm-gtags-find-tag
+输入tag名字，移动到定义位置
+
+** helm-gtags-find-tag-from-here
+find tag from here ，移动到定义位置
+
+** helm-gtags-find-rtag
+输入tag名字，移动到被引用的位置
+
+** helm-gtags-find-symbol
+输入symbol ，移动到localtion
+
+** helm-gtags-find-files
+输入文件名字，打开它
+
+You can use those searching commands with prefix key
+
+| Prefix  Key | 描述 |
+|-------------+------|
+| C-u         |      |
+| C-u C-u     |      |
+| C--         |      |
+
+** helm-gtags-select
+使用 gtags 和 helm 进行 tag 调转
+
+** helm-gtags-dwim
+在上下文中查找名字
++ Jump to header file if cursor is on include statement
++ Jump to tag definition if cursor is on tag reference
++ Jump to tag reference if cursor is on tag definition
+
+** helm-gtags-tags-in-this-function
+展示在这个函数中被引用的tag，并进行函数内调转
+
+** helm-gtags-update-tags
+升级 TAG 文件， 默认是仅升级当前的文件，也可以使用 C-u prefix 升级所有的文件
+
+** helm-gtags-create-tags
+创建 TAG 文件。 请选择默认作为 GTAGSLABEL。 if you don't enable --with-exuberant-ctags and plugin parser options. If you use homebrew on MacOSX, you can enable those features by following command.
+#+BEGIN_EXAMPLE
+  You should uninstall global at first if  you already install global
+  % brew install global --with-exuberant-ctags --with-pygments
+#+END_EXAMPLE
+
+** helm-gtags-parse-file
+Show symbols in current file like gtags-parse-file. You can choose any files with C-u prefix.
+
+** helm-gtags-pop-stack
+Move to previous point on the stack. helm-gtags pushes current point to stack before executing each jump functions.
+
+** helm-gtags-next-history
+Move to next history on context stack.
+
+** helm-gtags-previous-history
+Move to previous history on context stack.
+
+** helm-gtags-show-stack
+Show context stack with helm interface. You can jump to the context.
+
+** helm-gtags-clear-stack
+Clear current context stack.
+
+** helm-gtags-clear-all-stacks
+Clear all context stacks.
+
+** helm-gtags-clear-cache
+Clear current project cache for helm-gtags-select and helm-gtags-select-path
+
+** helm-gtags-clear-all-cache
+Clear all result cache for helm-gtags-select and helm-gtags-select-path
+
+** helm-gtags-resume
+Resurrect previously invoked helm-gtags command. This is similar to helm-resume however this command resurrects helm gtags buffer if other helm commands are called.
+
+* 使用建议键位映射
+helm-gtags.el 通过设置 helm-gtags-suggested-key-mapping 为 非空(non-nil)提供了和 gtags.el一样的键位映射。它的 prefix key 默认是 C-c ，你可以通过修改 helm-gtags-prefix-key 来修改它。
+
+上面的属性必须在 加载(load) helm-gtags.el之前使用。推荐使用 custom-set-variable 来设置这些属性。
+#+BEGIN_SRC elisp
+  (custom-set-variables
+   '(helm-gtags-prefix-key "C-t")
+   '(helm-gtags-suggested-key-mapping t))
+#+END_SRC
+
+* 默认键位映射
+ 
+
+* 可以定制的参数
+
+* Faces
+
+
+* 简单的配置
+#+BEGIN_SRC elisp
+  ;;; Enable helm-gtags-mode
+  (add-hook 'c-mode-hook 'helm-gtags-mode)
+  (add-hook 'c++-mode-hook 'helm-gtags-mode)
+  (add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+  ;; customize
+  (custom-set-variables
+   '(helm-gtags-path-style 'relative)
+   '(helm-gtags-ignore-case t)
+   '(helm-gtags-auto-update t))
+
+  ;; key bindings
+  (eval-after-load "helm-gtags"
+    '(progn
+       (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
+       (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
+       (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
+       (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
+       (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+       (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+       (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)))
+#+END_SRC

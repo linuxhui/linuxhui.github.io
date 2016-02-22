@@ -1,0 +1,118 @@
+
+
+* 迭代器
+
+* 函数式编程
+** 函数式编程有以下实用的特点:
++ 可行化证明。
+  这只是一个纯理论的优点，的确可是实现
++ 模块化
+  模块化代码能够在一定程度上强制对问题进行分治解决并简化在其他场景下的重用。
++ 简洁
+  函数式编程通常比其他范式更为简洁
++ 并发
+  纯函数式函数是线程安全的并且可以并行执行。尽管在Python中没有实现。
++ 可测行
+  简单的测试函数式程序。
+
+** 生成器
+生成器(generator)就是对象，在每次调用它的next()方法时返回一个值，直到抛出StopIteration。生成器在PEP255中引入。并提供了一种比较简单的方式实现迭代器(iterator)协议的方式来创建对象。
+
+要创建一个生成器所需要的只是写一个普通的包含yield语句的Python函数。Python 会检测对yield的实用并将这个函数的标识为一个生成器。当函数执行yield语句时，它会像return语句那样返回一个值。但一个明显不同在于：解释器会保存对栈的引用，它将被用来下一次调用next函数时恢复函数的执行。
+
+
+在python中，生成器的构建是通过当函数产生某对象时保存一个对栈的引用来实现。并在需要时恢复这个栈，例如，当调用next()时再次执行。
+
+在迭代某个类型的数据时，直观的方式是先构建整个列表，这非常浪费内存，但是生成器运行通过及时生成的值以及极少的内存消耗来应对大规模的数据集 和顺序处理。任何时候想要操作大规模数据的时候，生成器都可以确保有效的应对数据处理。
+
+yield还有一个不太常用的功能，它可以像函数调用一样返回值。这允许通过它的send()函数来向生成器传入一个值。
+
+
+** 列表解析
+列表解析 （list comprehension, 简称 lispcomp）让你可以通过声明在单行内构造列表的内容。
+
+没有列表解析的情况
+#+BEGIN_SRC python 
+  >>> x = []
+  >>> for i in (1,2,3):
+  ...     x.append(i)
+  ...     
+  ... 
+  >>> x
+  [1, 2, 3]
+
+#+END_SRC
+
+实用列表解析的实现
+#+BEGIN_SRC python
+  >>> x = [i for i in (1,2,3)]
+  >>> xsd
+  [1, 2, 3]
+#+END_SRC
+
+当然也可以实用多条for语句并实用if语句过滤元素
+
+
+* 函数式和内建函数之filter(),map()
+python 包含了许多针对函数式编程的工具。这些内置的函数涵盖了以下这些基本部分。
+
+** map(function, iterable, ...)
+对于iterable中的每一个元素应用function，并在python2中返回一个列表，或者在python3中返回可迭代的map对象。
+
+** filter(function, iterable)
+
+** enumerate(sequence, start=0)
+
+** sorted(iterable [,cmp [,key [,reverse ]]] )
+
+** any(iterable) 和 all(iterable) 都返回一个依赖于iterable 返回的值的布尔值
+
+** zip( [ iterable, ... ] )
+
+** python2 和 python 的返回类型
+在python2 中大多数 Python 内置的纯函数会返回列表而不是可迭代的对象。这使得它们的内存利用没有 Python3.x中那么高效。如果使用python2的话，在标准库中的itertools模块提供了许多这些函数的迭代器版本(itertools.izip,itertools.imap,itertools.ifilter等）
+
+** first函数
+在列表中找到第一个满足条件的元素，可以实用Python的 first包
+
+** lambda 和 functiontools.partial
+在python中lambda是为了给函数式编程函数提供便利，如map()和filter(),否则每次都要检查不同的条件是将需要重写一个完整的新函数。
+
+尽管lambda在帮助我们避免此类问题时是有用的，但它仍然是有问题的。首先也是最明显的，如果需要超过一行代码则不能通过lambda传入key函数。
+
+functiontools.partial则是以更为灵活的方案替换lambda的第一步。它允许通过一种反转的方式创建一个包装饰器函数;它修改收到的参数而不是修改函数的行为。
+
+** itertools 
+
+
+
+
+
+
+
+
+
+* 列表推导式和生成器表达式
+http://chenpeng.info/html/1012
+* 题外话之迭代器和生成器(附带tokenize)
+http://www.cnblogs.com/finallyliuyu/archive/2010/04/09/1708584.html
+
+* map函数实现并行任务
+http://www.jb51.net/article/63368.htm
+
+* python的side effects
+
+* python的函数式编程
+http://www.cnblogs.com/huxi/archive/2011/06/18/2084316.html
+
+ 
+* python的一些特定词语解释
+
+** BDFL
+
+** pythonic
+
+* 进程上下文
+http://www.cnblogs.com/zhiranok/archive/2012/08/13/context_switch_1.html
+
+

@@ -1,0 +1,19 @@
+比如我要卸载挂载在data目录的NFS文件系统
+[rhel6@root]#umount  /data
+umount: /data: device is busy.
+
+这时就可以使用fuser -m  查看有哪些程序正在使用这个目录
+[rhel6@root]# fuser -m /data/
+/data/:      6674e 
+[rhel6@root]#ll /proc/6674/exe
+exe -> /data/bai_dbwriter/bin/dbwrite
+
+
+如上可知  data目录下的这个程序/data/bai_dbwriter/bin/dbwrite一直在运行，所以才无法卸载
+我们可以kill掉这个进程
+[rhel6@root]# kill -9  6674
+现在 这个NFS目录就可以很方便的卸载了
+
+注：
+fuser  -m /data/bayu_nfs/   ---》这个命令可以查看那个进程在使用这个目录
+fuser -km /data/bayu_nfs/  ---》干掉使用这个目录的所有进程，一般干掉后就可以卸载了

@@ -1,0 +1,12 @@
+* sed 在上方个下方添加一行
+** 上方
+使用 i (in front)
+#+BEGIN_SRC shell
+  sed '/idle-timeout/i\1231231' httpd.conf
+#+END_SRC
+** 下方
+ 使用 a (after)
+#+BEGIN_SRC shell
+  sed '/idle-timeout/a\1231231' httpd.conf
+#+END_SRC
+

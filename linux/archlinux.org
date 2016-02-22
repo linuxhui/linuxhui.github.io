@@ -1,0 +1,239 @@
+* 简介
+主要是记录一下自己安装和配置的一个过程，折腾的一个过程，基本上都是在网上找到的
+
+* 系统安装
+** 磁盘操作
+1. 建立分区和选择分区表类型
+   我利用的是msdos 作为label type，分为两个区 / 和swap。
+   #+BEGIN_EXAMPLE
+     root@archiso ~# cfdisk /dev/sdb
+   #+END_EXAMPLE
+2. 格式化分区
+   #+BEGIN_EXAMPLE
+     root@archiso ~# mkfs.ext4 /dev/sdb1
+     root@archiso ~# mkswap /dev/sdb2
+   #+END_EXAMPLE
+3. 临时挂在分区
+   #+BEGIN_EXAMPLE
+     root@archiso ~# mount /dev/sdb1 /mnt
+     root@archiso ~# swapon /dev/sdb2
+   #+END_EXAMPLE
+** 设置安装镜像
+#+BEGIN_EXAMPLE
+  root@archiso ~# cp  /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlistbak
+  root@archiso ~# grep "163" /etc/pacman.d/mirrorlistbak > /etc/pacman.d/mirrorlist
+#+END_EXAMPLE
+** 基础系统安装和配置
+1. 安装基础系统
+   #+BEGIN_EXAMPLE
+     root@archiso ~# pacstrap /mnt base base-devel
+   #+END_EXAMPLE
+2. 生成fstab
+   #+BEGIN_EXAMPLE
+     root@archiso ~# genfstab -U -p /mnt >> /mnt/etc/fstab
+   #+END_EXAMPLE
+3. 切换至新系统
+   #+BEGIN_EXAMPLE
+     root@archiso ~# arch-chroot /mnt
+   #+END_EXAMPLE
+4. 安装一些基础软件
+   #+BEGIN_EXAMPLE
+     sh-4.3# pacman -S openssh vim grub net-tools
+   #+END_EXAMPLE
+5. 配置字符集
+   保留自己需要的字符集，一般是us.UTF-8 zh-CN.UTF-8 zh-CN.GBK zh-CN.GBK2312
+   #+BEGIN_EXAMPLE
+     sh-4.3# vim /etc/locale.gen
+     sh-4.3# locale-gen
+   #+END_EXAMPLE
+6. 配置时区和时间
+   #+BEGIN_EXAMPLE
+     sh-4.3# ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+     sh-4.3# hwclock --localtime
+     sh-4.3# hwclock --systohc --localtime
+
+   #+END_EXAMPLE
+7. 配置主机名
+   #+BEGIN_EXAMPLE
+     sh-4.3# echo "wsh" > /etc/hostname
+   #+END_EXAMPLE
+8. 配置root密码
+   #+BEGIN_EXAMPLE
+     sh-4.3# passwd
+   #+END_EXAMPLE
+9. 安装和配置grub 
+   注意是安装到/dev/sdb
+   os-prober可以识别选择win7
+   #+BEGIN_EXAMPLE
+     sh-4.3# pacman -S os-prober
+     sh-4.3# grub-install --recheck /dev/sdb
+     sh-4.3# grub-mkconfig -o /boot/grub/grub.cfg
+   #+END_EXAMPLE
+10. 退出重启
+    #+BEGIN_EXAMPLE
+       sh-4.3#  umount /mnt && reboot
+    #+END_EXAMPLE
+** 图形界面安装
+*** 图形软件安装
+1. 显卡驱动
+   由于不想折腾驱动，所以使用相对简单的集显
+   #+BEGIN_EXAMPLE
+     [root@wsh ~]# pacman -S xf86-video-intel
+   #+END_EXAMPLE
+2. X11 服务安装
+   #+BEGIN_EXAMPLE
+     [root@wsh ~]#  pacman -S xorg-server xorg-server-utils xorg-xinit 
+   #+END_EXAMPLE
+3. 触摸板安装
+   #+BEGIN_EXAMPLE
+     [root@wsh ~]# pacman -S xf86-input-synaptics
+   #+END_EXAMPLE
+4. X11 测试
+   #+BEGIN_EXAMPLE
+     [root@wsh ~]# pacman -S xorg-twm,xterm slim
+     [root@wsh ~]# startx
+   #+END_EXAMPLE
+5. xfce4 安装
+   #+BEGIN_EXAMPLE
+     [root@wsh ~]# pacman -S xfce4
+   #+END_EXAMPLE
+6. wqy字体安装
+   xfce4自带的字体太难看了
+   #+BEGIN_EXAMPLE
+     [root@wsh ~]# pacman -S wqy-microhei
+     [root@wsh ~]# pacman -S wqy-zenhei
+     [root@wsh ~]# pacman -S wqy-bitmapfont
+   #+END_EXAMPLE
+
+*** 普通登录用户添加
+创建用户huihui，同时将用户添加到audio,video,disk,locate,power,floppy,network,rfkill,scanner,storage,optical,power,wheel,uucp,system-journal这些组中
+#+BEGIN_EXAMPLE
+  [root@wsh ~]# useradd -m huihui
+  [root@wsh ~]# passwd huihui
+  [root@wsh ~]# gpasswd -a huihui wheel
+  [root@wsh ~]# gpasswd -a huihui audio
+  [root@wsh ~]# gpasswd -a huihui disk
+  [root@wsh ~]# gpasswd -a huihui locate
+  [root@wsh ~]# gpasswd -a huihui network
+  [root@wsh ~]# gpasswd -a huihui optical
+  [root@wsh ~]# gpasswd -a huihui power
+  [root@wsh ~]# gpasswd -a huihui storage
+  [root@wsh ~]# gpasswd -a huihui systemd-journal
+  [root@wsh ~]# gpasswd -a huihui video
+  [root@wsh ~]# gpasswd -a huihui floppy
+  [root@wsh ~]# gpasswd -a huihui uucp
+#+END_EXAMPLE
+自己写的麻烦，在arch wiki上面的用户组没有这么多，直接使用了一句话进行了书写
+#+BEGIN_EXAMPLE
+  # useradd -m -g users -G audio,video,floppy,network,rfkill,scanner,storage,optical,power,wheel,uucp -s /usr/bin/zsh archie
+#+END_EXAMPLE
+
+
+*** 界面配置
+1. slim开机启动
+   #+BEGIN_EXAMPLE
+     [root@wsh ~]# systemctl enable slim.service
+   #+END_EXAMPLE
+2. xfce加入xinit
+   全局配置为英文
+   #+BEGIN_EXAMPLE
+     LANG=en_US.UTF-8
+   #+END_EXAMPLE
+
+   注意是普通用户huihui,同时设置中文化,
+   #+BEGIN_EXAMPLE
+     #> vim .xinitrc
+     export LANG=zh_CN.UTF-8
+     export LANGUAGE=zh_CN:en_US
+     export LC_CTYPE=zh_CN.UTF-8
+     exec startxfce4
+   #+END_EXAMPLE 
+*** 键盘ctrl+caps切换
+   在.bash_profile 中增加
+   #+BEGIN_EXAMPLE
+     /usr/bin/setxkbmap -option "ctrl:swapcaps"
+   #+END_EXAMPLE
+   
+* 软件配置
+** 常用软件安装
+#+BEGIN_EXAMPLE
+  1. pdf 阅读器
+     poppler-data 为中文支持
+     pacman -S evince poppler-data
+  2. 谷歌浏览器
+     pacman -S chromium
+  3. 视频播放器，smplayer
+     pacman -S smplayer
+  4. 音乐播放器
+     pacman -S deadbeef
+  5. 安装常用网络工具
+     pacman -S net-tools dnsutils inetutils iproute2 nmap tcpdump
+  6. adobe-flash
+     pacman -S flashplugin 
+#+END_EXAMPLE
+
+** 声卡安装
+#+BEGIN_EXAMPLE
+  #> pacman -S alsa-utils
+#+END_EXAMPLE
+配置请参考：[[https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture_(简体中文)][arch声卡]]
+** fcitx
+*** 介绍
+fcitx是一个很优秀的输入法，但是根据archlinux的wiki上面安装之后，仍然无法调出fcitx。原因感觉是缺少fcitx-im
+参考网址：[[https://wiki.archlinux.org/index.php/Fcitx_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29][Fcitx(archlinux)]]
+*** 安装
+#+BEGIN_EXAMPLE
+  $> pacman -S fcitx fcitx-sunpinyin fcitx-qtfcitx-im fcitx-configtool
+#+END_EXAMPLE
+*** 配置
+1. im和环境配置
+   在~/.xinitrc下加入
+   #+BEGIN_EXAMPLE
+     export GTK_IM_MODULE=fcitx
+     export QT_IM_MODULE=fcitx
+     export XMODIFIERS="@im=fcitx"
+   #+END_EXAMPLE
+2. 开机启动
+   #+BEGIN_EXAMPLE
+     在~/.config/autostart/目录下查看是否存在文件fcitx-autostart.desktop，如果没有复制一份
+     $> cp /etc/xdg/autostart/fcitx-autostart.desktop ~/.config/autostart/
+   #+END_EXAMPLE
+*** 无法正常启动检测
+#+BEGIN_EXAMPLE
+  $> fcitx-diagnose
+#+END_EXAMPLE
+*** fcitx配置
+*NOTE* 强烈不建议使用手动编辑配置文件
+#+BEGIN_EXAMPLE
+  $> fcitx-configtool
+#+END_EXAMPLE
+** 英汉字典
+1. 安装
+   #+BEGIN_EXAMPLE
+     pacman -S stardict
+   #+END_EXAMPLE
+2. 字典数据下载
+   由于stardict默认是不带字典的，所有需要去 [[http://stardict.sourceforge.net/][sourceforge]] 进行下载。安装方式如下：
+
+   #+BEGIN_EXAMPLE
+        tar -xjvf testdict.tar.bz2
+     mv testdict /usr/share/stardict/dic
+   #+END_EXAMPLE
+3. 安装TTS发音
+   stardict默认是不带发音的，需要下载。
+   #+BEGIN_EXAMPLE
+     wget http://stardict-3.googlecode.com/files/WyabdcRealPeopleTTS.tar.bz2
+     tar -xjvf WyabdcRealPeopleTTS.tar.bz2
+     mv WyabdcRealPeopleTTS /usr/share
+   #+END_EXAMPLE
+** 编程类
+*** python
+#+BEGIN_EXAMPLE
+  pacman -S python2-pip
+#+END_EXAMPLE
+* systemctl
+** dhcpcd
+开机启动
+#+BEGIN_EXAMPLE
+  systemctl enable dhcpcd
+#+END_EXAMPLE

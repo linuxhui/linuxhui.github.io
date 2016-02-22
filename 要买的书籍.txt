@@ -1,0 +1,6 @@
+1. 复杂性思考。。。。python
+2. sicp(计算机程序的构造和解释)
+3. Concepts, Techniques, and Models of Computer Programming
+4. 领域特定语言
+5. java编程思想
+6. java核心技术

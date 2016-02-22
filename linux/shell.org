@@ -1,0 +1,5 @@
+* shell快速输出01到99
+  #+BEGIN_EXAMPLE
+      seq -f %02.0f  99
+  #+END_EXAMPLE
+

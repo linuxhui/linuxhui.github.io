@@ -1,0 +1,32 @@
+* 不错的文档学习
+** Python
+ 1. WTForms
+   [[http://wtforms.readthedocs.org/en/latest/index.html][WTForms 官网文档]]
+ 2. Python -这不是魔法系列  
+    + 本地存放
+    + 中文版
+    + 英文原版，以及出处
+      [[http://ains.co/blog/][ains.co]]
+ 3. flask 文档
+    + [[http://dormousehole.readthedocs.org/en/latest/][flask中文文档]]
+    + [[https://github.com/mitsuhiko/flask/tree/master/examples/flaskr/][flask-github 项目地址]]
+ 4. Werkzeug 学习
+    + [[http://werkzeug-docs-cn.readthedocs.org/zh_CN/latest/][Werkzeug中文文档概览]]
+    + 
+
+
+
+** emacs 系列
+1. elisp
+2. emacs
+3. 杀哥的elisp教程
+
+
+
+
+
+            url_map = Map([
+                Rule('/foo/<slug>', endpoint='foo'),Rule('/some/old/url/<slug>', redirect_to='foo/<slug>'),Rule('/other/old/url/<int:id>')]
+            ])
+
+

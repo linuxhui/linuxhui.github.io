@@ -1,0 +1,374 @@
+#+OPTIONS: ^:nil
+#+AUTHORS: linuxhui
+
+
+
+* app.route
+** app.route()函数
+app.route时一个迭代器。
+参数有两个: rule, **options
++ rule: 
++ options:参数
+
+它指向了add_url_rule函数
+** app.add_url_rule()函数
+它外部有一个装饰器setupmethod
+add_url_rule(self, rule, endpoint=None, view_func=None, **options):
+view_func 就是我们定义的函数
+
+到这里 我们就简单了解 endpoint 如果endpoint参数存在，那么endpoint为参数值，否则endpoint就是自己定义的函数的名字。
+
+突然意识到：
+@app.route('/', methods=['GET']）
+def user():
+    pass
+和
+@app.route('/'):
+def user(methods=['GET']):
+    pass
+基本上是一样的
+** run_simple(hostname, port, application, use_reloader=False,
+               use_debugger=False, use_evalex=True,
+               extra_files=None, reloader_interval=1,
+               reloader_type='auto', threaded=False, processes=1,
+               request_handler=None, static_files=None,
+               passthrough_errors=False, ssl_context=None):
+
+第三位是flask的app， 我们应该找出它什么时候被调用了。才能找出__call__被调用的时候。
+** 调用的是make_server(host, port, app=None, threaded=False, processes=1,
+                request_handler=None, passthrough_errors=False,
+                ssl_context=None)
+** BaseWSGIServer(HTTPServer, object):
+x
+
+
+
+
+
+
+
+* Endpoint
+http://www.druva.com/blog/simple-definition-endpoint/
+* WSGI
+
+* 服务的启动过程分析
+
+** socketserver源码分析
+
+** 一个完整的启动过程分析
+
+** 在werkzeug中 socketserver
+
+
+
+* python的socketserver编程
+
+** python的socket简单了解
+这个部分参考: http://blog.csdn.net/rebelqsp/article/details/
+
+*** socket 类型 
+套结字格式:
+*socket(family,type[,protocal])*  使用给定的地址族、套接字类型、协议编号（默认为0）来创建套接字。
+
+| socket类型            | 描述                                                                                                                                                                             |
+|-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| socket.AF_UNIX        | 只能用于单一的unix系统进程剑通信                                                                                                                                                 |
+| socket.AF_INET        | 服务器之间的网络通信                                                                                                                                                             |
+| socket.AF_INET6       | IPV6                                                                                                                                                                             |
+| socket.SOCK_STREAM    | 流式socket,for tcp                                                                                                                                                               |
+| socket.SOCK_DGRAM     | 数据报式, for UDP                                                                                                                                                                |
+| socket.SOCK_RAW       | 原始套接字，普通的套接字无法处理ICMP、IGMP等网络报文，而SOCK_RAW可以；其次，SOCK_RAW也可以处理特殊的IPv4报文；此外，利用原始套接字，可以通过IP_HDRINCL套接字选项由用户构造IP头。 |
+| socket.SOCK_SEQPACKET | 可靠的连续数据包服务                                                                                                                                                             |
+
+创建socket的一般形式:
++ 创建TCP Socket:
+  s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
++  创建UDP Socket：
+  s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+
+*** Socket函数
++ 服务端函数
+  | 函数              | 描述                                                                                                                       |
+  |-------------------+----------------------------------------------------------------------------------------------------------------------------|
+  | s.bind(address)   | 将套结字绑定到地址,在AF_INET,以元素(host,port)的形式表示地址                                                               |
+  | s.listen(backlog) | 开始监听TCP传入连接。backlog指定在拒绝连接之前，操作系统可以挂起的最大连接数量。该值至少为1，大部分应用程序设为5就可以了。 |
+  | s.accept()        |  接受TCP连接并返回（conn,address）,其中conn是新的套接字对象，可以用来接收和发送数据。address是连接客户端的地址。                                                                                                                           |
+
++ 客户端函数
+  | 函数               | 描述                                                                                           |
+  |--------------------+------------------------------------------------------------------------------------------------|
+  | s.connect(address) | 连接到address的套接字,一般address的格式为元组(hostname,port),如果链接出错,返回socket.error错误 |
+  | s.connect_ex(address)      | 功能与connect(address)相同,但是成功返回0.失败返回error的值                                                      |
+
++ 公共socket函数
+  | 函数                                 | 描述                                                                                                                                                                                |
+  |--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | s.recv(bufsize[,flag])               | 接受TCP套接字的数据。数据以字符串形式返回，bufsize指定要接收的最大数据量。flag提供有关消息的其他信息，通常可以忽略。                                                                |
+  | s.send(string[,flag])                | 发送TCP数据。将string中的数据发送到连接的套接字。返回值是要发送的字节数量，该数量可能小于string的字节大小。                                                                         |
+  | s.sendall(string[,flag])             | 	完整发送TCP数据。将string中的数据发送到连接的套接字，但在返回之前会尝试发送所有数据。成功返回None，失败则抛出异常。                                                               |
+  | s.recvfrom(bufsize[.flag])           | 	接受UDP套接字的数据。与recv()类似，但返回值是（data,address）。其中data是包含接收数据的字符串，address是发送数据的套接字地址。                                                    |
+  | s.sendto(string[,flag],address)      | 发送UDP数据。将数据发送到套接字，address是形式为（ipaddr，port）的元组，指定远程地址。返回值是发送的字节数。                                                                        |
+  | s.close()                            | 	关闭套接字。                                                                                                                                                                      |
+  | s.getpeername()                      | 返回连接套接字的远程地址。返回值通常是元组（ipaddr,port）。                                                                                                                         |
+  | s.getsockname()                      | 返回套接字自己的地址。通常是一个元组(ipaddr,port)                                                                                                                                   |
+  | s.setsockopt(level,optname,value)    | 	设置给定套接字选项的值。                                                                                                                                                          |
+  | s.getsockopt(level,optname[.buflen]) | 返回套接字选项的值。                                                                                                                                                                |
+  | s.settimeout(timeout)                | 设置套接字操作的超时期，timeout是一个浮点数，单位是秒。值为None表示没有超时期。一般，超时期应该在刚创建套接字时设置，因为它们可能用于连接的操作（如connect()）                      |
+  | s.gettimeout()                       | 返回当前超时期的值，单位是秒，如果没有设置超时期，则返回None。                                                                                                                      |
+  | s.fileno()                           | 返回套接字的文件描述符。                                                                                                                                                            |
+  | s.setblocking(flag)                  | 如果flag为0，则将套接字设为非阻塞模式，否则将套接字设为阻塞模式（默认值）。非阻塞模式下，如果调用recv()没有发现任何数据，或send()调用无法立即发送数据，那么将引起socket.error异常。 |
+  | s.makefile()                         |    	创建一个与该套接字相关连的文件                                                                                                                                                                                  |
+
+*** socket 编程思路
+**** tcp服务器端
+1. 创建套接字,绑定套接字到本地IP与端口
+   #+BEGIN_SRC python
+        socket.socket(socket.AF_INET,socket.SOCK_STREAM) , s.bind()
+   #+END_SRC
+2. 开始监听链接
+   #+BEGIN_SRC python
+        s.listen()
+   #+END_SRC
+3. 进入循环,不断接受客户端的连接请求
+   #+BEGIN_SRC python
+        s.accept()
+   #+END_SRC
+4. 然后接收传来的数据,并发送给对方数据
+   #+BEGIN_SRC python
+        s.recv() , s.sendall()
+   #+END_SRC
+5. 传输完毕后,关闭套接字
+   #+BEGIN_SRC python
+        s.close()
+   #+END_SRC
+**** TCP 客户端
+1. 创建套接字，连接远端地址
+    #+BEGIN_SRC python
+          socket.socket(socket.AF_INET,socket.SOCK_STREAM) , s.connect()
+    #+END_SRC
+
+2. 连接后发送数据和接收数据
+   #+BEGIN_SRC python
+        s.sendall(), s.recv()
+   #+END_SRC 
+
+3. 传输完毕后，关闭套接字
+   #+BEGIN_SRC python
+        s.close()
+   #+END_SRC 
+
+** python的socketserver学习
+   *SocketServer* 模块简化了网络server的书写. *tcpserver* 使用tcp协议,UDPserver使用udp协议.他们和其余的两个unixStreamServer和UnixDatagramServerclass是相似的.不过后者是在类unix系统下使用.
+
+   这四个类是利用同步方式进行请求处理的.也就是说每一个请求处理完成之后,下一个请求才会被处理.所以对于一个长时间的请求环境是非常不合适的. *ForkingMixIn* 和 *ThreadingMixIn* 可以被用来支持异步请求.
+
+   创建服务器的步骤。首先，你必须创建一个请求处理类，它是BaseRequestHandler的子类并重载其handle()方法,这个方法涌来处理进入的请求。其次，你必须实例化一个服务器类，传入服务器的地址和请求处理程序类。最后，调用handle_request()(一般是调用其他事件循环或者使用select())或serve_forever()来处理一个或者多个请求。最后调用server_close()来关闭这个socket.
+
+   继承 *ThreadingMixIn* 来处理线程请求.你应该进行线程异常中断的处理.threadingmixin类定义一个属性daemon_threads,用来处理是否等待线程中断.
+  
+
+   无论用什么网络协议，服务器类有相同的外部方法和属性。
+
+   该模块在python3中已经更名为socketserver。
+
+*** server 创建指导
+    在socketserver中有5个server类,其中只有四个子类对外提供服务.BaseServer定义了server所需的基本函数.
+
+    #+BEGIN_EXAMPLE
+      +------------+
+      | BaseServer |
+      +------------+
+            |
+            v
+      +-----------+        +------------------+
+      | TCPServer |------->| UnixStreamServer |
+      +-----------+        +------------------+
+            |
+            v
+      +-----------+        +--------------------+
+      | UDPServer |------->| UnixDatagramServer |
+      +-----------+        +--------------------+
+    #+END_EXAMPLE
+
+*** server 对象
++ class SocketServer.BaseServer
+  这是模块中的所有服务器对象的超类。它定义了接口，如下所述，但是大多数的方法不实现，在子类中进行细化。
+
++ BaseServer.fileno()
+  返回服务器监听套接字的整数文件描述符。通常用来传递给select.select(), 以允许一个进程监视多个服务器。
+
++ BaseServer.handle_request()
+  处理单个请求。处理顺序：get_request(), verify_request(), process_request()。如果用户提供handle()方法抛出异常，将调用服务器的handle_error()方法。如果self.timeout内没有请求收到， 将调用handle_timeout()并返回handle_request()。
+
++ BaseServer.serve_forever(poll_interval=0.5)
+  处理请求，直到一个明确的shutdown()请求。每poll_interval秒轮询一次shutdown。忽略self.timeout。如果你需要做周期性的任务，建议放置在其他线程。
+
++ BaseServer.shutdown()
+  告诉serve_forever()循环停止并等待其停止。python2.6版本。
+
++ BaseServer.address_family
+  地址家族，比如socket.AF_INET和socket.AF_UNIX。
+
++ BaseServer.RequestHandlerClass
+  用户提供的请求处理类，这个类为每个请求创建实例。
+
++ BaseServer.server_address
+  服务器侦听的地址。格式根据协议家族地址的各不相同，请参阅socket模块的文档。
+
++ BaseServer.socketSocket
+  服务器上侦听传入的请求socket对象的服务器。
+
+服务器类支持下面的类变量：
+
++ BaseServer.allow_reuse_address
+  服务器是否允许地址的重用。默认为false ，并且可在子类中更改。
+
++ BaseServer.request_queue_size
+  请求队列的大小。如果单个请求需要很长的时间来处理，服务器忙时请求被放置到队列中，最多可以放request_queue_size个。一旦队列已满，来自客户端的请求将得到 “Connection denied”错误。默认值通常为5 ，但可以被子类覆盖。
+
++ BaseServer.socket_type
+  服务器使用的套接字类型; socket.SOCK_STREAM和socket.SOCK_DGRAM等。
+
++ BaseServer.timeout
+  超时时间，以秒为单位，或 None表示没有超时。如果handle_request()在timeout内没有收到请求，将调用handle_timeout()。
+
+下面方法可以被子类重载，它们对服务器对象的外部用户没有影响。
+
++ BaseServer.finish_request()
+  实际处理RequestHandlerClass发起的请求并调用其handle()方法。 常用。
+
++ BaseServer.get_request()
+  接受socket请求，并返回二元组包含要用于与客户端通信的新socket对象，以及客户端的地址。
+
++ BaseServer.handle_error(request, client_address)
+  如果RequestHandlerClass的handle()方法抛出异常时调用。默认操作是打印traceback到标准输出，并继续处理其他请求。
+
++ BaseServer.handle_timeout()
+  超时处理。默认对于forking服务器是收集退出的子进程状态，threading服务器则什么都不做。
+
++ BaseServer.process_request(request, client_address) 
+  调用finish_request()创建RequestHandlerClass的实例。如果需要，此功能可以创建新的进程或线程来处理请求,ForkingMixIn和ThreadingMixIn类做到这点。常用。
+
++ BaseServer.server_activate()
+  通过服务器的构造函数来激活服务器。默认的行为只是监听服务器套接字。可重载。
+
++ BaseServer.server_bind()
+  通过服务器的构造函数中调用绑定socket到所需的地址。可重载。
+
++ BaseServer.verify_request(request, client_address)
+  返回一个布尔值，如果该值为True ，则该请求将被处理，反之请求将被拒绝。此功能可以重写来实现对服务器的访问控制。默认的实现始终返回True。client_address可以限定客户端，比如只处理指定ip区间的请求。 常用。
+
+*** 请求处理对象
+    处理器接收数据并决定如何操作。它负责在socket层之上实现协议（i.e., HTTP, XML-RPC, or AMQP)，读取数据，处理并写反应。可以重载的方法如下：
+
+    + setup()
+      准备请求处理. 默认什么都不做，StreamRequestHandler中会创建文件类似的对象以读写socket.
+    + handle()
+      处理请求。解析传入的请求，处理数据，并发送响应。默认什么都不做。常用变量：self.request，self.client_address，self.server。
+    + finish()
+      环境清理。默认什么都不做，如果setup产生异常，不会执行finish。
+
+*** socketserver实现:
+    1. 利用socketserver实现请求的接收.
+       然后进行请求的处理,
+    2. 利用RequestHandlerClass进行请求的处理
+       实现请求的处理
+
+  
+    
+*** 代码解析
+
+**** forve_forver()
+     1. 源码:
+        #+BEGIN_SRC python
+              def serve_forever(self, poll_interval=0.5):
+                  """Handle one request at a time until shutdown.
+
+                  Polls for shutdown every poll_interval seconds. Ignores
+                  self.timeout. If you need to do periodic tasks, do them in
+                  another thread.
+                  """
+                  self.__is_shut_down.clear()
+                  try:
+                      while not self.__shutdown_request:
+                          # XXX: Consider using another file descriptor or
+                          # connecting to the socket to wake this up instead of
+                          # polling. Polling reduces our responsiveness to a
+                          # shutdown request and wastes cpu at all other times.
+                          r, w, e = _eintr_retry(select.select, [self], [], [],
+                                                 poll_interval)
+                          if self in r:
+                              self._handle_request_noblock()
+                  finally:
+                      self.__shutdown_request = False
+                      self.__is_shut_down.set()
+
+        #+END_SRC
+
+     2. 解析:
+        阻塞式的请求.
+        通过不断调用select函数，看看自己是否处于可写状态，如果是就调用_handle_request_noblock()，
+        这里有一个问题select函数操作集合的时候有个要求，要么集合本身是描述符，要么他提供一个fileno()接口，
+        返回一个描述符，查找TCPServer的成员函数确实存在这样一个函数，它返回socket的描述符.
+
+**** handle_request()
+     1. 源码
+        #+BEGIN_SRC python
+              def handle_request(self):
+                  """Handle one request, possibly blocking.
+
+                  Respects self.timeout.
+                  """
+                  # Support people who used socket.settimeout() to escape
+                  # handle_request before self.timeout was available.
+                  timeout = self.socket.gettimeout()
+                  if timeout is None:
+                      timeout = self.timeout
+                  elif self.timeout is not None:
+                      timeout = min(timeout, self.timeout)
+                  fd_sets = _eintr_retry(select.select, [self], [], [], timeout)
+                  if not fd_sets[0]:
+                      self.handle_timeout()
+                      return
+                  self._handle_request_noblock()
+
+        #+END_SRC
+
+     2. 解析
+        仅仅处理一个请求,通过select.select实现在 self.timeout时间内的监听.但是仅仅处理 *一个* 请求.是serve_forever()的简化版.
+**** _handle_request_noblock()
+    + 源码:
+      #+BEGIN_SRC python
+                  def _handle_request_noblock(self):
+                """Handle one request, without blocking.
+
+                I assume that select.select has returned that the socket is
+                readable before this function was called, so there should be
+                no risk of blocking in get_request().
+                """
+                try:
+                    request, client_address = self.get_request()
+                except socket.error:
+                    return
+                if self.verify_request(request, client_address):
+                    try:
+                        self.process_request(request, client_address)
+                    except:
+                        self.handle_error(request, client_address)
+                        self.shutdown_request(request)
+
+      #+END_SRC
+
+    + 解析
+      在这个函数重要是进行了三个函数的判断:
+      1. self.get_request()
+
+      2. self.verify_request(request, client_address)
+
+      3. self.process_request(request, client_address)
+         调用self.finish_request(request, client_address),从而实现对于RequestHandlerClass的调用,实现请求的处理.
+      这个函数是所有函数处理的中心,但是要明白这个函数时阻塞式的.
+     
+      在BaseSocketserver中,有两个函数调用了它,一个是 serve_forever,另外一个是handle_request,这两个函数也是处理请求所以必须的函数.
+**** ForkingMixIn
+     1. 重写了 BaseServer的函数handle_timeout(self) 和函数process_request(self, request, client_address).

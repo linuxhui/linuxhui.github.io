@@ -1,0 +1,17 @@
+* 坚果云的安装
+由于没有打包好的文件，所以采用的是二进制安装
+** 环境安装
+#+BEGIN_EXAMPLE
+  pacman -S jre7-openjdk-headless python2-notify gvfs libnautilus-extension
+#+END_EXAMPLE
+** 二进制安装
+#+BEGIN_EXAMPLE
+  由于是64位系统，所以下载64位软件包
+  $> wget http://jianguoyun.com/static/exe/installer/nutstore_linux_dist_x64.tar.gz -O /tmp/nutstore_bin.tar.gz
+  $> mkdir -p ~/.nutstore/dist && tar zxf /tmp/nutstore_bin.tar.gz -C ~/.nutstore/dist
+  $> ~/.nutstore/dist/bin/install_core.sh
+#+END_EXAMPLE
+** 启动
+#+BEGIN_EXAMPLE
+  安装以后，您可以点击系统菜单：Applications > Internet > Nutstore，启动坚果云程序。
+#+END_EXAMPLE

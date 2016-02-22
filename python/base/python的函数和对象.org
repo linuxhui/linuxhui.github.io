@@ -1,0 +1,1437 @@
+#+OPTIONS: ^:nil
+#+AUTHORS: linuxhui
+
+
+
+
+
+* 简单了解函数
+
+** 函数是什么
+A function is a piece of code in a program. The function performs a specific task.
+
+在Python中，函数是第一等公民。这意味着函数和Python的其他object一样拥有状态。可以被赋值给变量，储存在Collections或者当作参数进行传送，这给语言带来了很大的灵活性。
+
+在python中有两种函数。内置函数和自定义函数。内置函数是python的一部分。自定义函数需要使用关键字"def"进行创建。
+
+** 函数的好处
++ Reducing duplication of code
++ Decomposing complex problems into simpler pieces
++ Improving clarity of the code
++ Reuse of code
++ Information hiding
+
+** 函数和过程的区别
+函数和过程都是可以被调用的实体。但是函数和过程最大的区别在于函数有返回值，而过程没有返回值。
+
+*** python的函数和过程
+在python中，过程其实就是函数，解释器会隐形的返回一个默认值None。另外的一个意思就是函数一般情况下使用return进行状态的返回。
+
+*** common lisp中的函数(简述)
+在cl中函数的定义：
+#+BEGIN_SRC elisp
+  ; 这个定义引用的是冰河伞哥的定义
+  (defun funname (parameter*)
+    "doc"
+    body-form*)
+#+END_SRC
+
+
+在cl中，如果没有加入返回语句，body-form*的最后一个语句将被作为函数的返回值给调用者。这也是和很多计算机语言不同的地方。
+
+** 函数定义
+函数使用关键字"def"进行定义，声明部分必须使用缩进。
+#+BEGIN_SRC python
+  def function():
+      pass
+#+END_SRC
+
+*Note:* 
++ 定义部分默认大家都会，这里不讨论参数,以及函数的引用等内容.
++ def在函数定义中不是必须的，比如lambda表达式。在另外一片文章迭代器中会详细讲述lambda。
+
+** function的赋值和执行
+#+BEGIN_EXAMPLE
+  def x():
+      pass
+
+  # p 为x()函数执行的值
+  p = x()
+  # 将函数x赋值给p
+  p = x
+  # 执行函数x()
+  p()
+#+END_EXAMPLE
+
+* function 和 object
+
+** function是一个object
+在python中万物皆对象，function也不例外，一定要记住这句话。 因此函数可以像其他的object一样被使用，再次声明一下，function在python中是一等公民。
+#+BEGIN_SRC python
+  def shout(word="yes"):
+      return word.capitalize()+"!"
+
+  print shout()
+  # outputs : 'Yes!'
+
+  # 作为一个object，你可以将函数想其他object一样赋值给一个变量
+  scream = shout
+
+  # 注意： 我们不使用继承(parentheses,我们不执行这个函数，仅仅是将函数"shot"赋值给变量”scream“。
+  # 也就是说你可以从scream执行shout()
+
+  print scream()
+  # outputs : 'Yes!'
+
+
+  # 不止如此，虽然删除老的名称shout，但是通过变量scream依然可以调用shout。这是因为函数shout的
+  # 引用计数不为0，所以依然没有在解释器中删除。
+
+
+  del shout
+  try:
+      print shout()
+  except NameError, e:
+      print e
+      #outputs: "name 'shout' is not defined"
+
+  print scream()
+  # outputs: 'Yes!'
+#+END_SRC
+
+** 函数可以被定义到一个函数里
+#+BEGIN_SRC python 
+  def talk():
+
+      # 定义函数whisper
+      def whisper(word="yes"):
+          return word.lower()+"..."
+
+      # 调用whisper函数
+
+      print whisper()
+
+
+  # 每次你执行 "talk"的时候, "whisper"每次都会被定义.然后被talk执行.
+  talk()
+  # outputs: 
+  # "yes..."
+
+
+  # 但是 "whisper" 在"talk"之外不存在
+  try:
+      print whisper()
+  except NameError, e:
+      print e
+      #outputs : "name 'whisper' is not defined"*
+      Python's functions are objects
+#+END_SRC
+
+从上面的两个例子可以知道,functions 是objects 因为函数：
+ + 能赋值给一个变量
+ + 能定义在其他的函数中间。
+
+** 函数可以返回一个函数
+
+#+BEGIN_SRC python
+
+  def getTalk(kind="shout"):
+
+
+      def shout(word="yes"):
+          return word.capitalize()+"!"
+
+      def whisper(word="yes") :
+          return word.lower()+"...";
+
+      # 返回其中任意一个
+      if kind == "shout":
+          # 我们不使用"()",所以不执行函数.仅仅返回 函数对象
+          return shout  
+      else:
+          return whisper
+
+ 
+  # 得到这个函数,赋值给一个变量
+  talk = getTalk()      
+
+  # 打印的话 你会发现返回的是一个fuction object 
+  
+  print talk
+  #outputs : <function shout at 0xb7ea817c>
+
+  # The object is the one returned by the function:
+  print talk()
+  #outputs : Yes!
+
+  # And you can even use it directly if you feel wild:
+  print getTalk("whisper")()
+  #outputs : yes...
+#+END_SRC
+
+** 函数作为一个参数
+
+#+BEGIN_SRC python
+  def doSomethingBefore(func): 
+      print "I do something before then I call the function you gave me"
+      print func()
+
+  doSomethingBefore(scream)
+  #outputs: 
+  #I do something before then I call the function you gave me
+  #Yes!
+#+END_SRC
+
+
+到这里,函数的内容基本上就讲完了,下面我要开始装饰器了,做好准备了没.
+
+
+
+*  function 和 method
+以后再说
+*  function 和 decorator
+上面的部分 <function 和 object> ,是装饰器的基础.当然默认你已经可以理解闭包,作用域等,不懂其实下面的代码也能看懂.那么我们就开始下面的内容了.
+
+
+你应该知道，装饰器就是一个“wrappers“，意味着它可以在function前后进行执行而不用改变函数。
+
+** 自制一个装饰器
+#+BEGIN_SRC python 
+  # 装饰器是一个用其他函数作为参数的函数
+  def my_shiny_new_decorator(a_function_to_decorate):
+
+
+      # 在函数内部定义一个wrapper,用来包裹被装饰的函数.因为它可以在被装饰函数的前后执行
+      def the_wrapper_around_the_original_function():
+
+          # 在这里放上被装饰函数调用前的代码
+          print "Before the function runs"
+
+          # 调用被装饰函数
+          a_function_to_decorate()
+
+
+          # 在被装饰函数执行之后执行
+          print "After the function runs"
+
+      # 前面的代码,根本没有执行被装饰的函数,因为前面仅仅是对于"wrapper"进行了定义
+      return the_wrapper_around_the_original_function
+
+  # 定义一个你以后不会更改的函数
+  def a_stand_alone_function():
+      print "I am a stand alone function, don't you dare modify me"
+
+  a_stand_alone_function() 
+  #outputs: I am a stand alone function, don't you dare modify me
+
+  # Well, 你可以装饰这个函数来扩展它的作用. 通过传递它给装饰器, 装饰器将会动态的添加代码并且返回一个你想使用的函数.
+
+  a_stand_alone_function_decorated = my_shiny_new_decorator(a_stand_alone_function)
+  a_stand_alone_function_decorated()
+  #outputs:
+  #Before the function runs
+  #I am a stand alone function, don't you dare modify me
+  #After the function runs
+#+END_SRC
+
+
+如果你想每一次你调用  a_stand_alone_function, a_stand_alone_function_decorated 也被调用. 这也非常简单,只要将 a_stand_alone_function 用
+my_shiny_new_decorator 进行重写就可以了
+
+
+#+BEGIN_EXAMPLE
+  a_stand_alone_function = my_shiny_new_decorator(a_stand_alone_function)
+  a_stand_alone_function()
+  #outputs:
+  #Before the function runs
+  #I am a stand alone function, don't you dare modify me
+  #After the function runs
+
+  # And guess what? That’s EXACTLY what decorators do!
+#+END_EXAMPLE
+
+** 解开Decorators的神秘面纱
+
+紧接上面的例子,我们可以使用更加简介的decorator格式 :
+
+#+BEGIN_SRC python 
+  @my_shiny_new_decorator
+  def another_stand_alone_function():
+      print "Leave me alone"
+
+  another_stand_alone_function()  
+  #outputs:  
+  #Before the function runs
+  #Leave me alone
+  #After the function runs
+#+END_SRC
+
+是不是很简单,@decorator 是其实就是下面的简写:
+
+#+BEGIN_SRC python
+  another_stand_alone_function = my_shiny_new_decorator(another_stand_alone_function)
+#+END_SRC
+
+Decorators 是 [[http://en.wikipedia.org/wiki/Decorator_pattern][decorator design pattern]] 的一种很 pyhonic的写法.在python中有很多经典的设计来简化程序开发(例如:迭代器)
+
+当然了你可以累计使用多个迭代器
+#+BEGIN_SRC python 
+  def bread(func):
+      def wrapper():
+          print "</''''''\>"
+          func()
+          print "<\______/>"
+      return wrapper
+
+  def ingredients(func):
+      def wrapper():
+          print "#tomatoes#"
+          func()
+          print "~salad~"
+      return wrapper
+p
+  def sandwich(food="--ham--"):
+      print food
+
+  sandwich()
+  #outputs: --ham--
+  sandwich = bread(ingredients(sandwich))
+  sandwich()
+  #outputs:
+  #</''''''\>
+  # #tomatoes#
+  # --ham--
+  # ~salad~
+  #<\______/>
+#+END_SRC
+
+换做使用python的decorator 语法
+#+BEGIN_SRC python
+  @bread
+  @ingredients
+  def sandwich(food="--ham--"):
+      print food
+
+  sandwich()
+  #outputs:
+  #</''''''\>
+  # #tomatoes#
+  # --ham--
+  # ~salad~
+  #<\______/>
+#+END_SRC
+
+在使用迭代器的时候,你设置的装饰器的顺序也是非常的 *重要*:
+#+BEGIN_SRC python
+  @ingredients
+  @bread
+  def strange_sandwich(food="--ham--"):
+      print food
+
+  strange_sandwich()
+  #outputs:
+  ##tomatoes#
+  #</''''''\>
+  # --ham--
+  #<\______/>
+  # ~salad~
+#+END_SRC
+
+* 装饰器进阶
+
+传递参数到被装饰的函数(decorated function)
+
+#+BEGIN_SRC python 
+
+  # 下面的这个可不是黑科技,<surface book才是> ,它只是让 wrapper 传递了函数的参数
+
+  def a_decorator_passing_arguments(function_to_decorate):
+      def a_wrapper_accepting_arguments(arg1, arg2):
+          print "I got args! Look:", arg1, arg2
+          function_to_decorate(arg1, arg2)
+      return a_wrapper_accepting_arguments
+
+
+  # 当你调用被装饰的函数,实质是你当你调用wrapper时,wrapper可以传递它的参数给被调用的函数.
+  @a_decorator_passing_arguments
+  def print_full_name(first_name, last_name):
+      print "My name is", first_name, last_name
+
+  print_full_name("Peter", "Venkman")
+  # outputs:
+  #I got args! Look: Peter Venkman
+  #My name is Peter Venkman
+#+END_SRC
+
+** 装饰方法
+python中一个很有趣的是事情:方法(methods) 和 function 是相同的. 唯一不同的是方法(methods)期望他们的第一个参数是当前对象自身(self)
+
+这意味着你可以使用相同的方法为一个方法(methods)建立一个装饰器.记得将self写入条件(consideration)中
+
+#+BEGIN_SRC python
+  def method_friendly_decorator(method_to_decorate):
+      def wrapper(self, lie):
+          lie = lie - 3 # very friendly, decrease age even more :-)
+          return method_to_decorate(self, lie)
+      return wrapper
+
+
+  class Lucy(object):
+
+      def __init__(self):
+          self.age = 32
+
+      @method_friendly_decorator
+      def sayYourAge(self, lie):
+          print "I am %s, what did you think?" % (self.age + lie)
+
+  l = Lucy()
+  l.sayYourAge(-3)
+  #outputs: I am 26, what did you think?
+#+END_SRC
+
+如果你想制作一个常规目的的decorator,一个你想应用到任意的function或者方法(methods),不用关心参数. 那么使用 *args, **kwargs:
+#+BEGIN_SRC python 
+  def a_decorator_passing_arbitrary_arguments(function_to_decorate):
+      # The wrapper accepts any arguments
+      def a_wrapper_accepting_arbitrary_arguments(*args, **kwargs):
+          print "Do I have args?:"
+          print args
+          print kwargs
+          # Then you unpack the arguments, here *args, **kwargs
+          # If you are not familiar with unpacking, check:
+          # http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/
+          function_to_decorate(*args, **kwargs)
+      return a_wrapper_accepting_arbitrary_arguments
+
+  @a_decorator_passing_arbitrary_arguments
+  def function_with_no_argument():
+      print "Python is cool, no argument here."
+
+  function_with_no_argument()
+  #outputs
+  #Do I have args?:
+  #()
+  #{}
+  #Python is cool, no argument here.
+
+  @a_decorator_passing_arbitrary_arguments
+  def function_with_arguments(a, b, c):
+      print a, b, c
+
+  function_with_arguments(1,2,3)
+  #outputs
+  #Do I have args?:
+  #(1, 2, 3)
+  #{}
+  #1 2 3 
+
+  @a_decorator_passing_arbitrary_arguments
+  def function_with_named_arguments(a, b, c, platypus="Why not ?"):
+      print "Do %s, %s and %s like platypus? %s" %\
+      (a, b, c, platypus)
+
+  function_with_named_arguments("Bill", "Linus", "Steve", platypus="Indeed!")
+  #outputs
+  #Do I have args ? :
+  #('Bill', 'Linus', 'Steve')
+  #{'platypus': 'Indeed!'}
+  #Do Bill, Linus and Steve like platypus? Indeed!
+
+  class Mary(object):
+
+      def __init__(self):
+          self.age = 31
+
+      @a_decorator_passing_arbitrary_arguments
+      def sayYourAge(self, lie=-3): # You can now add a default value
+          print "I am %s, what did you think ?" % (self.age + lie)
+
+  m = Mary()
+  m.sayYourAge()
+  #outputs
+  # Do I have args?:
+  #(<__main__.Mary object at 0xb7d303ac>,)
+  #{}
+  #I am 28, what did you think?
+#+END_SRC
+
+** 传递参数到decorator
+现在你也许会问怎么传递参数给装饰器自身?
+
+这也许有点饶.自从一个装饰器必须接受一个函数作为一个参数.因此,你 *不能* 直接传递 被装饰函数  的参数给 decorator
+
+在解决问题之前,请看以下的提示:
+#+BEGIN_SRC python
+  # 装饰器是一个普通函数
+  # 下面写的这个是返回的"wrapper" 这个function object, 骚年看清楚,看清楚,看清楚....
+  def my_decorator(func):
+      print "I am an ordinary function"
+      def wrapper():
+          print "I am function returned by the decorator"
+          func()
+      return wrapper
+
+  # Therefore, you can call it without any "@"
+  # 因此,不使用@ 你可以调用它
+
+  def lazy_function():
+      print "zzzzzzzz"
+
+  decorated_function = my_decorator(lazy_function)
+  #outputs: I am an ordinary function
+
+  print decorated_funtion
+  #outputs:<function wrapper at 0x7f75097b9758>
+
+
+  # 它打印 "I am an ordinary function", 
+  # 虽然调用了my_decorator() ,但是返回的是 fucntion object"wrapper"
+
+  @my_decorator
+  def lazy_function():
+      print "zzzzzzzz"
+
+  #outputs: I am an ordinary function
+#+END_SRC
+
+
+
+上面的例子就好像 "my_decorator" 被调用了,所以当你使用 @my_decorator 这个装饰器.
+你是告诉python调用带有@my_decorator标志的函数.
+This is important! The label you give can point directly to the decorator—or not.
+这是非常重要的. 你给的这个标志是直接指向这个 decorator 或者没有.(翻译的真烂,自己看上面的英文吧)
+
+Let’s get evil. (吾心本恶....)
+#+BEGIN_SRC python 
+  def decorator_maker():
+
+      print "I make decorators! I am executed only once: "+\
+            "when you make me create a decorator."
+
+      def my_decorator(func):
+
+          print "I am a decorator! I am executed only when you decorate a function."
+
+          def wrapped():
+              print ("I am the wrapper around the decorated function. "
+                    "I am called when you call the decorated function. "
+                    "As the wrapper, I return the RESULT of the decorated function.")
+              return func()
+
+          print "As the decorator, I return the wrapped function."
+
+          return wrapped
+
+      print "As a decorator maker, I return a decorator"
+      return my_decorator
+
+  # Let’s create a decorator. It’s just a new function after all.
+  # 我们创建了一个 decorator , 它只是新的函数
+  new_decorator = decorator_maker()       
+  #outputs:
+  #I make decorators! I am executed only once: when you make me create a decorator.
+  #As a decorator maker, I return a decorator
+
+  # Then we decorate the function
+  # 我们继续创建一个迭代的函数
+
+  def decorated_function():
+      print "I am the decorated function."
+
+  decorated_function = new_decorator(decorated_function)
+  #outputs:
+  #I am a decorator! I am executed only when you decorate a function.
+  #As the decorator, I return the wrapped function
+
+  # 这个函数是 调用wrapped()的结果.也就是上层my_decorator参数中的func,实例中是 decorated_function()
+  decorated_function()
+  #outputs:
+  #I am the wrapper around the decorated function. I am called when you call the decorated function.
+  #As the wrapper, I return the RESULT of the decorated function.
+  #I am the decorated function.
+#+END_SRC
+
+不要觉得惊讶.让我们继续.
+
+让我们先忽略中间中间的变量(这里指的上面例子那些讨厌的变量复制)来实现相同的事情.
+
+#+BEGIN_SRC python
+  def decorated_function():
+      print "I am the decorated function."
+
+
+  decorated_function = decorator_maker()(decorated_function)
+  #outputs:
+  #I make decorators! I am executed only once: when you make me create a decorator.
+  #As a decorator maker, I return a decorator
+  #I am a decorator! I am executed only when you decorate a function.
+  #As the decorator, I return the wrapped function.
+
+  # Finally:
+  decorated_function()    
+  #outputs:
+  #I am the wrapper around the decorated function. I am called when you call the decorated function.
+  #As the wrapper, I return the RESULT of the decorated function.
+  #I am the decorated function.
+#+END_SRC
+
+我们继续精简:
+
+#+BEGIN_SRC python
+  @decorator_maker()
+  def decorated_function():
+      print "I am the decorated function."
+  #outputs:
+  #I make decorators! I am executed only once: when you make me create a decorator.
+  #As a decorator maker, I return a decorator
+  #I am a decorator! I am executed only when you decorate a function.
+  #As the decorator, I return the wrapped function.
+
+  #Eventually: 
+  decorated_function()    
+  #outputs:
+  #I am the wrapper around the decorated function. I am called when you call the decorated function.
+  #As the wrapper, I return the RESULT of the decorated function.
+  #I am the decorated function.
+#+END_SRC
+
+看到上面例子中的"@"了么? 我们使用"@"这个函数调用语法
+
+回到如何使用带参数的装饰器.如果我们能够动态的使用函数作为装饰器,那么我们就能传递参数到装饰器中.
+
+#+BEGIN_SRC python
+  def decorator_maker_with_arguments(decorator_arg1, decorator_arg2):
+
+      print "I make decorators! And I accept arguments:", decorator_arg1, decorator_arg2
+
+      def my_decorator(func):
+          # The ability to pass arguments here is a gift from closures.
+          # If you are not comfortable with closures, you can assume it’s ok,
+          # or read: http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python
+          print "I am the decorator. Somehow you passed me arguments:", decorator_arg1, decorator_arg2
+
+          # Don't confuse decorator arguments and function arguments!
+          def wrapped(function_arg1, function_arg2) :
+              print ("I am the wrapper around the decorated function.\n"
+                    "I can access all the variables\n"
+                    "\t- from the decorator: {0} {1}\n"
+                    "\t- from the function call: {2} {3}\n"
+                    "Then I can pass them to the decorated function"
+                    .format(decorator_arg1, decorator_arg2,
+                            function_arg1, function_arg2))
+              return func(function_arg1, function_arg2)
+
+          return wrapped
+
+      return my_decorator
+
+  @decorator_maker_with_arguments("Leonard", "Sheldon")
+  def decorated_function_with_arguments(function_arg1, function_arg2):
+      print ("I am the decorated function and only knows about my arguments: {0}"
+             " {1}".format(function_arg1, function_arg2))
+
+  decorated_function_with_arguments("Rajesh", "Howard")
+  #outputs:
+  #I make decorators! And I accept arguments: Leonard Sheldon
+  #I am the decorator. Somehow you passed me arguments: Leonard Sheldon
+  #I am the wrapper around the decorated function. 
+
+#+END_SRC
+
+上面实现了带参数的装饰器,另外: 参数也也可以是一个变量
+
+#+BEGIN_SRC python
+  c1 = "Penny"
+  c2 = "Leslie"
+
+  @decorator_maker_with_arguments("Leonard", c1)
+  def decorated_function_with_arguments(function_arg1, function_arg2):
+      print ("I am the decorated function and only knows about my arguments:"
+             " {0} {1}".format(function_arg1, function_arg2))
+
+  decorated_function_with_arguments(c2, "Howard")
+  #outputs:
+  #I make decorators! And I accept arguments: Leonard Penny
+  #I am the decorator. Somehow you passed me arguments: Leonard Penny
+  #I am the wrapper around the decorated function. 
+  #I can access all the variables 
+  #   - from the decorator: Leonard Penny 
+  #   - from the function call: Leslie Howard 
+  #Then I can pass them to the decorated function
+  #I am the decorated function and only knows about my arguments: Leslie Howard
+#+END_SRC
+
+看了上面什么感觉, 你能够传递传递参数给装饰器就像使用了魔法的函数一样(magic function).如果你原因, 你可以使用*args, **kwargs作为参数.
+但是你要记住装饰器只能被调用一次.在python 引入(import)这个脚本文件之后,你就不能动态的设置参数了.当你执行"import x"的时候,函数已经被装饰了.你就不能修改任何事情了
+
+** 练习: 装饰一个装饰器
+作为练习.我们要写一个能让任何装饰器接收任何参数的代码.为了接受参数,我们另外创建一个函数作为装饰器来实现这段代码.
+
+好好想想,其实并不是很难.
+#+BEGIN_SRC python
+
+  def decorator_with_args(decorator_to_enhance):
+      """ 
+      This function is supposed to be used as a decorator.
+      It must decorate an other function, that is intended to be used as a decorator.
+      Take a cup of coffee.
+      It will allow any decorator to accept an arbitrary number of arguments,
+      saving you the headache to remember how to do that every time.
+      """
+
+      # We use the same trick we did to pass arguments
+      def decorator_maker(*args, **kwargs):
+
+          # We create on the fly a decorator that accepts only a function
+          # but keeps the passed arguments from the maker.
+          def decorator_wrapper(func):
+
+              # We return the result of the original decorator, which, after all, 
+              # IS JUST AN ORDINARY FUNCTION (which returns a function).
+              # Only pitfall: the decorator must have this specific signature or it won't work:
+              return decorator_to_enhance(func, *args, **kwargs)
+
+          return decorator_wrapper
+
+      return decorator_maker
+#+END_SRC
+
+接下来
+#+BEGIN_SRC python
+  # You create the function you will use as a decorator. And stick a decorator on it :-)
+  # Don't forget, the signature is "decorator(func, *args, **kwargs)"
+  @decorator_with_args 
+  def decorated_decorator(func, *args, **kwargs): 
+      def wrapper(function_arg1, function_arg2):
+          print "Decorated with", args, kwargs
+          return func(function_arg1, function_arg2)
+      return wrapper
+
+  # Then you decorate the functions you wish with your brand new decorated decorator.
+
+  @decorated_decorator(42, 404, 1024)
+  def decorated_function(function_arg1, function_arg2):
+      print "Hello", function_arg1, function_arg2
+
+  decorated_function("Universe and", "everything")
+  #outputs:
+  #Decorated with (42, 404, 1024) {}
+  #Hello Universe and everything
+
+  # Whoooot!
+#+END_SRC
+
+I know, the last time you had this feeling, it was after listening a guy saying: "before understanding recursion, you must first understand recursion". But now, don't you feel good about mastering this?
+不知道上面那段话怎么翻译.
+
+** 最好的实践: 装饰器
+请锦记下面几点:
++ 迭代器在 Python 2.4 之后被引入,因为你的python环境必须在python2.4之上.
++ 装饰器会降低函数调用,记在心里
++ 函数(这个指的是被装饰的函数)不能单独运行.如果这个函数被装饰了,所有的代码就被装饰了.你不能之运行这个函数而不运行装饰器.
++ 装饰器包裹了函数,使得函数的debug比较困难.(在python2.5之后好了很多,下面的functools.wraps()解决了这点)
+
+ *functools* module 在python2.5中被引入,它内置的 "functools.wraps()"可以复制被装饰函数的name, module, and docstring 到 wrapper中.
+
+(号外: *functools.wraps()也是一个装饰器)
+
+#+BEGIN_SRC python
+  # For debugging, the stacktrace prints you the function __name__
+  def foo():
+      print "foo"
+
+  print foo.__name__
+  #outputs: foo
+
+  # With a decorator, it gets messy    
+  def bar(func):
+      def wrapper():
+          print "bar"
+          return func()
+      return wrapper
+
+  @bar
+  def foo():
+      print "foo"
+
+  print foo.__name__
+  #outputs: wrapper
+
+  # "functools" can help for that
+
+  import functools
+
+  def bar(func):
+      # We say that "wrapper", is wrapping "func"
+      # and the magic begins
+      @functools.wraps(func)
+      def wrapper():
+          print "bar"
+          return func()
+      return wrapper
+
+  @bar
+  def foo():
+      print "foo"
+
+  print foo.__name__
+  #outputs: foo
+#+END_SRC
+
+** 如何理解装饰器的执行步骤.
+#+BEGIN_SRC python 
+
+#+END_SRC
+
+* 装饰器的用处
+
+** 装饰器有什么用
+这的确是一个好问题: 我用装饰器做什么?
+
+虽然装饰器看起来很magic,但是有一个例子就会更加的明了,记住:装饰器可以让你的函数有无限的变化.
+通过写一个用户类来 扩展一个外部lib或者debugging方式(也许你不想临时的修改)来扩展一个函数行为.
+
+你也可以通过一种更DRY的方式来扩展函数.例如:
+#+BEGIN_SRC python
+  def benchmark(func):
+      """
+      A decorator that prints the time a function takes
+      to execute.
+      """
+      import time
+      def wrapper(*args, **kwargs):
+          t = time.clock()
+          res = func(*args, **kwargs)
+          print func.__name__, time.clock()-t
+          return res
+      return wrapper
+
+
+  def logging(func):
+      """
+      A decorator that logs the activity of the script.
+      (it actually just prints it, but it could be logging!)
+      """
+      def wrapper(*args, **kwargs):
+          res = func(*args, **kwargs)
+          print func.__name__, args, kwargs
+          return res
+      return wrapper
+
+
+  def counter(func):
+      """
+      A decorator that counts and prints the number of times a function has been executed
+      """
+      def wrapper(*args, **kwargs):
+          wrapper.count = wrapper.count + 1
+          res = func(*args, **kwargs)
+          print "{0} has been used: {1}x".format(func.__name__, wrapper.count)
+          return res
+      wrapper.count = 0
+      return wrapper
+
+  @counter
+  @benchmark
+  @logging
+  def reverse_string(string):
+      return str(reversed(string))
+
+  print reverse_string("Able was I ere I saw Elba")
+  print reverse_string("A man, a plan, a canoe, pasta, heros, rajahs, a coloratura, maps, snipe, percale, macaroni, a gag, a banana bag, a tan, a tag, a banana bag again (or a camel), a crepe, pins, Spam, a rut, a Rolo, cash, a jar, sore hats, a peon, a canal: Panama!")
+
+  #outputs:
+  #reverse_string ('Able was I ere I saw Elba',) {}
+  #wrapper 0.0
+  #wrapper has been used: 1x 
+  #ablE was I ere I saw elbA
+  #reverse_string ('A man, a plan, a canoe, pasta, heros, rajahs, a coloratura, maps, snipe, percale, macaroni, a gag, a banana bag, a tan, a tag, a banana bag again (or a camel), a crepe, pins, Spam, a rut, a Rolo, cash, a jar, sore hats, a peon, a canal: Panama!',) {}
+  #wrapper 0.0
+  #wrapper has been used: 2x
+  #!amanaP :lanac a ,noep a ,stah eros ,raj a ,hsac ,oloR a ,tur a ,mapS ,snip ,eperc a ,)lemac a ro( niaga gab ananab a ,gat a ,nat a ,gab ananab a ,gag a ,inoracam ,elacrep ,epins ,spam ,arutaroloc a ,shajar ,soreh ,atsap ,eonac a ,nalp a ,nam A
+#+END_SRC
+
+最大的好处应该你不用重写就可以使用他们到其他的函数.DRY.........
+#+BEGIN_SRC python
+  @counter
+  @benchmark
+  @logging
+  def get_random_futurama_quote():
+      from urllib import urlopen
+      result = urlopen("http://subfusion.net/cgi-bin/quote.pl?quote=futurama").read()
+      try:
+          value = result.split("<br><b><hr><br>")[1].split("<br><br><hr>")[0]
+          return value.strip()
+      except:
+          return "No, I'm ... doesn't!"
+
+
+  print get_random_futurama_quote()
+  print get_random_futurama_quote()
+
+  #outputs:
+  #get_random_futurama_quote () {}
+  #wrapper 0.02
+  #wrapper has been used: 1x
+  #The laws of science be a harsh mistress.
+  #get_random_futurama_quote () {}
+  #wrapper 0.01
+  #wrapper has been used: 2x
+  #Curse you, merciful Poseidon!
+
+#+END_SRC
+
+一些用处:
++ 在python 内部提供了几个装饰器: @property,staticmethod,
++ Django 使用装饰器管理views权限
++ Twisted 用来实现内部的异步函数调用
+
+** python的内置装饰器
+内置的装饰器有三个:staticmethod,classmethod,property
+
+*** staticmethod
+staticmethod 是类静态方法，其跟成员方法的区别是没有 self 指针，并且可以在类不进行实例化的情况下调用，下面是一个实例，对比静态方法和成员方法
+
+#+BEGIN_SRC python
+  class Foo(object):  
+
+      # 没有写self指针
+      @staticmethod  
+      def statc_method(msg):  
+          print msg  
+  
+      def member_method(self, msg):  
+          print msg  
+  
+  foo = Foo()  
+  foo.member_method('some msg')  
+  foo.statc_method('some msg')  
+  # 这个Foo是为实例化的class
+  Foo.statc_method('some msg')
+
+  #output:    
+  #    some msg  
+  #    some msg  
+  #    some msg  
+ 
+#+END_SRC
+
+*** classmethod
+classmethod 与成员方法的区别在于所接收的第一个参数不是 self 类实例的指针，而是当前类的具体类型，下面是一个实例:
+
+
+#+BEGIN_SRC python
+  class Foo(object):  
+      @classmethod  
+      def class_method(cls):  
+          print repr(cls)  
+        
+      def member_method(self):  
+          print repr(self)  
+      
+  foo = Foo()  
+  foo.class_method()  
+  foo.member_method()
+
+  # output:
+  #     <class '__main__.Foo'>  
+  #     <__main__.Foo object at 0x10a611c50>  
+#+END_SRC
+
+*** property
+property 是属性的意思，即可以通过通过类实例直接访问的信息，下面是具体的例子:
+
+#+BEGIN_SRC python
+  class Foo(object):  
+      def __init__(self, var):  
+          super(Foo, self).__init__()  
+          self._var = var  
+     
+      @property  
+      def var(self):  
+          return self._var  
+     
+      @var.setter  
+      def var(self, var):  
+          self._var = var  
+
+  foo = Foo('var 1')  
+  print foo.var  
+  foo.var = 'var 2'  
+  print foo.var  
+  # output
+  #     var 1  
+  #     var 2  
+
+#+END_SRC
+p
+** 这不是魔法系列(主要是flask的url解析)
+这个有点长,在下个章节一个标题写这个
+
+
+
+* 这不是魔法
+** 前言
+在Flask主页中，第一个例子就是利用了app.route()这个装饰器
+#+BEGIN_SRC python
+  app = Flask(__name__)
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+#+END_SRC
+
+** 装饰器
+装饰器是一种接受函数，并返回一个新的函数。
+
+当你装饰一个函数的时候，意味着你告诉Python调用的是那个由你的装饰器返回的新函数，而不仅仅是直接返回原函数的执行结果。
+
+#+BEGIN_SRC python
+  # This is our decorator
+  def simple_decorator(f):
+      # This is the new function we're going to return
+      # This function will be used in place of our original definition
+      def wrapper():
+          print "Entering Function"
+          f()
+          print "Exited Function"
+   
+      return wrapper
+   
+  @simple_decorator 
+  def hello():
+      print "Hello World"
+   
+  hello()
+
+#+END_SRC 
+
+执行结果：
+#+BEGIN_EXAMPLE
+  Entering Function
+  Hello World
+  Exited Function
+#+END_EXAMPLE
+
+但是这个装饰器和"app.route()"不同的一点就是这个装饰器不能接受参数，但是"app.route()"却可以。
+
+
+那么我们怎样才能给我们的装饰器传参数？要实现这个我们只需创建一个“decorator_factory”函数，我们调用这个函数，返回适用于我们函数的装饰器。现在看看如果实现它。
+
+#+BEGIN_SRC python
+  def decorator_factory(enter_message, exit_message):
+      # We're going to return this decorator
+      def simple_decorator(f):
+          def wrapper():
+              print enter_message
+              f()
+              print exit_message
+   
+          return wrapper
+   
+      return simple_decorator
+   
+  @decorator_factory("Start", "End")
+  def hello():
+      print "Hello World"
+   
+  hello()
+#+END_SRC
+
+输出结果：
+#+BEGIN_EXAMPLE
+  Start
+  Hello World
+  End
+#+END_EXAMPLE
+
+** 将 app 放进app.route
+现在我们掌握了装饰器怎样工作的全部前置知识 ，可以重新实现Flask API的这个部分了，那么把我们的目光转移到“app”在我们Flask应用中的重要地位上面来。
+
+
+在开始解释Flask对象里面发生了什么之前，我们先创建我们自己的Python类NotFlask。
+
+#+BEGIN_SRC python
+  class NotFlask():
+      pass
+   
+  app = NotFlask()
+#+END_SRC
+
+这不是个很有趣的类，不过有一样值得注意，就是这个类的方法也可以被用作装饰器，所以让我们把这个类写得更有趣一点，加一个称作 route的方法，它是一个简单的装饰器工厂。
+
+#+BEGIN_SRC python
+  class NotFlask():
+      def route(self, route_str):
+          def decorator(f):
+              return f
+   
+          return decorator
+   
+  app = NotFlask()
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+#+END_SRC
+
+这个装饰器和我们之前创建的那些最大的不同，在于我们不想修改被我们装饰的函数的行为，我们只是想获得它的引用。
+
+所以，最后一步是我们打算去利用一个特性，就是用装饰器函数的副产品去保存一个提供给我们的路径之间的链接，装饰器函数应该与它关联起来。
+
+为了实现这个，我们给我们的NotFlask对象加一个“routes”字典，当我们的“decorator”函数被调用，路径将被插入新字典中函数对应的位置。
+
+#+BEGIN_SRC python
+  class NotFlask():
+      def __init__(self):
+          self.routes = {}
+   
+      def route(self, route_str):
+          def decorator(f):
+              self.routes[route_str] = f
+              return f
+   
+          return decorator
+   
+  app = NotFlask()
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+#+END_SRC
+
+
+现在我们就要完成了！可如果没法访问内部的视图函数，保存路径的字典又有什么用？让我们加入一个方法serve(path)，当给定的路径存在时运行一个函数并给们我结果，当路径尚未注册时则抛出一个异常。
+
+#+BEGIN_SRC python
+  class NotFlask():
+      def __init__(self):
+          self.routes = {}
+   
+      def route(self, route_str):
+          def decorator(f):
+              self.routes[route_str] = f
+              return f
+   
+          return decorator
+   
+      def serve(self, path):
+          view_function = self.routes.get(path)
+          if view_function:
+              return view_function()
+          else:
+              raise ValueError('Route "{}"" has not been registered'.format(path))
+   
+  app = NotFlask()
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+#+END_SRC
+
+在这个系列我们只关注重现那些热门库提供的友好API，所以钩挂“serve”方法实现一个HTTP服务器其实有一点超出本文的范围，当然结果是确定的，运行下述片段：
+
+#+BEGIN_EXAMPLE
+  app = NotFlask()
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+   
+  print app.serve("/")
+#+END_EXAMPLE
+
+我们会看到：
+#+BEGIN_EXAMPLE
+  Hello World!
+#+END_EXAMPLE
+
+
+我们已经完成了一个的Flask网页上第一个例子的非常简单的重现，让我们写一些快速测试检测我们简单重现的Flask的“@app.route()”是否正确。
+#+BEGIN_SRC python
+  class TestNotFlask(unittest.TestCase):
+      def setUp(self):
+          self.app = NotFlask()
+   
+      def test_valid_route(self):
+          @self.app.route('/')
+          def index():
+              return 'Hello World'
+   
+          self.assertEqual(self.app.serve('/'), 'Hello World')
+   
+      def test_invalid_route(self):
+          with self.assertRaises(ValueError):
+              self.app.serve('/invalid')
+#+END_SRC
+
+** 以正则的形式表达我们的路径
+现在我们将允许我们的URL动态变化，我们不再能够将用先前使用“@app.route()”注册的路径直接与路径实例比较。
+
+我们将用什么替代？我们需要用上正则表达式，这样我们就可以将路径作为一种模式进行匹配，而不和一条固定的字符串比较了。
+
+那么，我们的第一步是将我们的路径转化成正则表达式模式，这样我们就能在输入路径实例时进行匹配。我们也将使用这个正则表达式提取我们感兴趣的变量。
+
+那么，匹配路径”/hello/”的正则表达式该长啥样呢？
+
+嗯一个简单的正则表达式譬如“^/hello/(.+)$”将是个好的开始，让我们一起看看它和代码是怎么一起工作的：
+
+#+BEGIN_EXAMPLE
+  import re
+   
+  route_regex = re.compile(r"^/hello/(.+)$")
+  match = route_regex.match("/hello/ains")
+   
+  print match.groups()
+#+END_EXAMPLE
+
+将会输出：
+#+BEGIN_EXAMPLE
+  ('ains',)
+#+END_EXAMPLE
+
+不错，不过，理想情况是我们想要维护我们已经匹配上的第一组链接，并且从路径“/hello/”识别出“username”。
+
+** 命名捕获组
+幸运的是，正则表达式也支持命名捕获组，允许我们给匹配组分配一个名字，我们能在读取我们的匹配之后找回它。
+
+我们可以使用下述符号，给出第一个例子识别“username”的捕获组。
+
+#+BEGIN_SRC python
+  /hello/(<?P<username>.+)"
+#+END_SRC
+
+然后我们可以对我们的正则表达式使用groupdict()方法，将所有捕获组当作一个字典，组的名字对应匹配上的值。
+
+那么我们给出下述代码：
+
+#+BEGIN_SRC python
+  route_regex = re.compile(r'^/hello/(?P<username>.+)$')
+  match = route_regex.match("/hello/ains")
+   
+  print match.groupdict()
+#+END_SRC
+
+将为我们输出一下字典：
+#+BEGIN_EXAMPLE
+  {'username': 'ains'}
+#+END_EXAMPLE
+
+现在，有了我们所需要的正则表达式的格式，以及如何使用它们去匹配输入的URLs的知识，最后剩下的是写一个方法，将我们声明的路径转换成它们等价的正则表达式模式。
+
+要做这个我们将使用另一个正则表达式（接下来将全是正则表达式），为了让我们路径中的变量转换成正则表示式模式，那这里作为示范我们将将“”转换成“(?P.+)”。
+
+听起来太简单了！我们将可以只用一行新代码实现它。
+
+#+BEGIN_SRC python
+  def build_route_pattern(route):
+      route_regex = re.sub(r'(<\w+>)', r'(?P\1.+)', route)
+      return re.compile("^{}$".format(route_regex))
+   
+  print build_route_pattern('/hello/<username>')
+#+END_SRC
+
+这里我们用一个正则表达式代表所有出现的模式（一个包含在尖括号中的字符串），与它的正则表达式命名组等价。
+
+re.sub的第一个参数 我们将我们的模式放进括号，目的是把它分配到第一个匹配组。在我们的第二个参数，我们可以使用第一匹配组的内容，方法是写1（2将是第二匹配组的内容，以此类推…….）
+
+那么最后，输入模式
+
+#+BEGIN_SRC python
+  /hello/<username>
+#+END_SRC
+
+将给我们正则表达式：
+#+BEGIN_SRC python
+  ^/hello/(?P<username>.+)$
+#+END_SRC
+
+** 推陈出新
+让我们扫一眼上次我们写的简单NotFlask类。
+#+BEGIN_SRC python
+  class NotFlask():
+      def __init__(self):
+          self.routes = {}
+   
+      def route(self, route_str):
+          def decorator(f):
+              self.routes[route_str] = f
+              return f
+   
+          return decorator
+   
+      def serve(self, path):
+          view_function = self.routes.get(path)
+          if view_function:
+              return view_function()
+          else:
+              raise ValueError('Route "{}"" has not been registered'.format(path))
+   
+  app = NotFlask()
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+#+END_SRC
+
+现在我们有一个新的改进方法用来匹配输入的路径，我们打算移除我们上一个版本实现时用到的原生字典。
+
+让我们从改造我们的函数着手，以便于添加路径，这样我们就可以用(pattern, view_function)对列表代替字典保存我们的路径。
+
+这意味着当一个程序员使用@app.route()装饰一个函数，我们将要尝试将他们的路径编译变成一个正则表达式，然后存储它，属于一个在我们新的路径列表里的装饰函数。
+
+让我们看看实现代码：
+
+#+BEGIN_SRC python
+  class NotFlask():
+      def __init__(self):
+          self.routes = []
+   
+      # Here's our build_route_pattern we made earlier
+      @staticmethod
+      def build_route_pattern(route):
+          route_regex = re.sub(r'(<\w+>)', r'(?P\1.+)', route)
+          return re.compile("^{}$".format(route_regex))
+   
+      def route(self, route_str):
+          def decorator(f):
+              # Instead of inserting into a dictionary,
+              # We'll append the tuple to our route list
+              route_pattern = self.build_route_pattern(route_str)
+              self.routes.append((route_pattern, f))
+   
+              return f
+   
+          return decorator
+#+END_SRC
+
+我们也打算需要一个get_route_match方法，给它一个路径实例，将会尝试并找到一个匹配的view_function，或者返回None如果一个也找不到的话。
+
+然而，如果找了到匹配的话，除了view_function之外，我们还需要返回一个东西，那就是我们包含之前捕获匹配组的字典，我们需要它来为视图函数传递正确的参数。
+
+好了我们的get_route_match大概就长这样：
+
+#+BEGIN_EXAMPLE
+  def get_route_match(path):
+      for route_pattern, view_function in self.routes:
+          m = route_pattern.match(path)
+          if m:
+             return m.groupdict(), view_function
+   
+      return None
+#+END_EXAMPLE
+
+现在我们快要完成了，最后一步将是找出调用view_function的方法，使用来自正则表达式匹配组字典的正确参数。
+
+调用一个函数的若干种方法
+
+让我们回顾一下不同的方法调用一个python的函数。
+
+比如像这样：
+
+#+BEGIN_SRC python
+  def hello_user(username):
+      return "Hello {}!".format(username)
+#+END_SRC
+
+最简单的（也许正是你所熟知的）办法是使用正则参数，在这里参数的顺序匹配我们定义的那些函数的顺序。
+
+#+BEGIN_EXAMPLE
+  >>> hello_user("ains")
+  Hello ains!
+#+END_EXAMPLE
+
+另一种方法调用一个函数是使用关键词参数。关键词参数可以通过任何顺序指定，适合有许多可选参数的函数。
+#+BEGIN_EXAMPLE
+  >>> hello_user(username="ains")
+  Hello ains!
+#+END_EXAMPLE
+
+
+在Python中最后一种调用一个函数的方法是使用关键词参数字典，字典中的关键词对应参数名称。我们告诉Python解包一个字典，并通过使用两个星号“**”来把它当作函数的关键词参数。 下面的代码段与上面的代码段完全一样，现在我们使用字典参数，我们可以在运行时动态创建它。
+
+#+BEGIN_EXAMPLE
+>>> kwargs = {"username": "ains"}
+>>> hello_user(**kwargs)
+Hello ains!
+#+END_EXAMPLE
+
+好了，还记得上面的groupdict()方法？就是那个同样的在正则表达式完成匹配后返回{“username”: “ains”}的家伙？那么现在我们了解了kwargs，我们能很容易向我们的view_function传递字典匹配，完成NotFlask!
+
+那么让我们把这些都塞进我们最终的类中。
+#+BEGIN_SRC python
+  class NotFlask():
+      def __init__(self):
+          self.routes = []
+   
+      @staticmethod
+      def build_route_pattern(route):
+          route_regex = re.sub(r'(<\w+>)', r'(?P\1.+)', route)
+          return re.compile("^{}$".format(route_regex))
+   
+      def route(self, route_str):
+          def decorator(f):
+              route_pattern = self.build_route_pattern(route_str)
+              self.routes.append((route_pattern, f))
+   
+              return f
+   
+          return decorator
+   
+      def get_route_match(self, path):
+          for route_pattern, view_function in self.routes:
+              m = route_pattern.match(path)
+              if m:
+                  return m.groupdict(), view_function
+   
+          return None
+   
+      def serve(self, path):
+          route_match = self.get_route_match(path)
+          if route_match:
+              kwargs, view_function = route_match
+              return view_function(**kwargs)
+          else:
+              raise ValueError('Route "{}"" has not been registered'.format(path))
+#+END_SRC
+
+接下来,就是见证奇迹的时刻，请看下面代码段:
+
+#+BEGIN_SRC python
+  app = NotFlask()
+   
+  @app.route("/hello/<username>")
+  def hello_user(username):
+      return "Hello {}!".format(username)
+   
+  print app.serve("/hello/ains")
+#+END_SRC
+
+我们将得到输出：
+#+BEGIN_EXAMPLE
+  Hello ains!
+#+END_EXAMPLE
+
+* 建议阅读:  
+pep318 关于迭代器的为什么使用@
+
+
+
+
+
+
+* 引用文件
+目前没有完全使用, 喜欢可以看看
+
+http://zetcode.com/lang/python/functions/
+
+http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/1594484#1594484
+
+
+http://www.ibm.com/developerworks/linux/library/l-cpdecor/index.html
+
+
+http://www.cafepy.com/article/python_types_and_objects/
+
+http://blog.csdn.net/mdl13412/article/details/22608283

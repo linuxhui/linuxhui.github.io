@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>对象持久话与pickle模块</title>
+<!-- 2015-12-15 二 19:55 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="huihui" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">对象持久话与pickle模块</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 什么是持久性</a></li>
+<li><a href="#sec-2">2. 对象持久性的几种模式</a>
+<ul>
+<li><a href="#sec-2-1">2.1. 对象-关系映射（ORM）</a></li>
+<li><a href="#sec-2-2">2.2. 主动域对象模式</a></li>
+<li><a href="#sec-2-3">2.3. JDO模式</a></li>
+<li><a href="#sec-2-4">2.4. CMP 模式</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. python的对象持久性</a></li>
+<li><a href="#sec-4">4. 一些经过pickle的 Python</a></li>
+<li><a href="#sec-5">5. Pickle 的威力</a>
+<ul>
+<li><a href="#sec-5-1">5.1. 可移植性</a></li>
+<li><a href="#sec-5-2">5.2. 多个引用，同一对象</a></li>
+<li><a href="#sec-5-3">5.3. 循环引用和递归引用</a></li>
+<li><a href="#sec-5-4">5.4. 想等但不相同</a></li>
+<li><a href="#sec-5-5">5.5. 不可 pickle 的对象</a></li>
+<li><a href="#sec-5-6">5.6. 类实例</a></li>
+<li><a href="#sec-5-7">5.7. 特殊的状态方法</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. 模式改进</a>
+<ul>
+<li><a href="#sec-6-1">6.1. 类名的更改</a></li>
+<li><a href="#sec-6-2">6.2. 属性的添加和删除</a></li>
+<li><a href="#sec-6-3">6.3. 模块的修改</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">7. 结束语</a></li>
+<li><a href="#sec-8">8. 参考资料</a>
+<ul>
+<li><a href="#sec-8-1">8.1. 本文参考</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 什么是持久性</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+持久性的基本思想很简单。假定有一个 Python 程序，它可能是一个管理日常待办事项的程序，您希望在多次执行这个程序之间可以保存应用程序对象（待办事项）。换句话说，您希望将对象存储在磁盘上，便于以后检索。
+这就是持久性。要达到这个目的，有几种方法，每一种方法都有其优缺点
+</p>
+
+<p>
+例如，可以将对象数据存储在某种格式的文本文件中，譬如 CSV 文件。或者可以用关系数据库，譬如 Gadfly、MySQL
+、PostgreSQL 或者 DB2。这些文件格式和数据库都非常优秀，对于所有这些存储机制，Python 都有健壮的接口。
+</p>
+
+<p>
+这些存储机制都有一个共同点：存储的数据是独立于对这些数据进行操作的对象和程序。这样做的好处是，数据可以作为共享的资源，供其它应用程序使用。缺点是，用这种方式，可以允许其它程序访问对象的数据，
+这违背了面向对象的封装性原则 — 即对象的数据只能通过这个对象自身的公共（public）接口来访问
+</p>
+
+<p>
+另外，对于某些应用程序，关系数据库方法可能不是很理想。尤其是，关系数据库不理解对象。相反，关系数据库会强行使用自己的类型系统和关系数据模型（表），每张表包含一组元组（行），每行包含具有固定数目
+的静态类型字段（列）。如果应用程序的对象模型不能够方便地转换到关系模型，那么在将对象映射到元组以及将元组映射回对象方面，会碰到一定难度。这种困难常被称为阻碍性不匹配（impedence-mismatch）问题。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 对象持久性的几种模式</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 对象-关系映射（ORM）</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+ORM-Object/Relational Mapper，即对象-关系型数据映射组件。对于O/R，即 Object（对象）和 Relational（关系型数据），表示必须同时使用面向对象和关系型数据进行开发。ORM解决的主要问题就是
+对象-关系的映射。一般情况下，一个持久化类和一个表对应，类的每个实例与表中的一条记录对应。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 主动域对象模式</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+在它的实现中封装了关系数据模型和数据访问细节。在 J2EE 架构中，EJB 组件分为会话 EJB 和实体 EJB。会话 EJB 通常实现业务逻辑，而实体 EJB 表示业务实体。实体 EJB 又分为两种：
+由 EJB 本身管理持久化，即 BMP（Bean-Managed Persistence）；有 EJB 容器管理持久化，即 CMP（Container-Managed Persistence）。BMP就是主动域对象模式的一个例子，
+BMP 表示由实体 EJB 自身管理数据访问细节。
+</p>
+
+<p>
+主动域对象本身位于业务逻辑层，因此采用主动域对象模式时，整个应用仍然是三层应用结构，并没有从业务逻辑层分离出独立的持久化层。
+</p>
+
+<ul class="org-ul">
+<li>优点:
+<ol class="org-ol">
+<li>在实体域对象中封装自身的数据访问细节，过程域对象完全负责业务逻辑，使程序结构更加清晰。
+</li>
+<li>如果关系数据模型发生改变，只需修改主动域对象的代码，不需要修改过程域对象的业务方法。
+</li>
+</ol>
+</li>
+
+<li>缺点：
+<ol class="org-ol">
+<li>在实体域对象的实现中仍然包含SQL语句。
+</li>
+<li>每个实体域对象都负责自身的数据访问实现。把这一职责分散、在多个对象中，这会导致实体域对象重复实现一些共同的数据访问操作，造成重复编码。
+</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> JDO模式</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Java Data Objects（JDO）是 SUN 公司制定的描述对象持久化语义的标准API。严格的说，JDO 并不是对象-关系映射接口，因为它支持把对象持久化到任意一种存储系统中，
+包括 关系数据库、面向对象的数据库、基于 XML 的数据库，以及其他专有存储系统。由于关系数据库是目前最流行的存储系统，许多 JDO 的实现都包含了对象-关系映射服务
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> CMP 模式</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+在 J2EE 架构中，CMP（Container-Managed Persistence）表示由 EJB 容器来管理实体 EJB 的持久化，EJB 容器封装了对象-关系的映射及数据访问细节。CMP 和 ORM 的相似之处在于，
+两者都提供对象-关系映射服务，都把对象持久化的任务从业务逻辑中分离出来。区别在于 CMP 负责持久化实体 EJB 组件，而 ORM 负责持久化 POJO，它是普通的基于 Java Bean 形式的实体域对象。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> python的对象持久性</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+如果希望透明地存储 Python 对象，而不丢失其身份和类型等信息，则需要某种形式的对象序列化：它是一个将任意复杂的对象转成对象的文本或二进制表示的过程。同样，必须能够将对象经过序列化后的形式恢复到原有的对象。
+在 Python 中，这种序列化过程称为 pickle，可以将对象 pickle 成字符串、磁盘上的文件或者任何类似于文件的对象，也可以将这些字符串、文件或任何类似于文件的对象 unpickle 成原来的对象。
+我们将在本文后面详细讨论 pickle。
+</p>
+
+<p>
+假定您喜欢将任何事物都保存成对象，而且希望避免将对象转换成某种基于非对象存储的开销；那么 pickle 文件可以提供这些好处，但有时可能需要比这种简单的 pickle 文件更健壮以及更具有可伸缩性的事物。
+例如，只用 pickle 不能解决命名和查找 pickle 文件这样的问题，另外，它也不能支持并发地访问持久性对象。如果需要这些方面的功能，则要求助类似于 ZODB（针对 Python 的 Z 对象数据库）这类数据库。
+ZODB 是一个健壮的、多用户的和面向对象的数据库系统，它能够存储和管理任意复杂的 Python 对象，并支持事务操作和并发控制。（请参阅 参考资料，以下载 ZODB。）令人足够感兴趣的是，甚至 ZODB 也依靠
+ Python 的本机序列化能力，而且要有效地使用 ZODB，必须充分了解 pickle。
+</p>
+
+<p>
+另一种令人感兴趣的解决持久性问题的方法是 Prevayler，它最初是用 Java 实现的（有关 Prevaylor 方面的 developerWorks 文章，请参阅 参考资料）。最近，一群 Python 程序员将 Prevayler 移植到了
+Python 上，另起名为 PyPerSyst，由 SourceForge 托管（有关至 PyPerSyst 项目的链接，请参阅 参考资料）。Prevayler/PyPerSyst 概念也是建立在 Java 和 Python 语言的本机序列化能力之上。
+PyPerSyst 将整个对象系统保存在内存中，并通过不时地将系统快照 pickle 到磁盘以及维护一个命令日志（通过此日志可以重新应用最新的快照）来提供灾难恢复。所以，尽管使用 PyPerSyst 的应用程序受到可用内存的限制，
+但好处是本机对象系统可以完全装入到内存中，因而速度极快，而且实现起来要比如 ZODB 这样的数据库简单，ZODB 允许对象的数目比同时在能内存中所保持的对象要多。
+</p>
+
+<p>
+既然我们已经简要讨论了存储持久对象的各种方法，那么现在该详细探讨 pickle 过程了。虽然我们主要感兴趣的是探索以各种方式来保存 Python 对象，而不必将其转换成某种其它格式，但我们仍然还有一些需要关注的地方，
+譬如：如何有效地 pickle 和 unpickle 简单对象以及复杂对象，包括定制类的实例；如何维护对象的引用，包括循环引用和递归引用；以及如何处理类定义发生的变化，从而使用以前经过 pickle 的实例时不会发生问题。
+我们将在随后关于 Python 的 pickle 能力探讨中涉及所有这些问题。
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 一些经过pickle的 Python</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+pickle 模块及其同类模块 cPickle 向 Python 提供了 pickle 支持。后者是用 C 编码的，它具有更好的性能，对于大多数应用程序，推荐使用该模块。我们将继续讨论 pickle ，但本文的示例实际是利用了 cPickle 。
+由于其中大多数示例要用 Python shell 来显示，所以先展示一下如何导入 cPickle ，并可以作为 pickle 来引用它：
+</p>
+
+<pre class="example">
+&gt;&gt;&gt; import cPickle as pickle
+</pre>
+
+<p>
+现在已经导入了该模块，接下来让我们看一下 pickle 接口。 pickle 模块提供了以下函数对： 
+</p>
+<ul class="org-ul">
+<li>dumps(object) 返回一个字符串，它包含一个 pickle 格式的对象； 
+</li>
+<li>loads(string) 返回包含在 pickle 字符串中的对象； 
+</li>
+<li>dump(object, file) 将对象写到文件，这个文件可以是实际的物理文件，但也可以是任何类似于文件的对象，这个对象具有 write() 方法，可以接受单个的字符串参数； 
+</li>
+<li>load(file) 返回包含在 pickle 文件中的对象。
+</li>
+</ul>
+
+
+<p>
+缺省情况下， dumps() 和 dump() 使用可打印的 ASCII 表示来创建 pickle。两者都有一个 final 参数（可选），如果为 True ，则该参数指定用更快以及更小的二进制表示来创建 pickle。 
+loads() 和 load() 函数自动检测 pickle 是二进制格式还是文本格式。
+</p>
+
+
+<p>
+清单 1 显示了一个交互式会话，这里使用了刚才所描述的 dumps() 和 loads() 函数
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">Welcome To PyCrust <span style="color: #a45bad;">0</span>.<span style="color: #a45bad;">7</span>.<span style="color: #a45bad;">2</span> - The Flakiest Python Shell
+Sponsored by Orbtech - Your source <span style="color: #237fbf; font-weight: bold;">for</span> Python programming expertise.
+Python <span style="color: #a45bad;">2</span>.<span style="color: #a45bad;">2</span>.<span style="color: #a45bad;">1</span> <span style="color: #2f96dc;">(</span><span style="color: #2aa198;">#</span><span style="color: #2aa198;">1, Aug 27 2002, 10:22:32)</span>
+<span style="color: #bc6ec5;">[</span>GCC <span style="color: #a45bad;">3</span>.<span style="color: #a45bad;">2</span> <span style="color: #2aa198;">(</span>Mandrake Linux <span style="color: #a45bad;">9</span>.<span style="color: #a45bad;">0</span> <span style="color: #a45bad;">3</span>.<span style="color: #a45bad;">2</span>-<span style="color: #a45bad;">1mdk</span><span style="color: #2aa198;">)</span><span style="color: #bc6ec5;">]</span> on linux-i386
+Type <span style="color: #2aa198;">"copyright"</span>, <span style="color: #2aa198;">"credits"</span> <span style="color: #237fbf; font-weight: bold;">or</span> <span style="color: #2aa198;">"license"</span> <span style="color: #237fbf; font-weight: bold;">for</span> more information.
+&gt;&gt;&gt; <span style="color: #237fbf; font-weight: bold;">import</span> cPickle <span style="color: #237fbf; font-weight: bold;">as</span> pickle
+&gt;&gt;&gt; t1 = <span style="color: #bc6ec5;">(</span><span style="color: #2aa198;">'this is a string'</span>, <span style="color: #a45bad;">42</span>, <span style="color: #2aa198;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #2aa198;">]</span>, <span style="color: #a45bad;">None</span><span style="color: #bc6ec5;">)</span>
+&gt;&gt;&gt; t1
+<span style="color: #bc6ec5;">(</span><span style="color: #2aa198;">'this is a string'</span>, <span style="color: #a45bad;">42</span>, <span style="color: #2aa198;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #2aa198;">]</span>, <span style="color: #a45bad;">None</span><span style="color: #bc6ec5;">)</span>
+&gt;&gt;&gt; p1 = pickle.dumps<span style="color: #bc6ec5;">(</span>t1<span style="color: #bc6ec5;">)</span>
+&gt;&gt;&gt; p1
+<span style="color: #2aa198;">"(S'this is a string'\nI42\n(lp1\nI1\naI2\naI3\naNtp2\n."</span>
+&gt;&gt;&gt; <span style="color: #237fbf; font-weight: bold;">print</span> p1
+<span style="color: #bc6ec5;">(</span>S<span style="color: #2aa198;">'this is a string'</span>
+I42
+<span style="color: #2aa198;">(</span>lp1
+I1
+aI2
+aI3
+aNtp2
+.
+&gt;&gt;&gt; t2 = pickle.loads<span style="color: #67b11d;">(</span>p1<span style="color: #67b11d;">)</span>
+&gt;&gt;&gt; t2
+<span style="color: #67b11d;">(</span><span style="color: #2aa198;">'this is a string'</span>, <span style="color: #a45bad;">42</span>, <span style="color: #b1951d;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #b1951d;">]</span>, <span style="color: #a45bad;">None</span><span style="color: #67b11d;">)</span>
+&gt;&gt;&gt; p2 = pickle.dumps<span style="color: #67b11d;">(</span>t1, <span style="color: #a45bad;">True</span><span style="color: #67b11d;">)</span>
+&gt;&gt;&gt; p2
+<span style="color: #2aa198;">'(U\x10this is a stringK*]q\x01(K\x01K\x02K\x03eNtq\x02.'</span>
+&gt;&gt;&gt; t3 = pickle.loads<span style="color: #67b11d;">(</span>p2<span style="color: #67b11d;">)</span>
+&gt;&gt;&gt; t3
+<span style="color: #67b11d;">(</span><span style="color: #2aa198;">'this is a string'</span>, <span style="color: #a45bad;">42</span>, <span style="color: #b1951d;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #b1951d;">]</span>, <span style="color: #a45bad;">None</span><span style="color: #67b11d;">)</span>
+</pre>
+</div>
+
+<p>
+注：该文本 pickle 格式很简单，这里就不解释了。事实上，在 pickle 模块中记录了所有使用的约定。我们还应该指出，在我们的示例中使用的都是简单对象，因此使用二进制 pickle 格式不会在节省空间上显示出太大的效率。
+然而，在实际使用复杂对象的系统中，您会看到，使用二进制格式可以在大小和速度方面带来显著的改进。
+</p>
+
+<p>
+接下来，我们看一些示例，这些示例用到了 dump() 和 load() ，它们使用文件和类似文件的对象。这些函数的操作非常类似于我们刚才所看到的 dumps() 和 loads() ，
+区别在于它们还有另一种能力 — dump() 函数能一个接着一个地将几个对象转储到同一个文件。随后调用 load() 来以同样的顺序检索这些对象。清单 2 显示了这种能力的实际应用：
+</p>
+
+<p>
+清单 2. dump() 和 load() 示例
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #adaab3;">a1</span> = <span style="color: #2aa198;">'apple'</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">b1</span> = <span style="color: #2f96dc;">{</span><span style="color: #a45bad;">1</span>: <span style="color: #2aa198;">'One'</span>, <span style="color: #a45bad;">2</span>: <span style="color: #2aa198;">'Two'</span>, <span style="color: #a45bad;">3</span>: <span style="color: #2aa198;">'Three'</span><span style="color: #2f96dc;">}</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">c1</span> = <span style="color: #2f96dc;">[</span><span style="color: #2aa198;">'fee'</span>, <span style="color: #2aa198;">'fie'</span>, <span style="color: #2aa198;">'foe'</span>, <span style="color: #2aa198;">'fum'</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">f1</span> = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span><span style="color: #2aa198;">'temp.pkl'</span>, <span style="color: #2aa198;">'wb'</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; pickle.dump<span style="color: #2f96dc;">(</span>a1, f1, <span style="color: #a45bad;">True</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; pickle.dump<span style="color: #2f96dc;">(</span>b1, f1, <span style="color: #a45bad;">True</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; pickle.dump<span style="color: #2f96dc;">(</span>c1, f1, <span style="color: #a45bad;">True</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; f1.close<span style="color: #2f96dc;">()</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">f2</span> = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span><span style="color: #2aa198;">'temp.pkl'</span>, <span style="color: #2aa198;">'rb'</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">a2</span> = pickle.load<span style="color: #2f96dc;">(</span>f2<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; a2
+<span style="color: #2aa198;">'apple'</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">b2</span> = pickle.load<span style="color: #2f96dc;">(</span>f2<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; b2
+<span style="color: #2f96dc;">{</span><span style="color: #a45bad;">1</span>: <span style="color: #2aa198;">'One'</span>, <span style="color: #a45bad;">2</span>: <span style="color: #2aa198;">'Two'</span>, <span style="color: #a45bad;">3</span>: <span style="color: #2aa198;">'Three'</span><span style="color: #2f96dc;">}</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">c2</span> = pickle.load<span style="color: #2f96dc;">(</span>f2<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; c2
+<span style="color: #2f96dc;">[</span><span style="color: #2aa198;">'fee'</span>, <span style="color: #2aa198;">'fie'</span>, <span style="color: #2aa198;">'foe'</span>, <span style="color: #2aa198;">'fum'</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; f2.close<span style="color: #2f96dc;">()</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Pickle 的威力</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+到目前为止，我们讲述了关于 pickle 方面的基本知识。在这一节，将讨论一些高级问题，当您开始 pickle 复杂对象时，会遇到这些问题，其中包括定制类的实例。幸运的是，Python 可以很容易地处理这种情形。
+</p>
+</div>
+
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 可移植性</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+从空间和时间上说，Pickle 是可移植的。换句话说，pickle 文件格式独立于机器的体系结构，这意味着，例如，可以在 Linux 下创建一个 pickle，然后将它发送到在 Windows 或 Mac OS 下运行的 Python 程序。
+并且，当升级到更新版本的 Python 时，不必担心可能要废弃已有的 pickle。Python 开发人员已经保证 pickle 格式将可以向后兼容 Python 各个版本。
+事实上，在 pickle 模块中提供了有关目前以及所支持的格式方面的详细信息：
+</p>
+
+<p>
+清单 3. 检索所支持的格式
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; pickle.format_version
+<span style="color: #2aa198;">'1.3'</span>
+&gt;&gt;&gt; pickle.compatible_formats
+<span style="color: #2f96dc;">[</span><span style="color: #2aa198;">'1.0'</span>, <span style="color: #2aa198;">'1.1'</span>, <span style="color: #2aa198;">'1.2'</span><span style="color: #2f96dc;">]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 多个引用，同一对象</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+在 Python 中，变量是对象的引用。同时，也可以用多个变量引用同一个对象。经证明，Python 在用经过 pickle 的对象维护这种行为方面丝毫没有困难，如清单 4 所示：
+</p>
+
+<p>
+清单 4. 对象引用的维护
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #adaab3;">a</span> = <span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">b</span> = a
+&gt;&gt;&gt; a
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; b
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; a.append<span style="color: #2f96dc;">(</span><span style="color: #a45bad;">4</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; a
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; b
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">c</span> = pickle.dumps<span style="color: #2f96dc;">(</span><span style="color: #bc6ec5;">(</span>a, b<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">d</span>, <span style="color: #adaab3;">e</span> = pickle.loads<span style="color: #2f96dc;">(</span>c<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; d
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; e
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; d.append<span style="color: #2f96dc;">(</span><span style="color: #a45bad;">5</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; d
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; e
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span><span style="color: #2f96dc;">]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> 循环引用和递归引用</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+可以将刚才演示过的对象引用支持扩展到 循环引用（两个对象各自包含对对方的引用）和 递归引用（一个对象包含对其自身的引用）。下面两个清单着重显示这种能力。我们先看一下递归引用：
+</p>
+
+<p>
+清单 5. 递归引用
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #adaab3;">l</span> = <span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; l.append<span style="color: #2f96dc;">(</span>l<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; l
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #bc6ec5;">[</span>...<span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; l<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span><span style="color: #2f96dc;">]</span>
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #bc6ec5;">[</span>...<span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; l<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span><span style="color: #2f96dc;">][</span><span style="color: #a45bad;">3</span><span style="color: #2f96dc;">]</span>
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #bc6ec5;">[</span>...<span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">p</span> = pickle.dumps<span style="color: #2f96dc;">(</span>l<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">l2</span> = pickle.loads<span style="color: #2f96dc;">(</span>p<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; l2
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #bc6ec5;">[</span>...<span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; l2<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span><span style="color: #2f96dc;">]</span>
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #bc6ec5;">[</span>...<span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; l2<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span><span style="color: #2f96dc;">][</span><span style="color: #a45bad;">3</span><span style="color: #2f96dc;">]</span>
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #bc6ec5;">[</span>...<span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+</pre>
+</div>
+
+<p>
+现在，看一个循环引用的示例：
+</p>
+
+
+<p>
+清单 6. 循环引用
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #adaab3;">a</span> = <span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">b</span> = <span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; a.append<span style="color: #2f96dc;">(</span>b<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; a
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; b.append<span style="color: #2f96dc;">(</span>a<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; a
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; b
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; a<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span>
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; b<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span>
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; a<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span> <span style="color: #237fbf; font-weight: bold;">is</span> b
+<span style="color: #a45bad;">1</span>
+&gt;&gt;&gt; b<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span> <span style="color: #237fbf; font-weight: bold;">is</span> a
+<span style="color: #a45bad;">1</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">f</span> = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span><span style="color: #2aa198;">'temp.pkl'</span>, <span style="color: #2aa198;">'w'</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; pickle.dump<span style="color: #2f96dc;">(</span><span style="color: #bc6ec5;">(</span>a, b<span style="color: #bc6ec5;">)</span>, f<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; f.close<span style="color: #2f96dc;">()</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">f</span> = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span><span style="color: #2aa198;">'temp.pkl'</span>, <span style="color: #2aa198;">'r'</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">c</span>, <span style="color: #adaab3;">d</span> = pickle.load<span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; f.close<span style="color: #2f96dc;">()</span>
+&gt;&gt;&gt; c
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; d
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; c<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span>
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; d<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span>
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; c<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span> <span style="color: #237fbf; font-weight: bold;">is</span> d
+<span style="color: #a45bad;">1</span>
+&gt;&gt;&gt; d<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span> <span style="color: #237fbf; font-weight: bold;">is</span> c
+<span style="color: #a45bad;">1</span>
+</pre>
+</div>
+
+<p>
+注意，如果分别 pickle 每个对象，而不是在一个元组中一起 pickle 所有对象，会得到略微不同（但很重要）的结果，如清单 7 所示：
+</p>
+
+<p>
+清单 7. 分别 pickle vs. 在一个元组中一起 pickle
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #adaab3;">f</span> = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span><span style="color: #2aa198;">'temp.pkl'</span>, <span style="color: #2aa198;">'w'</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; pickle.dump<span style="color: #2f96dc;">(</span>a, f<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; pickle.dump<span style="color: #2f96dc;">(</span>b, f<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; f.close<span style="color: #2f96dc;">()</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">f</span> = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span><span style="color: #2aa198;">'temp.pkl'</span>, <span style="color: #2aa198;">'r'</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">c</span> = pickle.load<span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">d</span> = pickle.load<span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; f.close<span style="color: #2f96dc;">()</span>
+&gt;&gt;&gt; c
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; d
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; c<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span>
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; d<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span>
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #2aa198;">[</span>...<span style="color: #2aa198;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; c<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span> <span style="color: #237fbf; font-weight: bold;">is</span> d
+<span style="color: #a45bad;">0</span>
+&gt;&gt;&gt; d<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">2</span><span style="color: #2f96dc;">]</span> <span style="color: #237fbf; font-weight: bold;">is</span> c
+<span style="color: #a45bad;">0</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> 想等但不相同</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+正如在上一个示例所暗示的，只有在这些对象引用内存中同一个对象时，它们才是相同的。在 pickle 情形中，每个对象被恢复到一个与原来对象相等的对象，但不是同一个对象。换句话说，每个 pickle 都是原来对象的一个副本：
+</p>
+
+<p>
+清单 8. 作为原来对象副本的被恢复的对象
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #adaab3;">j</span> = <span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">k</span> = j
+&gt;&gt;&gt; k <span style="color: #237fbf; font-weight: bold;">is</span> j
+<span style="color: #a45bad;">1</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">x</span> = pickle.dumps<span style="color: #2f96dc;">(</span>k<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">y</span> = pickle.loads<span style="color: #2f96dc;">(</span>x<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; y
+<span style="color: #2f96dc;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #2f96dc;">]</span>
+&gt;&gt;&gt; y == k
+<span style="color: #a45bad;">1</span>
+&gt;&gt;&gt; y <span style="color: #237fbf; font-weight: bold;">is</span> k
+<span style="color: #a45bad;">0</span>
+&gt;&gt;&gt; y <span style="color: #237fbf; font-weight: bold;">is</span> j
+<span style="color: #a45bad;">0</span>
+&gt;&gt;&gt; k <span style="color: #237fbf; font-weight: bold;">is</span> j
+<span style="color: #a45bad;">1</span>
+</pre>
+</div>
+
+<p>
+同时，我们看到 Python 能够维护对象之间的引用，这些对象是作为一个单元进行 pickle 的。然而，我们还看到分别调用 dump() 会使 Python 无法维护对在该单元外部进行 pickle 的对象的引用。
+相反，Python 复制了被引用对象，并将副本和被 pickle 的对象存储在一起。对于 pickle 和恢复单个对象层次结构的应用程序，这是没有问题的。但要意识到还有其它情形。
+</p>
+
+<p>
+值得指出的是，有一个选项确实允许分别 pickle 对象，并维护相互之间的引用，只要这些对象都是 pickle 到同一文件即可。 pickle 和 cPickle 模块提供了一个 Pickler （与此相对应是 Unpickler ），
+它能够跟踪已经被 pickle 的对象。通过使用这个 Pickler ，将会通过引用而不是通过值来 pickle 共享和循环引用：
+</p>
+
+<p>
+清单 9. 维护分别 pickle 的对象间的引用
+</p>
+<pre class="example">
+&gt;&gt;&gt; f = file('temp.pkl', 'w')
+&gt;&gt;&gt; pickler = pickle.Pickler(f)
+&gt;&gt;&gt; pickler.dump(a)
+&lt;cPickle.Pickler object at 0x89b0bb8&gt;
+&gt;&gt;&gt; pickler.dump(b)
+&lt;cPickle.Pickler object at 0x89b0bb8&gt;
+&gt;&gt;&gt; f.close()
+&gt;&gt;&gt; f = file('temp.pkl', 'r')
+&gt;&gt;&gt; unpickler = pickle.Unpickler(f)
+&gt;&gt;&gt; c = unpickler.load()
+&gt;&gt;&gt; d = unpickler.load()
+&gt;&gt;&gt; c[2]
+[3, 4, [1, 2, [...]]]
+&gt;&gt;&gt; d[2]
+[1, 2, [3, 4, [...]]]
+&gt;&gt;&gt; c[2] is d
+1
+&gt;&gt;&gt; d[2] is c
+1
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5"><span class="section-number-3">5.5</span> 不可 pickle 的对象</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+一些对象类型是不可 pickle 的。例如，Python 不能 pickle 文件对象（或者任何带有对文件对象引用的对象），因为 Python 在 unpickle 时不能保证它可以重建该文件的状态（
+另一个示例比较难懂，在这类文章中不值得提出来）。试图 pickle 文件对象会导致以下错误：
+</p>
+
+<p>
+清单 10. 试图 pickle 文件对象的结果
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #adaab3;">f</span> = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span><span style="color: #2aa198;">'temp.pkl'</span>, <span style="color: #2aa198;">'w'</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">p</span> = pickle.dumps<span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>
+Traceback <span style="color: #2f96dc;">(</span>most recent call last<span style="color: #2f96dc;">)</span>:
+  File <span style="color: #2aa198;">"&lt;input&gt;"</span>, line <span style="color: #a45bad;">1</span>, <span style="color: #237fbf; font-weight: bold;">in</span> ?
+  File <span style="color: #2aa198;">"/usr/lib/python2.2/copy_reg.py"</span>, line <span style="color: #a45bad;">57</span>, <span style="color: #237fbf; font-weight: bold;">in</span> _reduce
+    <span style="color: #237fbf; font-weight: bold;">raise</span> <span style="color: #c56ec3; font-weight: bold;">TypeError</span>, <span style="color: #2aa198;">"can't pickle %s objects"</span> % base.<span style="color: #1f71ab;">__name__</span>
+<span style="color: #c56ec3; font-weight: bold;">TypeError</span>: can<span style="color: #2aa198;">'t pickle file objects</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-6" class="outline-3">
+<h3 id="sec-5-6"><span class="section-number-3">5.6</span> 类实例</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+与 pickle 简单对象类型相比，pickle 类实例要多加留意。这主要由于 Python 会 pickle 实例数据（通常是 <span class="underline">dict</span> 属性）和类的名称，
+而不会 pickle 类的代码。当 Python unpickle 类的实例时，它会试图使用在 pickle 该实例时的确切的类名称和模块名称（包括任何包的路径前缀）导入包含该类定义的模块。
+另外要注意，类定义必须出现在模块的最顶层，这意味着它们不能是嵌套的类（在其它类或函数中定义的类）。
+</p>
+
+<p>
+当 unpickle 类的实例时，通常不会再调用它们的 <span class="underline">init_() 方法。相反，Python 创建一个通用类实例，并应用已进行过 pickle 的实例属性，同时设置该实例的 _class</span> 属性，使其指向原来的类。
+</p>
+
+<p>
+对 Python 2.2 中引入的新型类进行 unpickle 的机制与原来的略有不同。虽然处理的结果实际上与对旧型类处理的结果相同，但 Python 使用 copy_reg 模块的 _reconstructor() 函数来恢复新型类的实例。
+</p>
+
+<p>
+如果希望对新型或旧型类的实例修改缺省的 pickle 行为，则可以定义特殊的类的方法 _getstate_() 和 _setstate_() ，在保存和恢复类实例的状态信息期间，Python 会调用这些方法。
+在以下几节中，我们会看到一些示例利用了这些特殊的方法。
+</p>
+
+<p>
+现在，我们看一个简单的类实例。首先，创建一个 persist.py 的 Python 模块，它包含以下新型类的定义：
+</p>
+
+<p>
+清单 11. 新型类的定义
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #c56ec3; font-weight: bold;">Foo</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, value<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.value = value
+</pre>
+</div>
+
+<p>
+现在可以 pickle Foo 实例，并看一下它的表示：
+</p>
+
+<p>
+清单 12. pickle Foo 实例
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #237fbf; font-weight: bold;">import</span> cPickle <span style="color: #237fbf; font-weight: bold;">as</span> pickle
+&gt;&gt;&gt; <span style="color: #237fbf; font-weight: bold;">from</span> Orbtech.examples.persist <span style="color: #237fbf; font-weight: bold;">import</span> Foo
+&gt;&gt;&gt; <span style="color: #adaab3;">foo</span> = Foo<span style="color: #2f96dc;">(</span><span style="color: #2aa198;">'What is a Foo?'</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">p</span> = pickle.dumps<span style="color: #2f96dc;">(</span>foo<span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #237fbf; font-weight: bold;">print</span> p
+ccopy_reg
+_reconstructor
+p1
+<span style="color: #2f96dc;">(</span>cOrbtech.examples.persist
+Foo
+p2
+c__builtin__
+<span style="color: #1f71ab;">object</span>
+p3
+NtRp4
+<span style="color: #bc6ec5;">(</span>dp5
+S<span style="color: #2aa198;">'value'</span>
+p6
+S<span style="color: #2aa198;">'What is a Foo?'</span>
+sb.
+&gt;&gt;&gt;
+</pre>
+</div>
+
+
+<p>
+可以看到这个类的名称 Foo 和全限定的模块名称 Orbtech.examples.persist 都存储在 pickle 中。如果将这个实例 pickle 成一个文件，稍后再 unpickle 它或在另一台机器上 unpickle，
+则 Python 会试图导入 Orbtech.examples.persist 模块，如果不能导入，则会抛出异常。如果重命名该类和该模块或者将该模块移到另一个目录，则也会发生类似的错误
+</p>
+
+<p>
+这里有一个 Python 发出错误消息的示例，当我们重命名 Foo 类，然后试图装入先前进行过 pickle 的 Foo 实例时会发生该错误：
+</p>
+
+<p>
+清单 13. 试图装入一个被重命名的 Foo 类的经过 pickle 的实例
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #237fbf; font-weight: bold;">import</span> cPickle <span style="color: #237fbf; font-weight: bold;">as</span> pickle
+&gt;&gt;&gt; <span style="color: #adaab3;">f</span> = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span><span style="color: #2aa198;">'temp.pkl'</span>, <span style="color: #2aa198;">'r'</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">foo</span> = pickle.load<span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>
+Traceback <span style="color: #2f96dc;">(</span>most recent call last<span style="color: #2f96dc;">)</span>:
+  File <span style="color: #2aa198;">"&lt;input&gt;"</span>, line <span style="color: #a45bad;">1</span>, <span style="color: #237fbf; font-weight: bold;">in</span> ?
+<span style="color: #c56ec3; font-weight: bold;">AttributeError</span>: <span style="color: #2aa198;">'module'</span> <span style="color: #1f71ab;">object</span> has no attribute <span style="color: #2aa198;">'Foo'</span>
+</pre>
+</div>
+
+<p>
+在重命名 persist.py 模块之后，也会发生类似的错误：
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #237fbf; font-weight: bold;">import</span> cPickle <span style="color: #237fbf; font-weight: bold;">as</span> pickle
+&gt;&gt;&gt; <span style="color: #adaab3;">f</span> = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span><span style="color: #2aa198;">'temp.pkl'</span>, <span style="color: #2aa198;">'r'</span><span style="color: #2f96dc;">)</span>
+&gt;&gt;&gt; <span style="color: #adaab3;">foo</span> = pickle.load<span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>
+Traceback <span style="color: #2f96dc;">(</span>most recent call last<span style="color: #2f96dc;">)</span>:
+  File <span style="color: #2aa198;">"&lt;input&gt;"</span>, line <span style="color: #a45bad;">1</span>, <span style="color: #237fbf; font-weight: bold;">in</span> ?
+<span style="color: #c56ec3; font-weight: bold;">ImportError</span>: No module named persist
+</pre>
+</div>
+
+<p>
+我们会在下面 模式改进这一节提供一些技术来管理这类更改，而不会破坏现有的 pickle。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-7" class="outline-3">
+<h3 id="sec-5-7"><span class="section-number-3">5.7</span> 特殊的状态方法</h3>
+<div class="outline-text-3" id="text-5-7">
+<p>
+前面提到对一些对象类型（譬如，文件对象）不能进行 pickle。处理这种不能 pickle 的对象的实例属性时可以使用特殊的方法（ _getstate_() 和 _setstate_() ）来修改类实例的状态。
+这里有一个 Foo 类的示例，我们已经对它进行了修改以处理文件对象属性：
+</p>
+
+<p>
+清单 15. 处理不能 pickle 的实例属性
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #c56ec3; font-weight: bold;">Foo</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, value, filename<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.value = value
+        <span style="color: #237fbf; font-weight: bold;">self</span>.logfile = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span>filename, <span style="color: #2aa198;">'w'</span><span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__getstate__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
+        <span style="color: #2aa198;">"""Return state values to be pickled."""</span>
+        <span style="color: #adaab3;">f</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.logfile
+        <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>.value, f.name, f.tell<span style="color: #bc6ec5;">()</span><span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__setstate__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, state<span style="color: #2f96dc;">)</span>:
+        <span style="color: #2aa198;">"""Restore state from the unpickled state values."""</span>
+        <span style="color: #237fbf; font-weight: bold;">self</span>.value, <span style="color: #adaab3;">name</span>, <span style="color: #adaab3;">position</span> = state
+        <span style="color: #adaab3;">f</span> = <span style="color: #1f71ab;">file</span><span style="color: #2f96dc;">(</span>name, <span style="color: #2aa198;">'w'</span><span style="color: #2f96dc;">)</span>
+        f.seek<span style="color: #2f96dc;">(</span>position<span style="color: #2f96dc;">)</span>
+        <span style="color: #237fbf; font-weight: bold;">self</span>.logfile = f
+</pre>
+</div>
+
+<p>
+pickle Foo 的实例时，Python 将只 pickle 当它调用该实例的 _getstate_() 方法时返回给它的值。类似的，在 unpickle 时，Python 将提供经过 unpickle 的值作为参数传递给实例的 _setstate_() 方法。
+在 _setstate_() 方法内，可以根据经过 pickle 的名称和位置信息来重建文件对象，并将该文件对象分配给这个实例的 logfile 属性。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 模式改进</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+随着时间的推移，您会发现自己必须要更改类的定义。如果已经对某个类实例进行了 pickle，而现在又需要更改这个类，则您可能要检索和更新那些实例，以便它们能在新的类定义下继续正常工作。
+而我们已经看到在对类或模块进行某些更改时，会出现一些错误。幸运的是，pickle 和 unpickle 过程提供了一些 hook，我们可以用它们来支持这种模式改进的需要。
+</p>
+
+<p>
+在这一节，我们将探讨一些方法来预测常见问题以及如何解决这些问题。由于不能 pickle 类实例代码，因此可以添加、更改和除去方法，而不会影响现有的经过 pickle 的实例。出于同样的原因，可以不必担心类的属性。
+您必须确保包含类定义的代码模块在 unpickle 环境中可用。同时还必须为这些可能导致 unpickle 问题的更改做好规划，这些更改包括：更改类名、添加或除去实例的属性以及改变类定义模块的名称或位置。
+</p>
+</div>
+
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> 类名的更改</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+要更改类名，而不破坏先前经过 pickle 的实例，请遵循以下步骤。首先，确保原来的类的定义没有被更改，以便在 unpickle 现有实例时可以找到它。不要更改原来的名称，而是在与原来类定义所在的同一个模块中，
+创建该类定义的一个副本，同时给它一个新的类名。然后使用实际的新类名来替代 NewClassName ，将以下方法添加到原来类的定义中：
+</p>
+
+<p>
+清单 16. 更改类名：添加到原来类定义的方法
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__setstate__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, state<span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">self</span>.__dict__.update<span style="color: #2f96dc;">(</span>state<span style="color: #2f96dc;">)</span>
+    <span style="color: #237fbf; font-weight: bold;">self</span>.__class__ = NewClassName
+</pre>
+</div>
+
+<p>
+当 unpickle 现有实例时，Python 将查找原来类的定义，并调用实例的 <span class="underline">setstate_() 方法，同时将给新的类定义重新分配该实例的 _class</span> 属性。一旦确定所有现有的实例都已经 unpickle、更新和重新 pickle 后，
+可以从源代码模块中除去旧的类定义。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> 属性的添加和删除</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+这些特殊的状态方法 _getstate_() 和 _setstate_() 再一次使我们能控制每个实例的状态，并使我们有机会处理实例属性中的更改。让我们看一个简单的类的定义，我们将向其添加和除去一些属性。这是是最初的定义
+</p>
+
+<p>
+清单 17. 最初的类定义
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #c56ec3; font-weight: bold;">Person</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, firstname, lastname<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.firstname = firstname
+        <span style="color: #237fbf; font-weight: bold;">self</span>.lastname = lastname
+</pre>
+</div>
+
+<p>
+假定已经创建并 pickle 了 Person 的实例，现在我们决定真的只想存储一个名称属性，而不是分别存储姓和名。这里有一种方式可以更改类的定义，它将先前经过 pickle 的实例迁移到新的定义：
+</p>
+
+<p>
+清单 18. 新的类定义
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #c56ec3; font-weight: bold;">Person</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, fullname<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">self</span>.fullname = fullname
+    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__setstate__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, state<span style="color: #2f96dc;">)</span>:
+        <span style="color: #237fbf; font-weight: bold;">if</span> <span style="color: #2aa198;">'fullname'</span> <span style="color: #237fbf; font-weight: bold;">not</span> <span style="color: #237fbf; font-weight: bold;">in</span> state:
+            <span style="color: #adaab3;">first</span> = <span style="color: #2aa198;">''</span>
+            <span style="color: #adaab3;">last</span> = <span style="color: #2aa198;">''</span>
+            <span style="color: #237fbf; font-weight: bold;">if</span> <span style="color: #2aa198;">'firstname'</span> <span style="color: #237fbf; font-weight: bold;">in</span> state:
+                <span style="color: #adaab3;">first</span> = state<span style="color: #2f96dc;">[</span><span style="color: #2aa198;">'firstname'</span><span style="color: #2f96dc;">]</span>
+                <span style="color: #237fbf; font-weight: bold;">del</span> state<span style="color: #2f96dc;">[</span><span style="color: #2aa198;">'firstname'</span><span style="color: #2f96dc;">]</span>
+            <span style="color: #237fbf; font-weight: bold;">if</span> <span style="color: #2aa198;">'lastname'</span> <span style="color: #237fbf; font-weight: bold;">in</span> state:
+                <span style="color: #adaab3;">last</span> = state<span style="color: #2f96dc;">[</span><span style="color: #2aa198;">'lastname'</span><span style="color: #2f96dc;">]</span>
+                <span style="color: #237fbf; font-weight: bold;">del</span> state<span style="color: #2f96dc;">[</span><span style="color: #2aa198;">'lastname'</span><span style="color: #2f96dc;">]</span>
+            <span style="color: #237fbf; font-weight: bold;">self</span>.fullname = <span style="color: #2aa198;">" "</span>.join<span style="color: #2f96dc;">(</span><span style="color: #bc6ec5;">[</span>first, last<span style="color: #bc6ec5;">]</span><span style="color: #2f96dc;">)</span>.strip<span style="color: #2f96dc;">()</span>
+        <span style="color: #237fbf; font-weight: bold;">self</span>.__dict__.update<span style="color: #2f96dc;">(</span>state<span style="color: #2f96dc;">)</span>
+</pre>
+</div>
+
+<p>
+在这个示例，我们添加了一个新的属性 fullname ，并除去了两个现有的属性 firstname 和 lastname 。当对先前进行过 pickle 的实例执行 unpickle 时，
+其先前进行过 pickle 的状态会作为字典传递给 _setstate_() ，它将包括 firstname 和 lastname 属性的值。接下来，将这两个值组合起来，并将它们分配给新属性 fullname 。
+在这个过程中，我们删除了状态字典中旧的属性。更新和重新 pickle 先前进行过 pickle 的所有实例之后，现在可以从类定义中除去 _setstate_() 方法。
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> 模块的修改</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+在概念上，模块的名称或位置的改变类似于类名称的改变，但处理方式却完全不同。那是因为模块的信息存储在 pickle 中，而不是通过标准的 pickle 接口就可以修改的属性。
+事实上，改变模块信息的唯一办法是对实际的 pickle 文件本身执行查找和替换操作。至于如何确切地去做，这取决于具体的操作系统和可使用的工具。很显然，在这种情况下，您会想备份您的文件，
+以免发生错误。但这种改动应该非常简单，并且对二进制 pickle 格式进行更改与对文本 pickle 格式进行更改应该一样有效。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> 结束语</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+对象持久性依赖于底层编程语言的对象序列化能力。对于 Python 对象即意味着 pickle。Python 的 pickle 为 Python 对象有效的持久性管理提供了健壮的和可靠的基础。在下面的 参考资料中，
+您将会找到有关建立在 Python pickle 能力之上的系统的信息。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 参考资料</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> 本文参考</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+<a href="http://www.ibm.com/developerworks/cn/linux/l-pypers/">http://www.ibm.com/developerworks/cn/linux/l-pypers/</a>
+</p>
+
+<p>
+<a href="http://baike.baidu.com/link?url=LPZEcwjwQMsR4KpuQmVEtvOLcJZBvZBS838r-ckC6sQH8eRfxT8c_bUJuKW2FdlWuuTwHBcXZSSle8MIy4oUt">http://baike.baidu.com/link?url=LPZEcwjwQMsR4KpuQmVEtvOLcJZBvZBS838r-ckC6sQH8eRfxT8c_bUJuKW2FdlWuuTwHBcXZSSle8MIy4oUt</a>_
+</p>
+
+<p>
+<a href="http://blog.chinaunix.net/uid-12338792-id-2945149.html">http://blog.chinaunix.net/uid-12338792-id-2945149.html</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: huihui</p>
+<p class="date">Created: 2015-12-15 二 19:55</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

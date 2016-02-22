@@ -1,0 +1,75 @@
+* 参考文章
+[[https://wiki.archlinux.org/index.php/Systemd_(简体中文)][Arch Systemd]]
+* 简介：
+systemd 是 Linux 下的一款系统和服务管理器，兼容SysV 和LSB的启动脚本。systemd 的特性有：支持并行化任务；同时采用 socket 式与 D-Bus 总线式激活服务；按需启动守护进程（daemon）；利用 Linux 的 cgroups 监视进程；支持快照和系统恢复；维护挂载点和自动挂载点；各服务间基于依赖关系进行精密控制。
+
+* systemd 基本工具
+
+systemd的基本命令是systemctl。该命令可用于查看系统状态和管理系统以及服务。详见 *man 1 systemctl* 。
+
+*NOTE:*  在 systemctl 参数中添加 -H <user>@<host> 可以实现对于其他服务器的远程控制。该过程使用 SSh 连接
+
+** systemctl基本命令介绍
+*** 输出激活的单元
+#+BEGIN_EXAMPLE
+  $ systemctl
+#+END_EXAMPLE
+命令等价与
+#+BEGIN_EXAMPLE
+  $ systemctl list-units
+#+END_EXAMPLE
+*** 输出运行失败的单元：
+#+BEGIN_EXAMPLE
+  $ systemctl --failed
+#+END_EXAMPLE
+*** 所有可用的单元文件
+所有可用的单元文件存放在 /usr/lib/systemd/system/ 和 /etc/systemd/system/ 目录（后者优先级更高）。查看所有已安装服务：
+#+BEGIN_EXAMPLE
+  $ systemctl list-unit-files
+#+END_EXAMPLE
+
+* systemd单元
+** 单元介绍
+** 单元控制
+*** 立即激活单元
+#+BEGIN_EXAMPLE
+  # systemctl start <单元>
+#+END_EXAMPLE
+*** 立即停止单元
+#+BEGIN_EXAMPLE
+  # systemctl stop <单元>
+#+END_EXAMPLE
+*** 重启单元
+#+BEGIN_EXAMPLE
+  # systemctl restart <单元>
+#+END_EXAMPLE
+*** 重新加载配置
+#+BEGIN_EXAMPLE
+  # systemctl reload <单元>
+#+END_EXAMPLE
+*** 输出单元运行状态
+#+BEGIN_EXAMPLE
+  $ systemctl status <单元>
+#+END_EXAMPLE
+*** 检查单元是否配置为自动启动：
+#+BEGIN_EXAMPLE
+  $ systemctl is-enabled <单元>
+#+END_EXAMPLE
+*** 开机自动激活单元
+#+BEGIN_EXAMPLE
+  # systemctl enable <单元>
+#+END_EXAMPLE
+*** 取消开机自动激活单元
+#+BEGIN_EXAMPLE
+  # systemctl disable <单元>
+#+END_EXAMPLE
+*** 显示单元的手册页
+手册由每个单元内部文件提供
+#+BEGIN_EXAMPLE
+  # systemctl help <单元>
+#+END_EXAMPLE
+*** 重新载入systemd
+扫描新的或着别的变动
+#+BEGIN_EXAMPLE
+  # systemctl daemon-reload
+#+END_EXAMPLE

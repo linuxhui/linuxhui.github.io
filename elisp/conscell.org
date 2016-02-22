@@ -1,0 +1,138 @@
+* 参考
+  http://c2.com/cgi/wiki?DottedPairNotation
+
+  http://cs.gmu.edu/~sean/lisp/cons/
+
+*  简介
+   Lisp 通过内部是链表来展示 list,在lisp list中的每个元素成为一个 cons cell.每一个cons cell有一个部分组成 : CAR 和CDR(发音为 "could-er"). car 指向这个节点持有的元素. CDR指向list 中下一个cons cell或者list结尾处的nil. 一个cons cell的结构:
+  
+   #+BEGIN_EXAMPLE
+         ----------------------
+         |  CAR     |   CDR   |
+         |  (first) |  (rest) |
+         |  Cell    |   Cell  |
+         ----------------------
+   #+END_EXAMPLE
+
+   cons cells的几个最主要的操作函数是: cons(分配/创建一个 cons cell), car(和 first 一样) 获取car指向的 item, cdr(和 rest一样)获取cdr指向的item.
+ 
+   我们创建一个简单的list (b):
+#+BEGIN_EXAMPLE
+  (setf x (cons 'b nil))     ;;; can also be done with (setf x '(b))
+      x:
+            --- ---
+           | * | * |-> nil
+            --- ---
+             |
+            \ / 
+             b
+
+
+#+END_EXAMPLE
+   变量 x 指向 这个list的开头也是唯一的一个cons cell. 这个list的元素只有 b,cons cell的 car指向b,  cons cell的 cdr指向 nul. 所有我们就有:
+   #+BEGIN_EXAMPLE
+        (car x )   ; res:   b
+        (cdr x )   ; res: nil
+        (car nil)  ; res: nil  (因为 nil 和 () 是一样的)
+        (cdr nil)  ; res: nil
+   #+END_EXAMPLE
+
+   当list有多个元素的时候:
+   #+BEGIN_EXAMPLE
+        (setf x (cons 'a (cons 'b nil)))     ;;; or (setf x '(a b)) or (setf x (list 'a 'b))
+
+        箱图表示:
+        x:
+            --- ---     --- ---
+           | * | * |-> | * | * |-> nil
+            --- ---     --- ---
+             |           |
+            \ /         \ /
+             a           b
+
+   #+END_EXAMPLE
+   
+   
+   遇到字列表怎么办?, 就指定 car 为这个字列表的字一个元素.例如:
+   #+BEGIN_EXAMPLE
+        (setf x '(a (r t) b))
+
+        箱图表示:
+        x:
+            --- ---     --- ---      --- ---  
+           | * | * |-> | * | * |->  | * | * | -> nil
+            --- ---     --- ---      --- --- 
+             |           |            |
+            \ /          |           \ /
+             a           |            b
+                        \ /
+                      --- ---      --- ---
+                     | * | * |->  | * | * | -> nil
+                      --- ---      --- --- 
+                         |            |
+                        \ /          \ / 
+                         r            t
+        
+   #+END_EXAMPLE
+
+   两个list合并呢:
+   #+BEGIN_EXAMPLE
+        (setf x '(a b))
+        (setf y (cons d x))     ;;; y should now be '(d a b)
+   #+END_EXAMPLE
+
+   注意: x的list并没有被改变,我们仅仅是在设置 y的时候通过在d后面增加元素共享了一下它.
+   你可以更改cons cells 通过不同的修改操作(比如不好的 rplaca 和 rplacd),但是做这件事最好的方式是通过 setf . 因为 setf 可以获取异常
+   和 属性,并在属性将异常打印出来, 他是通过温和的修改 cons cells. 例如, 我们想更改x list的第一个item指到'(r t)
+
+   #+BEGIN_EXAMPLE
+        (setf (first x) '(r t))     ;;; or (setf (car x) '(r t))
+   #+END_EXAMPLE
+   
+   注意: x现在为 ((r t) b).但是y也改变因为 它共享了 这个list, 现在y是(d (r t) b). 你需要注意这种操作具有副作用.
+
+   当你的cdr不指向其他的 cons cell ,而指向了别的,例如指向说指向了 c
+  
+   (cons 'b  'c) ;;; WHOA, c is not a list! Also: (setf (rest '(b)) c)
+
+   这被称为一个 dooted pair.  名字是因为 它的打印表示为:
+   -------->  (b . c)
+   
+   在dot(点) 之后的item是这个list最后的一个cdr所指向的,但是不为 nil. 你执行 (cdr (cons 'b 'c))你将得到 c. 
+   你也可以制作尾部为 dotted pair的 更长的 list: '(a b . c)
+   
+   仔细思考, dotted pair 唯一能出现的地方也就只有一个list的最后.所以这个地方只能是一个 atom.
+
+   最后你可以可以使用 setf 对于 cons cell做一些有趣 的装填.例如:
+   #+BEGIN_EXAMPLE
+        (setf x '(b))
+        (setf (rest x) x)
+   #+END_EXAMPLE
+   
+   我们就创建了一个环状list.
+
+
+* dotted pair 标识
+
+  在 lisp语言中, lisp的表示法为用括号作为分割 con cell的方式,所以 一个 cons cell 它的 car为 A, 他的CDR为B的表示方法为:
+  (A . B).
+  如果car为A,同时cdr 指向一个 car为B,cdr为nil的第二个con cell的表示为:
+  (A . (B . nil))
+  
+  可读性简写为: (A B)
+
+** 新的问题: 我为什么不可以 写成这样(. A B)
+   一个原因是因为
+   
+ 
+
+  
+
+
+
+
+   
+
+
+
+

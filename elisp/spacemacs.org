@@ -1,0 +1,10 @@
+* ana
+** 安装方式
+   
+** 错误
+
+*** pip
+    #+BEGIN_EXAMPLE
+      [1;31mImportError[0m: No module named 'pip'
+      [TerminalIPythonApp] WARNING | File not found: 'anaconda_mode.py'
+    #+END_EXAMPLE

@@ -1,0 +1,42 @@
+*  新建项目报错
+#+BEGIN_EXAMPLE
+  [root@wsh ~]# scrapy 
+  Traceback (most recent call last):
+    File "/usr/bin/scrapy", line 9, in <module>
+      load_entry_point('Scrapy==0.24.6', 'console_scripts', 'scrapy')()
+    File "/usr/lib/python3.4/site-packages/pkg_resources/__init__.py", line 552, in load_entry_point
+      return get_distribution(dist).load_entry_point(group, name)
+    File "/usr/lib/python3.4/site-packages/pkg_resources/__init__.py", line 2672, in load_entry_point
+      return ep.load()
+    File "/usr/lib/python3.4/site-packages/pkg_resources/__init__.py", line 2345, in load
+      return self.resolve()
+    File "/usr/lib/python3.4/site-packages/pkg_resources/__init__.py", line 2351, in resolve
+      module = __import__(self.module_name, fromlist=['__name__'], level=0)
+    File "/usr/lib/python3.4/site-packages/Scrapy-0.24.6-py3.4.egg/scrapy/__init__.py", line 28, in <module>
+      import _monkeypatches
+  ImportError: No module named '_monkeypatches'
+#+END_EXAMPLE
+报错说是缺少_monkeypatches模块,但是这个模块却没有,仔细看看,scrapy用的是python3的解释器,但查资料发现scrapy只支持2.7以后的版本,所以将
+
+/usr/local/bin/scrapy命令的第一行的解释器换成python2就解决了!
+
+第一行:#!/usr/bin/python3
+
+改为:#!/usr/bin/python2即可!
+更深层次，查看自己的pip和easy_install的版本
+* Scrapy 'module' object has no attribute 'Spider'错误
+在“Scrapy入门教程”中，在创建的“dmoz_spider.py”文件中是通过
+
+import scrapy
+
+class DmozSpider(scrapy.Spider):
+的方式导入。但是用这种方法会出现错误：
+
+    class DmozSpider(scrapy.Spider):
+AttributeError: 'module' object has no attribute 'Spider'
+
+需要换一种方式导入
+
+from scrapy.spider import Spider
+
+class DmozSpider(Spider):

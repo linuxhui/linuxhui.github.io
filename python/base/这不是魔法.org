@@ -1,0 +1,441 @@
+* 前言
+在Flask主页中，第一个例子就是利用了app.route()这个装饰器
+#+BEGIN_SRC python
+  app = Flask(__name__)
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+#+END_SRC
+
+* 装饰器
+装饰器是一种接受函数，并返回一个新的函数。
+
+当你装饰一个函数的时候，意味着你告诉Python调用的是那个由你的装饰器返回的新函数，而不仅仅是直接返回原函数的执行结果。
+
+#+BEGIN_SRC python
+  # This is our decorator
+  def simple_decorator(f):
+      # This is the new function we're going to return
+      # This function will be used in place of our original definition
+      def wrapper():
+          print "Entering Function"
+          f()
+          print "Exited Function"
+   
+      return wrapper
+   
+  @simple_decorator 
+  def hello():
+      print "Hello World"
+   
+  hello()
+
+#+END_SRC 
+
+执行结果：
+#+BEGIN_EXAMPLE
+  Entering Function
+  Hello World
+  Exited Function
+#+END_EXAMPLE
+
+但是这个装饰器和"app.route()"不同的一点就是这个装饰器不能接受参数，但是"app.route()"却可以。
+
+
+那么我们怎样才能给我们的装饰器传参数？要实现这个我们只需创建一个“decorator_factory”函数，我们调用这个函数，返回适用于我们函数的装饰器。现在看看如果实现它。
+
+#+BEGIN_SRC python
+  def decorator_factory(enter_message, exit_message):
+      # We're going to return this decorator
+      def simple_decorator(f):
+          def wrapper():
+              print enter_message
+              f()
+              print exit_message
+   
+          return wrapper
+   
+      return simple_decorator
+   
+  @decorator_factory("Start", "End")
+  def hello():
+      print "Hello World"
+   
+  hello()
+#+END_SRC
+
+输出结果：
+#+BEGIN_EXAMPLE
+  Start
+  Hello World
+  End
+#+END_EXAMPLE
+
+* 将 app 放进app.route
+现在我们掌握了装饰器怎样工作的全部前置知识 ，可以重新实现Flask API的这个部分了，那么把我们的目光转移到“app”在我们Flask应用中的重要地位上面来。
+
+
+在开始解释Flask对象里面发生了什么之前，我们先创建我们自己的Python类NotFlask。
+
+#+BEGIN_SRC python
+  class NotFlask():
+      pass
+   
+  app = NotFlask()
+#+END_SRC
+
+这不是个很有趣的类，不过有一样值得注意，就是这个类的方法也可以被用作装饰器，所以让我们把这个类写得更有趣一点，加一个称作 route的方法，它是一个简单的装饰器工厂。
+
+#+BEGIN_SRC python
+  class NotFlask():
+      def route(self, route_str):
+          def decorator(f):
+              return f
+   
+          return decorator
+   
+  app = NotFlask()
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+#+END_SRC
+
+这个装饰器和我们之前创建的那些最大的不同，在于我们不想修改被我们装饰的函数的行为，我们只是想获得它的引用。
+
+所以，最后一步是我们打算去利用一个特性，就是用装饰器函数的副产品去保存一个提供给我们的路径之间的链接，装饰器函数应该与它关联起来。
+
+为了实现这个，我们给我们的NotFlask对象加一个“routes”字典，当我们的“decorator”函数被调用，路径将被插入新字典中函数对应的位置。
+
+#+BEGIN_SRC python
+  class NotFlask():
+      def __init__(self):
+          self.routes = {}
+   
+      def route(self, route_str):
+          def decorator(f):
+              self.routes[route_str] = f
+              return f
+   
+          return decorator
+   
+  app = NotFlask()
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+#+END_SRC
+
+
+现在我们就要完成了！可如果没法访问内部的视图函数，保存路径的字典又有什么用？让我们加入一个方法serve(path)，当给定的路径存在时运行一个函数并给们我结果，当路径尚未注册时则抛出一个异常。
+
+#+BEGIN_SRC python
+  class NotFlask():
+      def __init__(self):
+          self.routes = {}
+   
+      def route(self, route_str):
+          def decorator(f):
+              self.routes[route_str] = f
+              return f
+   
+          return decorator
+   
+      def serve(self, path):
+          view_function = self.routes.get(path)
+          if view_function:
+              return view_function()
+          else:
+              raise ValueError('Route "{}"" has not been registered'.format(path))
+   
+  app = NotFlask()
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+#+END_SRC
+
+在这个系列我们只关注重现那些热门库提供的友好API，所以钩挂“serve”方法实现一个HTTP服务器其实有一点超出本文的范围，当然结果是确定的，运行下述片段：
+
+#+BEGIN_EXAMPLE
+  app = NotFlask()
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+   
+  print app.serve("/")
+#+END_EXAMPLE
+
+我们会看到：
+#+BEGIN_EXAMPLE
+  Hello World!
+#+END_EXAMPLE
+
+
+我们已经完成了一个的Flask网页上第一个例子的非常简单的重现，让我们写一些快速测试检测我们简单重现的Flask的“@app.route()”是否正确。
+#+BEGIN_SRC python
+  class TestNotFlask(unittest.TestCase):
+      def setUp(self):
+          self.app = NotFlask()
+   
+      def test_valid_route(self):
+          @self.app.route('/')
+          def index():
+              return 'Hello World'
+   
+          self.assertEqual(self.app.serve('/'), 'Hello World')
+   
+      def test_invalid_route(self):
+          with self.assertRaises(ValueError):
+              self.app.serve('/invalid')
+#+END_SRC
+
+* 以正则的形式表达我们的路径
+现在我们将允许我们的URL动态变化，我们不再能够将用先前使用“@app.route()”注册的路径直接与路径实例比较。
+
+我们将用什么替代？我们需要用上正则表达式，这样我们就可以将路径作为一种模式进行匹配，而不和一条固定的字符串比较了。
+
+那么，我们的第一步是将我们的路径转化成正则表达式模式，这样我们就能在输入路径实例时进行匹配。我们也将使用这个正则表达式提取我们感兴趣的变量。
+
+那么，匹配路径”/hello/”的正则表达式该长啥样呢？
+
+嗯一个简单的正则表达式譬如“^/hello/(.+)$”将是个好的开始，让我们一起看看它和代码是怎么一起工作的：
+
+#+BEGIN_EXAMPLE
+  import re
+   
+  route_regex = re.compile(r"^/hello/(.+)$")
+  match = route_regex.match("/hello/ains")
+   
+  print match.groups()
+#+END_EXAMPLE
+
+将会输出：
+#+BEGIN_EXAMPLE
+  ('ains',)
+#+END_EXAMPLE
+
+不错，不过，理想情况是我们想要维护我们已经匹配上的第一组链接，并且从路径“/hello/”识别出“username”。
+
+* 命名捕获组
+幸运的是，正则表达式也支持命名捕获组，允许我们给匹配组分配一个名字，我们能在读取我们的匹配之后找回它。
+
+我们可以使用下述符号，给出第一个例子识别“username”的捕获组。
+
+#+BEGIN_SRC python
+  /hello/(<?P<username>.+)"
+#+END_SRC
+
+然后我们可以对我们的正则表达式使用groupdict()方法，将所有捕获组当作一个字典，组的名字对应匹配上的值。
+
+那么我们给出下述代码：
+
+#+BEGIN_SRC python
+  route_regex = re.compile(r'^/hello/(?P<username>.+)$')
+  match = route_regex.match("/hello/ains")
+   
+  print match.groupdict()
+#+END_SRC
+
+将为我们输出一下字典：
+#+BEGIN_EXAMPLE
+  {'username': 'ains'}
+#+END_EXAMPLE
+
+现在，有了我们所需要的正则表达式的格式，以及如何使用它们去匹配输入的URLs的知识，最后剩下的是写一个方法，将我们声明的路径转换成它们等价的正则表达式模式。
+
+要做这个我们将使用另一个正则表达式（接下来将全是正则表达式），为了让我们路径中的变量转换成正则表示式模式，那这里作为示范我们将将“”转换成“(?P.+)”。
+
+听起来太简单了！我们将可以只用一行新代码实现它。
+
+#+BEGIN_SRC python
+  def build_route_pattern(route):
+      route_regex = re.sub(r'(<\w+>)', r'(?P\1.+)', route)
+      return re.compile("^{}$".format(route_regex))
+   
+  print build_route_pattern('/hello/<username>')
+#+END_SRC
+
+这里我们用一个正则表达式代表所有出现的模式（一个包含在尖括号中的字符串），与它的正则表达式命名组等价。
+
+re.sub的第一个参数 我们将我们的模式放进括号，目的是把它分配到第一个匹配组。在我们的第二个参数，我们可以使用第一匹配组的内容，方法是写1（2将是第二匹配组的内容，以此类推…….）
+
+那么最后，输入模式
+
+#+BEGIN_SRC python
+  /hello/<username>
+#+END_SRC
+
+将给我们正则表达式：
+#+BEGIN_SRC python
+  ^/hello/(?P<username>.+)$
+#+END_SRC
+
+* 推陈出新
+让我们扫一眼上次我们写的简单NotFlask类。
+#+BEGIN_SRC python
+  class NotFlask():
+      def __init__(self):
+          self.routes = {}
+   
+      def route(self, route_str):
+          def decorator(f):
+              self.routes[route_str] = f
+              return f
+   
+          return decorator
+   
+      def serve(self, path):
+          view_function = self.routes.get(path)
+          if view_function:
+              return view_function()
+          else:
+              raise ValueError('Route "{}"" has not been registered'.format(path))
+   
+  app = NotFlask()
+   
+  @app.route("/")
+  def hello():
+      return "Hello World!"
+#+END_SRC
+
+现在我们有一个新的改进方法用来匹配输入的路径，我们打算移除我们上一个版本实现时用到的原生字典。
+
+让我们从改造我们的函数着手，以便于添加路径，这样我们就可以用(pattern, view_function)对列表代替字典保存我们的路径。
+
+这意味着当一个程序员使用@app.route()装饰一个函数，我们将要尝试将他们的路径编译变成一个正则表达式，然后存储它，属于一个在我们新的路径列表里的装饰函数。
+
+让我们看看实现代码：
+
+#+BEGIN_SRC python
+  class NotFlask():
+      def __init__(self):
+          self.routes = []
+   
+      # Here's our build_route_pattern we made earlier
+      @staticmethod
+      def build_route_pattern(route):
+          route_regex = re.sub(r'(<\w+>)', r'(?P\1.+)', route)
+          return re.compile("^{}$".format(route_regex))
+   
+      def route(self, route_str):
+          def decorator(f):
+              # Instead of inserting into a dictionary,
+              # We'll append the tuple to our route list
+              route_pattern = self.build_route_pattern(route_str)
+              self.routes.append((route_pattern, f))
+   
+              return f
+   
+          return decorator
+#+END_SRC
+
+我们也打算需要一个get_route_match方法，给它一个路径实例，将会尝试并找到一个匹配的view_function，或者返回None如果一个也找不到的话。
+
+然而，如果找了到匹配的话，除了view_function之外，我们还需要返回一个东西，那就是我们包含之前捕获匹配组的字典，我们需要它来为视图函数传递正确的参数。
+
+好了我们的get_route_match大概就长这样：
+
+#+BEGIN_EXAMPLE
+  def get_route_match(path):
+      for route_pattern, view_function in self.routes:
+          m = route_pattern.match(path)
+          if m:
+             return m.groupdict(), view_function
+   
+      return None
+#+END_EXAMPLE
+
+现在我们快要完成了，最后一步将是找出调用view_function的方法，使用来自正则表达式匹配组字典的正确参数。
+
+调用一个函数的若干种方法
+
+让我们回顾一下不同的方法调用一个python的函数。
+
+比如像这样：
+
+#+BEGIN_SRC python
+  def hello_user(username):
+      return "Hello {}!".format(username)
+#+END_SRC
+
+最简单的（也许正是你所熟知的）办法是使用正则参数，在这里参数的顺序匹配我们定义的那些函数的顺序。
+
+#+BEGIN_EXAMPLE
+  >>> hello_user("ains")
+  Hello ains!
+#+END_EXAMPLE
+
+另一种方法调用一个函数是使用关键词参数。关键词参数可以通过任何顺序指定，适合有许多可选参数的函数。
+#+BEGIN_EXAMPLE
+  >>> hello_user(username="ains")
+  Hello ains!
+#+END_EXAMPLE
+
+
+在Python中最后一种调用一个函数的方法是使用关键词参数字典，字典中的关键词对应参数名称。我们告诉Python解包一个字典，并通过使用两个星号“**”来把它当作函数的关键词参数。 下面的代码段与上面的代码段完全一样，现在我们使用字典参数，我们可以在运行时动态创建它。
+
+#+BEGIN_EXAMPLE
+>>> kwargs = {"username": "ains"}
+>>> hello_user(**kwargs)
+Hello ains!
+#+END_EXAMPLE
+
+好了，还记得上面的groupdict()方法？就是那个同样的在正则表达式完成匹配后返回{“username”: “ains”}的家伙？那么现在我们了解了kwargs，我们能很容易向我们的view_function传递字典匹配，完成NotFlask!
+
+那么让我们把这些都塞进我们最终的类中。
+#+BEGIN_SRC python
+  class NotFlask():
+      def __init__(self):
+          self.routes = []
+   
+      @staticmethod
+      def build_route_pattern(route):
+          route_regex = re.sub(r'(<\w+>)', r'(?P\1.+)', route)
+          return re.compile("^{}$".format(route_regex))
+   
+      def route(self, route_str):
+          def decorator(f):
+              route_pattern = self.build_route_pattern(route_str)
+              self.routes.append((route_pattern, f))
+   
+              return f
+   
+          return decorator
+   
+      def get_route_match(self, path):
+          for route_pattern, view_function in self.routes:
+              m = route_pattern.match(path)
+              if m:
+                  return m.groupdict(), view_function
+   
+          return None
+   
+      def serve(self, path):
+          route_match = self.get_route_match(path)
+          if route_match:
+              kwargs, view_function = route_match
+              return view_function(**kwargs)
+          else:
+              raise ValueError('Route "{}"" has not been registered'.format(path))
+#+END_SRC
+
+接下来,就是见证奇迹的时刻，请看下面代码段:
+
+#+BEGIN_SRC python
+  app = NotFlask()
+   
+  @app.route("/hello/<username>")
+  def hello_user(username):
+      return "Hello {}!".format(username)
+   
+  print app.serve("/hello/ains")
+#+END_SRC
+
+我们将得到输出：
+#+BEGIN_EXAMPLE
+  Hello ains!
+#+END_EXAMPLE
+

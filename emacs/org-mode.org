@@ -1,0 +1,60 @@
+* Todo items
+常用命令
+
+| C-c C-t         | TODO 状态切换 (unmarked -> TODO -> DONE)                       |
+| C-u C-c C-t     | 选择一个TODO的 key                                             |
+| S-right/ S-left | Select the following/preceding TODO state, similar to cycling. |
+| S-M-RET         | 在当前heading后，插入一个TODO  entry                                    |
+
+* 扩展TODO 关键字
+** Todo 作为工作流状态
+#+BEGIN_SRC elisp
+  (setq org-todo-keywords
+        '((sequence "TODO" "FEEDBACK" "VERIFY" "|" "DONE" "DELEGATED")))
+#+END_SRC
+** Todo 关键字 作为类型，
+#+BEGIN_EXAMPLE
+  (setq org-todo-keywords '((type "Fred" "Sara" "Lucy" "|" "DONE")))
+#+END_EXAMPLE
+** 在一个文件中，设置多个关键字
+#+BEGIN_SRC elisp
+  (setq org-todo-keywords
+        '((sequence "TODO" "|" "DONE")
+          (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")
+          (sequence "|" "CANCELED")))
+#+END_SRC
+** 快速的访问TODO 状态
+#+BEGIN_SRC elisp
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "|" "DONE(d)")
+          (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
+          (sequence "|" "CANCELED(c)")))
+#+END_SRC
+** local TODO 关键字
+在文件的开头使用如下表示：
+#+BEGIN_SRC elisp
+  #+TODO: TODO | DONE
+  #+TODO: REPORT BUG KNOWNCAUSE | FIXED
+  #+TODO: | CANCELED
+#+END_SRC
+** Todo关键的表示
+在org mode会高亮 TODO 关键字： 显示任务仍然进行 和任务已经完成。如果你想使用TODO 来表示更多的状态，比如：
+逆向区分 DONE 和 CANCEL：
+你可以使用如下：
+#+BEGIN_SRC elisp 
+  (setq org-todo-keyword-faces
+        '(("TODO" . org-warning) ("STARTED" . "yellow")
+          ("CANCELED" . (:foreground "blue" :weight bold))))
+#+END_SRC
+** Todo 依赖
+* Tags   
+
+
+
+
+
+
+
+
+
+

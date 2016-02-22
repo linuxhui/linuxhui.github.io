@@ -1,0 +1,31 @@
+#+TITLE: elisp-tips
+#+AUTHOR: lujun9972
+#+CATEGORY: emacs
+#+DATE: [2015-09-12 六 07:18]
+#+OPTIONS: ^:{}
+
+* button
+** 如何更改button label
+一个button其实就是一个overlay,通过修改button-start到button-end之间的文字即可更改button label. 
+#+BEGIN_SRC emacs-lisp
+  (defun set-button-label (btn label)
+    ""
+    (replace-regexp ".+" label nil (button-start btn) (button-end btn)))
+#+END_SRC
+* navigate
+** 使用宏`easy-mmode-define-navigation'可以快速生成导航命令
+(easy-mmode-define-navigation BASE RE &optional NAME ENDFUN NARROWFUN &rest BODY)
+
+该宏生成`BASE-next'和`BASE-prev'两个导航命令.
+
+参数RE为正则表达式,决定了导航的位置.
+
+其他参数详细说明,参见该宏的doc-string
+* directory-variables
+** 如何将directory-local variables应用到non-file buffer中
+使用函数`hack-dir-local-variables-non-file-buffer'可以将`default-directory'目录及其父目录的directory-local variable应用到当前的non file buffer中.
+* cl
+** 使用cl-check-type可以方便地对参数类型作检查
+(cl-check-type FORM TYPE &optional STRING)
+
+校验FORM的值是否为TYPE类型,若不是则抛出error,以STRING为error的描述.

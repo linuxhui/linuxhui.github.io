@@ -38,7 +38,7 @@
    #+END_EXAMPLE
 4. 安装一些基础软件
    #+BEGIN_EXAMPLE
-     sh-4.3# pacman -S openssh vim grub net-tools
+     sh-4.3# pacman -S openssh vim grub net-tools wget 
    #+END_EXAMPLE
 5. 配置字符集
    保留自己需要的字符集，一般是us.UTF-8 zh-CN.UTF-8 zh-CN.GBK zh-CN.GBK2312
@@ -163,13 +163,16 @@
   2. 谷歌浏览器
      pacman -S chromium
   3. 视频播放器，smplayer
-     pacman -S smplayer
+     pacman -S vlc
   4. 音乐播放器
      pacman -S deadbeef
   5. 安装常用网络工具
      pacman -S net-tools dnsutils inetutils iproute2 nmap tcpdump
   6. adobe-flash
-     pacman -S flashplugin 
+     pacman -S flashplugin
+
+  7. 抓图工具
+     pacman -S shutter
 #+END_EXAMPLE
 
 ** 声卡安装
@@ -183,7 +186,7 @@ fcitx是一个很优秀的输入法，但是根据archlinux的wiki上面安装�
 参考网址：[[https://wiki.archlinux.org/index.php/Fcitx_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29][Fcitx(archlinux)]]
 *** 安装
 #+BEGIN_EXAMPLE
-  $> pacman -S fcitx fcitx-sunpinyin fcitx-qtfcitx-im fcitx-configtool
+  $> pacman -S fcitx fcitx-sunpinyin fcitx-qt fcitx-im fcitx-configtool
 #+END_EXAMPLE
 *** 配置
 1. im和环境配置
@@ -237,3 +240,6 @@ fcitx是一个很优秀的输入法，但是根据archlinux的wiki上面安装�
 #+BEGIN_EXAMPLE
   systemctl enable dhcpcd
 #+END_EXAMPLE
+*  blackarch安装
+
+

@@ -1,0 +1,17 @@
+
+* 安装 
+#+BEGIN_SRC shell
+  pacman -S virtualbox  virtualbox-host-modules virtualbox-guest-utils  virtualbox-ext-vnc
+#+END_SRC
+
+* 模块加载
+创建一个文件 */etc/modules-load.d/virtualbox.conf* ,增加如下内容：
+#+BEGIN_EXAMPLE
+  vboxdrv
+  vboxnetadp
+  vboxpci
+  vboxnetflt
+#+END_EXAMPLE
+
+* 更多查看 
+[[https://wiki.archlinux.org/index.php/VirtualBox][archlinux wiki---virtualbox]]

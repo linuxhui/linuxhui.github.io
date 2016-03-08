@@ -1,0 +1,56 @@
+
+*  安装
+#+BEGIN_EXAMPLE
+  pacman -S slim  archlinux-themes-slim  slim-themes
+#+END_EXAMPLE
+
+* 单用户环境
+要将 SLim 配置为某个特定的环境， 只需要在 [[file:~/.xinitrc]] 下增加
+#+BEGIN_SRC shell
+  #!/bin/sh
+
+  #
+  # ~/.xinitrc
+  #
+  # Executed by startx (run your window manager from here)
+  #
+
+  exec [session-command]
+#+END_SRC
+
+[session-command] 可以是如下的 回话命令， 例如：
+#+BEGIN_EXAMPLE
+  exec awesome
+  exec dwm
+  exec startfluxbox
+  exec fvwm2
+  exec gnome-session
+  exec openbox-session
+  exec startkde
+  exec startlxde
+  exec startxfce4
+  exec enlightenment_start
+#+END_EXAMPLE
+
+如果你的桌面环境不存在于上述列表中，请参考你的文档。
+Remember to make ~/.xinitrc executable: 
+#+BEGIN_EXAMPLE
+  chmod +x ~/.xinitrc
+#+END_EXAMPLE
+
+* 主题
+可以在 [[file:/usr/share/slim/themes]] 中查看已经安装好的主题。
+
+可以编辑 [[file:/etc/slim.conf]] 中的 *current_theme* 参数，进行更改
+#+BEGIN_EXAMPLE
+  #current_theme       default
+  current_theme       archlinux-simplyblack
+#+END_EXAMPLE
+
+预览注意可以使用命令
+#+BEGIN_EXAMPLE
+  $ slim -p /usr/share/slim/themes/<theme name>
+#+END_EXAMPLE
+
+
+

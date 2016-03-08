@@ -1,0 +1,120 @@
+
+
+* 介绍 
+每次安装完 archlinux的时候，电脑总是没有声音。
+特此写/抄下此文章。
+
+
+* 安装
+#+BEGIN_SRC shell
+  pacman -S  alsa-utils
+#+END_SRC
+
+* 解除各声道的静音
+目前版本的 *ALSA* 安装之后，所有的声道默认是静音的。必须手动解除。
+
+可以使用如下命令：
+方案1 
+#+BEGIN_EXAMPLE
+   $  alsamixer
+#+END_EXAMPLE
+
+
+如果第一种没有生效，可以使用第二种方案：
+#+BEGIN_EXAMPLE
+  $ amixer sset Master unmute
+#+END_EXAMPLE
+
+
+
+* 问题的分析
+但是第二种方案还是没有声音。并且报错：
+#+BEGIN_EXAMPLE
+  amixer: Unable to find simple control 'Master',0
+
+#+END_EXAMPLE
+
+这个表示没有设置，或者找不到设备
+
+** 查看是否有设备
+用命令获取声卡的声卡ID 和设备ID
+#+BEGIN_EXAMPLE
+  # huihui at wsh in ~/git/ansible/src/shell on git:master x [18:21:59]
+  $ aplay -l
+  ,**** List of PLAYBACK Hardware Devices ****
+  card 0: HDMI [HDA Intel HDMI], device 3: HDMI 0 [HDMI 0]
+    Subdevices: 1/1
+    Subdevice #0: subdevice #0
+  card 0: HDMI [HDA Intel HDMI], device 7: HDMI 1 [HDMI 1]
+    Subdevices: 1/1
+    Subdevice #0: subdevice #0
+  card 0: HDMI [HDA Intel HDMI], device 8: HDMI 2 [HDMI 2]
+    Subdevices: 1/1
+    Subdevice #0: subdevice #0
+  card 1: PCH [HDA Intel PCH], device 0: ALC892 Analog [ALC892 Analog]
+    Subdevices: 1/1
+    Subdevice #0: subdevice #0
+  card 1: PCH [HDA Intel PCH], device 1: ALC892 Digital [ALC892 Digital]
+    Subdevices: 1/1
+    Subdevice #0: subdevice #0
+
+#+END_EXAMPLE
+
+这个表明声卡的驱动是ok。
+
+** 在amixer中配置音频
+#+BEGIN_EXAMPLE
+  scontrols " show all mixer simple controls
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+  $ amixer scontrols
+  Simple mixer control 'IEC958',0
+  Simple mixer control 'IEC958',1
+  Simple mixer control 'IEC958',2
+
+#+END_EXAMPLE
+
+没有 "Master" ,这种情况是默认声卡不对
+
+#+BEGIN_EXAMPLE
+  -c,--card N " select the card
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+  $ amixer -c 1 scontrols
+  Simple mixer control 'Master',0
+  Simple mixer control 'Headphone',0
+  Simple mixer control 'Speaker',0
+  Simple mixer control 'PCM',0
+  Simple mixer control 'Mic',0
+  Simple mixer control 'Mic Boost',0
+  Simple mixer control 'IEC958',0
+  Simple mixer control 'IEC958 Default PCM',0
+#+END_EXAMPLE
+
+** 配置默认声卡
+问题就出现在默认声卡不对，解决问题的办法就是修改默认声卡。
+
+在刚才 aplay -l 里面选择声卡1,设备ID为0的声卡
+
+把下列配置添加到系统级别的 /etc/asound.conf 或用户级别的 ~/.asoundrc 
+文件。如果文件不存在，可以手动创建。其中的各个ID，请根据实际情况调整：
+
+#+BEGIN_EXAMPLE
+  defaults.pcm.card 1
+  defaults.pcm.device 0
+  defaults.ctl.card 1
+#+END_EXAMPLE
+
+pcm选项决定用来播放音频的设备，而ctl选项决定那个声卡能够由控制工具（如 alsamixer）使用。
+
+上述配置在重启音频程序（如 mplayer）后立即生效。
+
+
+
+
+* 完全参考
+1. https://segmentfault.com/a/1190000002918394
+2. https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#.E5.8F.96.E6.B6.88.E9.80.9A.E9.81.93.E9.9D.99.E9.9F.B3
+

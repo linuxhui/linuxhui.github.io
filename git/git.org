@@ -2,7 +2,7 @@
 ** 在GITHUB 上增加 SSH key
 详细见写得一篇关于ssh的文章。
 #+BEGIN_SRC shell
-  > ssh-keyten -c "872807604@qq.com"
+  > ssh-keygen -C "872807604@qq.com"
 #+END_SRC
 ** 测试SSH key 
 #+BEGIN_SRC shell
@@ -26,6 +26,11 @@
   $ git push -u origin master
 #+END_SRC
 
+** 克隆一个仓库
+   #+BEGIN_EXAMPLE
+      $ git clone https://github.com/linuxhui/net-tool.git
+      $ git clone origin git@github.com:linuxhui/net-tool.git
+   #+END_EXAMPLE
 ** 删除仓库
 #+BEGIN_EXAMPLE
    Account Settings -->  Repositories -->  左边的 Settings —> 最下面 有一个 Delete this Repositories

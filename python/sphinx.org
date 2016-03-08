@@ -1,0 +1,82 @@
+#+TITLE: 如何用Sphinx 只做出精美的文档
+
+* 简介
+Sphinx 是一种工具，它允许开发人员以纯文本格式编写文档，以便采用满足不同需求的格式轻松生成输出。这在使用 Version Control System 追踪变更时非常有用。
+纯文本文档对不同系统之间的协作者也非常有用。纯文本是当前可以采用的最便捷的格式之一。
+
+虽然 Sphinx 是用 Python 编写的，并且最初是为 Python 语言文档而创建，但它并不一定是以语言为中心，在某些情况下，甚至不是以程序员为中心。
+Sphinx 有许多用处，比如可以用它来编写整本书！突出显示。
+
+默认情况下，Sphinx 会为 Python 突出显示代码，但它还允许定义其他编程语言，比如 C 和 Ruby。
+
+可以将 Sphinx 想像成为一种文档框架：它会抽象化比较单调的部分，并提供自动函数来解决一些常见问题，比如突出显示标题索引和特殊代码
+（在显示代码示例时），以及突出显示适当的语法。
+
+* 要求
+python环境
+#+BEGIN_SRC shell
+  [huihui@wsh work]$ python -V
+  Python 2.7.8
+#+END_SRC
+
+
+* 语法
+SPhinx 使用 reStructuredText 标记语法来提供文档控制。 
+
+
+* 安装和配置
+** 安装Sphinx
+安装是通过命令行进行的， 非常简单明了。
+#+BEGIN_EXAMPLE
+  $ easy_install sphinx
+  Searching for sphinx
+  Reading http://pypi.python.org/simple/sphinx/
+  Reading http://sphinx.pocoo.org/
+  Best match: Sphinx 1.0.5
+  Downloading http://pypi.python.org/packages/[...]
+  Processing Sphinx-1.0.5-py2.5.egg
+  [...]
+  Finished processing dependencies for sphinx
+#+END_EXAMPLE
+
+** 执行Sphinx-quickstart
+#+BEGIN_SRC shell 
+  $ sphinx-quickstart 
+  Welcome to the Sphinx 1.0.5 quickstart utility.
+
+  Please enter values for the following settings (just press Enter to
+  accept a default value, if one is given in brackets).
+  [...]
+#+END_SRC
+
+我选择 “My Project" 作为项目名称， 改名字会被多次引用，你可以随便选择不同的名称。
+运行 sphinx-quickstart 命令后， 在工作目录下会出现类似下面的文件
+#+BEGIN_EXAMPLE
+  .
+  ├── build
+  ├── make.bat
+  ├── Makefile
+  └── source
+      ├── conf.py
+      ├── index.rst
+      ├── _static
+      └── _templates
+#+END_EXAMPLE
+
+
+我们来研究一下每个文件
++ Makefile: 编译过代码的开发人员应该非常熟悉这个文件，那么可以将它看作是一个包含指令的文件，在使用 make 命令时，可以使用这些指令来构建文档输出。
+
++ _build: 这个是触发特定输出后来存放所生成的文件的目录。
+
++ _static: 所有不属于源代码（如图像）一部分的文件均存放于此处，稍后会在构建目录中将它们链接在一起。
+
++ conf.py：这是一个 Python 文件，用于存放 Sphinx 的配置值，包括在终端执行 sphinx-quickstart 时选中的那些值。
+
++ index.rst：文档项目的 root 目录。如果将文档划分为其他文件，该目录会连接这些文件。
+
+
+
+
+
+

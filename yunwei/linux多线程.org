@@ -1,0 +1,48 @@
+
+* shell的多线程实现
+#+BEGIN_EXAMPLE
+  while read line
+  do
+  {
+   [...]
+  } &
+
+  done < $file1
+#+END_EXAMPLE
+
+ 但是有个问题, 如果进程太多就会报错，所以需要做一下限制
+ #+BEGIN_SRC shell 
+   #!/bin/bash
+   #允许的进程数
+   THREAD_NUM=200
+
+
+   #定义描述符为9的管道
+   mkfifo tmp
+   exec 9<>tmp
+   #预先写入指定数量的换行符，一个换行符代表一个进程
+   for ((i=0;i<$THREAD_NUM;i++))
+   do
+       echo -ne "\n" 1>&9
+   done
+
+   if [ $# != 1 ] ;then
+       echo "The parameters you enter is not correct !";
+       exit -1;
+   fi
+
+   while read line
+   do
+           #进程控制
+           read -u 9
+           {
+               [...]
+
+               #写入一个换行符
+               echo -ne "\n" 1>&9
+           }&
+   done < $1
+   wait
+   echo "执行结束"
+   rm tmp
+ #+END_SRC

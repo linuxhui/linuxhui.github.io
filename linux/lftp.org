@@ -40,6 +40,9 @@ lcd /home/huihui/Download
   #+END_EXAMPLE
 + pget
 + mirror
+  #+BEGIN_SRC shell
+    mirror filename
+  #+END_SRC
 
 ** 上传文件
 put 123.txt     ##同下载
@@ -50,6 +53,10 @@ mirror -R aaa/ ##同下载
 ** 设置被动/非被动模式
 set ftp:passive-mode 1 ## 1 被动 0非主动
 
+** 上传 ssl报错
+#set ftp:ssl-force true
+#set ftp:ssl-protect-data true
+#set ssl:verify-certificate
 
 
 

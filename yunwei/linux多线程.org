@@ -14,12 +14,12 @@
  #+BEGIN_SRC shell 
    #!/bin/bash
    #允许的进程数
-   THREAD_NUM=200
+   THREAD_NUM=6
 
 
    #定义描述符为9的管道
-   mkfifo tmp
-   exec 9<>tmp
+   mkfifo tmp_wsh
+   exec 9<>tmp_wsh
    #预先写入指定数量的换行符，一个换行符代表一个进程
    for ((i=0;i<$THREAD_NUM;i++))
    do
@@ -44,5 +44,5 @@
    done < $1
    wait
    echo "执行结束"
-   rm tmp
+   rm tmp_wsh
  #+END_SRC

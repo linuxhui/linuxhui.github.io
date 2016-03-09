@@ -1,0 +1,145 @@
+
+* find
+
+** name
+find - search for files in a directory hierarchy
+
+** 语法
+find  [-H]  [-L]  [-P]  [-D  debugopts]  [-Olevel]  [starting-point...] [expression]
+
+** 描述
+
+** OPTIONS
+
+** 表达式(expression)
+
+表达式是描述了怎么匹配文件和匹配之后做什么， 一个表达式有以下的元素组成的list：
+
++ positional options
+  Positional optiona affect only tests or actions which follow them.  Positional options always return true.  The -regextype  option  for  example  is  posi‐
+  tional, specifying the regular expression dialect for regulat expressions occurring later on the command line.
+
++ global options
+  Global  options affect the operation of tests and actions specified on any part of the command line.  Global options always return true.  The -depth option
+  for example makes find traverse the file system in a depth-first order.
+
++ TESTS
+Tests  return a true or false value, usually on the basis of some property of a file we are considering.  The -empty test for example is true only when the
+current file is empty.
+
+
++ ACTIONS
+Actions have side effects (such as printing something on the standard output) and return either true or false, usually based on whether  or  not  they  are
+successful.  The -print action for example prints the name of the current file on the standard output.
+
++ OPERATIONS
+Operators  join  together  the other items within the expression.  They include for example -o (meaning logical OR) and -a (meaning logical AND).  Where an
+operator is missing, -a is assumed.
+
+
+*** POSITIONAL OPTIONS
+Postional options一般返回 true， 他们只影响后面的test commands
+
++ daystart
+  Measure times (for -amin, -atime, -cmin, -ctime, -mmin, and -mtime) from the beginning of today rather than from 24 hours ago.  This  option  only  affects
+  tests which appear later on the command line.
++ follow
+  Deprecated; use the -L option instead.  Dereference symbolic links.  Implies -noleaf.  The -follow option affects only those tests which appear after it on
+  the command line.  Unless the -H or -L option has been specified, the position of the -follow option changes the behaviour of  the  -newer  predicate;  any
+  files  listed  as the argument of -newer will be dereferenced if they are symbolic links.  The same consideration applies to -newerXY, -anewer and -cnewer.
+  Similarly, the -type predicate will always match against the type of the file that a symbolic link points to rather than the link  itself.   Using  -follow
+  causes the -lname and -ilname predicates always to return false.
++ regextype type
+  Changes  the regular expression syntax understood by -regex and -iregex tests which occur later on the command line.  To see which regular expression types
+  are known, use -regextype help.  The Texinfo documentation (see SEE ALSO) explains the meaning of and differences between  the  various  types  of  regular
+  expression.
++ warn, -nowarn
+  Turn  warning  messages  on  or off.  These warnings apply only to the command line usage, not to any conditions that find might encounter when it searches
+  directories.  The default behaviour corresponds to -warn if standard input is a tty, and to -nowarn otherwise.  If a warning message relating  to  command-
+  line  usage  is  produced,  the exit status of find is not affected.  If the POSIXLY_CORRECT environment variable is set, and -warn is also used, it is not
+  specified which, if any, warnings will be active.
+
+*** GLOBAL OPTIONS
+GLOBAL options 一般返回true， Global options 会影响在commands中的所有test。为了消除起义， global options 一般写在开头。
+
+The global options occur after the list of start points, and so are not the same kind of option as -L, for example.
+
+ + -d
+   和 -depth 一样， 适用于FreeBSD, NetBSD, MacOS X and OpenBSD。
+ + -depth
+   Process each directory's contents before the directory itself.  The -delete action also implies -depth.
+ + -help
+   Print a summary of the command-line usage of find and exit.
+
+*** TESTS
+Some  tests, for example -newerXY and -samefile, allow comparison between the file currently being examined and some reference file specified on the command line.
+When these tests are used, the interpretation of the reference file is determined by the options -H, -L and -P and any previous -follow, but the reference file is
+only  examined  once,  at  the  time the command line is parsed.  If the reference file cannot be examined (for example, the stat(2) system call fails for it), an
+error message is issued, and find exits with a nonzero status.
+
+数字参数被当作：
+#+BEGIN_EXAMPLE
+  +n 比n大
+  -n 比n小
+  n  n
+#+END_EXAMPLE
+
++ -amin n 
+  在 n 分钟内被访问。
++ -anewer file
+  File was last accessed more recently than file was modified.
++ -atime
+  File  was  last accessed n*24 hours ago.
++ -cmin n
+  File's status was last changed n minutes ago.
++ -cnewwe file 
+  File's status was last changed more recently than file was modified.
++ -ctime n
+  File's  status  was  last  changed n*24 hours ago.
++ -empty
+  File is empty and is either a regular file or a directory.
++ executable
+  Matches files which are executable and directories which are searchable (in a file name resolution sense). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** 不同的文件名
+
+** STANDARDS CONFORMANCE
+
+** ENVIRONMENT VARIABLES
+
+** 例子
+
+
+** EXIT STATUS
+退出状态
+
+** SEE ALSO
+
+
+
+
+
+
+
+
+
+

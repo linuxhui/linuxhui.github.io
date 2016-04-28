@@ -1,0 +1,12 @@
+
+* zabbix主动，被动检测的详细过程和区别
+
+zabbix agent 检测分为主动(agent active) 和被动(agent) 两种形式， 主动和被动的说法均是相对于agent来讨论的。简单说明一下主动和被动的区别：
+  + 主动： 
+    agent请求server获取主动的监控项列表，并主动将监控项需要检测的数据提交给server/proxy
+  + 被动:
+    server 向agent 请求获取监控项的数据， agent返回数据。
+
+
+** 参考
+[[https://www.ttlsa.com/zabbix/zabbix-active-and-passive-checks/]]

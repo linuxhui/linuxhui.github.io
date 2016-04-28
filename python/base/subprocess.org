@@ -1,0 +1,21 @@
+
+* 抱歉，您必须拥有一个终端来执行sudo
+
+sudo: sorry, you must have a tty to run sudo
+
+sudo：抱歉，您必须拥有一个终端来执行 sudo
+
+解决方式:
+编辑 /etc/sudoers 文件， 将Default equiretty注释掉。
+#+BEGIN_EXAMPLE
+  sudo vi /etc/sudoers
+
+  #Default requiretty #注释掉 Default requiretty 一行
+
+#+END_EXAMPLE
+
+具体操作：
+#+BEGIN_SRC shell
+  sudo sed -i 's/Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
+  sudo cat /etc/sudoers | grep requiretty
+#+END_SRC

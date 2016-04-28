@@ -1,0 +1,143 @@
+
+
+
+* redis info 命令详解
+参考网址： [[http://blog.csdn.net/lang_man_xing/article/details/38539057]]
+
+** server： 
+一般Redis服务器信息，包含一下域： 
+| name              | 注释                                         |
+|-------------------+----------------------------------------------|
+| redis_version     | Redis 服务器版本                             |
+| redis_git_sha1    | Git SHA1                                     |
+| redis_git_dirty   | Git dirty flag                               |
+| os                | Redis服务器的宿主操作系统                    |
+| arch_bits         | 架构(32或64位)                               |
+| multiplexing_api  | Redis所使用的事件处理机制                    |
+| gcc_version       | 编译Redis所使用的GCC版本                     |
+| process_id        | 服务器进程的PID                              |
+| run_id            | Redis服务器的随机标识符(用于Sentinel和集群） |
+| tcp_port          | TCP/IP监听端口                               |
+| uptime_in_seconds | 自Redis服务器启动以来经过的秒数              |
+| uptime_in_days    | 自Redis服务器启动以来经过的天数              |
+| lru_clock         | 以分钟为单位进行自增的时钟，用于LRU管理                        |
+
+** clients 
+已连接的客户端信息，包含以下域：
+| name                       | 注释                                                     |
+|----------------------------+----------------------------------------------------------|
+| connected_clients          | 已连接的客户端数量(不包含从属服务器连接的客户端)         |
+| client_longest_output_list | 当前连接的客户端当中，最长的输出列表                     |
+| client_longest_input_buf   | 当前连接的客户端当中，最大输入缓存                       |
+| blocked_clients            | 正在等待阻塞命令(BLPOP, BRPOP,BRPOPLPUSH）的客户端的数量 |
+
+** memory
+内存信息，used_memory_rss 的值应该只比 used_memory 稍微高一点儿。
+当 rss > used ，且两者的值相差较大时，表示存在（内部或外部的）内存碎片。
+内存碎片的比率可以通过 mem_fragmentation_ratio 的值看出。
+当 used > rss 时，表示 Redis 的部分内存被操作系统换出到交换空间了，在这种情况下，操作可能会产生明显的延迟。
+Because Redis does not have control over how its allocations are mapped to memory pages, high used_memory_rss is often the result of a spike in memory usage.
+当 Redis 释放内存时，分配器可能会，也可能不会，将内存返还给操作系统。
+如果 Redis 释放了内存，却没有将内存返还给操作系统，那么 used_memory 的值可能和操作系统显示的 Redis 内存占用并不一致。
+查看 used_memory_peak 的值可以验证这种情况是否发生。
+
+包含以下域：
+| name                    | 注释                                                                                         |
+|-------------------------+----------------------------------------------------------------------------------------------|
+| used_memory             | 由Redis分配器分配的内存总量，以字节(byte)为单位                                              |
+| used_memory_human       | 以人类可读的格式返回Redis分配的内存总量                                                      |
+| used_memory_rss         | 从操作系统角度，返回Redis已经分配的内存总量(俗称常驻集大小)。这个值和top，ps等命令输出的一致 |
+| used_memory_peak        | Redis的内存消耗峰值(以字节为单位)                                                            |
+| used_memory_peak_human  | 以人类可读的格式返回Redis的内存消耗峰值                                                      |
+| used_memory_lua         | Lua 引擎所使用的内存大小(以字节为单位)                                                       |
+| mem_fragmentation_ratio | used_memory_rss 和used_memory之间的比率                                                      |
+| mem_allocator           | 在编译时指定的， Redis 所使用的内存分配器。可以是 libc 、 jemalloc 或者 tcmalloc                                                                                             |
+
+
+** Persistence
+数据持久化方式，包含RDB 和AOF的相关信息。包含一下域:
+| name                         | 注释                                                                      |
+|------------------------------+---------------------------------------------------------------------------|
+| loading                      |                                                                           |
+| rdb_changes_since_last_save  | 距离最近一次成功创建持久化文件之后，经过了多少秒                          |
+| rdb_bgsave_in_process        | 标识位置，用来记录服务器是否正在正在创建RDB文件                           |
+| rdb_last_save_time           | 最近一次创建RDB文件UNIX事件戳                                             |
+| rdb_last_bgsave_status       | 一个标识位用来记录最近一次创建RDB文件的结果是成功还是失败                 |
+| rdb_last_bgsave_time_sec     | 记录了最近一次创建RDB文件耗费的秒数                                       |
+| aof_enabled                  | Redis是否开启了AOF                                                        |
+| aof_rewrite_in_process       | 一个标识位，记录了服务器是否正在创建AOF文件                               |
+| aof_rewrite_scheduled        | 一个标识位，记录了在RDB文件创建完毕之后，是否需要执行预约的AOF重写操作    |
+| aof_current_rewrite_time_sec | 如果服务器正在创建AOF文件，那么这个域记录的就是当前的创建操作所耗费的秒数 |
+| aof_last_bgrewrite_status    | 一个标识位，记录最近一次创建AOF文件是成功还是失败                         |
+| aof_last_write_status        |                                                                           |
+
+  
+
+** Stats
+一般统计信息
+| name                       | 注释                                         |
+|----------------------------+----------------------------------------------|
+| total_connections_received | 运行以来接受过的客户端的总数量               |
+| total_commands_processed   | 运行以来接受过的总命令的数量                 |
+| instantaneous_ops_per_sec  | 服务每秒钟执行的命令数量                     |
+| total_net_input_bytes      |                                              |
+| total_net_output_bytes     |                                              |
+| instantaneous_input_kbps   |                                              |
+| instantaneous_output_kbps  |                                              |
+| rejected_connections       | 因为最大客户端数量限制而被拒绝的连接请求数量 |
+| sync_full                  |                                              |
+| sync_partial_ok            |                                              |
+| sync_partial_err           |                                              |
+| expired_keys               | 运行以来过期的key的数量                      |
+| evicted_keys               | 运行以来删除过的key的数量                    |
+| keyspace_hits              | 命中key的次数                                |
+| keyspace_misses            | 没有命中key的次数                            |
+| pubsub_patterns            | 当前使用的模式的数量                         |
+| lastest_fork_usec          |                                              |
+| migrate_cached_sockets     |                                              |
+
+** replication
+主从复制信息
+| name                           | 注释   |
+|--------------------------------+--------|
+| role                           | master |
+| connected                      | slaves |
+| master_repl_offset             |        |
+| repl_backlog_active            |        |
+| repl_backlog_size              |        |
+| repl_backlog_first_byte_offset |        |
+| repl_backlog_histlen           |        | 
+
+
+** cpu
+CPU计算量统计信息
+
+| name                   | 注释                     |
+|------------------------+--------------------------|
+| used_cpu_sys           | Redis服务器消耗的系统CPU |
+| used_cpu_user          | Redis服务器消耗的用户CPU |
+| used_cpu_sys_children  | 后台进行消耗的系统CPU    |
+| used_cpu_user_children | 后台进行消耗的用户CPU             |
+
+** cluster
+Redis集群信息
+| name            | 注释 |
+|-----------------+------|
+| cluster_enabled | 一个标识位，记录集群功能是否已经开启 |
+
+
+
+
+** keyspace
+数据库相关的统计信息
+
+
+
+
+
+
+
+
+
+
+

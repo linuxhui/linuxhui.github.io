@@ -1,0 +1,58 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/huihui/git/linuxhui.github.io/yunwei/zabbix/redis.org
+
+
+* redis 监控项目解析
+:PROPERTIES:
+:ARCHIVE_TIME: 2016-04-01 五 11:17
+:ARCHIVE_FILE: ~/git/linuxhui.github.io/yunwei/zabbix/redis.org
+:ARCHIVE_CATEGORY: redis
+:END:
+
+| name                                                 | key                                                    | trigger              | 解析                     |
+|------------------------------------------------------+--------------------------------------------------------+----------------------+--------------------------|
+| redis server                                         | net.tcp.port[127.0.0.1,6379]                           | 0 为 down ， 1 为 up | redis服务器是否存活      |
+| Redis aof_enabled (Template Redis 2)                 | redis[{HOSTNAME}, aof_enabled, none]                   |                      | 是否采用了redis的aof方案 |
+| Redis aof_rewrite_in_progress (Template Redis 2)     | redis[{HOSTNAME}, aof_rewrite_in_progress, none]       |                      |                          |
+| Redis aof_rewrite_in_progress (Template Redis 2)     | redis[{HOSTNAME}, aof_rewrite_in_progress, none]       |                      |                          |
+| Redis aof_rewrite_scheduled (Template Redis 2)       | redis[{HOSTNAME}, aof_rewrite_scheduled, none]         |                      |                          |
+| Redis arch_bits (Template Redis 2)                   | redis[{HOSTNAME}, arch_bits, none]                     |                      |                          |
+| Redis blocked_clients (Template Redis 2)             | redis[{HOSTNAME}, blocked_clients, none]               |                      |                          |
+| Redis client_biggest_input_buf (Template Redis 2)    | redis[{HOSTNAME}, client_biggest_input_buf, none]      |                      |                          |
+| Redis client_longest_output_list (Template Redis 2)  | redis[{HOSTNAME}, client_longest_output_list, none]    |                      |                          |
+| Redis connected_clients (Template Redis 2)           | redis[{HOSTNAME}, connected_clients, none]             |                      | 连接redis的客户端数目    |
+| Redis connected_slaves (Template Redis 2)            | redis[{HOSTNAME}, connected_slaves, none]              |                      |                          |
+| Redis dbsize (Template Redis 2)                      | redis[{HOSTNAME}, dbsize, none]	                      |                      |                          |
+| Redis evicted_keys (Template Redis 2)                | redis[{HOSTNAME}, evicted_keys, none]                  |                      |                          |
+| Redis expired_keys (Template Redis 2)                | redis[{HOSTNAME}, expired_keys, none]                  |                      |                          |
+| Redis gcc_version (Template Redis 2)                 | redis[{HOSTNAME}, gcc_version, none]                   |                      | 编译使用的gcc版本        |
+| Redis instantaneous_ops_per_sec (Template Redis 2)   | redis[{HOSTNAME}, instantaneous_ops_per_sec, none]     |                      |                          |
+| Redis keyspace_hits (Template Redis 2)               | redis[{HOSTNAME}, keyspace_hits, none]                 |                      |                          |
+| Redis keyspace_misses (Template Redis 2)	           | redis[{HOSTNAME}, keyspace_misses, none]               |                      |                          |
+| Redis latest_fork_usec (Template Redis 2)            | redis[{HOSTNAME}, latest_fork_usec, none]              |                      |                          |
+| Redis llenall (Template Redis 2)                     | redis[{HOSTNAME}, llenall, none]                       |                      |                          |
+| Redis loading (Template Redis 2)                     | redis[{HOSTNAME}, loading, none]                       |                      |                          |
+| Redis lru_clock (Template Redis 2)                   | redis[{HOSTNAME}, lru_clock, none]                     |                      |                          |
+| Redis mem_fragmentation_ratio (Template Redis 2)     | redis[{HOSTNAME}, mem_fragmentation_ratio, none]	     |                      |                          |
+| Redis multiplexing_api (Template Redis 2)	          | redis[{HOSTNAME}, multiplexing_api, none]	            |                      |                          |
+| Redis pubsub_channels (Template Redis 2)	           | redis[{HOSTNAME}, pubsub_channels, none]               |                      |                          |
+| Redis rdb_bgsave_in_progress (Template Redis 2)      | redis[{HOSTNAME}, rdb_bgsave_in_progress, none]        |                      |                          |
+| Redis rdb_changes_since_last_save (Template Redis 2) | redis[{HOSTNAME}, rdb_changes_since_last_save, none]  |                      |                          |
+| Redis redis_git_dirty (Template Redis 2)	           | redis[{HOSTNAME}, redis_git_dirty, none]               |                      |                          |
+| Redis redis_git_sha1 (Template Redis 2)              | redis[{HOSTNAME}, redis_git_sha1, none]               |                      |                          |
+| Redis redis_mode (Template Redis 2)                  | redis[{HOSTNAME}, redis_mode, none]                    |                      |                          |
+| Redis redis_version (Template Redis 2)               | redis[{HOSTNAME}, redis_version, none]                 |                      |                          |
+| Redis rejected_connections (Template Redis 2)        | redis[{HOSTNAME}, rejected_connections, none]          |                      |                          |
+| Redis role (Template Redis 2)                        | redis[{HOSTNAME}, role, none]                          |                      |                          |
+| Redis total_commands_processed (Template Redis 2)    | redis[{HOSTNAME}, total_commands_processed, none]      |                      |                          |
+| Redis total_connections_received (Template Redis 2)  | redis[{HOSTNAME}, total_connections_received, none]    |                      |                          |
+| Redis uptime_in_seconds (Template Redis 2)           | redis[{HOSTNAME}, uptime_in_seconds, none]             |                      |                          |
+| Redis used_cpu_sys (Template Redis 2)                | redis[{HOSTNAME}, used_cpu_sys, none]                 |                      |                          |
+| Redis used_cpu_sys_children (Template Redis 2)       | redis[{HOSTNAME}, used_cpu_sys_children, none]        |                      |                          |
+| Redis used_cpu_user (Template Redis 2)               | redis[{HOSTNAME}, used_cpu_user, none]                 |                      |                          |
+| Redis used_cpu_user_children (Template Redis 2)      | redis[{HOSTNAME}, used_cpu_user_children, none]       |                      |                          |
+| Redis used_memory (Template Redis 2)                 | redis[{HOSTNAME}, used_memory, none]                  |                      |                          |
+| Redis used_memory_peak (Template Redis 2)            | redis[{HOSTNAME}, used_memory_peak, none]              |                      |                          |
+| Redis used_memory_rss (Template Redis 2)             | redis[{HOSTNAME}, used_memory_rss, none]               |                      |                          |

@@ -1,0 +1,20 @@
+
+* 介绍
+刚开始学习SQL的时候，会这样写：
+#+BEGIN_SRC sql
+  SELECT * FROM table ORDER by id limit 1000,10;
+#+END_SRC
+但是数据达到百万级的时候，这样写会慢死
+#+BEGIN_SRC sql
+  SELECT * FROM table ORDER BY id LIMIT 1000000,10;
+#+END_SRC
+也许会耗费几十秒
+
+网上很多优化的方法是这样的
+#+BEGIN_SRC sql
+  SELECT * FROM table WHERE id >=(SELECT id from table LIMIT 1000000,1) LIMIT 10;
+#+END_SRC
+
+
+* 参考
+[[http://www.jb51.net/article/31868.htm][mysql百万级别分页优化(千万级别快速分页)]]

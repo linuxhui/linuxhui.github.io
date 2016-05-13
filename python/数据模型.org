@@ -1,0 +1,10 @@
+
+* 数据模型
+
+** objects， values 和 types
+Objects 是python data的抽象化， 在一个Python程序中， 所有的对象通过objects进行关联。
+
+python的每个object中包含一个 identity ， 一个 type 和 一个value。 一个object的 indentity在创建之后是不会改变的。
+比较两个对象的identity通过 ‘is’ 操作进行比较。 id()操作返回 identify的数字化标识。 
+另外  object的 type也是不会改变的。一个对象的 type决定了在这个 object支持的操作。同时也决定了object type 可能的value。
+type() 函数返回了这个 object的类型。

@@ -1,0 +1,7 @@
+
+* 文章
++ [[http://drops.wooyun.org/tips/2078][利用insert，update和delete注入获取数据]]
++ [[http://drops.wooyun.org/tips/968][深入了解SQL注入绕过waf和过滤机制]]
+
+* 网址：
+http://websec.ca/kb/sql_injection

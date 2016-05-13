@@ -1,0 +1,7 @@
+
+* 参考
+[[http://kb.cnblogs.com/page/539160/]]
+
+
+ssh -i abc.tmp superman@10.50.100.118
+ssh -i abc.tmp  superman@10.50.110.118

@@ -1,0 +1,27 @@
+
+
+* Waker
+Waker函数继承于 类 interface.Waker
+
+实现的主要内容是向 pipe中写入 b'x'， 用来唤醒timeout进程。
+
+** 主要函数有：
+
+*** fileno(self):
+返回reader的文件描述符
+
+*** write_fileno(self):
+返回writer的文件描述符
+
+*** waker函数
+向 writer中写入 b'x'
+
+*** consume
+读取reader中所有的缓冲文件
+
+
+*** close(self):
+关闭文件描述符
+
+
+

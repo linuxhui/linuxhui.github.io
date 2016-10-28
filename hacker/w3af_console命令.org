@@ -1,0 +1,143 @@
+
+* 终端命令
+
+** -h or --help
+展示help命令
+
+** -s <script_file> or --script=<script_file>
+执行<script_file> 脚本命令
+
+** -n or --no-update
+在启动的时候不检查升级
+
+** -f or --force-update
+在启动的时候进行升级检查。
+
+** -p <profile> or --profile=<profile>
+执行选择的profile文件
+
+** -P <profile> or --profile-run=<profile>
+在 batch mode下批量执行 选择的 profile文件
+
+** -v or --version
+version
+
+* 内置命令
+
+** help 
+*** use
+#+BEGIN_EXAMPLE
+  $ ./w3af_console
+  w3af>>> help
+#+END_EXAMPLE
+
+*** list
+|---------------+-----------------------------------------------------------------------------------+------------------------------|
+| start         | Start the scan.                                                                   | 开始扫描                     |
+| plugins       | Enable and configure plugins.                                                     | 启用和配置组件               |
+| exploit       | Exploit the vulnerability.                                                        | 分析漏洞                     |
+| profiles      | List and use scan profiles.                                                       | 列出profiles和用来扫描       |
+| cleanup       | Cleanup before starting a new scan.                                               | 在启动一个新的扫描之前清空   |
+|---------------+-----------------------------------------------------------------------------------+------------------------------|
+| help          | Display help. Issuing: help [command] , prints more specific help about "command" | 帮助命令                     |
+| version       | Show w3af version information.                                                    | 版本信息                     |
+| keys          | Display key shortcuts.                                                            | 展示keys                     |
+|---------------+-----------------------------------------------------------------------------------+------------------------------|
+| http-settings | Configure the HTTP settings of the framework.                                     | 配置 framework的HTTP setting |
+| misc-settings | Configure w3af misc settings.                                                     | 配置 w3af misc 设置          |
+| target        | Configure the target URL.                                                         | 配置目标服务器               |
+|---------------+-----------------------------------------------------------------------------------+------------------------------|
+| back          | Go to the previous menu.                                                          | 回到先前的menu               |
+| exit          | Exit w3af.                                                                        | 退出w3af                     |
+|---------------+-----------------------------------------------------------------------------------+------------------------------|
+| kb            | Browse the vulnerabilities stored in the Knowledge Base                           | 浏览在知识库中的漏洞         |
+|---------------+-----------------------------------------------------------------------------------+------------------------------|
+
+
+** plugins
+
+*** use
+#+BEGIN_EXAMPLE
+  w3af>>> plugins 
+  w3af/plugins>>> back
+  w3af>>> 
+#+END_EXAMPLE
+
+***  list
+|----------------+---------------------------------------------------+-----------------------------|
+| list           | List available plugins.                           | 列出可用的组件              |
+|----------------+---------------------------------------------------+-----------------------------|
+| back           | Go to the previous menu.                          | 回到先前的menu              |
+| exit           | Exit w3af.                                        | 退出w3af                    |
+|----------------+---------------------------------------------------+-----------------------------|
+| audit          | View, configure and enable audit plugins          | 查看、配置 和启用 审计 模块 |
+| output         | View, configure and enable output plugins         | 查看、配置 和启用 输出模块  |
+| evasion        | View, configure and enable evasion plugins        | 查看、配置 和启用规避模块   |
+| auth           | View, configure and enable auth plugins           | 查看、配置 和启用 认证模块  |
+| bruteforce     | View, configure and enable bruteforce plugins     | 查看、配置 和启用  暴力破解 |
+| mangle         | View, configure and enable mangle plugins         | 查看、配置 和启用 mangle    |
+| crawl          | View, configure and enable crawl plugins          | 查看、配置 和启用 爬取      |
+| grep           | View, configure and enable grep plugins           | 查看、配置 和启用 查找      |
+| infrastructure | View, configure and enable infrastructure plugins | 查看、配置 和启用  基础       |
+|----------------+---------------------------------------------------+-----------------------------|
+
+* plugin detail
+
+**** audit
+
+***** use
+
+***** use
+#+BEGIN_EXAMPLE
+  w3af/plugins>>> 
+  w3af/plugins>>> audit 
+#+END_EXAMPLE
+
+***** list
+|---------------------+--------+------+--------------------------------------------------------------------------------------------------------------------+---|
+| Plugin name         | Status | Conf | Description                                                                                                        |  解释 |
+|---------------------+--------+------+--------------------------------------------------------------------------------------------------------------------+---|
+| blind_sqli          |        | Yes  | Identify blind SQL injection vulnerabilities.                                                                      |  盲注  |
+| buffer_overflow     |        |      | Find buffer overflow vulnerabilities.                                                                              |  缓存泄露 |
+| cors_origin         |        | Yes  | Inspect if application checks that the value of the "Origin" HTTP header isconsistent with the value of the remote |  跨站请求 参数 "Origin" |
+|                     |        |      | IP address/Host of the sender ofthe incoming HTTP request.                                                         |   |
+| csrf                |        |      | Identify Cross-Site Request Forgery vulnerabilities.                                                               |  跨站请求 |
+| dav                 |        |      | Verify if the WebDAV module is properly configured.                                                                |   HTTP1.1扩展 |
+| eval                |        | Yes  | Find insecure eval() usage.                                                                                        |  找到不安全的eval() |
+| file_upload         |        | Yes  | Uploads a file and then searches for the file inside all known directories.                                        |   文件上传审计 |
+| format_string       |        |      | Find format string vulnerabilities.                                                                                |   格式化漏洞|
+| frontpage           |        |      | Tries to upload a file using frontpage extensions (author.dll).                                                    |   |
+| generic             |        | Yes  | Find all kind of bugs without using a fixed database of errors.                                                    |   |
+| global_redirect     |        |      | Find scripts that redirect the browser to any site.                                                                |   |
+| htaccess_methods    |        |      | Find misconfigurations in Apache's "<LIMIT>" configuration.                                                        |   |
+| ldapi               |        |      | Find LDAP injection bugs.                                                                                          |   |
+| lfi                 |        |      | Find local file inclusion vulnerabilities.                                                                         |   |
+| memcachei           |        |      | No description available for this plugin.                                                                          |   |
+| mx_injection        |        |      | Find MX injection vulnerabilities.                                                                                 |   |
+| os_commanding       |        |      | Find OS Commanding vulnerabilities.                                                                                |   |
+| phishing_vector     |        |      | Find phishing vectors.                                                                                             |   |
+| preg_replace        |        |      | Find unsafe usage of PHPs preg_replace.                                                                            |   |
+| redos               |        |      | Find ReDoS vulnerabilities.                                                                                        |   |
+| response_splitting  |        |      | Find response splitting vulnerabilities.                                                                           |   |
+| rfd                 |        |      | Identify reflected file download vulnerabilities.                                                                  |   |
+| rfi                 |        | Yes  | Find remote file inclusion vulnerabilities.                                                                        |   |
+| shell_shock         |        |      | Find shell shock vulnerabilities.                                                                                  |   |
+| sqli                |        |      | Find SQL injection bugs.                                                                                           |   |
+| ssi                 |        |      | Find server side inclusion vulnerabilities.                                                                        |   |
+| ssl_certificate     |        | Yes  | Check the SSL certificate validity (if https is being used).                                                       |   |
+| un_ssl              |        |      | Find out if secure content can also be fetched using http.                                                         |   |
+| websocket_hijacking |        |      | Detect Cross-Site WebSocket hijacking vulnerabilities.                                                             |   |
+| xpath               |        |      | Find XPATH injection vulnerabilities.                                                                              |   |
+| xss                 |        | Yes  | Identify cross site scripting vulnerabilities.                                                                     |   |
+| xst                 |        |      | Find Cross Site Tracing vulnerabilities.                                                                           |   |
+|---------------------+--------+------+--------------------------------------------------------------------------------------------------------------------+---|
+
+
+
+
+
+
+
+
+
+

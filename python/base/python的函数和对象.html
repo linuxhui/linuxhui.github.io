@@ -3,11 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2015-11-22 日 17:36 -->
+<!-- 2016-05-23 一 10:55 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title></title>
 <meta  name="generator" content="Org-mode" />
+<meta  name="author" content="huihui" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -213,10 +214,6 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-
-
-
-
 <div id="outline-container-orgheadline8" class="outline-2">
 <h2 id="orgheadline8"><span class="section-number-2">1</span> 简单了解函数</h2>
 <div class="outline-text-2" id="text-1">
@@ -276,9 +273,9 @@ A function is a piece of code in a program. The function performs a specific tas
 <div class="org-src-container">
 
 <pre class="src src-elisp"><span style="color: #2aa1ae; background-color: #292e34;">; </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#20010;&#23450;&#20041;&#24341;&#29992;&#30340;&#26159;&#20912;&#27827;&#20254;&#21733;&#30340;&#23450;&#20041;</span>
-<span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">defun</span> <span style="color: #bc6ec5; font-weight: bold;">funname</span> <span style="color: #bc6ec5;">(</span>parameter*<span style="color: #bc6ec5;">)</span>
+<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">defun</span> <span style="color: #bc6ec5; font-weight: bold;">funname</span> <span style="color: #bc6ec5;">(</span>parameter*<span style="color: #bc6ec5;">)</span>
   <span style="color: #2aa1ae;">"doc"</span>
-  body-form*<span style="color: #2f96dc;">)</span>
+  body-form*<span style="color: #4f97d7;">)</span>
 </pre>
 </div>
 
@@ -298,8 +295,8 @@ A function is a piece of code in a program. The function performs a specific tas
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">pass</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">pass</span>
 </pre>
 </div>
 
@@ -342,10 +339,10 @@ p()
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">shout</span><span style="color: #2f96dc;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">return</span> word.capitalize<span style="color: #2f96dc;">()</span>+<span style="color: #2d9574;">"!"</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">shout</span><span style="color: #4f97d7;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">return</span> word.capitalize<span style="color: #4f97d7;">()</span>+<span style="color: #2d9574;">"!"</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> shout<span style="color: #2f96dc;">()</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> shout<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">outputs : 'Yes!'</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20316;&#20026;&#19968;&#20010;object&#65292;&#20320;&#21487;&#20197;&#23558;&#20989;&#25968;&#24819;&#20854;&#20182;object&#19968;&#26679;&#36171;&#20540;&#32473;&#19968;&#20010;&#21464;&#37327;</span>
@@ -354,7 +351,7 @@ p()
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27880;&#24847;&#65306; &#25105;&#20204;&#19981;&#20351;&#29992;&#32487;&#25215;(parentheses,&#25105;&#20204;&#19981;&#25191;&#34892;&#36825;&#20010;&#20989;&#25968;&#65292;&#20165;&#20165;&#26159;&#23558;&#20989;&#25968;"shot"&#36171;&#20540;&#32473;&#21464;&#37327;&#8221;scream&#8220;&#12290;</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20063;&#23601;&#26159;&#35828;&#20320;&#21487;&#20197;&#20174;scream&#25191;&#34892;shout()</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> scream<span style="color: #2f96dc;">()</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> scream<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">outputs : 'Yes!'</span>
 
 
@@ -362,14 +359,14 @@ p()
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24341;&#29992;&#35745;&#25968;&#19981;&#20026;0&#65292;&#25152;&#20197;&#20381;&#28982;&#27809;&#26377;&#22312;&#35299;&#37322;&#22120;&#20013;&#21024;&#38500;&#12290;</span>
 
 
-<span style="color: #237fbf; font-weight: bold;">del</span> shout
-<span style="color: #237fbf; font-weight: bold;">try</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> shout<span style="color: #2f96dc;">()</span>
-<span style="color: #237fbf; font-weight: bold;">except</span> <span style="color: #ce537a; font-weight: bold;">NameError</span>, e:
-    <span style="color: #237fbf; font-weight: bold;">print</span> e
+<span style="color: #4f97d7; font-weight: bold;">del</span> shout
+<span style="color: #4f97d7; font-weight: bold;">try</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> shout<span style="color: #4f97d7;">()</span>
+<span style="color: #4f97d7; font-weight: bold;">except</span> <span style="color: #ce537a; font-weight: bold;">NameError</span>, e:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> e
     <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: "name 'shout' is not defined"</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> scream<span style="color: #2f96dc;">()</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> scream<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">outputs: 'Yes!'</span>
 </pre>
 </div>
@@ -381,28 +378,28 @@ p()
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">talk</span><span style="color: #2f96dc;">()</span>:
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">talk</span><span style="color: #4f97d7;">()</span>:
 
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23450;&#20041;&#20989;&#25968;whisper</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">whisper</span><span style="color: #2f96dc;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">return</span> word.lower<span style="color: #2f96dc;">()</span>+<span style="color: #2d9574;">"..."</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">whisper</span><span style="color: #4f97d7;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> word.lower<span style="color: #4f97d7;">()</span>+<span style="color: #2d9574;">"..."</span>
 
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35843;&#29992;whisper&#20989;&#25968;</span>
 
-    <span style="color: #237fbf; font-weight: bold;">print</span> whisper<span style="color: #2f96dc;">()</span>
+    <span style="color: #4f97d7; font-weight: bold;">print</span> whisper<span style="color: #4f97d7;">()</span>
 
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27599;&#27425;&#20320;&#25191;&#34892; "talk"&#30340;&#26102;&#20505;, "whisper"&#27599;&#27425;&#37117;&#20250;&#34987;&#23450;&#20041;.&#28982;&#21518;&#34987;talk&#25191;&#34892;.</span>
-talk<span style="color: #2f96dc;">()</span>
+talk<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">outputs: </span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">"yes..."</span>
 
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20294;&#26159; "whisper" &#22312;"talk"&#20043;&#22806;&#19981;&#23384;&#22312;</span>
-<span style="color: #237fbf; font-weight: bold;">try</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> whisper<span style="color: #2f96dc;">()</span>
-<span style="color: #237fbf; font-weight: bold;">except</span> <span style="color: #ce537a; font-weight: bold;">NameError</span>, e:
-    <span style="color: #237fbf; font-weight: bold;">print</span> e
+<span style="color: #4f97d7; font-weight: bold;">try</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> whisper<span style="color: #4f97d7;">()</span>
+<span style="color: #4f97d7; font-weight: bold;">except</span> <span style="color: #ce537a; font-weight: bold;">NameError</span>, e:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> e
     <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs : "name 'whisper' is not defined"*</span>
     Python<span style="color: #2d9574;">'s functions are objects</span>
 </pre>
@@ -423,37 +420,37 @@ talk<span style="color: #2f96dc;">()</span>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">getTalk</span><span style="color: #2f96dc;">(</span>kind=<span style="color: #2d9574;">"shout"</span><span style="color: #2f96dc;">)</span>:
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">getTalk</span><span style="color: #4f97d7;">(</span>kind=<span style="color: #2d9574;">"shout"</span><span style="color: #4f97d7;">)</span>:
 
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">shout</span><span style="color: #2f96dc;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">return</span> word.capitalize<span style="color: #2f96dc;">()</span>+<span style="color: #2d9574;">"!"</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">shout</span><span style="color: #4f97d7;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> word.capitalize<span style="color: #4f97d7;">()</span>+<span style="color: #2d9574;">"!"</span>
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">whisper</span><span style="color: #2f96dc;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #2f96dc;">)</span> :
-        <span style="color: #237fbf; font-weight: bold;">return</span> word.lower<span style="color: #2f96dc;">()</span>+<span style="color: #2d9574;">"..."</span>;
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">whisper</span><span style="color: #4f97d7;">(</span>word=<span style="color: #2d9574;">"yes"</span><span style="color: #4f97d7;">)</span> :
+        <span style="color: #4f97d7; font-weight: bold;">return</span> word.lower<span style="color: #4f97d7;">()</span>+<span style="color: #2d9574;">"..."</span>;
 
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36820;&#22238;&#20854;&#20013;&#20219;&#24847;&#19968;&#20010;</span>
-    <span style="color: #237fbf; font-weight: bold;">if</span> kind == <span style="color: #2d9574;">"shout"</span>:
+    <span style="color: #4f97d7; font-weight: bold;">if</span> kind == <span style="color: #2d9574;">"shout"</span>:
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25105;&#20204;&#19981;&#20351;&#29992;"()",&#25152;&#20197;&#19981;&#25191;&#34892;&#20989;&#25968;.&#20165;&#20165;&#36820;&#22238; &#20989;&#25968;&#23545;&#35937;</span>
-        <span style="color: #237fbf; font-weight: bold;">return</span> shout  
-    <span style="color: #237fbf; font-weight: bold;">else</span>:
-        <span style="color: #237fbf; font-weight: bold;">return</span> whisper
+        <span style="color: #4f97d7; font-weight: bold;">return</span> shout  
+    <span style="color: #4f97d7; font-weight: bold;">else</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> whisper
 
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24471;&#21040;&#36825;&#20010;&#20989;&#25968;,&#36171;&#20540;&#32473;&#19968;&#20010;&#21464;&#37327;</span>
-<span style="color: #7590db;">talk</span> = getTalk<span style="color: #2f96dc;">()</span>      
+<span style="color: #7590db;">talk</span> = getTalk<span style="color: #4f97d7;">()</span>      
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25171;&#21360;&#30340;&#35805; &#20320;&#20250;&#21457;&#29616;&#36820;&#22238;&#30340;&#26159;&#19968;&#20010;fuction object </span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> talk
+<span style="color: #4f97d7; font-weight: bold;">print</span> talk
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs : &lt;function shout at 0xb7ea817c&gt;</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">The object is the one returned by the function:</span>
-<span style="color: #237fbf; font-weight: bold;">print</span> talk<span style="color: #2f96dc;">()</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> talk<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs : Yes!</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">And you can even use it directly if you feel wild:</span>
-<span style="color: #237fbf; font-weight: bold;">print</span> getTalk<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"whisper"</span><span style="color: #2f96dc;">)()</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> getTalk<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"whisper"</span><span style="color: #4f97d7;">)()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs : yes...</span>
 </pre>
 </div>
@@ -465,11 +462,11 @@ talk<span style="color: #2f96dc;">()</span>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">doSomethingBefore</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>: 
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I do something before then I call the function you gave me"</span>
-    <span style="color: #237fbf; font-weight: bold;">print</span> func<span style="color: #2f96dc;">()</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">doSomethingBefore</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>: 
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I do something before then I call the function you gave me"</span>
+    <span style="color: #4f97d7; font-weight: bold;">print</span> func<span style="color: #4f97d7;">()</span>
 
-doSomethingBefore<span style="color: #2f96dc;">(</span>scream<span style="color: #2f96dc;">)</span>
+doSomethingBefore<span style="color: #4f97d7;">(</span>scream<span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: </span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I do something before then I call the function you gave me</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Yes!</span>
@@ -513,36 +510,36 @@ doSomethingBefore<span style="color: #2f96dc;">(</span>scream<span style="color:
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35013;&#39280;&#22120;&#26159;&#19968;&#20010;&#29992;&#20854;&#20182;&#20989;&#25968;&#20316;&#20026;&#21442;&#25968;&#30340;&#20989;&#25968;</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_shiny_new_decorator</span><span style="color: #2f96dc;">(</span>a_function_to_decorate<span style="color: #2f96dc;">)</span>:
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_shiny_new_decorator</span><span style="color: #4f97d7;">(</span>a_function_to_decorate<span style="color: #4f97d7;">)</span>:
 
 
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#20989;&#25968;&#20869;&#37096;&#23450;&#20041;&#19968;&#20010;wrapper,&#29992;&#26469;&#21253;&#35065;&#34987;&#35013;&#39280;&#30340;&#20989;&#25968;.&#22240;&#20026;&#23427;&#21487;&#20197;&#22312;&#34987;&#35013;&#39280;&#20989;&#25968;&#30340;&#21069;&#21518;&#25191;&#34892;</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">the_wrapper_around_the_original_function</span><span style="color: #2f96dc;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">the_wrapper_around_the_original_function</span><span style="color: #4f97d7;">()</span>:
 
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#36825;&#37324;&#25918;&#19978;&#34987;&#35013;&#39280;&#20989;&#25968;&#35843;&#29992;&#21069;&#30340;&#20195;&#30721;</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Before the function runs"</span>
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Before the function runs"</span>
 
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35843;&#29992;&#34987;&#35013;&#39280;&#20989;&#25968;</span>
-        a_function_to_decorate<span style="color: #2f96dc;">()</span>
+        a_function_to_decorate<span style="color: #4f97d7;">()</span>
 
 
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#34987;&#35013;&#39280;&#20989;&#25968;&#25191;&#34892;&#20043;&#21518;&#25191;&#34892;</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"After the function runs"</span>
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"After the function runs"</span>
 
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21069;&#38754;&#30340;&#20195;&#30721;,&#26681;&#26412;&#27809;&#26377;&#25191;&#34892;&#34987;&#35013;&#39280;&#30340;&#20989;&#25968;,&#22240;&#20026;&#21069;&#38754;&#20165;&#20165;&#26159;&#23545;&#20110;"wrapper"&#36827;&#34892;&#20102;&#23450;&#20041;</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> the_wrapper_around_the_original_function
+    <span style="color: #4f97d7; font-weight: bold;">return</span> the_wrapper_around_the_original_function
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23450;&#20041;&#19968;&#20010;&#20320;&#20197;&#21518;&#19981;&#20250;&#26356;&#25913;&#30340;&#20989;&#25968;</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_stand_alone_function</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am a stand alone function, don't you dare modify me"</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_stand_alone_function</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am a stand alone function, don't you dare modify me"</span>
 
-a_stand_alone_function<span style="color: #2f96dc;">()</span> 
+a_stand_alone_function<span style="color: #4f97d7;">()</span> 
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: I am a stand alone function, don't you dare modify me</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Well, &#20320;&#21487;&#20197;&#35013;&#39280;&#36825;&#20010;&#20989;&#25968;&#26469;&#25193;&#23637;&#23427;&#30340;&#20316;&#29992;. &#36890;&#36807;&#20256;&#36882;&#23427;&#32473;&#35013;&#39280;&#22120;, &#35013;&#39280;&#22120;&#23558;&#20250;&#21160;&#24577;&#30340;&#28155;&#21152;&#20195;&#30721;&#24182;&#19988;&#36820;&#22238;&#19968;&#20010;&#20320;&#24819;&#20351;&#29992;&#30340;&#20989;&#25968;.</span>
 
-<span style="color: #7590db;">a_stand_alone_function_decorated</span> = my_shiny_new_decorator<span style="color: #2f96dc;">(</span>a_stand_alone_function<span style="color: #2f96dc;">)</span>
-a_stand_alone_function_decorated<span style="color: #2f96dc;">()</span>
+<span style="color: #7590db;">a_stand_alone_function_decorated</span> = my_shiny_new_decorator<span style="color: #4f97d7;">(</span>a_stand_alone_function<span style="color: #4f97d7;">)</span>
+a_stand_alone_function_decorated<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Before the function runs</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am a stand alone function, don't you dare modify me</span>
@@ -580,10 +577,10 @@ a_stand_alone_function()
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@my_shiny_new_decorator</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">another_stand_alone_function</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Leave me alone"</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">another_stand_alone_function</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Leave me alone"</span>
 
-another_stand_alone_function<span style="color: #2f96dc;">()</span>  
+another_stand_alone_function<span style="color: #4f97d7;">()</span>  
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:  </span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Before the function runs</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Leave me alone</span>
@@ -597,7 +594,7 @@ another_stand_alone_function<span style="color: #2f96dc;">()</span>
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #7590db;">another_stand_alone_function</span> = my_shiny_new_decorator<span style="color: #2f96dc;">(</span>another_stand_alone_function<span style="color: #2f96dc;">)</span>
+<pre class="src src-python"><span style="color: #7590db;">another_stand_alone_function</span> = my_shiny_new_decorator<span style="color: #4f97d7;">(</span>another_stand_alone_function<span style="color: #4f97d7;">)</span>
 </pre>
 </div>
 
@@ -610,33 +607,33 @@ Decorators 是 <a href="http://en.wikipedia.org/wiki/Decorator_pattern">decorato
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">bread</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"&lt;/''''''\&gt;"</span>
-        func<span style="color: #2f96dc;">()</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"&lt;\______/&gt;"</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+<pre class="src src-python">  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">bread</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
+      <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">()</span>:
+          <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"&lt;/''''''\&gt;"</span>
+          func<span style="color: #4f97d7;">()</span>
+          <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"&lt;\______/&gt;"</span>
+      <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">ingredients</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"#tomatoes#"</span>
-        func<span style="color: #2f96dc;">()</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"~salad~"</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">ingredients</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
+      <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">()</span>:
+          <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"#tomatoes#"</span>
+          func<span style="color: #4f97d7;">()</span>
+          <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"~salad~"</span>
+      <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
+p
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sandwich</span><span style="color: #4f97d7;">(</span>food=<span style="color: #2d9574;">"--ham--"</span><span style="color: #4f97d7;">)</span>:
+      <span style="color: #4f97d7; font-weight: bold;">print</span> food
 
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sandwich</span><span style="color: #2f96dc;">(</span>food=<span style="color: #2d9574;">"--ham--"</span><span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> food
-
-sandwich<span style="color: #2f96dc;">()</span>
-<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: --ham--</span>
-<span style="color: #7590db;">sandwich</span> = bread<span style="color: #2f96dc;">(</span>ingredients<span style="color: #bc6ec5;">(</span>sandwich<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
-sandwich<span style="color: #2f96dc;">()</span>
-<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
-<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;/''''''\&gt;</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">#tomatoes#</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">--ham--</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">~salad~</span>
-<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;\______/&gt;</span>
+  sandwich<span style="color: #4f97d7;">()</span>
+  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: --ham--</span>
+  <span style="color: #7590db;">sandwich</span> = bread<span style="color: #4f97d7;">(</span>ingredients<span style="color: #bc6ec5;">(</span>sandwich<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+  sandwich<span style="color: #4f97d7;">()</span>
+  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
+  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;/''''''\&gt;</span>
+  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">#tomatoes#</span>
+  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">--ham--</span>
+  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">~salad~</span>
+  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;\______/&gt;</span>
 </pre>
 </div>
 
@@ -647,10 +644,10 @@ sandwich<span style="color: #2f96dc;">()</span>
 
 <pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@bread</span>
 <span style="color: #ce537a; font-weight: bold;">@ingredients</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sandwich</span><span style="color: #2f96dc;">(</span>food=<span style="color: #2d9574;">"--ham--"</span><span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> food
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sandwich</span><span style="color: #4f97d7;">(</span>food=<span style="color: #2d9574;">"--ham--"</span><span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> food
 
-sandwich<span style="color: #2f96dc;">()</span>
+sandwich<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;/''''''\&gt;</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">#tomatoes#</span>
@@ -667,10 +664,10 @@ sandwich<span style="color: #2f96dc;">()</span>
 
 <pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@ingredients</span>
 <span style="color: #ce537a; font-weight: bold;">@bread</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">strange_sandwich</span><span style="color: #2f96dc;">(</span>food=<span style="color: #2d9574;">"--ham--"</span><span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> food
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">strange_sandwich</span><span style="color: #4f97d7;">(</span>food=<span style="color: #2d9574;">"--ham--"</span><span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> food
 
-strange_sandwich<span style="color: #2f96dc;">()</span>
+strange_sandwich<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">##</span><span style="color: #2aa1ae; background-color: #292e34;">tomatoes#</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&lt;/''''''\&gt;</span>
@@ -694,19 +691,19 @@ strange_sandwich<span style="color: #2f96dc;">()</span>
 
 <pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#38754;&#30340;&#36825;&#20010;&#21487;&#19981;&#26159;&#40657;&#31185;&#25216;,&lt;surface book&#25165;&#26159;&gt; ,&#23427;&#21482;&#26159;&#35753; wrapper &#20256;&#36882;&#20102;&#20989;&#25968;&#30340;&#21442;&#25968;</span>
 
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_decorator_passing_arguments</span><span style="color: #2f96dc;">(</span>function_to_decorate<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_wrapper_accepting_arguments</span><span style="color: #2f96dc;">(</span>arg1, arg2<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I got args! Look:"</span>, arg1, arg2
-        function_to_decorate<span style="color: #2f96dc;">(</span>arg1, arg2<span style="color: #2f96dc;">)</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> a_wrapper_accepting_arguments
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_decorator_passing_arguments</span><span style="color: #4f97d7;">(</span>function_to_decorate<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_wrapper_accepting_arguments</span><span style="color: #4f97d7;">(</span>arg1, arg2<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I got args! Look:"</span>, arg1, arg2
+        function_to_decorate<span style="color: #4f97d7;">(</span>arg1, arg2<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> a_wrapper_accepting_arguments
 
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24403;&#20320;&#35843;&#29992;&#34987;&#35013;&#39280;&#30340;&#20989;&#25968;,&#23454;&#36136;&#26159;&#20320;&#24403;&#20320;&#35843;&#29992;wrapper&#26102;,wrapper&#21487;&#20197;&#20256;&#36882;&#23427;&#30340;&#21442;&#25968;&#32473;&#34987;&#35843;&#29992;&#30340;&#20989;&#25968;.</span>
 <span style="color: #ce537a; font-weight: bold;">@a_decorator_passing_arguments</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">print_full_name</span><span style="color: #2f96dc;">(</span>first_name, last_name<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"My name is"</span>, first_name, last_name
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">print_full_name</span><span style="color: #4f97d7;">(</span>first_name, last_name<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"My name is"</span>, first_name, last_name
 
-print_full_name<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Peter"</span>, <span style="color: #2d9574;">"Venkman"</span><span style="color: #2f96dc;">)</span>
+print_full_name<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"Peter"</span>, <span style="color: #2d9574;">"Venkman"</span><span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I got args! Look: Peter Venkman</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">My name is Peter Venkman</span>
@@ -727,24 +724,24 @@ python中一个很有趣的是事情:方法(methods) 和 function 是相同的. 
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">method_friendly_decorator</span><span style="color: #2f96dc;">(</span>method_to_decorate<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, lie<span style="color: #2f96dc;">)</span>:
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">method_friendly_decorator</span><span style="color: #4f97d7;">(</span>method_to_decorate<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, lie<span style="color: #4f97d7;">)</span>:
         <span style="color: #7590db;">lie</span> = lie - <span style="color: #a45bad;">3</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">very friendly, decrease age even more :-)</span>
-        <span style="color: #237fbf; font-weight: bold;">return</span> method_to_decorate<span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, lie<span style="color: #2f96dc;">)</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+        <span style="color: #4f97d7; font-weight: bold;">return</span> method_to_decorate<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, lie<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
 
-<span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Lucy</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Lucy</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">object</span><span style="color: #4f97d7;">)</span>:
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">self</span>.age = <span style="color: #a45bad;">32</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.age = <span style="color: #a45bad;">32</span>
 
     <span style="color: #ce537a; font-weight: bold;">@method_friendly_decorator</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sayYourAge</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, lie<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am %s, what did you think?"</span> % <span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>.age + lie<span style="color: #2f96dc;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sayYourAge</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, lie<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am %s, what did you think?"</span> % <span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>.age + lie<span style="color: #4f97d7;">)</span>
 
-<span style="color: #7590db;">l</span> = Lucy<span style="color: #2f96dc;">()</span>
-l.sayYourAge<span style="color: #2f96dc;">(</span>-<span style="color: #a45bad;">3</span><span style="color: #2f96dc;">)</span>
+<span style="color: #7590db;">l</span> = Lucy<span style="color: #4f97d7;">()</span>
+l.sayYourAge<span style="color: #4f97d7;">(</span>-<span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: I am 26, what did you think?</span>
 </pre>
 </div>
@@ -754,23 +751,23 @@ l.sayYourAge<span style="color: #2f96dc;">(</span>-<span style="color: #a45bad;"
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_decorator_passing_arbitrary_arguments</span><span style="color: #2f96dc;">(</span>function_to_decorate<span style="color: #2f96dc;">)</span>:
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_decorator_passing_arbitrary_arguments</span><span style="color: #4f97d7;">(</span>function_to_decorate<span style="color: #4f97d7;">)</span>:
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">The wrapper accepts any arguments</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_wrapper_accepting_arbitrary_arguments</span><span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Do I have args?:"</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> args
-        <span style="color: #237fbf; font-weight: bold;">print</span> kwargs
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">a_wrapper_accepting_arbitrary_arguments</span><span style="color: #4f97d7;">(</span>*args, **kwargs<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Do I have args?:"</span>
+        <span style="color: #4f97d7; font-weight: bold;">print</span> args
+        <span style="color: #4f97d7; font-weight: bold;">print</span> kwargs
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Then you unpack the arguments, here *args, **kwargs</span>
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">If you are not familiar with unpacking, check:</span>
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">http://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/</span>
-        function_to_decorate<span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> a_wrapper_accepting_arbitrary_arguments
+        function_to_decorate<span style="color: #4f97d7;">(</span>*args, **kwargs<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> a_wrapper_accepting_arbitrary_arguments
 
 <span style="color: #ce537a; font-weight: bold;">@a_decorator_passing_arbitrary_arguments</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function_with_no_argument</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Python is cool, no argument here."</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function_with_no_argument</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Python is cool, no argument here."</span>
 
-function_with_no_argument<span style="color: #2f96dc;">()</span>
+function_with_no_argument<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Do I have args?:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">()</span>
@@ -778,10 +775,10 @@ function_with_no_argument<span style="color: #2f96dc;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Python is cool, no argument here.</span>
 
 <span style="color: #ce537a; font-weight: bold;">@a_decorator_passing_arbitrary_arguments</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function_with_arguments</span><span style="color: #2f96dc;">(</span>a, b, c<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> a, b, c
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function_with_arguments</span><span style="color: #4f97d7;">(</span>a, b, c<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> a, b, c
 
-function_with_arguments<span style="color: #2f96dc;">(</span><span style="color: #a45bad;">1</span>,<span style="color: #a45bad;">2</span>,<span style="color: #a45bad;">3</span><span style="color: #2f96dc;">)</span>
+function_with_arguments<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span>,<span style="color: #a45bad;">2</span>,<span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Do I have args?:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">(1, 2, 3)</span>
@@ -789,28 +786,28 @@ function_with_arguments<span style="color: #2f96dc;">(</span><span style="color:
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">1 2 3 </span>
 
 <span style="color: #ce537a; font-weight: bold;">@a_decorator_passing_arbitrary_arguments</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function_with_named_arguments</span><span style="color: #2f96dc;">(</span>a, b, c, platypus=<span style="color: #2d9574;">"Why not ?"</span><span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Do %s, %s and %s like platypus? %s"</span> %\
-    <span style="color: #2f96dc;">(</span>a, b, c, platypus<span style="color: #2f96dc;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">function_with_named_arguments</span><span style="color: #4f97d7;">(</span>a, b, c, platypus=<span style="color: #2d9574;">"Why not ?"</span><span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Do %s, %s and %s like platypus? %s"</span> %\
+    <span style="color: #4f97d7;">(</span>a, b, c, platypus<span style="color: #4f97d7;">)</span>
 
-function_with_named_arguments<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Bill"</span>, <span style="color: #2d9574;">"Linus"</span>, <span style="color: #2d9574;">"Steve"</span>, platypus=<span style="color: #2d9574;">"Indeed!"</span><span style="color: #2f96dc;">)</span>
+function_with_named_arguments<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"Bill"</span>, <span style="color: #2d9574;">"Linus"</span>, <span style="color: #2d9574;">"Steve"</span>, platypus=<span style="color: #2d9574;">"Indeed!"</span><span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Do I have args ? :</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">('Bill', 'Linus', 'Steve')</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">{'platypus': 'Indeed!'}</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Do Bill, Linus and Steve like platypus? Indeed!</span>
 
-<span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Mary</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Mary</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">object</span><span style="color: #4f97d7;">)</span>:
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">self</span>.age = <span style="color: #a45bad;">31</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.age = <span style="color: #a45bad;">31</span>
 
     <span style="color: #ce537a; font-weight: bold;">@a_decorator_passing_arbitrary_arguments</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sayYourAge</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, lie=-<span style="color: #a45bad;">3</span><span style="color: #2f96dc;">)</span>: <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">You can now add a default value</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am %s, what did you think ?"</span> % <span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>.age + lie<span style="color: #2f96dc;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sayYourAge</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, lie=-<span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>: <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">You can now add a default value</span>
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am %s, what did you think ?"</span> % <span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>.age + lie<span style="color: #4f97d7;">)</span>
 
-<span style="color: #7590db;">m</span> = Mary<span style="color: #2f96dc;">()</span>
-m.sayYourAge<span style="color: #2f96dc;">()</span>
+<span style="color: #7590db;">m</span> = Mary<span style="color: #4f97d7;">()</span>
+m.sayYourAge<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Do I have args?:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">(&lt;__main__.Mary object at 0xb7d303ac&gt;,)</span>
@@ -839,23 +836,23 @@ m.sayYourAge<span style="color: #2f96dc;">()</span>
 
 <pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35013;&#39280;&#22120;&#26159;&#19968;&#20010;&#26222;&#36890;&#20989;&#25968;</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#38754;&#20889;&#30340;&#36825;&#20010;&#26159;&#36820;&#22238;&#30340;"wrapper" &#36825;&#20010;function object, &#39578;&#24180;&#30475;&#28165;&#26970;,&#30475;&#28165;&#26970;,&#30475;&#28165;&#26970;....</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_decorator</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am an ordinary function"</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am function returned by the decorator"</span>
-        func<span style="color: #2f96dc;">()</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_decorator</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am an ordinary function"</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">()</span>:
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am function returned by the decorator"</span>
+        func<span style="color: #4f97d7;">()</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Therefore, you can call it without any "@"</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22240;&#27492;,&#19981;&#20351;&#29992;@ &#20320;&#21487;&#20197;&#35843;&#29992;&#23427;</span>
 
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">lazy_function</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"zzzzzzzz"</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">lazy_function</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"zzzzzzzz"</span>
 
-<span style="color: #7590db;">decorated_function</span> = my_decorator<span style="color: #2f96dc;">(</span>lazy_function<span style="color: #2f96dc;">)</span>
+<span style="color: #7590db;">decorated_function</span> = my_decorator<span style="color: #4f97d7;">(</span>lazy_function<span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: I am an ordinary function</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> decorated_funtion
+<span style="color: #4f97d7; font-weight: bold;">print</span> decorated_funtion
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:&lt;function wrapper at 0x7f75097b9758&gt;</span>
 
 
@@ -863,8 +860,8 @@ m.sayYourAge<span style="color: #2f96dc;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#34429;&#28982;&#35843;&#29992;&#20102;my_decorator() ,&#20294;&#26159;&#36820;&#22238;&#30340;&#26159; fucntion object"wrapper"</span>
 
 <span style="color: #ce537a; font-weight: bold;">@my_decorator</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">lazy_function</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"zzzzzzzz"</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">lazy_function</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"zzzzzzzz"</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: I am an ordinary function</span>
 </pre>
@@ -884,31 +881,31 @@ Let’s get evil. (吾心本恶&#x2026;.)
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_maker</span><span style="color: #2f96dc;">()</span>:
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_maker</span><span style="color: #4f97d7;">()</span>:
 
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I make decorators! I am executed only once: "</span>+\
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I make decorators! I am executed only once: "</span>+\
           <span style="color: #2d9574;">"when you make me create a decorator."</span>
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_decorator</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_decorator</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
 
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am a decorator! I am executed only when you decorate a function."</span>
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am a decorator! I am executed only when you decorate a function."</span>
 
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapped</span><span style="color: #2f96dc;">()</span>:
-            <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"I am the wrapper around the decorated function. "</span>
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapped</span><span style="color: #4f97d7;">()</span>:
+            <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"I am the wrapper around the decorated function. "</span>
                   <span style="color: #2d9574;">"I am called when you call the decorated function. "</span>
-                  <span style="color: #2d9574;">"As the wrapper, I return the RESULT of the decorated function."</span><span style="color: #2f96dc;">)</span>
-            <span style="color: #237fbf; font-weight: bold;">return</span> func<span style="color: #2f96dc;">()</span>
+                  <span style="color: #2d9574;">"As the wrapper, I return the RESULT of the decorated function."</span><span style="color: #4f97d7;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">return</span> func<span style="color: #4f97d7;">()</span>
 
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"As the decorator, I return the wrapped function."</span>
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"As the decorator, I return the wrapped function."</span>
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> wrapped
+        <span style="color: #4f97d7; font-weight: bold;">return</span> wrapped
 
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"As a decorator maker, I return a decorator"</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> my_decorator
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"As a decorator maker, I return a decorator"</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> my_decorator
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Let&#8217;s create a decorator. It&#8217;s just a new function after all.</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25105;&#20204;&#21019;&#24314;&#20102;&#19968;&#20010; decorator , &#23427;&#21482;&#26159;&#26032;&#30340;&#20989;&#25968;</span>
-<span style="color: #7590db;">new_decorator</span> = decorator_maker<span style="color: #2f96dc;">()</span>       
+<span style="color: #7590db;">new_decorator</span> = decorator_maker<span style="color: #4f97d7;">()</span>       
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I make decorators! I am executed only once: when you make me create a decorator.</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As a decorator maker, I return a decorator</span>
@@ -916,16 +913,16 @@ Let’s get evil. (吾心本恶&#x2026;.)
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Then we decorate the function</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25105;&#20204;&#32487;&#32493;&#21019;&#24314;&#19968;&#20010;&#36845;&#20195;&#30340;&#20989;&#25968;</span>
 
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorated function."</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorated function."</span>
 
-<span style="color: #7590db;">decorated_function</span> = new_decorator<span style="color: #2f96dc;">(</span>decorated_function<span style="color: #2f96dc;">)</span>
+<span style="color: #7590db;">decorated_function</span> = new_decorator<span style="color: #4f97d7;">(</span>decorated_function<span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am a decorator! I am executed only when you decorate a function.</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the decorator, I return the wrapped function</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#20010;&#20989;&#25968;&#26159; &#35843;&#29992;wrapped()&#30340;&#32467;&#26524;.&#20063;&#23601;&#26159;&#19978;&#23618;my_decorator&#21442;&#25968;&#20013;&#30340;func,&#23454;&#20363;&#20013;&#26159; decorated_function()</span>
-decorated_function<span style="color: #2f96dc;">()</span>
+decorated_function<span style="color: #4f97d7;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the wrapper around the decorated function. I am called when you call the decorated function.</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the wrapper, I return the RESULT of the decorated function.</span>
@@ -943,11 +940,11 @@ decorated_function<span style="color: #2f96dc;">()</span>
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorated function."</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorated function."</span>
 
 
-<span style="color: #7590db;">decorated_function</span> = decorator_maker<span style="color: #2f96dc;">()(</span>decorated_function<span style="color: #2f96dc;">)</span>
+<span style="color: #7590db;">decorated_function</span> = decorator_maker<span style="color: #4f97d7;">()(</span>decorated_function<span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I make decorators! I am executed only once: when you make me create a decorator.</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As a decorator maker, I return a decorator</span>
@@ -955,7 +952,7 @@ decorated_function<span style="color: #2f96dc;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the decorator, I return the wrapped function.</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Finally:</span>
-decorated_function<span style="color: #2f96dc;">()</span>    
+decorated_function<span style="color: #4f97d7;">()</span>    
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the wrapper around the decorated function. I am called when you call the decorated function.</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the wrapper, I return the RESULT of the decorated function.</span>
@@ -969,9 +966,9 @@ decorated_function<span style="color: #2f96dc;">()</span>
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@decorator_maker</span><span style="color: #2f96dc;">()</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorated function."</span>
+<pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@decorator_maker</span><span style="color: #4f97d7;">()</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorated function."</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I make decorators! I am executed only once: when you make me create a decorator.</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As a decorator maker, I return a decorator</span>
@@ -979,7 +976,7 @@ decorated_function<span style="color: #2f96dc;">()</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the decorator, I return the wrapped function.</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Eventually: </span>
-decorated_function<span style="color: #2f96dc;">()</span>    
+decorated_function<span style="color: #4f97d7;">()</span>    
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the wrapper around the decorated function. I am called when you call the decorated function.</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">As the wrapper, I return the RESULT of the decorated function.</span>
@@ -997,37 +994,37 @@ decorated_function<span style="color: #2f96dc;">()</span>
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_maker_with_arguments</span><span style="color: #2f96dc;">(</span>decorator_arg1, decorator_arg2<span style="color: #2f96dc;">)</span>:
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_maker_with_arguments</span><span style="color: #4f97d7;">(</span>decorator_arg1, decorator_arg2<span style="color: #4f97d7;">)</span>:
 
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I make decorators! And I accept arguments:"</span>, decorator_arg1, decorator_arg2
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I make decorators! And I accept arguments:"</span>, decorator_arg1, decorator_arg2
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_decorator</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">my_decorator</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">The ability to pass arguments here is a gift from closures.</span>
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">If you are not comfortable with closures, you can assume it&#8217;s ok,</span>
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">or read: http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorator. Somehow you passed me arguments:"</span>, decorator_arg1, decorator_arg2
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"I am the decorator. Somehow you passed me arguments:"</span>, decorator_arg1, decorator_arg2
 
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Don't confuse decorator arguments and function arguments!</span>
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapped</span><span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span> :
-            <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"I am the wrapper around the decorated function.\n"</span>
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapped</span><span style="color: #4f97d7;">(</span>function_arg1, function_arg2<span style="color: #4f97d7;">)</span> :
+            <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"I am the wrapper around the decorated function.\n"</span>
                   <span style="color: #2d9574;">"I can access all the variables\n"</span>
                   <span style="color: #2d9574;">"\t- from the decorator: {0} {1}\n"</span>
                   <span style="color: #2d9574;">"\t- from the function call: {2} {3}\n"</span>
                   <span style="color: #2d9574;">"Then I can pass them to the decorated function"</span>
-                  .<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>decorator_arg1, decorator_arg2,
-                          function_arg1, function_arg2<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
-            <span style="color: #237fbf; font-weight: bold;">return</span> func<span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>
+                  .<span style="color: #4f97d7;">format</span><span style="color: #bc6ec5;">(</span>decorator_arg1, decorator_arg2,
+                          function_arg1, function_arg2<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">return</span> func<span style="color: #4f97d7;">(</span>function_arg1, function_arg2<span style="color: #4f97d7;">)</span>
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> wrapped
+        <span style="color: #4f97d7; font-weight: bold;">return</span> wrapped
 
-    <span style="color: #237fbf; font-weight: bold;">return</span> my_decorator
+    <span style="color: #4f97d7; font-weight: bold;">return</span> my_decorator
 
-<span style="color: #ce537a; font-weight: bold;">@decorator_maker_with_arguments</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Leonard"</span>, <span style="color: #2d9574;">"Sheldon"</span><span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function_with_arguments</span><span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"I am the decorated function and only knows about my arguments: {0}"</span>
-           <span style="color: #2d9574;">" {1}"</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>function_arg1, function_arg2<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+<span style="color: #ce537a; font-weight: bold;">@decorator_maker_with_arguments</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"Leonard"</span>, <span style="color: #2d9574;">"Sheldon"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function_with_arguments</span><span style="color: #4f97d7;">(</span>function_arg1, function_arg2<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"I am the decorated function and only knows about my arguments: {0}"</span>
+           <span style="color: #2d9574;">" {1}"</span>.<span style="color: #4f97d7;">format</span><span style="color: #bc6ec5;">(</span>function_arg1, function_arg2<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 
-decorated_function_with_arguments<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Rajesh"</span>, <span style="color: #2d9574;">"Howard"</span><span style="color: #2f96dc;">)</span>
+decorated_function_with_arguments<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"Rajesh"</span>, <span style="color: #2d9574;">"Howard"</span><span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I make decorators! And I accept arguments: Leonard Sheldon</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the decorator. Somehow you passed me arguments: Leonard Sheldon</span>
@@ -1044,12 +1041,12 @@ decorated_function_with_arguments<span style="color: #2f96dc;">(</span><span sty
 <pre class="src src-python"><span style="color: #7590db;">c1</span> = <span style="color: #2d9574;">"Penny"</span>
 <span style="color: #7590db;">c2</span> = <span style="color: #2d9574;">"Leslie"</span>
 
-<span style="color: #ce537a; font-weight: bold;">@decorator_maker_with_arguments</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Leonard"</span>, c1<span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function_with_arguments</span><span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"I am the decorated function and only knows about my arguments:"</span>
-           <span style="color: #2d9574;">" {0} {1}"</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>function_arg1, function_arg2<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+<span style="color: #ce537a; font-weight: bold;">@decorator_maker_with_arguments</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"Leonard"</span>, c1<span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function_with_arguments</span><span style="color: #4f97d7;">(</span>function_arg1, function_arg2<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"I am the decorated function and only knows about my arguments:"</span>
+           <span style="color: #2d9574;">" {0} {1}"</span>.<span style="color: #4f97d7;">format</span><span style="color: #bc6ec5;">(</span>function_arg1, function_arg2<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 
-decorated_function_with_arguments<span style="color: #2f96dc;">(</span>c2, <span style="color: #2d9574;">"Howard"</span><span style="color: #2f96dc;">)</span>
+decorated_function_with_arguments<span style="color: #4f97d7;">(</span>c2, <span style="color: #2d9574;">"Howard"</span><span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I make decorators! And I accept arguments: Leonard Penny</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">I am the decorator. Somehow you passed me arguments: Leonard Penny</span>
@@ -1081,7 +1078,7 @@ decorated_function_with_arguments<span style="color: #2f96dc;">(</span>c2, <span
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_with_args</span><span style="color: #2f96dc;">(</span>decorator_to_enhance<span style="color: #2f96dc;">)</span>:
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_with_args</span><span style="color: #4f97d7;">(</span>decorator_to_enhance<span style="color: #4f97d7;">)</span>:
     <span style="color: #2d9574;">""" </span>
 <span style="color: #2d9574;">    This function is supposed to be used as a decorator.</span>
 <span style="color: #2d9574;">    It must decorate an other function, that is intended to be used as a decorator.</span>
@@ -1091,20 +1088,20 @@ decorated_function_with_arguments<span style="color: #2f96dc;">(</span>c2, <span
 <span style="color: #2d9574;">    """</span>
 
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We use the same trick we did to pass arguments</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_maker</span><span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_maker</span><span style="color: #4f97d7;">(</span>*args, **kwargs<span style="color: #4f97d7;">)</span>:
 
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We create on the fly a decorator that accepts only a function</span>
         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">but keeps the passed arguments from the maker.</span>
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_wrapper</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_wrapper</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
 
             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We return the result of the original decorator, which, after all, </span>
             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">IS JUST AN ORDINARY FUNCTION (which returns a function).</span>
             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Only pitfall: the decorator must have this specific signature or it won't work:</span>
-            <span style="color: #237fbf; font-weight: bold;">return</span> decorator_to_enhance<span style="color: #2f96dc;">(</span>func, *args, **kwargs<span style="color: #2f96dc;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">return</span> decorator_to_enhance<span style="color: #4f97d7;">(</span>func, *args, **kwargs<span style="color: #4f97d7;">)</span>
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> decorator_wrapper
+        <span style="color: #4f97d7; font-weight: bold;">return</span> decorator_wrapper
 
-    <span style="color: #237fbf; font-weight: bold;">return</span> decorator_maker
+    <span style="color: #4f97d7; font-weight: bold;">return</span> decorator_maker
 </pre>
 </div>
 
@@ -1116,19 +1113,19 @@ decorated_function_with_arguments<span style="color: #2f96dc;">(</span>c2, <span
 <pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">You create the function you will use as a decorator. And stick a decorator on it :-)</span>
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Don't forget, the signature is "decorator(func, *args, **kwargs)"</span>
 <span style="color: #ce537a; font-weight: bold;">@decorator_with_args</span> 
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_decorator</span><span style="color: #2f96dc;">(</span>func, *args, **kwargs<span style="color: #2f96dc;">)</span>: 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Decorated with"</span>, args, kwargs
-        <span style="color: #237fbf; font-weight: bold;">return</span> func<span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_decorator</span><span style="color: #4f97d7;">(</span>func, *args, **kwargs<span style="color: #4f97d7;">)</span>: 
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">(</span>function_arg1, function_arg2<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Decorated with"</span>, args, kwargs
+        <span style="color: #4f97d7; font-weight: bold;">return</span> func<span style="color: #4f97d7;">(</span>function_arg1, function_arg2<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Then you decorate the functions you wish with your brand new decorated decorator.</span>
 
-<span style="color: #ce537a; font-weight: bold;">@decorated_decorator</span><span style="color: #2f96dc;">(</span><span style="color: #a45bad;">42</span>, <span style="color: #a45bad;">404</span>, <span style="color: #a45bad;">1024</span><span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #2f96dc;">(</span>function_arg1, function_arg2<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Hello"</span>, function_arg1, function_arg2
+<span style="color: #ce537a; font-weight: bold;">@decorated_decorator</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">42</span>, <span style="color: #a45bad;">404</span>, <span style="color: #a45bad;">1024</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorated_function</span><span style="color: #4f97d7;">(</span>function_arg1, function_arg2<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Hello"</span>, function_arg1, function_arg2
 
-decorated_function<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Universe and"</span>, <span style="color: #2d9574;">"everything"</span><span style="color: #2f96dc;">)</span>
+decorated_function<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"Universe and"</span>, <span style="color: #2d9574;">"everything"</span><span style="color: #4f97d7;">)</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Decorated with (42, 404, 1024) {}</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Hello Universe and everything</span>
@@ -1170,44 +1167,44 @@ I know, the last time you had this feeling, it was after listening a guy saying:
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">For debugging, the stacktrace prints you the function __name__</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"foo"</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"foo"</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> foo.<span style="color: #1f71ab;">__name__</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> foo.<span style="color: #4f97d7;">__name__</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: foo</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">With a decorator, it gets messy    </span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">bar</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"bar"</span>
-        <span style="color: #237fbf; font-weight: bold;">return</span> func<span style="color: #2f96dc;">()</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">bar</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">()</span>:
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"bar"</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> func<span style="color: #4f97d7;">()</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
 <span style="color: #ce537a; font-weight: bold;">@bar</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"foo"</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"foo"</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> foo.<span style="color: #1f71ab;">__name__</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> foo.<span style="color: #4f97d7;">__name__</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: wrapper</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">"functools" can help for that</span>
 
-<span style="color: #237fbf; font-weight: bold;">import</span> functools
+<span style="color: #4f97d7; font-weight: bold;">import</span> functools
 
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">bar</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">bar</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We say that "wrapper", is wrapping "func"</span>
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">and the magic begins</span>
-    <span style="color: #ce537a; font-weight: bold;">@functools.wraps</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"bar"</span>
-        <span style="color: #237fbf; font-weight: bold;">return</span> func<span style="color: #2f96dc;">()</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+    <span style="color: #ce537a; font-weight: bold;">@functools.wraps</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">()</span>:
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"bar"</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> func<span style="color: #4f97d7;">()</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
 <span style="color: #ce537a; font-weight: bold;">@bar</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"foo"</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"foo"</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> foo.<span style="color: #1f71ab;">__name__</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> foo.<span style="color: #4f97d7;">__name__</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs: foo</span>
 </pre>
 </div>
@@ -1216,9 +1213,14 @@ I know, the last time you had this feeling, it was after listening a guy saying:
 
 <div id="outline-container-orgheadline22" class="outline-3">
 <h3 id="orgheadline22"><span class="section-number-3">5.5</span> 如何理解装饰器的执行步骤.</h3>
-</div>
-</div>
+<div class="outline-text-3" id="text-5-5">
+<div class="org-src-container">
 
+<pre class="src src-python"></pre>
+</div>
+</div>
+</div>
+</div>
 
 <div id="outline-container-orgheadline30" class="outline-2">
 <h2 id="orgheadline30"><span class="section-number-2">6</span> 装饰器的用处</h2>
@@ -1240,52 +1242,52 @@ I know, the last time you had this feeling, it was after listening a guy saying:
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">benchmark</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">benchmark</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
     <span style="color: #2d9574;">"""</span>
 <span style="color: #2d9574;">    A decorator that prints the time a function takes</span>
 <span style="color: #2d9574;">    to execute.</span>
 <span style="color: #2d9574;">    """</span>
-    <span style="color: #237fbf; font-weight: bold;">import</span> time
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>:
-        <span style="color: #7590db;">t</span> = time.clock<span style="color: #2f96dc;">()</span>
-        <span style="color: #7590db;">res</span> = func<span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> func.<span style="color: #1f71ab;">__name__</span>, time.clock<span style="color: #2f96dc;">()</span>-t
-        <span style="color: #237fbf; font-weight: bold;">return</span> res
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+    <span style="color: #4f97d7; font-weight: bold;">import</span> time
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">(</span>*args, **kwargs<span style="color: #4f97d7;">)</span>:
+        <span style="color: #7590db;">t</span> = time.clock<span style="color: #4f97d7;">()</span>
+        <span style="color: #7590db;">res</span> = func<span style="color: #4f97d7;">(</span>*args, **kwargs<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">print</span> func.<span style="color: #4f97d7;">__name__</span>, time.clock<span style="color: #4f97d7;">()</span>-t
+        <span style="color: #4f97d7; font-weight: bold;">return</span> res
+    <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
 
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">logging</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">logging</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
     <span style="color: #2d9574;">"""</span>
 <span style="color: #2d9574;">    A decorator that logs the activity of the script.</span>
 <span style="color: #2d9574;">    (it actually just prints it, but it could be logging!)</span>
 <span style="color: #2d9574;">    """</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>:
-        <span style="color: #7590db;">res</span> = func<span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> func.<span style="color: #1f71ab;">__name__</span>, args, kwargs
-        <span style="color: #237fbf; font-weight: bold;">return</span> res
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">(</span>*args, **kwargs<span style="color: #4f97d7;">)</span>:
+        <span style="color: #7590db;">res</span> = func<span style="color: #4f97d7;">(</span>*args, **kwargs<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">print</span> func.<span style="color: #4f97d7;">__name__</span>, args, kwargs
+        <span style="color: #4f97d7; font-weight: bold;">return</span> res
+    <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
 
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">counter</span><span style="color: #2f96dc;">(</span>func<span style="color: #2f96dc;">)</span>:
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">counter</span><span style="color: #4f97d7;">(</span>func<span style="color: #4f97d7;">)</span>:
     <span style="color: #2d9574;">"""</span>
 <span style="color: #2d9574;">    A decorator that counts and prints the number of times a function has been executed</span>
 <span style="color: #2d9574;">    """</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">(</span>*args, **kwargs<span style="color: #4f97d7;">)</span>:
         <span style="color: #7590db;">wrapper.count</span> = wrapper.count + <span style="color: #a45bad;">1</span>
-        <span style="color: #7590db;">res</span> = func<span style="color: #2f96dc;">(</span>*args, **kwargs<span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"{0} has been used: {1}x"</span>.<span style="color: #1f71ab;">format</span><span style="color: #2f96dc;">(</span>func.<span style="color: #1f71ab;">__name__</span>, wrapper.count<span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">return</span> res
+        <span style="color: #7590db;">res</span> = func<span style="color: #4f97d7;">(</span>*args, **kwargs<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"{0} has been used: {1}x"</span>.<span style="color: #4f97d7;">format</span><span style="color: #4f97d7;">(</span>func.<span style="color: #4f97d7;">__name__</span>, wrapper.count<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> res
     <span style="color: #7590db;">wrapper.count</span> = <span style="color: #a45bad;">0</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+    <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
 <span style="color: #ce537a; font-weight: bold;">@counter</span>
 <span style="color: #ce537a; font-weight: bold;">@benchmark</span>
 <span style="color: #ce537a; font-weight: bold;">@logging</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">reverse_string</span><span style="color: #2f96dc;">(</span>string<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #1f71ab;">str</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">reversed</span><span style="color: #bc6ec5;">(</span>string<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">reverse_string</span><span style="color: #4f97d7;">(</span>string<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7;">str</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">reversed</span><span style="color: #bc6ec5;">(</span>string<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> reverse_string<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Able was I ere I saw Elba"</span><span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">print</span> reverse_string<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"A man, a plan, a canoe, pasta, heros, rajahs, a coloratura, maps, snipe, percale, macaroni, a gag, a banana bag, a tan, a tag, a banana bag again (or a camel), a crepe, pins, Spam, a rut, a Rolo, cash, a jar, sore hats, a peon, a canal: Panama!"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> reverse_string<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"Able was I ere I saw Elba"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> reverse_string<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"A man, a plan, a canoe, pasta, heros, rajahs, a coloratura, maps, snipe, percale, macaroni, a gag, a banana bag, a tan, a tag, a banana bag again (or a camel), a crepe, pins, Spam, a rut, a Rolo, cash, a jar, sore hats, a peon, a canal: Panama!"</span><span style="color: #4f97d7;">)</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">reverse_string ('Able was I ere I saw Elba',) {}</span>
@@ -1307,18 +1309,18 @@ I know, the last time you had this feeling, it was after listening a guy saying:
 <pre class="src src-python"><span style="color: #ce537a; font-weight: bold;">@counter</span>
 <span style="color: #ce537a; font-weight: bold;">@benchmark</span>
 <span style="color: #ce537a; font-weight: bold;">@logging</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">get_random_futurama_quote</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">from</span> urllib <span style="color: #237fbf; font-weight: bold;">import</span> urlopen
-    <span style="color: #7590db;">result</span> = urlopen<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"http://subfusion.net/cgi-bin/quote.pl?quote=futurama"</span><span style="color: #2f96dc;">)</span>.read<span style="color: #2f96dc;">()</span>
-    <span style="color: #237fbf; font-weight: bold;">try</span>:
-        <span style="color: #7590db;">value</span> = result.split<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"&lt;br&gt;&lt;b&gt;&lt;hr&gt;&lt;br&gt;"</span><span style="color: #2f96dc;">)[</span><span style="color: #a45bad;">1</span><span style="color: #2f96dc;">]</span>.split<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"&lt;br&gt;&lt;br&gt;&lt;hr&gt;"</span><span style="color: #2f96dc;">)[</span><span style="color: #a45bad;">0</span><span style="color: #2f96dc;">]</span>
-        <span style="color: #237fbf; font-weight: bold;">return</span> value.strip<span style="color: #2f96dc;">()</span>
-    <span style="color: #237fbf; font-weight: bold;">except</span>:
-        <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"No, I'm ... doesn't!"</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">get_random_futurama_quote</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">from</span> urllib <span style="color: #4f97d7; font-weight: bold;">import</span> urlopen
+    <span style="color: #7590db;">result</span> = urlopen<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"http://subfusion.net/cgi-bin/quote.pl?quote=futurama"</span><span style="color: #4f97d7;">)</span>.read<span style="color: #4f97d7;">()</span>
+    <span style="color: #4f97d7; font-weight: bold;">try</span>:
+        <span style="color: #7590db;">value</span> = result.split<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"&lt;br&gt;&lt;b&gt;&lt;hr&gt;&lt;br&gt;"</span><span style="color: #4f97d7;">)[</span><span style="color: #a45bad;">1</span><span style="color: #4f97d7;">]</span>.split<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"&lt;br&gt;&lt;br&gt;&lt;hr&gt;"</span><span style="color: #4f97d7;">)[</span><span style="color: #a45bad;">0</span><span style="color: #4f97d7;">]</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> value.strip<span style="color: #4f97d7;">()</span>
+    <span style="color: #4f97d7; font-weight: bold;">except</span>:
+        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"No, I'm ... doesn't!"</span>
 
 
-<span style="color: #237fbf; font-weight: bold;">print</span> get_random_futurama_quote<span style="color: #2f96dc;">()</span>
-<span style="color: #237fbf; font-weight: bold;">print</span> get_random_futurama_quote<span style="color: #2f96dc;">()</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> get_random_futurama_quote<span style="color: #4f97d7;">()</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> get_random_futurama_quote<span style="color: #4f97d7;">()</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">outputs:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">get_random_futurama_quote () {}</span>
@@ -1360,21 +1362,21 @@ staticmethod 是类静态方法，其跟成员方法的区别是没有 self 指�
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Foo</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:  
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Foo</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">object</span><span style="color: #4f97d7;">)</span>:  
 
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27809;&#26377;&#20889;self&#25351;&#38024;</span>
     <span style="color: #ce537a; font-weight: bold;">@staticmethod</span>  
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">statc_method</span><span style="color: #2f96dc;">(</span>msg<span style="color: #2f96dc;">)</span>:  
-        <span style="color: #237fbf; font-weight: bold;">print</span> msg  
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">statc_method</span><span style="color: #4f97d7;">(</span>msg<span style="color: #4f97d7;">)</span>:  
+        <span style="color: #4f97d7; font-weight: bold;">print</span> msg  
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">member_method</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, msg<span style="color: #2f96dc;">)</span>:  
-        <span style="color: #237fbf; font-weight: bold;">print</span> msg  
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">member_method</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, msg<span style="color: #4f97d7;">)</span>:  
+        <span style="color: #4f97d7; font-weight: bold;">print</span> msg  
 
-<span style="color: #7590db;">foo</span> = Foo<span style="color: #2f96dc;">()</span>  
-foo.member_method<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'some msg'</span><span style="color: #2f96dc;">)</span>  
-foo.statc_method<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'some msg'</span><span style="color: #2f96dc;">)</span>  
+<span style="color: #7590db;">foo</span> = Foo<span style="color: #4f97d7;">()</span>  
+foo.member_method<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'some msg'</span><span style="color: #4f97d7;">)</span>  
+foo.statc_method<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'some msg'</span><span style="color: #4f97d7;">)</span>  
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#20010;Foo&#26159;&#20026;&#23454;&#20363;&#21270;&#30340;class</span>
-Foo.statc_method<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'some msg'</span><span style="color: #2f96dc;">)</span>
+Foo.statc_method<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'some msg'</span><span style="color: #4f97d7;">)</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">output:    </span>
 <span style="color: #2aa1ae; background-color: #292e34;">#    </span><span style="color: #2aa1ae; background-color: #292e34;">some msg  </span>
@@ -1395,17 +1397,17 @@ classmethod 与成员方法的区别在于所接收的第一个参数不是 self
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Foo</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:  
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Foo</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">object</span><span style="color: #4f97d7;">)</span>:  
     <span style="color: #ce537a; font-weight: bold;">@classmethod</span>  
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">class_method</span><span style="color: #2f96dc;">(</span>cls<span style="color: #2f96dc;">)</span>:  
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #1f71ab;">repr</span><span style="color: #2f96dc;">(</span>cls<span style="color: #2f96dc;">)</span>  
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">class_method</span><span style="color: #4f97d7;">(</span>cls<span style="color: #4f97d7;">)</span>:  
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #4f97d7;">repr</span><span style="color: #4f97d7;">(</span>cls<span style="color: #4f97d7;">)</span>  
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">member_method</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:  
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #1f71ab;">repr</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>  
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">member_method</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:  
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #4f97d7;">repr</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>  
 
-<span style="color: #7590db;">foo</span> = Foo<span style="color: #2f96dc;">()</span>  
-foo.class_method<span style="color: #2f96dc;">()</span>  
-foo.member_method<span style="color: #2f96dc;">()</span>
+<span style="color: #7590db;">foo</span> = Foo<span style="color: #4f97d7;">()</span>  
+foo.class_method<span style="color: #4f97d7;">()</span>  
+foo.member_method<span style="color: #4f97d7;">()</span>
 
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">output:</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">&lt;class '__main__.Foo'&gt;  </span>
@@ -1424,23 +1426,23 @@ property 是属性的意思，即可以通过通过类实例直接访问的信�
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Foo</span><span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">object</span><span style="color: #2f96dc;">)</span>:  
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, var<span style="color: #2f96dc;">)</span>:  
-        <span style="color: #1f71ab;">super</span><span style="color: #2f96dc;">(</span>Foo, <span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>.__init__<span style="color: #2f96dc;">()</span>  
-        <span style="color: #237fbf; font-weight: bold;">self</span>._var = var  
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Foo</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">object</span><span style="color: #4f97d7;">)</span>:  
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, var<span style="color: #4f97d7;">)</span>:  
+        <span style="color: #4f97d7;">super</span><span style="color: #4f97d7;">(</span>Foo, <span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>.__init__<span style="color: #4f97d7;">()</span>  
+        <span style="color: #4f97d7; font-weight: bold;">self</span>._var = var  
 
     <span style="color: #ce537a; font-weight: bold;">@property</span>  
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">var</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:  
-        <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #237fbf; font-weight: bold;">self</span>._var  
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">var</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:  
+        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7; font-weight: bold;">self</span>._var  
 
     <span style="color: #ce537a; font-weight: bold;">@var.setter</span>  
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">var</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, var<span style="color: #2f96dc;">)</span>:  
-        <span style="color: #237fbf; font-weight: bold;">self</span>._var = var  
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">var</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, var<span style="color: #4f97d7;">)</span>:  
+        <span style="color: #4f97d7; font-weight: bold;">self</span>._var = var  
 
-<span style="color: #7590db;">foo</span> = Foo<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'var 1'</span><span style="color: #2f96dc;">)</span>  
-<span style="color: #237fbf; font-weight: bold;">print</span> foo.var  
+<span style="color: #7590db;">foo</span> = Foo<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'var 1'</span><span style="color: #4f97d7;">)</span>  
+<span style="color: #4f97d7; font-weight: bold;">print</span> foo.var  
 <span style="color: #7590db;">foo.var</span> = <span style="color: #2d9574;">'var 2'</span>  
-<span style="color: #237fbf; font-weight: bold;">print</span> foo.var  
+<span style="color: #4f97d7; font-weight: bold;">print</span> foo.var  
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">output</span>
 <span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">var 1  </span>
 <span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">var 2</span>
@@ -1475,11 +1477,11 @@ p
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #7590db;">app</span> = Flask<span style="color: #2f96dc;">(</span><span style="color: #1f71ab;">__name__</span><span style="color: #2f96dc;">)</span>
+<pre class="src src-python"><span style="color: #7590db;">app</span> = Flask<span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">__name__</span><span style="color: #4f97d7;">)</span>
 
-<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
 </pre>
 </div>
 </div>
@@ -1499,21 +1501,21 @@ p
 <div class="org-src-container">
 
 <pre class="src src-python"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">This is our decorator</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">simple_decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">simple_decorator</span><span style="color: #4f97d7;">(</span>f<span style="color: #4f97d7;">)</span>:
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">This is the new function we're going to return</span>
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">This function will be used in place of our original definition</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Entering Function"</span>
-        f<span style="color: #2f96dc;">()</span>
-        <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Exited Function"</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">()</span>:
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Entering Function"</span>
+        f<span style="color: #4f97d7;">()</span>
+        <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Exited Function"</span>
 
-    <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+    <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
 <span style="color: #ce537a; font-weight: bold;">@simple_decorator</span> 
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Hello World"</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Hello World"</span>
 
-hello<span style="color: #2f96dc;">()</span>
+hello<span style="color: #4f97d7;">()</span>
 </pre>
 </div>
 
@@ -1537,23 +1539,23 @@ Exited Function
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_factory</span><span style="color: #2f96dc;">(</span>enter_message, exit_message<span style="color: #2f96dc;">)</span>:
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator_factory</span><span style="color: #4f97d7;">(</span>enter_message, exit_message<span style="color: #4f97d7;">)</span>:
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We're going to return this decorator</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">simple_decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #2f96dc;">()</span>:
-            <span style="color: #237fbf; font-weight: bold;">print</span> enter_message
-            f<span style="color: #2f96dc;">()</span>
-            <span style="color: #237fbf; font-weight: bold;">print</span> exit_message
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">simple_decorator</span><span style="color: #4f97d7;">(</span>f<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">wrapper</span><span style="color: #4f97d7;">()</span>:
+            <span style="color: #4f97d7; font-weight: bold;">print</span> enter_message
+            f<span style="color: #4f97d7;">()</span>
+            <span style="color: #4f97d7; font-weight: bold;">print</span> exit_message
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> wrapper
+        <span style="color: #4f97d7; font-weight: bold;">return</span> wrapper
 
-    <span style="color: #237fbf; font-weight: bold;">return</span> simple_decorator
+    <span style="color: #4f97d7; font-weight: bold;">return</span> simple_decorator
 
-<span style="color: #ce537a; font-weight: bold;">@decorator_factory</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"Start"</span>, <span style="color: #2d9574;">"End"</span><span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">print</span> <span style="color: #2d9574;">"Hello World"</span>
+<span style="color: #ce537a; font-weight: bold;">@decorator_factory</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"Start"</span>, <span style="color: #2d9574;">"End"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span> <span style="color: #2d9574;">"Hello World"</span>
 
-hello<span style="color: #2f96dc;">()</span>
+hello<span style="color: #4f97d7;">()</span>
 </pre>
 </div>
 
@@ -1582,10 +1584,10 @@ End
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">pass</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">pass</span>
 
-<span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+<span style="color: #7590db;">app</span> = NotFlask<span style="color: #4f97d7;">()</span>
 </pre>
 </div>
 
@@ -1595,18 +1597,18 @@ End
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
-            <span style="color: #237fbf; font-weight: bold;">return</span> f
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, route_str<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #4f97d7;">(</span>f<span style="color: #4f97d7;">)</span>:
+            <span style="color: #4f97d7; font-weight: bold;">return</span> f
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+        <span style="color: #4f97d7; font-weight: bold;">return</span> decorator
 
-<span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+<span style="color: #7590db;">app</span> = NotFlask<span style="color: #4f97d7;">()</span>
 
-<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
 </pre>
 </div>
 
@@ -1624,22 +1626,22 @@ End
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">self</span>.routes = <span style="color: #2f96dc;">{}</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.routes = <span style="color: #4f97d7;">{}</span>
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
-            <span style="color: #237fbf; font-weight: bold;">self</span>.routes<span style="color: #2f96dc;">[</span>route_str<span style="color: #2f96dc;">]</span> = f
-            <span style="color: #237fbf; font-weight: bold;">return</span> f
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, route_str<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #4f97d7;">(</span>f<span style="color: #4f97d7;">)</span>:
+            <span style="color: #4f97d7; font-weight: bold;">self</span>.routes<span style="color: #4f97d7;">[</span>route_str<span style="color: #4f97d7;">]</span> = f
+            <span style="color: #4f97d7; font-weight: bold;">return</span> f
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+        <span style="color: #4f97d7; font-weight: bold;">return</span> decorator
 
-<span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+<span style="color: #7590db;">app</span> = NotFlask<span style="color: #4f97d7;">()</span>
 
-<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
 </pre>
 </div>
 
@@ -1650,29 +1652,29 @@ End
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">self</span>.routes = <span style="color: #2f96dc;">{}</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.routes = <span style="color: #4f97d7;">{}</span>
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
-            <span style="color: #237fbf; font-weight: bold;">self</span>.routes<span style="color: #2f96dc;">[</span>route_str<span style="color: #2f96dc;">]</span> = f
-            <span style="color: #237fbf; font-weight: bold;">return</span> f
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, route_str<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #4f97d7;">(</span>f<span style="color: #4f97d7;">)</span>:
+            <span style="color: #4f97d7; font-weight: bold;">self</span>.routes<span style="color: #4f97d7;">[</span>route_str<span style="color: #4f97d7;">]</span> = f
+            <span style="color: #4f97d7; font-weight: bold;">return</span> f
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+        <span style="color: #4f97d7; font-weight: bold;">return</span> decorator
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">serve</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, path<span style="color: #2f96dc;">)</span>:
-        <span style="color: #7590db;">view_function</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.routes.get<span style="color: #2f96dc;">(</span>path<span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">if</span> view_function:
-            <span style="color: #237fbf; font-weight: bold;">return</span> view_function<span style="color: #2f96dc;">()</span>
-        <span style="color: #237fbf; font-weight: bold;">else</span>:
-            <span style="color: #237fbf; font-weight: bold;">raise</span> <span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'Route "{}"" has not been registered'</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>path<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">serve</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, path<span style="color: #4f97d7;">)</span>:
+        <span style="color: #7590db;">view_function</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.routes.get<span style="color: #4f97d7;">(</span>path<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">if</span> view_function:
+            <span style="color: #4f97d7; font-weight: bold;">return</span> view_function<span style="color: #4f97d7;">()</span>
+        <span style="color: #4f97d7; font-weight: bold;">else</span>:
+            <span style="color: #4f97d7; font-weight: bold;">raise</span> <span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'Route "{}"" has not been registered'</span>.<span style="color: #4f97d7;">format</span><span style="color: #bc6ec5;">(</span>path<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 
-<span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+<span style="color: #7590db;">app</span> = NotFlask<span style="color: #4f97d7;">()</span>
 
-<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
 </pre>
 </div>
 
@@ -1703,20 +1705,20 @@ Hello World!
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">TestNotFlask</span><span style="color: #2f96dc;">(</span>unittest.TestCase<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">setUp</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">self</span>.app = NotFlask<span style="color: #2f96dc;">()</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">TestNotFlask</span><span style="color: #4f97d7;">(</span>unittest.TestCase<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">setUp</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.app = NotFlask<span style="color: #4f97d7;">()</span>
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">test_valid_route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
-        @<span style="color: #237fbf; font-weight: bold;">self</span>.app.route<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'/'</span><span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">index</span><span style="color: #2f96dc;">()</span>:
-            <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">'Hello World'</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">test_valid_route</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:
+        @<span style="color: #4f97d7; font-weight: bold;">self</span>.app.route<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'/'</span><span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">index</span><span style="color: #4f97d7;">()</span>:
+            <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">'Hello World'</span>
 
-        <span style="color: #237fbf; font-weight: bold;">self</span>.assertEqual<span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>.app.serve<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'/'</span><span style="color: #bc6ec5;">)</span>, <span style="color: #2d9574;">'Hello World'</span><span style="color: #2f96dc;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.assertEqual<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>.app.serve<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'/'</span><span style="color: #bc6ec5;">)</span>, <span style="color: #2d9574;">'Hello World'</span><span style="color: #4f97d7;">)</span>
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">test_invalid_route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">with</span> <span style="color: #237fbf; font-weight: bold;">self</span>.assertRaises<span style="color: #2f96dc;">(</span><span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #2f96dc;">)</span>:
-            <span style="color: #237fbf; font-weight: bold;">self</span>.app.serve<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'/invalid'</span><span style="color: #2f96dc;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">test_invalid_route</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">with</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.assertRaises<span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #4f97d7;">)</span>:
+            <span style="color: #4f97d7; font-weight: bold;">self</span>.app.serve<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'/invalid'</span><span style="color: #4f97d7;">)</span>
 </pre>
 </div>
 </div>
@@ -1780,7 +1782,7 @@ print match.groups()
 
 <div class="org-src-container">
 
-<pre class="src src-python">/hello/<span style="color: #2f96dc;">(</span>&lt;?P&lt;username&gt;.+<span style="color: #2f96dc;">)</span><span style="color: #2d9574;">"</span>
+<pre class="src src-python">/hello/<span style="color: #4f97d7;">(</span>&lt;?P&lt;username&gt;.+<span style="color: #4f97d7;">)</span><span style="color: #2d9574;">"</span>
 </pre>
 </div>
 
@@ -1794,10 +1796,10 @@ print match.groups()
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #7590db;">route_regex</span> = re.<span style="color: #1f71ab;">compile</span><span style="color: #2f96dc;">(</span>r<span style="color: #2d9574;">'^/hello/(?P&lt;username&gt;.+)$'</span><span style="color: #2f96dc;">)</span>
-<span style="color: #7590db;">match</span> = route_regex.match<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/hello/ains"</span><span style="color: #2f96dc;">)</span>
+<pre class="src src-python"><span style="color: #7590db;">route_regex</span> = re.<span style="color: #4f97d7;">compile</span><span style="color: #4f97d7;">(</span>r<span style="color: #2d9574;">'^/hello/(?P&lt;username&gt;.+)$'</span><span style="color: #4f97d7;">)</span>
+<span style="color: #7590db;">match</span> = route_regex.match<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"/hello/ains"</span><span style="color: #4f97d7;">)</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> match.groupdict<span style="color: #2f96dc;">()</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> match.groupdict<span style="color: #4f97d7;">()</span>
 </pre>
 </div>
 
@@ -1822,11 +1824,11 @@ print match.groups()
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">build_route_pattern</span><span style="color: #2f96dc;">(</span>route<span style="color: #2f96dc;">)</span>:
-    <span style="color: #7590db;">route_regex</span> = re.sub<span style="color: #2f96dc;">(</span>r<span style="color: #2d9574;">'(&lt;\w+&gt;)'</span>, r<span style="color: #2d9574;">'(?P\1.+)'</span>, route<span style="color: #2f96dc;">)</span>
-    <span style="color: #237fbf; font-weight: bold;">return</span> re.<span style="color: #1f71ab;">compile</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"^{}$"</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>route_regex<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">build_route_pattern</span><span style="color: #4f97d7;">(</span>route<span style="color: #4f97d7;">)</span>:
+    <span style="color: #7590db;">route_regex</span> = re.sub<span style="color: #4f97d7;">(</span>r<span style="color: #2d9574;">'(&lt;\w+&gt;)'</span>, r<span style="color: #2d9574;">'(?P\1.+)'</span>, route<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> re.<span style="color: #4f97d7;">compile</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"^{}$"</span>.<span style="color: #4f97d7;">format</span><span style="color: #bc6ec5;">(</span>route_regex<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> build_route_pattern<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'/hello/&lt;username&gt;'</span><span style="color: #2f96dc;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> build_route_pattern<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'/hello/&lt;username&gt;'</span><span style="color: #4f97d7;">)</span>
 </pre>
 </div>
 
@@ -1853,7 +1855,7 @@ re.sub的第一个参数 我们将我们的模式放进括号，目的是把它�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python">^/hello/<span style="color: #2f96dc;">(</span>?P&lt;username&gt;.+<span style="color: #2f96dc;">)</span>$
+<pre class="src src-python">^/hello/<span style="color: #4f97d7;">(</span>?P&lt;username&gt;.+<span style="color: #4f97d7;">)</span>$
 </pre>
 </div>
 </div>
@@ -1867,29 +1869,29 @@ re.sub的第一个参数 我们将我们的模式放进括号，目的是把它�
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">self</span>.routes = <span style="color: #2f96dc;">{}</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.routes = <span style="color: #4f97d7;">{}</span>
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
-            <span style="color: #237fbf; font-weight: bold;">self</span>.routes<span style="color: #2f96dc;">[</span>route_str<span style="color: #2f96dc;">]</span> = f
-            <span style="color: #237fbf; font-weight: bold;">return</span> f
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, route_str<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #4f97d7;">(</span>f<span style="color: #4f97d7;">)</span>:
+            <span style="color: #4f97d7; font-weight: bold;">self</span>.routes<span style="color: #4f97d7;">[</span>route_str<span style="color: #4f97d7;">]</span> = f
+            <span style="color: #4f97d7; font-weight: bold;">return</span> f
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+        <span style="color: #4f97d7; font-weight: bold;">return</span> decorator
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">serve</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, path<span style="color: #2f96dc;">)</span>:
-        <span style="color: #7590db;">view_function</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.routes.get<span style="color: #2f96dc;">(</span>path<span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">if</span> view_function:
-            <span style="color: #237fbf; font-weight: bold;">return</span> view_function<span style="color: #2f96dc;">()</span>
-        <span style="color: #237fbf; font-weight: bold;">else</span>:
-            <span style="color: #237fbf; font-weight: bold;">raise</span> <span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'Route "{}"" has not been registered'</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>path<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">serve</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, path<span style="color: #4f97d7;">)</span>:
+        <span style="color: #7590db;">view_function</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.routes.get<span style="color: #4f97d7;">(</span>path<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">if</span> view_function:
+            <span style="color: #4f97d7; font-weight: bold;">return</span> view_function<span style="color: #4f97d7;">()</span>
+        <span style="color: #4f97d7; font-weight: bold;">else</span>:
+            <span style="color: #4f97d7; font-weight: bold;">raise</span> <span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'Route "{}"" has not been registered'</span>.<span style="color: #4f97d7;">format</span><span style="color: #bc6ec5;">(</span>path<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 
-<span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+<span style="color: #7590db;">app</span> = NotFlask<span style="color: #4f97d7;">()</span>
 
-<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"/"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello World!"</span>
 </pre>
 </div>
 
@@ -1911,26 +1913,26 @@ re.sub的第一个参数 我们将我们的模式放进括号，目的是把它�
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">self</span>.routes = <span style="color: #2f96dc;">[]</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.routes = <span style="color: #4f97d7;">[]</span>
 
     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Here's our build_route_pattern we made earlier</span>
     <span style="color: #ce537a; font-weight: bold;">@staticmethod</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">build_route_pattern</span><span style="color: #2f96dc;">(</span>route<span style="color: #2f96dc;">)</span>:
-        <span style="color: #7590db;">route_regex</span> = re.sub<span style="color: #2f96dc;">(</span>r<span style="color: #2d9574;">'(&lt;\w+&gt;)'</span>, r<span style="color: #2d9574;">'(?P\1.+)'</span>, route<span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">return</span> re.<span style="color: #1f71ab;">compile</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"^{}$"</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>route_regex<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">build_route_pattern</span><span style="color: #4f97d7;">(</span>route<span style="color: #4f97d7;">)</span>:
+        <span style="color: #7590db;">route_regex</span> = re.sub<span style="color: #4f97d7;">(</span>r<span style="color: #2d9574;">'(&lt;\w+&gt;)'</span>, r<span style="color: #2d9574;">'(?P\1.+)'</span>, route<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> re.<span style="color: #4f97d7;">compile</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"^{}$"</span>.<span style="color: #4f97d7;">format</span><span style="color: #bc6ec5;">(</span>route_regex<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, route_str<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #4f97d7;">(</span>f<span style="color: #4f97d7;">)</span>:
             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Instead of inserting into a dictionary,</span>
             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">We'll append the tuple to our route list</span>
-            <span style="color: #7590db;">route_pattern</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.build_route_pattern<span style="color: #2f96dc;">(</span>route_str<span style="color: #2f96dc;">)</span>
-            <span style="color: #237fbf; font-weight: bold;">self</span>.routes.append<span style="color: #2f96dc;">(</span><span style="color: #bc6ec5;">(</span>route_pattern, f<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+            <span style="color: #7590db;">route_pattern</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.build_route_pattern<span style="color: #4f97d7;">(</span>route_str<span style="color: #4f97d7;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>.routes.append<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>route_pattern, f<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 
-            <span style="color: #237fbf; font-weight: bold;">return</span> f
+            <span style="color: #4f97d7; font-weight: bold;">return</span> f
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+        <span style="color: #4f97d7; font-weight: bold;">return</span> decorator
 </pre>
 </div>
 
@@ -1974,8 +1976,8 @@ def get_route_match(path):
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello_user</span><span style="color: #2f96dc;">(</span>username<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello {}!"</span>.<span style="color: #1f71ab;">format</span><span style="color: #2f96dc;">(</span>username<span style="color: #2f96dc;">)</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello_user</span><span style="color: #4f97d7;">(</span>username<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello {}!"</span>.<span style="color: #4f97d7;">format</span><span style="color: #4f97d7;">(</span>username<span style="color: #4f97d7;">)</span>
 </pre>
 </div>
 
@@ -2016,39 +2018,39 @@ Hello ains!
 </p>
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #237fbf; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #2f96dc;">()</span>:
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span><span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">self</span>.routes = <span style="color: #2f96dc;">[]</span>
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">NotFlask</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">self</span>.routes = <span style="color: #4f97d7;">[]</span>
 
     <span style="color: #ce537a; font-weight: bold;">@staticmethod</span>
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">build_route_pattern</span><span style="color: #2f96dc;">(</span>route<span style="color: #2f96dc;">)</span>:
-        <span style="color: #7590db;">route_regex</span> = re.sub<span style="color: #2f96dc;">(</span>r<span style="color: #2d9574;">'(&lt;\w+&gt;)'</span>, r<span style="color: #2d9574;">'(?P\1.+)'</span>, route<span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">return</span> re.<span style="color: #1f71ab;">compile</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"^{}$"</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>route_regex<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">build_route_pattern</span><span style="color: #4f97d7;">(</span>route<span style="color: #4f97d7;">)</span>:
+        <span style="color: #7590db;">route_regex</span> = re.sub<span style="color: #4f97d7;">(</span>r<span style="color: #2d9574;">'(&lt;\w+&gt;)'</span>, r<span style="color: #2d9574;">'(?P\1.+)'</span>, route<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> re.<span style="color: #4f97d7;">compile</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"^{}$"</span>.<span style="color: #4f97d7;">format</span><span style="color: #bc6ec5;">(</span>route_regex<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, route_str<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #2f96dc;">(</span>f<span style="color: #2f96dc;">)</span>:
-            <span style="color: #7590db;">route_pattern</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.build_route_pattern<span style="color: #2f96dc;">(</span>route_str<span style="color: #2f96dc;">)</span>
-            <span style="color: #237fbf; font-weight: bold;">self</span>.routes.append<span style="color: #2f96dc;">(</span><span style="color: #bc6ec5;">(</span>route_pattern, f<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">route</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, route_str<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">decorator</span><span style="color: #4f97d7;">(</span>f<span style="color: #4f97d7;">)</span>:
+            <span style="color: #7590db;">route_pattern</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.build_route_pattern<span style="color: #4f97d7;">(</span>route_str<span style="color: #4f97d7;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>.routes.append<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>route_pattern, f<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 
-            <span style="color: #237fbf; font-weight: bold;">return</span> f
+            <span style="color: #4f97d7; font-weight: bold;">return</span> f
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> decorator
+        <span style="color: #4f97d7; font-weight: bold;">return</span> decorator
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">get_route_match</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, path<span style="color: #2f96dc;">)</span>:
-        <span style="color: #237fbf; font-weight: bold;">for</span> route_pattern, view_function <span style="color: #237fbf; font-weight: bold;">in</span> <span style="color: #237fbf; font-weight: bold;">self</span>.routes:
-            <span style="color: #7590db;">m</span> = route_pattern.match<span style="color: #2f96dc;">(</span>path<span style="color: #2f96dc;">)</span>
-            <span style="color: #237fbf; font-weight: bold;">if</span> m:
-                <span style="color: #237fbf; font-weight: bold;">return</span> m.groupdict<span style="color: #2f96dc;">()</span>, view_function
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">get_route_match</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, path<span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">for</span> route_pattern, view_function <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.routes:
+            <span style="color: #7590db;">m</span> = route_pattern.match<span style="color: #4f97d7;">(</span>path<span style="color: #4f97d7;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">if</span> m:
+                <span style="color: #4f97d7; font-weight: bold;">return</span> m.groupdict<span style="color: #4f97d7;">()</span>, view_function
 
-        <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #a45bad;">None</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">None</span>
 
-    <span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">serve</span><span style="color: #2f96dc;">(</span><span style="color: #237fbf; font-weight: bold;">self</span>, path<span style="color: #2f96dc;">)</span>:
-        <span style="color: #7590db;">route_match</span> = <span style="color: #237fbf; font-weight: bold;">self</span>.get_route_match<span style="color: #2f96dc;">(</span>path<span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">if</span> route_match:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">serve</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, path<span style="color: #4f97d7;">)</span>:
+        <span style="color: #7590db;">route_match</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.get_route_match<span style="color: #4f97d7;">(</span>path<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">if</span> route_match:
             <span style="color: #7590db;">kwargs</span>, <span style="color: #7590db;">view_function</span> = route_match
-            <span style="color: #237fbf; font-weight: bold;">return</span> view_function<span style="color: #2f96dc;">(</span>**kwargs<span style="color: #2f96dc;">)</span>
-        <span style="color: #237fbf; font-weight: bold;">else</span>:
-            <span style="color: #237fbf; font-weight: bold;">raise</span> <span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">'Route "{}"" has not been registered'</span>.<span style="color: #1f71ab;">format</span><span style="color: #bc6ec5;">(</span>path<span style="color: #bc6ec5;">)</span><span style="color: #2f96dc;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">return</span> view_function<span style="color: #4f97d7;">(</span>**kwargs<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">else</span>:
+            <span style="color: #4f97d7; font-weight: bold;">raise</span> <span style="color: #ce537a; font-weight: bold;">ValueError</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'Route "{}"" has not been registered'</span>.<span style="color: #4f97d7;">format</span><span style="color: #bc6ec5;">(</span>path<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
 </pre>
 </div>
 
@@ -2058,13 +2060,13 @@ Hello ains!
 
 <div class="org-src-container">
 
-<pre class="src src-python"><span style="color: #7590db;">app</span> = NotFlask<span style="color: #2f96dc;">()</span>
+<pre class="src src-python"><span style="color: #7590db;">app</span> = NotFlask<span style="color: #4f97d7;">()</span>
 
-<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/hello/&lt;username&gt;"</span><span style="color: #2f96dc;">)</span>
-<span style="color: #237fbf; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello_user</span><span style="color: #2f96dc;">(</span>username<span style="color: #2f96dc;">)</span>:
-    <span style="color: #237fbf; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello {}!"</span>.<span style="color: #1f71ab;">format</span><span style="color: #2f96dc;">(</span>username<span style="color: #2f96dc;">)</span>
+<span style="color: #ce537a; font-weight: bold;">@app.route</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"/hello/&lt;username&gt;"</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello_user</span><span style="color: #4f97d7;">(</span>username<span style="color: #4f97d7;">)</span>:
+    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello {}!"</span>.<span style="color: #4f97d7;">format</span><span style="color: #4f97d7;">(</span>username<span style="color: #4f97d7;">)</span>
 
-<span style="color: #237fbf; font-weight: bold;">print</span> app.serve<span style="color: #2f96dc;">(</span><span style="color: #2d9574;">"/hello/ains"</span><span style="color: #2f96dc;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">print</span> app.serve<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"/hello/ains"</span><span style="color: #4f97d7;">)</span>
 </pre>
 </div>
 
@@ -2124,7 +2126,8 @@ pep318 关于迭代器的为什么使用@
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2015-11-22 日 17:36</p>
+<p class="author">Author: huihui</p>
+<p class="date">Created: 2016-05-23 一 10:55</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

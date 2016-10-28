@@ -1,0 +1,11 @@
+#+TAGS: mysql  日志 
+
+
+* 如何打印select 等常规操作日志
+ #+BEGIN_EXAMPLE
+   [mysqld]
+   general_log = 1
+   general_log_file=/var/log/mysql1.log
+ #+END_EXAMPLE
+
+

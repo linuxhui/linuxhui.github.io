@@ -1,0 +1,77 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline1">1. 什么是SQLmap</a></li>
+<li><a href="#orgheadline2">2. 使用sqlmap</a></li>
+</ul>
+</div>
+</div>
+
+# 什么是SQLmap<a id="orgheadline1"></a>
+
+SQLmap是一款用来检测与利用SQL注入漏洞的免费开源工具，有一个非常棒的特性，即对检测与利用的自动化处理（数据库指纹、访问底层文件系统、
+
+# 使用sqlmap<a id="orgheadline2"></a>
+
+    http://192.168.136.131/sqlmap/mysql/get_int.php?id=1
+
+当给sqlmap这么一个url的时候，它会：
+
+1.  判断可注入的参数
+
+2.  判断可以用那种SQL注入技术来注入
+
+3.  识别出哪种数据库
+
+4.  根据用户选择，读取哪些数据
+
+sqlmap支持五种不同的注入模式：
+
+1.  基于布尔的盲注，即可以根据返回页面判断条件真假的注入。
+
+2.  基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断。
+
+3.  基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。
+
+4.  联合查询注入，可以使用union的情况下的注入。
+
+5.  堆查询注入，可以同时执行多条语句的执行时的注入。
+
+sqlmap支持的数据库有：
+
+    MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase和SAP MaxDB
+
+可以提供一个简单的URL，Burp或WebScarab请求日志文件，文本文档中的完整http请求或者Google的搜索，匹配出结果页面，也可以自己定义一个正则来判断那个地址去测试。
+
+测试GET参数，POST参数，HTTP Cookie参数，HTTP User-Agent头和HTTP Referer头来确认是否有SQL注入，它也可以指定用逗号分隔的列表的具体参数来测试。
+
+可以设定HTTP(S)请求的并发数，来提高盲注时的效率。
+
+使用sqlmap的实例文章：
+
+<http://unconciousmind.blogspot.com/search/label/sqlmap>
+
+<http://www.srxh1314.com/sqlmap-penetration.html>
+
+<http://drops.wooyun.org/tips/1343>
+
+如果你想观察sqlmap对一个点是进行了怎样的尝试判断以及读取数据的，可以使用-v参数。
+
+共有七个等级，默认为1：
+
+1.  只显示python错误以及严重的信息。
+
+2.  同时显示基本信息和警告信息。（默认）
+
+3.  同时显示debug信息。
+
+4.  同时显示注入的payload。
+
+5.  同时显示HTTP请求。
+
+6.  同时显示HTTP响应头。
+
+7.  同时显示HTTP响应页面。
+
+如果你想看到sqlmap发送的测试payload最好的等级就是3。

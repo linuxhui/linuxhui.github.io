@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-09-01 四 10:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline3">1. pycurl的简单学习</a>
+<ul>
+<li><a href="#orgheadline1">1.1. 安装</a></li>
+<li><a href="#orgheadline2">1.2. api学习</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">1</span> pycurl的简单学习</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> 安装</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+
+<pre class="src src-shell"><span style="color: #4f97d7;">export</span> <span style="color: #7590db;">PYCURL_SSL_LIBRARY</span>=<span style="color: #4f97d7;">[</span>openssl|gnutls|nss<span style="color: #4f97d7;">]</span>
+easy_install pycurl
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> api学习</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> pycurl
+<span style="color: #4f97d7; font-weight: bold;">import</span> urllib
+<span style="color: #4f97d7; font-weight: bold;">import</span> StringIO
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">HStat</span><span style="color: #4f97d7;">()</span>:
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, url, timeout=<span style="color: #a45bad;">60</span>, postdata=<span style="color: #a45bad;">None</span>, is_gzip=<span style="color: #a45bad;">True</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">try</span>:
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._url = url
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._timeout = timeout <span style="color: #2aa1ae; background-color: #292e34;">## </span><span style="color: #2aa1ae; background-color: #292e34;">&#21333;&#20301;&#65306;s</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._postdata = postdata
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._is_gzip = is_gzip
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._time_st = <span style="color: #4f97d7;">{}</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>.__get_info__<span style="color: #4f97d7;">()</span>
+        <span style="color: #4f97d7; font-weight: bold;">except</span> <span style="color: #ce537a; font-weight: bold;">Exception</span> <span style="color: #4f97d7; font-weight: bold;">as</span> expt:
+            <span style="color: #4f97d7; font-weight: bold;">print</span> expt
+
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__get_info__</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">self</span>, url=<span style="color: #a45bad;">None</span>, timeout=<span style="color: #a45bad;">None</span>, postdata=<span style="color: #a45bad;">None</span>, is_gzip=<span style="color: #a45bad;">None</span><span style="color: #4f97d7;">)</span>:
+        <span style="color: #4f97d7; font-weight: bold;">try</span>:
+            <span style="color: #7590db;">input_url</span> = url.strip<span style="color: #4f97d7;">()</span> <span style="color: #4f97d7; font-weight: bold;">if</span> url <span style="color: #4f97d7; font-weight: bold;">else</span> <span style="color: #4f97d7; font-weight: bold;">self</span>._url.strip<span style="color: #4f97d7;">()</span>
+            <span style="color: #7590db;">timeout</span> = timeout <span style="color: #4f97d7; font-weight: bold;">if</span> timeout <span style="color: #4f97d7; font-weight: bold;">else</span> <span style="color: #4f97d7; font-weight: bold;">self</span>._timeout
+            <span style="color: #7590db;">postdata</span> = postdata <span style="color: #4f97d7; font-weight: bold;">if</span> postdata <span style="color: #4f97d7; font-weight: bold;">else</span> <span style="color: #4f97d7; font-weight: bold;">self</span>._postdata
+            <span style="color: #7590db;">is_gzip</span> = is_gzip <span style="color: #4f97d7; font-weight: bold;">if</span> is_gzip <span style="color: #4f97d7; font-weight: bold;">else</span> <span style="color: #4f97d7; font-weight: bold;">self</span>._is_gzip
+
+            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21019;&#24314;curl&#23545;&#35937;</span>
+            <span style="color: #7590db;">c</span> = pycurl.Curl<span style="color: #4f97d7;">()</span>
+            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35774;&#32622;&#19968;&#20010; io buffer</span>
+            <span style="color: #7590db;">b</span> = StringIO.StringIO<span style="color: #4f97d7;">()</span>
+            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">curl &#21442;&#25968;&#35774;&#32622;</span>
+            c.setopt<span style="color: #4f97d7;">(</span>pycurl.WRITEFUNCTION, b.write<span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;">## </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#36755;&#20986;&#20132;&#30001;StringIO&#22788;&#29702;</span>
+            c.setopt<span style="color: #4f97d7;">(</span>pycurl.URL,input_url<span style="color: #4f97d7;">)</span>
+            c.setopt<span style="color: #4f97d7;">(</span>pycurl.TIMEOUT, timeout<span style="color: #4f97d7;">)</span>
+
+            <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#36991;&#20813;libcurl crash</span>
+            c.setopt<span style="color: #4f97d7;">(</span>pycurl.NOSIGNAL, <span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span>
+
+            <span style="color: #4f97d7; font-weight: bold;">if</span> is_gzip == <span style="color: #a45bad;">True</span>:
+                c.setopt<span style="color: #4f97d7;">(</span>pycurl.ENCODING, <span style="color: #2d9574;">'gzip'</span><span style="color: #4f97d7;">)</span>
+
+            <span style="color: #4f97d7; font-weight: bold;">if</span> postdata:
+                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Option -d/--data HTTP POST data</span>
+                c.setopt<span style="color: #4f97d7;">(</span>c.POSTFIELDS, urllib.urlencode<span style="color: #bc6ec5;">(</span>postdata<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+
+            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">curl&#25191;&#34892;</span>
+            c.perform<span style="color: #4f97d7;">()</span>
+
+            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21518;&#26399;&#22788;&#29702;</span>
+            <span style="color: #7590db;">t_dns</span> = c.getinfo<span style="color: #4f97d7;">(</span>pycurl.NAMELOOKUP_TIME<span style="color: #4f97d7;">)</span>
+            <span style="color: #7590db;">t_redirect</span> = c.getinfo<span style="color: #4f97d7;">(</span>pycurl.REDIRECT_TIME<span style="color: #4f97d7;">)</span>
+            <span style="color: #7590db;">t_conn</span> =  c.getinfo<span style="color: #4f97d7;">(</span>pycurl.CONNECT_TIME<span style="color: #4f97d7;">)</span>
+            <span style="color: #7590db;">t_pre_tran</span> =  c.getinfo<span style="color: #4f97d7;">(</span>pycurl.PRETRANSFER_TIME<span style="color: #4f97d7;">)</span>
+            <span style="color: #7590db;">t_start_tran</span> =  c.getinfo<span style="color: #4f97d7;">(</span>pycurl.STARTTRANSFER_TIME<span style="color: #4f97d7;">)</span>
+            <span style="color: #7590db;">t_total</span> = c.getinfo<span style="color: #4f97d7;">(</span>pycurl.TOTAL_TIME<span style="color: #4f97d7;">)</span>
+            <span style="color: #7590db;">time_st</span> = <span style="color: #4f97d7;">{</span>
+                       <span style="color: #2d9574;">"dns_time"</span>: t_dns,
+                       <span style="color: #2d9574;">"redirect_time"</span>: t_redirect,
+                       <span style="color: #2d9574;">"connect_time"</span>: t_conn,
+                       <span style="color: #2d9574;">"pre_tran_time"</span>: t_pre_tran,
+                       <span style="color: #2d9574;">"start_tran_time"</span>: t_start_tran,
+                       <span style="color: #2d9574;">"total_time"</span>: t_total,
+            <span style="color: #4f97d7;">}</span>
+
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._time_st = time_st
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._status = c.getinfo<span style="color: #4f97d7;">(</span>pycurl.HTTP_CODE<span style="color: #4f97d7;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._size = c.getinfo<span style="color: #4f97d7;">(</span>pycurl.SIZE_DOWNLOAD<span style="color: #4f97d7;">)</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._body = b.getvalue<span style="color: #4f97d7;">()</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._request_time = t_total
+            c.close<span style="color: #4f97d7;">()</span>
+            b.close<span style="color: #4f97d7;">()</span>
+        <span style="color: #4f97d7; font-weight: bold;">except</span> pycurl.error <span style="color: #4f97d7; font-weight: bold;">as</span> expt:
+            <span style="color: #4f97d7; font-weight: bold;">import</span> traceback
+            <span style="color: #7590db;">tb</span> = traceback.format_exc<span style="color: #4f97d7;">()</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._body = tb
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._size = -<span style="color: #a45bad;">1</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._request_time = <span style="color: #a45bad;">0</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._status = <span style="color: #a45bad;">10000</span>
+            <span style="color: #4f97d7; font-weight: bold;">self</span>._time_st = <span style="color: #4f97d7;">{}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2016-09-01 四 10:57</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

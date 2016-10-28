@@ -1,0 +1,127 @@
+
+* 缘由
+在zabbix中， 后端的zabbix_server的性能在目前1500/s(被动模式)的查询情况下还是能抗住压力的。 觉得以后更换了为主动
+以及增加zabbix_agentd的情况下，增加一倍查询量还是很轻松应对的。 
+
+但是前端zabbix_web就出现了性能问题， 因为是php写的， 特别是Dashboard有几个重量级查询的情况下，会导致性能越来越慢。
+
+解决方案采用nginx的upstream进行负载均衡实现。
+
+* 公司的zabbix架构图
+
+* 配置
+
+** php-fpm
+这个部分有点多， 主要由以下三个部分组成
+
+*** php.ini配置
+#+BEGIN_EXAMPLE
+  max_execution_time = 900
+  max_input_time = 300
+  ; 内存 zabbix官网要求是128M,但是在grafana 拉取1个月数据的时候，不够用，所以更改为500M
+  memory_limit = 512M
+  post_max_size = 16M
+  date.timezone = Asia/Shanghai
+
+#+END_EXAMPLE
+*** php-fpm配置
+
+#+BEGIN_EXAMPLE
+  user = nginx
+  group = nginx
+  listen = 0.0.0.0:9000
+  pm = dynamic
+
+#+END_EXAMPLE
+
+剩下的连接数什么的可以自己看服务器进行调节
+
+
+** nginx
+upstream 主要配置如下:
+#+BEGIN_EXAMPLE
+      upstream myfastcgi {
+          server 10.0.0.1:9000 weight=1;
+          server 10.0.0.2:9000 weight=1;
+          server unix:/var/run/php5-fpm.sock weight=1;
+      }
+
+#+END_EXAMPLE
+
+server 配置：
+#+BEGIN_EXAMPLE
+  server {
+          listen 80;
+          server_name zbx3.fangdd.cn zabbix-bj.fangdd.cn 10.50.110.110;
+          root /var/www/zabbix-3.0.1;
+          index index.php index.html;
+
+          fastcgi_buffers 256  128k;
+          client_max_body_size 500m;
+          client_body_buffer_size 2048k;
+
+          access_log /var/log/nginx/zbx3_access.log;
+          error_log /var/log/nginx/zbx3_error.log warn;
+
+          location ~* \.(jpg|jpeg|png|gif|css|js)$ {
+              expires 30d;
+          }
+
+
+          location ~ \.php$ {
+                  root /var/www/zabbix-3.0.1;
+                  #fastcgi_pass unix:/var/run/php5-fpm.sock;
+                  fastcgi_pass myfastcgi;
+                  #fastcgi_pass   10.50.110.119:9000;
+                  fastcgi_index  index.php;
+                  fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+                  include        fastcgi_params;
+          }
+
+  }
+
+#+END_EXAMPLE
+
+** zabbix_web配置 
+#+BEGIN_EXAMPLE
+  <?php
+  // Zabbix GUI configuration file.
+  global $DB;
+
+  $DB['TYPE']     = 'MYSQL';
+  $DB['SERVER']   = 'DB_IP';
+  $DB['PORT']     = 'DB_PORT';
+  $DB['DATABASE'] = 'DB_NAME';
+  $DB['USER']     = 'DB_USER';
+  $DB['PASSWORD'] = 'DB_PASSWORD';
+
+  // Schema name. Used for IBM DB2 and PostgreSQL.
+  $DB['SCHEMA'] = '';
+
+  $ZBX_SERVER      = 'ZABBIX_SERVER_IP';
+  $ZBX_SERVER_PORT = 'ZABBIX_SERVER_PORT';
+  $ZBX_SERVER_NAME = 'ZABBIX_SERVER_NAME';
+
+  $IMAGE_FORMAT_DEFAULT = IMAGE_FORMAT_PNG;
+  ?>
+
+#+END_EXAMPLE
+* note
+
+** php执行设置的内存那么大？
+在grafana(zabbix的外壳)中，查询一个月的数据， 就会发现php经常报out of memory，报500错误。所以这是设置这么大的原因。
+
+** mysql有没有瓶颈?
+有，但是我的服务器目前不存在，因为数据库是16核心CPU + 128G MEM + 一个DBA进行维护，目前慢查询还不存在。
+
+** 为什么不使用zabbix_agentd ?
+目前的性能足够， 就算增加监控，我现在也能承受。
+
+
+
+
+
+
+
+
+

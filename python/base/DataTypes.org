@@ -1,0 +1,12 @@
+
+* datatime
+基础的日期和时间类型
+
+在 python中有两种 时间和日期object： 'naive' 和 'aware'
+aware object 是可以判断条件和演算时间。 比如根据时区和白昼， 来演算自己的时刻。
+naive object 在任何环境下是一样的， 是不会改变的。
+
+对于 Application 来说， 需要 aware object的话， datetime 和 time object 是可用对象。
+
+
+

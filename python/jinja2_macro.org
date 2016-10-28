@@ -1,0 +1,75 @@
+#+OPTIONS: toc:t  ^:nil 
+
+* 简介
+jinja2是python的模板引擎, 在写python web使用的过程中,发现macro可以节省大量的代码.所以做了一个小的总结.
+
+用法基本上都是网上的文章. 自己主要是写了注意事项,也算是心得体会.
+
+* 用法
+宏类似常规编程语言中的函数。它们用于把常用行为作为可重用的函数，取代 手动重复的工作。
+例子:
+#+BEGIN_EXAMPLE
+  {% macro input(name, value='', type='text', size=20) -%}
+      <input type="{{ type }}" name="{{ name }}" value="{{
+          value|e }}" size="{{ size }}">
+  {%- endmacro %}
+#+END_EXAMPLE
+
+在命名空间中，宏之后可以像函数一样调用:
+
+#+BEGIN_EXAMPLE
+  <p>{{ input('username') }}</p>
+  <p>{{ input('password', type='password') }}</p>
+#+END_EXAMPLE
+如果宏在不同的模板中定义，你需要首先使用 *import*
+#+BEGIN_EXAMPLE
+  {% from 'base/macro/submit.macro' import test %}
+#+END_EXAMPLE
+
+* 参数和变量
+#+BEGIN_EXAMPLE
+  varargs
+  如果有多于宏接受的参数个数的位置参数被传入，它们会作为列表的值保存在 varargs 变量上。
+  kwargs
+  同 varargs ，但只针对关键字参数。所有未使用的关键字参数会存储在 这个特殊变量中。
+  caller
+  如果宏通过 call 标签调用，调用者会作为可调用的宏被存储在这个 变量中。
+  宏也可以暴露某些内部细节。下面的宏对象属性是可用的:
+
+  name
+  宏的名称。 {{ input.name }} 会打印 input 。
+  arguments
+  一个宏接受的参数名的元组。
+  defaults
+  默认值的元组。
+  catch_kwargs
+  如果宏接受额外的关键字参数（也就是访问特殊的 kwargs 变量），为 true 。
+  catch_varargs
+  如果宏接受额外的位置参数（也就是访问特殊的 varargs 变量），为 true 。
+  caller
+  如果宏访问特殊的 caller 变量且由 call 标签调用，为 true 。
+#+END_EXAMPLE
+
+
+* 注意事项
+
+** macro的变量只能为如下三种:
+1. 参数变量
+2. module变量
+3. call 的变量
+
+这个和其他的语言比如c语言的macro是很大的不同. 你在模块中想让macro引用自身的变量是不能实现的.
+
+** 和block的关系: 
+macro的出现,本质是想解决重复代码的问题. 和block相比,因为不能使用module中的参数,也就是说和block是
+相辅相成的关系. 不存在互相覆盖的问题.
+
+*macro* 的重心在于替换简单的重复性质的代码. 
+
+*block* 的重心在于重复框架代码的替换.
+
+*  参考文档
+[[http://docs.jinkan.org/docs/jinja2/templates.html#id19][模板设计者文档]]
+
+
+

@@ -1,0 +1,72 @@
+#+TITLE:Error：达到了 inotify 观察数限制
+
+* 问题 
+使用 tail/tailf 查看 MongoDB 日志的时候发生以下错误：
+#+BEGIN_EXAMPLE
+
+  $ tailf /var/log/mongodb/mongodb.log
+  ...
+  tailf: tailf: /var/log/mongodb/mongodb.log：无法添加 inotify 观察(达到了 inotify 观察数限制)。
+  ：无法添加 inotify 观察(达到了 inotify 观察数限制)。
+
+  $ tail -F /var/log/mongodb/mongodb.log
+  ...
+  tail: inotify 资源耗尽
+  tail: 无法使用 inotify 机制，回归为 polling 机制
+#+END_EXAMPLE
+
+关掉一些可能在使用 inotify 监听文件的程序之后，问题（症状）就消失了。
+但是老出现这个问题（每天都会遇到），也不是个事儿啊！
+
+
+* 解决问题
+查看 inotify 的配置
+#+BEGIN_EXAMPLE
+
+  $ sysctl fs.inotify
+  fs.inotify.max_queued_events = 16384
+  fs.inotify.max_user_instances = 128
+  fs.inotify.max_user_watches = 65536
+#+END_EXAMPLE
+
+临时解决问题（关机之后又是原来的设置）：
+#+BEGIN_EXAMPLE
+
+  sudo sysctl -w fs.inotify.max_user_watches=100000
+#+END_EXAMPLE
+
+长期修改 inotify 文件监听上限：
+#+BEGIN_EXAMPLE
+  echo fs.inotify.max_user_watches=100000 | sudo tee -a /etc/sysctl.conf
+#+END_EXAMPLE
+
+# 重载配置文件，使之马上生效
+#+BEGIN_EXAMPLE
+  sudo sysctl -p
+#+END_EXAMPLE
+
+* 后续
+六万多个名额都不够用，是哪个程序在搞我啊！
+
+总之，结论大概如下：
+
+查看哪些程序在监听文件
+
+方法 1：能查到进程号
+#+BEGIN_EXAMPLE
+
+  for foo in /proc/*/fd/*; do readlink -f $foo; done | grep inotify | sort | uniq -c | sort -nr
+#+END_EXAMPLE
+
+方法 2：显示进程
+#+BEGIN_EXAMPLE
+
+  ps -fp $(find /proc/*/fd/* -type l -lname 'anon_inode:inotify' -print 2> /dev/null | sed -e 's/^\/proc\/\([0-9]*\)\/.*/\1/')
+ 
+#+END_EXAMPLE
+
+* 参考文章：
+[[http://www.markjour.com/article/cannot-add-inotify-watch.html][Error：达到了 inotify 观察数限制]]
+
+
+

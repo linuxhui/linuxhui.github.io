@@ -243,6 +243,23 @@ Element节点具有以下特征：
 **** html元素
 所有的HTML元素都是由HTMLElement类型表示，不是通过这个类型，而是通过
 
+*  数据类型
+   js的数据类型分为两类, primitive type 和 对象类型  object type
 
+** primitive type
 
+*** 数字
 
+*** 字符串
+
+*** 布尔值
+
+*** 特殊原始值
+    null 和 undefined
+
+**  object
+    object是 属性的集合. 每个属性由"名/值对"构成, 其中一个比较特殊的对象是全局对象.
+    
+    普通的JS对象是"name/value"的无序集合. 同样也定义了一种特殊的对象-数组(array).
+
+    函数也是对象.

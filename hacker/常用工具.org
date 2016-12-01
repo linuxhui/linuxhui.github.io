@@ -1,0 +1,9 @@
+
+
+* python 版本切换工具 < p>
+ 安装过程
+ #+BEGIN_EXAMPLE
+   $ wget https://github.com/qw3rtman/p/releases/download/v0.1.0/p
+   $ chmod +x p
+   $ mv p /usr/local/bin
+ #+END_EXAMPLE

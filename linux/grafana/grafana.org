@@ -1,0 +1,84 @@
+
+* LDAP 认证
+#+BEGIN_EXAMPLE
+  # Set to true to log user information returned from LDAP
+  # 是否记录LDAP的用户信息
+  verbose_logging = false
+
+  [[servers]]
+  # Ldap server host (specify multiple hosts space separated)
+  # Ldap 服务器地址，多地址空格分离
+  host = "127.0.0.1"
+
+  # Default port is 389 or 636 if use_ssl = true
+  # 服务器端口
+  port = 389
+
+  # Set to true if ldap server supports TLS
+  # ssl是否启用
+  use_ssl = false
+
+  # Set to true if connect ldap server with STARTTLS pattern (create connection in insecure, then upgrade to secure connection with TLS)
+  # 连接采用SSL/TLS 加密
+  start_tls = false
+
+  # set to true if you want to skip ssl cert validation
+  # 设置为True，则跳过 ssl cert 认证
+  ssl_skip_verify = false
+
+  # set to the path to your root CA certificate or leave unset to use system defaults
+  # 设置CA文件 路径
+  # root_ca_cert = /path/to/certificate.crt
+
+  # Search user bind dn
+  # 设置 bind  dn
+  bind_dn = "cn=admin,dc=grafana,dc=org"
+
+  # Search user bind password
+  # 设置 bind 密码
+  bind_password = 'grafana'
+
+  # User search filter, for example "(cn=%s)" or "(sAMAccountName=%s)" or "(uid=%s)"
+  #  过滤条件
+  search_filter = "(cn=%s)"
+
+  # An array of base dns to search through
+  # 用来search的 base dns
+  search_base_dns = ["dc=grafana,dc=org"]
+
+  # In POSIX LDAP schemas, without memberOf attribute a secondary query must be made for groups.
+  # This is done by enabling group_search_filter below. You must also set member_of= "cn"
+  # in [servers.attributes] below.
+
+  ## Group search filter, to retrieve the groups of which the user is a member (only set if memberOf attribute is not available)
+  # group_search_filter = "(&(objectClass=posixGroup)(memberUid=%s))"
+  ## An array of the base DNs to search through for groups. Typically uses ou=groups
+  # group_search_base_dns = ["ou=groups,dc=grafana,dc=org"]
+
+  # Specify names of the ldap attributes your ldap uses
+  # 自己使用的LDAP 属性
+  [servers.attributes]
+  name = "givenName"
+  surname = "sn"
+  username = "cn"
+  member_of = "memberOf"
+  email =  "email"
+
+  # Map ldap groups to grafana org roles
+  # grafana org组的属性
+  [[servers.group_mappings]]
+  group_dn = "cn=admins,dc=grafana,dc=org"
+  org_role = "Admin"
+  # The Grafana organization database id, optional, if left out the default org (id 1) will be used
+  # org_id = 1
+
+  [[servers.group_mappings]]
+  # 服务器组映射
+  group_dn = "cn=users,dc=grafana,dc=org"
+  org_role = "Editor"
+
+  [[servers.group_mappings]]
+  # If you want to match all (or no ldap groups) then you can use wildcard
+  group_dn = "*"
+  org_role = "Viewer"
+#+END_EXAMPLE

@@ -1,0 +1,56 @@
+ 1075  yum install net-snmp.x86_64
+ 1076  yum install net-snmp-devel
+ 1112  yum install pcre
+ 1113  yum install pcre-devel
+
+ 1129  yum install  php56
+ 1132  yum install  php56-php-fpm
+ 1231  yum install php56-php-mysqlnd.x86_64
+ 1233  yum install php56-php-gd.x86_64
+ 1236  yum install php56-php-bcmath.x86_64
+ 1237  yum install php56-php-mbstring
+yum install php56-php-mcrypt.x86_64
+
+
+############zabbix ##################
+
+[root@vm-spider-114 zabbix-3.0.1]# groupadd zabbix
+[root@vm-spider-114 zabbix-3.0.1]# useradd -g zabbix zabbix
+
+1038  yum install  mysql-server  mysql
+ 1039  /etc/init.d/mysqld status
+ 1040  /etc/init.d/mysqld start
+ 1041  /usr/bin/mysqladmin -u root password  '123456'
+
+# mysql -uroot -pttlsapwd
+mysql> create database zabbix default charset utf8;
+mysql> quit;
+# mysql -uroot -pttlsapwd zabbix < database/mysql/schema.sql
+
+
+
+[root@vm-spider-114 mysql]# mysql -u root -p123456 zabbix <schema.sql 
+[root@vm-spider-114 mysql]# mysql -u root -p123456 zabbix <images.sql 
+[root@vm-spider-114 mysql]# mysql -u root -p123456 zabbix <data.sql 
+
+
+
+
+########### tengine ##############
+ 1098  tar xvf tengine-2.2.0.tar.gz 
+ 1100  cd tengine-2.2.0
+ 1114  ./configure 
+ 1115  make
+ 1116  make install
+
+
+
+######################## BM ################
+导出数据库
+mysqldump  -u albertandqq -p db_cmdb > bm_cmdb.sql
+mysqldump  -u albertandqq -p db_monitor > bm_monitor.sql
+
+ create database db_cmdb default charset utf8;
+ create database db_monitor default charset utf8;
+
+

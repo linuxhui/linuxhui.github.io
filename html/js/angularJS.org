@@ -1,0 +1,5 @@
+
+* 名词解释  
+  ng-app 表示所有被包含的元素都属于angularJS. 
+  ng-controller 表示被它包含的元素都属于某个控制器.
+

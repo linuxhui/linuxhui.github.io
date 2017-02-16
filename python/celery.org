@@ -1,0 +1,48 @@
+
+
+* TASK
+   创建task可以使用task()参数
+   #+BEGIN_EXAMPLE
+     @app.task
+     def create_user(username, password):
+         User.objects.create(username=username, password=password)
+   #+END_EXAMPLE
+
+   可以制定装饰器的参数
+   #+BEGIN_EXAMPLE
+     @app.task(serializer='json')
+     def create_user(username, password):
+         User.objects.create(username=username, password=password)
+   #+END_EXAMPLE
+
+   *Note:* 如果你使用多个装饰器, 那么你可以确保 task 装饰器在最外层
+   #+BEGIN_EXAMPLE
+     @app.task
+     @decorator2
+     @decorator1
+     def add(x, y):
+         return x + y
+   #+END_EXAMPLE
+
+* Names
+   每一个task都必须有一个唯一的名字,如果不提供,则使用func名字作为名字
+   
+   #+BEGIN_EXAMPLE
+     >>> @app.task(name='sum-of-two-numbers')
+     >>> def add(x, y):
+     ...     return x + y
+
+     >>> add.name
+     'sum-of-two-numbers'
+   #+END_EXAMPLE
+
+   最好的方式是使用 module名字作为名字空间, 这样就不会导致名称重复.
+   
+   #+BEGIN_EXAMPLE
+     >>> @app.task(name='tasks.add')
+     >>> def add(x, y):
+     ...     return x + y
+   #+END_EXAMPLE
+
+
+

@@ -1,0 +1,304 @@
+#+TITLE: ANSIBLE命令参数详解
+
+
+
+* ansible
+  #+BEGIN_EXAMPLE
+    Usage: ansible <host-pattern> [options]
+
+    Options:
+      -a MODULE_ARGS, --args=MODULE_ARGS
+                            module arguments
+      --ask-become-pass     ask for privilege escalation password
+      -k, --ask-pass        ask for connection password
+      --ask-su-pass         ask for su password (deprecated, use become)
+      -K, --ask-sudo-pass   ask for sudo password (deprecated, use become)
+      --ask-vault-pass      ask for vault password
+      -B SECONDS, --background=SECONDS
+                            run asynchronously, failing after X seconds
+                            (default=N/A)
+      -b, --become          run operations with become (nopassw implied)
+      --become-method=BECOME_METHOD
+                            privilege escalation method to use (default=sudo),
+                            valid choices: [ sudo | su | pbrun | pfexec | runas |
+                            doas ]
+      --become-user=BECOME_USER
+                            run operations as this user (default=root)
+                            用这个用户进行操作
+      -C, --check           don't make any changes; instead, try to predict some
+                            of the changes that may occur
+                            不做任何改变的执行命令
+      -c CONNECTION, --connection=CONNECTION
+                            connection type to use (default=smart)
+                            连接类型
+
+      -D, --diff            when changing (small) files and templates, show angularjs registerControllerthe
+                            differences in those files; works great with --check
+                            当文件改变的时候,展示这些文件.
+      -e EXTRA_VARS, --extra-vars=EXTRA_VARS
+                            set additional variables as key=value or YAML/JSON
+                            设置默认的参数
+
+      -f FORKS, --forks=FORKS
+                            specify number of parallel processes to use
+                            (default=5)
+                            可以同时运行的进程数
+
+      -h, --help            show this help message and exit
+                            展示帮助信息
+
+      -i INVENTORY, --inventory-file=INVENTORY
+                            specify inventory host path
+                            (default=/etc/ansible/hosts) or comma separated host
+                            list.
+                            自定义inventory文件
+
+      -l SUBSET, --limit=SUBSET
+                            further limit selected hosts to an additional pattern
+
+
+      --list-hosts          outputs a list of matching hosts; does not execute
+                            anything else
+                            输出符合条件的host列表,除此之外不做任何事情.
+
+
+      -m MODULE_NAME, --module-name=MODULE_NAME
+                            module name to execute (default=command)
+                            用来执行的模块名, 默认是command
+
+      -M MODULE_PATH, --module-path=MODULE_PATH
+                            specify path(s) to module library
+                            (default=/etc/ansible/modules)
+                            自定义模块路径
+
+      --new-vault-password-file=NEW_VAULT_PASSWORD_FILE
+                            new vault password file for rekey
+
+      -o, --one-line        condense output
+                            简要输出
+
+      --output=OUTPUT_FILE  output file name for encrypt or decrypt; use - for
+                            stdout
+                            输出到指定文件
+
+      -P POLL_INTERVAL, --poll=POLL_INTERVAL
+                            set the poll interval if using -B (default=15)
+                            设置默认的poll 大小
+
+      --private-key=PRIVATE_KEY_FILE, --key-file=PRIVATE_KEY_FILE
+                            use this file to authenticate the connection
+                            用来认证的私钥文件
+
+      --scp-extra-args=SCP_EXTRA_ARGS
+                            specify extra arguments to pass to scp only (e.g. -l)
+                            指明 scp的额外参数
+
+      --sftp-extra-args=SFTP_EXTRA_ARGS
+                            specify extra arguments to pass to sftp only (e.g. -f,
+                            -l)
+                            指明额外的参数用来处理sftp
+
+      --ssh-common-args=SSH_COMMON_ARGS
+                            specify common arguments to pass to sftp/scp/ssh (e.g.
+                            ProxyCommand)
+                            自定义sftp/scp/ssh的常规参数
+
+      --ssh-extra-args=SSH_EXTRA_ARGS
+                            specify extra arguments to pass to ssh only (e.g. -R)
+                            自定义ssh参数
+
+      -S, --su              run operations with su (deprecated, use become)
+                            使用su来执行命令
+
+      -R SU_USER, --su-user=SU_USER
+                            run operations with su as this user (default=root)
+                            (deprecated, use become)
+                            用该用户执行操作
+
+      -s, --sudo            run operations with sudo (nopasswd) (deprecated, use
+                            become)
+                            使用sudo执行操作
+
+      -U SUDO_USER, --sudo-user=SUDO_USER
+                            desired sudo user (default=root) (deprecated, use
+                            become)
+
+      --syntax-check        perform a syntax check on the playbook, but do not
+                            execute it
+                            对于playbook进行语法检查,然后执行
+
+      -T TIMEOUT, --timeout=TIMEOUT
+                            override the connection timeout in seconds
+                            (default=10)
+                            设置连接超时时间
+
+      -t TREE, --tree=TREE  log output to this directory
+                            在这个目录下进行日志输出
+
+      -u REMOTE_USER, --user=REMOTE_USER
+                            connect as this user (default=None)
+                            用该用户进行连接
+
+      --vault-password-file=VAULT_PASSWORD_FILE
+                            vault password file
+                            密码文件
+
+      -v, --verbose         verbose mode (-vvv for more, -vvvv to enable
+                            connection debugging)
+                            详细模式
+
+      --version             show program's version number and exit
+                            版本信息
+
+
+  #+END_EXAMPLE
+
+* inventory 常用配置参数
+   #+BEGIN_EXAMPLE
+     [AUTO]
+     10.0.1.54 ansible_port=22  ansible_user=java ansible_ssh_pass=123456 ansible_become_user=root ansible_become_pass=1 ansible_become_method=su
+   #+END_EXAMPLE
+
+   以root/普通用户执行的方式如下:
+   #+BEGIN_EXAMPLE
+     # huihui @ wsh in /tmp/semaphore [14:26:18] 
+     $ ansible 10.0.1.54  -m command -a "whoami"   
+     10.0.1.54 | SUCCESS | rc=0 >>
+     java
+
+     # huihui @ wsh in /tmp/semaphore [14:26:21] 
+     $ ansible 10.0.1.54  -m command -a "whoami" -b
+     10.0.1.54 | SUCCESS | rc=0 >>
+     root
+   #+END_EXAMPLE
+
+* ansible-playbook
+  #+BEGIN_EXAMPLE
+    Usage: ansible-playbook playbook.yml
+
+    Options:
+      -D, --diff            when changing (small) files and templates, show the
+                            differences in those files; works great with --check
+      -e EXTRA_VARS, --extra-vars=EXTRA_VARS
+                            set additional variables as key=value or YAML/JSON
+                            自定义参数设置, 以key/value形式
+
+      --flush-cache         clear the fact cache
+                            清除fact缓存
+
+      --force-handlers      run handlers even if a task fails
+                            任务失败的时候进行的处理
+
+      -f FORKS, --forks=FORKS
+                            specify number of parallel processes to use
+                            (default=5)
+                            并行进程数
+
+      -h, --help            show this help message and exit
+                            帮助文档
+
+      -i INVENTORY, --inventory-file=INVENTORY
+                            specify inventory host path
+                            (default=/etc/ansible/hosts) or comma separated host
+                            list.
+                            自定义 inventory
+
+
+      -l SUBSET, --limit=SUBSET
+                            further limit selected hosts to an additional pattern
+
+      --list-hosts          outputs a list of matching hosts; does not execute
+                            anything else
+                            输出匹配的host
+
+      --list-tags           list all available tags
+                             列出所有的tags
+
+      --list-tasks          list all tasks that would be executed
+                            列出将会被执行的tag
+
+      -M MODULE_PATH, --module-path=MODULE_PATH
+                            specify path(s) to module library
+                            (default=/etc/ansible/modules)
+                            自定义模块位置
+
+      --new-vault-password-file=NEW_VAULT_PASSWORD_FILE
+                            new vault password file for rekey
+
+      --output=OUTPUT_FILE  output file name for encrypt or decrypt; use - for
+                            stdout
+
+      --private-key=PRIVATE_KEY_FILE, --key-file=PRIVATE_KEY_FILE
+                            use this file to authenticate the connection
+                            认证key
+
+
+      --scp-extra-args=SCP_EXTRA_ARGS
+                            specify extra arguments to pass to scp only (e.g. -l)
+                            scp额外参数
+
+      --sftp-extra-args=SFTP_EXTRA_ARGS
+                            specify extra arguments to pass to sftp only (e.g. -f,
+                            -l)
+                            sftp额外参数
+
+      --skip-tags=SKIP_TAGS
+                            only run plays and tasks whose tags do not match these
+                            values
+                            跳过tags进行执行
+
+      --ssh-common-args=SSH_COMMON_ARGS
+                            specify common arguments to pass to sftp/scp/ssh (e.g.
+                            ProxyCommand)
+                            sftp/scp/ssh的通用参数
+
+      --ssh-extra-args=SSH_EXTRA_ARGS
+                            specify extra arguments to pass to ssh only (e.g. -R)
+                            ssh额外参数
+
+      --start-at-task=START_AT_TASK
+                            start the playbook at the task matching this name
+                            从指定的task开始执行
+
+      --step                one-step-at-a-time: confirm each task before running
+                            在运行之前,确认每一个task
+
+      -S, --su              run operations with su (deprecated, use become)
+      -R SU_USER, --su-user=SU_USER
+                            run operations with su as this user (default=root)
+                            (deprecated, use become)
+      -s, --sudo            run operations with sudo (nopasswd) (deprecated, use
+                            become)
+      -U SUDO_USER, --sudo-user=SUDO_USER
+                            desired sudo user (default=root) (deprecated, use
+                            become)
+      --syntax-check        perform a syntax check on the playbook, but do not
+                            execute it
+                            语法检查
+
+      -t TAGS, --tags=TAGS  only run plays and tasks tagged with these values
+                            只运行指定的tags
+
+      -T TIMEOUT, --timeout=TIMEOUT
+                            override the connection timeout in seconds
+                            (default=10)
+                            设定超时时间
+
+      -u REMOTE_USER, --user=REMOTE_USER
+                            connect as this user (default=None)
+
+      --vault-password-file=VAULT_PASSWORD_FILE
+                            vault password file
+      -v, --verbose         verbose mode (-vvv for more, -vvvv to enable
+                            connection debugging)
+      --version             show program's version number and exit
+
+  #+END_EXAMPLE
+* ansible-doc
+
+
+
+
+
+
+
